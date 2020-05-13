@@ -96,6 +96,7 @@
             this.btn_login.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.btn_login.TabIndex = 4;
             this.btn_login.Text = "登录";
+            this.btn_login.Click += new System.EventHandler(this.btn_login_Click);
             // 
             // Login
             // 
@@ -112,6 +113,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.Name = "Login";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "系统登录";
             this.ResumeLayout(false);
 

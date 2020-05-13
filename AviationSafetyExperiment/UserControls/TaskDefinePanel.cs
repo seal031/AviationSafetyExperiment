@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace AviationSafetyExperiment.UserControls
 {
-    public partial class IndicatorItem : UserControl
+    public partial class TaskDefinePanel : UserControl
     {
-        public IndicatorItem()
+        public TaskDefinePanel()
         {
             InitializeComponent();
         }

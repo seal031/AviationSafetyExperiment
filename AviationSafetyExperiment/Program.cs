@@ -16,14 +16,14 @@ namespace AviationSafetyExperiment
         [STAThread]
         static void Main()
         {
-            //    Database.SetInitializer(new DropCreateDatabaseIfModelChanges<EFMySqlDbContext>());
-            //    //Database.SetInitializer<EFMySqlDbContext>(null);
-            //    using (var context = new EFMySqlDbContext())
-            //    {
-            //        //context.Tb_codes.Add(new Db.Entity.Tb_code() {code_name="1",code_type=1 });
-            //        //context.SaveChanges();
-            //        var code = context.Tb_codes.FirstOrDefault(c => c.code_id == 1);
-            //    }
+            //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<EFMySqlDbContext>());
+            Database.SetInitializer<EFMySqlDbContext>(null);
+            using (var context = new EFMySqlDbContext())
+            {
+                //context.Tb_codes.Add(new Db.Entity.Tb_code() { codeName = "1", codeType = 1 });
+                //context.SaveChanges();
+                //var code = context.Tb_codes.FirstOrDefault(c => c.code_id == 1);
+            }
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

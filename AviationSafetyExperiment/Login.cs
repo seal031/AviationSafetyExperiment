@@ -17,5 +17,20 @@ namespace AviationSafetyExperiment
         {
             InitializeComponent();
         }
+
+        private void btn_login_Click(object sender, EventArgs e)
+        {
+            if (login())
+            {
+                MainForm mainForm = new AviationSafetyExperiment.MainForm();
+                mainForm.Show();
+                this.Hide();
+            }
+        }
+
+        private bool login()
+        {
+            return true;
+        }
     }
 }

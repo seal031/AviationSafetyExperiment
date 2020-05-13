@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AviationSafetyExperiment.Db.Entity.Tb_code">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAIAQAAAAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Db\Entity\Tb_code.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AviationSafetyExperiment.Db.Entity.Tb_indicator">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAIAADgAAAAAAAAAAAAAAAABAAAAAAAAI=</HashCode>
+      <FileName>Db\Entity\Tb_indicator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AviationSafetyExperiment.Db.Entity.Tb_taskIndicatorMap">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Db\Entity\Tb_taskIndicatorMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AviationSafetyExperiment.Db.Entity.Tb_taskInfo">
+    <Position X="0.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAEAAAAAAQAAAAAEAAAAAAIAAAIAAIAAAA=</HashCode>
+      <FileName>Db\Entity\Tb_taskInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AviationSafetyExperiment.Db.Entity.Tb_taskLifecycle">
+    <Position X="2.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABBAAAAAAAAAAAAAAQAACAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Db\Entity\Tb_taskLifecycle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AviationSafetyExperiment.Db.Entity.Tb_taskModelMap">
+    <Position X="5.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAIABAAAAAAAAA=</HashCode>
+      <FileName>Db\Entity\Tb_taskModelMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AviationSafetyExperiment.Db.Entity.Tb_taskProcess">
+    <Position X="0.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAAEBAAAAAKAAAAAAAAAgA=</HashCode>
+      <FileName>Db\Entity\Tb_taskProcess.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AviationSafetyExperiment.Db.Entity.Tb_taskResult">
+    <Position X="2.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABACAAAAQAAAAAACAAAAAAAAAAAAAAAEAAACAAAAAAA=</HashCode>
+      <FileName>Db\Entity\Tb_taskResult.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>

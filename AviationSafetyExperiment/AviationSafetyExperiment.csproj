@@ -74,8 +74,40 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BrandManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BrandManage.Designer.cs">
+      <DependentUpon>BrandManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Db\DAO\CodeAdapter.cs" />
+    <Compile Include="DbLocalCache\CodeCache.cs" />
+    <Compile Include="DbLocalCache\IndicatorCache.cs" />
+    <Compile Include="Db\DAO\IAdapter.cs" />
+    <Compile Include="Db\DAO\IndicatorAdapter.cs" />
+    <Compile Include="Db\DAO\TaskAdapter.cs" />
     <Compile Include="Db\EFMySqlDbContext.cs" />
-    <Compile Include="Db\Entity\tb_code.cs" />
+    <Compile Include="Db\Entity\CodeTypeEnum.cs" />
+    <Compile Include="Db\Entity\Tb_code.cs" />
+    <Compile Include="Db\Entity\Tb_indicator.cs" />
+    <Compile Include="Db\Entity\Tb_taskIndicatorMap.cs" />
+    <Compile Include="Db\Entity\Tb_taskInfo.cs" />
+    <Compile Include="Db\Entity\Tb_taskLifecycle.cs" />
+    <Compile Include="Db\Entity\Tb_taskModelMap.cs" />
+    <Compile Include="Db\Entity\Tb_taskProcess.cs" />
+    <Compile Include="Db\Entity\Tb_taskResult.cs" />
+    <Compile Include="IndicatorEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IndicatorEdit.Designer.cs">
+      <DependentUpon>IndicatorEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IndicatorManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IndicatorManage.Designer.cs">
+      <DependentUpon>IndicatorManage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,20 +120,54 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\Models.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaskReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TaskReport.Designer.cs">
+      <DependentUpon>TaskReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\IndicatorDataGrid.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserControls\IndicatorDataGrid.Designer.cs">
       <DependentUpon>IndicatorDataGrid.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\IndicatorItem.cs">
+    <Compile Include="UserControls\TaskChartSlidePanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\IndicatorItem.Designer.cs">
-      <DependentUpon>IndicatorItem.cs</DependentUpon>
+    <Compile Include="UserControls\TaskChartSlidePanel.Designer.cs">
+      <DependentUpon>TaskChartSlidePanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\TaskDefinePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\TaskDefinePanel.Designer.cs">
+      <DependentUpon>TaskDefinePanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TaskMainPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\TaskMainPanel.Designer.cs">
+      <DependentUpon>TaskMainPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TaskProcessSlidePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\TaskProcessSlidePanel.Designer.cs">
+      <DependentUpon>TaskProcessSlidePanel.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="BrandManage.resx">
+      <DependentUpon>BrandManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IndicatorEdit.resx">
+      <DependentUpon>IndicatorEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IndicatorManage.resx">
+      <DependentUpon>IndicatorManage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
@@ -117,12 +183,25 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="TaskReport.resx">
+      <DependentUpon>TaskReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\IndicatorDataGrid.resx">
       <DependentUpon>IndicatorDataGrid.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\IndicatorItem.resx">
-      <DependentUpon>IndicatorItem.cs</DependentUpon>
+    <EmbeddedResource Include="UserControls\TaskChartSlidePanel.resx">
+      <DependentUpon>TaskChartSlidePanel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\TaskDefinePanel.resx">
+      <DependentUpon>TaskDefinePanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\TaskMainPanel.resx">
+      <DependentUpon>TaskMainPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\TaskProcessSlidePanel.resx">
+      <DependentUpon>TaskProcessSlidePanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="ClassDiagram2.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -136,6 +215,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Db\Entity\taskStateDescribe.txt" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

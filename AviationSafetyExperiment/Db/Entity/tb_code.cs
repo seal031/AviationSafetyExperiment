@@ -8,15 +8,29 @@ using System.Threading.Tasks;
 
 namespace AviationSafetyExperiment.Db.Entity
 {
+    /// <summary>
+    /// 代码表
+    /// </summary>
     [Table("tb_code")]
     public class Tb_code
     {
-        [Key,Column("code_id"), DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int code_id { get; set; }
-
-        public int code_type { get; set; }
-
+        /// <summary>
+        /// 代码id
+        /// </summary>
+        [Key]
+        public int codeId { get; set; }
+        /// <summary>
+        /// 代码类型
+        /// </summary>
+        public int codeType { get; set; }
+        /// <summary>
+        /// 父代码id（可空）
+        /// </summary>
+        public int? parentId { get; set; }
+        /// <summary>
+        /// 代码名称
+        /// </summary>
         [MaxLength(30)]
-        public string code_name { get; set; }
+        public string codeName { get; set; }
     }
 }
