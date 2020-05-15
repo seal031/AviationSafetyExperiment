@@ -74,27 +74,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BrandEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BrandEdit.Designer.cs">
+      <DependentUpon>BrandEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="BrandManage.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="BrandManage.Designer.cs">
       <DependentUpon>BrandManage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Db\DAO\CodeAdapter.cs" />
     <Compile Include="DbLocalCache\CodeCache.cs" />
     <Compile Include="DbLocalCache\IndicatorCache.cs" />
-    <Compile Include="Db\DAO\IAdapter.cs" />
-    <Compile Include="Db\DAO\IndicatorAdapter.cs" />
-    <Compile Include="Db\DAO\TaskAdapter.cs" />
+    <Compile Include="DbLocalCache\IndicatorTemplateMapCache.cs" />
+    <Compile Include="DbLocalCache\TemplateCache.cs" />
+    <Compile Include="Db\DAO\BaseAdapter.cs" />
     <Compile Include="Db\EFMySqlDbContext.cs" />
+    <Compile Include="Db\Entity\BaseEntity.cs" />
     <Compile Include="Db\Entity\CodeTypeEnum.cs" />
+    <Compile Include="Db\Entity\Tb_indicatorTemplateMap.cs" />
     <Compile Include="Db\Entity\Tb_code.cs" />
     <Compile Include="Db\Entity\Tb_indicator.cs" />
+    <Compile Include="Db\Entity\Tb_indicatorTemplate.cs" />
     <Compile Include="Db\Entity\Tb_taskIndicatorMap.cs" />
     <Compile Include="Db\Entity\Tb_taskInfo.cs" />
     <Compile Include="Db\Entity\Tb_taskLifecycle.cs" />
     <Compile Include="Db\Entity\Tb_taskModelMap.cs" />
-    <Compile Include="Db\Entity\Tb_taskProcess.cs" />
     <Compile Include="Db\Entity\Tb_taskResult.cs" />
     <Compile Include="IndicatorEdit.cs">
       <SubType>Form</SubType>
@@ -159,6 +166,9 @@
     <Compile Include="UserControls\TaskProcessSlidePanel.Designer.cs">
       <DependentUpon>TaskProcessSlidePanel.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="BrandEdit.resx">
+      <DependentUpon>BrandEdit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BrandManage.resx">
       <DependentUpon>BrandManage.cs</DependentUpon>
     </EmbeddedResource>

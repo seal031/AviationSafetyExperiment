@@ -10,10 +10,8 @@ namespace AviationSafetyExperiment.Db.Entity
     /// <summary>
     /// 测试生命周期
     /// </summary>
-    public class Tb_taskLifecycle
+    public class Tb_taskLifecycle:BaseEntity
     {
-        [Key]
-        public int taskLifecycleId { get; set; }
         /// <summary>
         /// 测试id
         /// </summary>

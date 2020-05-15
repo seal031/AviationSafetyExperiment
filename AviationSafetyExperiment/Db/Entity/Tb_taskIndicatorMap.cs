@@ -10,13 +10,8 @@ namespace AviationSafetyExperiment.Db.Entity
     /// <summary>
     /// 测试与指标映射表（多对多关系）
     /// </summary>
-    public class Tb_taskIndicatorMap
+    public class Tb_taskIndicatorMap:BaseEntity
     {
-        /// <summary>
-        /// 主键
-        /// </summary>
-        [Key]
-        public int tiMapId { get; set; }
         /// <summary>
         /// 测试任务id
         /// </summary>

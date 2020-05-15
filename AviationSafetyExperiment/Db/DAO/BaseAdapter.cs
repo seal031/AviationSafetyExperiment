@@ -2,36 +2,37 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace AviationSafetyExperiment.Db.DAO
 {
-    public class TaskAdapter
+    public class BaseAdapter
     {
-        public static IList<Tb_taskInfo> getAll()
+        public static IList<T> getAll<T>() where T : BaseEntity
         {
             using (EFMySqlDbContext context = new Db.EFMySqlDbContext())
             {
-                return context.Tb_taskInfos.ToList();
+                return context.getDbSet<T>().ToList();
             }
         }
 
-        public static Tb_taskInfo getById(int id)
+        public static T getById<T>(int id) where T : BaseEntity
         {
             using (EFMySqlDbContext context = new Db.EFMySqlDbContext())
             {
-                return context.Tb_taskInfos.FirstOrDefault(i => i.taskId == id);
+                return context.getDbSet<T>().FirstOrDefault(i => i.id == id);
             }
         }
 
-        public static void save(Tb_taskInfo taskInfo)
+        public static void save<T>(T t) where T : BaseEntity
         {
             using (EFMySqlDbContext context = new Db.EFMySqlDbContext())
             {
                 try
                 {
-                    context.Tb_taskInfos.Add(taskInfo);
+                    context.getDbSet<T>().Add(t);
                     context.SaveChanges();
                 }
                 catch (Exception ex)
@@ -41,25 +42,20 @@ namespace AviationSafetyExperiment.Db.DAO
             }
         }
 
-        public static void edit(Tb_taskInfo taskInfo)
+        public static void edit<T>(T entity) where T : BaseEntity
         {
             using (EFMySqlDbContext context = new Db.EFMySqlDbContext())
             {
                 try
                 {
-                    var foundTaskInfo = context.Tb_taskInfos.FirstOrDefault(i => i.taskId == taskInfo.taskId);
-                    if (foundTaskInfo != null)
+                    var foundIndicator = context.getDbSet<T>().FirstOrDefault(i => i.id == entity.id);
+                    PropertyInfo[] properties = typeof(T).GetProperties();
+                    foreach (var property in properties)
                     {
-                        foundTaskInfo.percent = taskInfo.percent;
-                        foundTaskInfo.taskClass = taskInfo.taskClass;
-                        foundTaskInfo.taskCode = taskInfo.taskCode;
-                        foundTaskInfo.taskExecutor = taskInfo.taskExecutor;
-                        foundTaskInfo.taskId = taskInfo.taskId;
-                        foundTaskInfo.taskName = taskInfo.taskName;
-                        foundTaskInfo.taskState = taskInfo.taskState;
-                        foundTaskInfo.taskType = taskInfo.taskType;
-                        context.SaveChanges();
+                        string text = property.Name;
+                        property.SetValue(foundIndicator, property.GetValue(entity));
                     }
+                    context.SaveChanges();
                 }
                 catch (Exception ex)
                 {

@@ -7,22 +7,20 @@ using System.Threading.Tasks;
 
 namespace AviationSafetyExperiment.Db.Entity
 {
-    /// <summary>
-    /// 测试与型号映射表（多对多关系）
-    /// </summary>
-    public class Tb_taskModelMap:BaseEntity
+    public class Tb_indicatorTemplate:BaseEntity
     {
         /// <summary>
-        /// 测试任务id
+        /// 模板名称
         /// </summary>
-        public int taskId { get; set; }
+        [MaxLength(30)]
+        public string templateName { get; set; }
         /// <summary>
-        /// 品牌id
+        /// 所属分类id
         /// </summary>
-        public int brandId { get; set; }
+        public int classId { get; set; }
         /// <summary>
-        /// 型号id
+        /// 创建时间
         /// </summary>
-        public int ModelId { get; set; }
+        public DateTime createDatetime { get; set; }
     }
 }

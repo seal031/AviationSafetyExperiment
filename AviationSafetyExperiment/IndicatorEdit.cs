@@ -33,6 +33,8 @@ namespace AviationSafetyExperiment
             if (indicator != null)
             {
                 cbb_class.SelectedValue = indicator.classId;
+                cbb_detection.SelectedValue = indicator.detectionId;
+                cbb_subDetection.SelectedValue = indicator.subDetectionId;
                 txt_indicatorName.Text = indicator.indicatorName;
                 txt_indicatorDesc.Text = indicator.indicatorDesc;
                 chk_isObsolete.Checked = indicator.isObsolete == 1 ? true : false;
@@ -44,7 +46,8 @@ namespace AviationSafetyExperiment
             List<Tb_code> classes = CodeCache.getClass();
             cbb_class.DataSource = classes;
             cbb_class.DisplayMember = "codeName";
-            cbb_class.ValueMember = "codeId";
+            cbb_class.ValueMember = "id";
+           
         }
 
         /// <summary>
@@ -63,6 +66,8 @@ namespace AviationSafetyExperiment
         private void setIndicator()
         {
             indicator.classId = (int)cbb_class.SelectedValue;
+            indicator.detectionId = (int)cbb_detection.SelectedValue;
+            indicator.subDetectionId = (int)cbb_subDetection.SelectedValue;
             indicator.indicatorName = txt_indicatorName.Text.Trim();
             indicator.indicatorDesc = txt_indicatorDesc.Text.Trim();
             indicator.isObsolete = chk_isObsolete.Checked ? 1 : 0;
@@ -71,6 +76,30 @@ namespace AviationSafetyExperiment
         {
             saveIndicator();
             this.Close();
+        }
+
+        private void cbb_class_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cbb_detection.DataSource = null;
+            if (cbb_class.DataSource != null)
+            {
+                List<Tb_code> detections = CodeCache.getDetection().Where(c => c.parentId == ((Tb_code)cbb_class.SelectedItem).id).ToList();
+                cbb_detection.DataSource = detections;
+                cbb_detection.DisplayMember = "codeName";
+                cbb_detection.ValueMember = "id";
+            }
+        }
+
+        private void cbb_detection_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cbb_subDetection.DataSource = null;
+            if (cbb_detection.DataSource != null)
+            {
+                List<Tb_code> subDetections = CodeCache.getSubDetection().Where(c => c.parentId == ((Tb_code)cbb_detection.SelectedItem).id).ToList();
+                cbb_subDetection.DataSource = subDetections;
+                cbb_subDetection.DisplayMember = "codeName";
+                cbb_subDetection.ValueMember = "id";
+            }
         }
     }
 }

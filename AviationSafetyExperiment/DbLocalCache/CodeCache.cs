@@ -1,4 +1,4 @@
-﻿using AviationSafetyExperiment.DAO;
+﻿using AviationSafetyExperiment.Db.DAO;
 using AviationSafetyExperiment.Db.Entity;
 using System;
 using System.Collections.Generic;
@@ -20,7 +20,7 @@ namespace AviationSafetyExperiment.DbLocalCache
 
         public static void getFromDb()
         {
-            var tempList = CodeAdapter.getAll();
+            var tempList = BaseAdapter.getAll<Tb_code>();
             if (tempList.Count() > 0)
             {
                 list.Clear();
@@ -35,13 +35,15 @@ namespace AviationSafetyExperiment.DbLocalCache
 
         public static void addCache(Tb_code code)
         {
-            var foundCode = list.FirstOrDefault(c => c.codeId == code.codeId);
+            var foundCode = list.FirstOrDefault(c => c.id == code.id);
             if (foundCode == null)
             {
+                BaseAdapter.save(code);
                 list.Add(code);
             }
             else
             {
+                BaseAdapter.edit(code);
                 foundCode = code;
             }
         }
@@ -57,6 +59,15 @@ namespace AviationSafetyExperiment.DbLocalCache
         public static List<Tb_code> getModel()
         {
             return list.Where(c => c.codeType == (int)(CodeTypeEnum.Model)).ToList();
+        }
+
+        public static List<Tb_code> getDetection()
+        {
+            return list.Where(c => c.codeType == (int)(CodeTypeEnum.Detection)).ToList();
+        }
+        public static List<Tb_code> getSubDetection()
+        {
+            return list.Where(c => c.codeType == (int)(CodeTypeEnum.SubDetection)).ToList();
         }
     }
 }

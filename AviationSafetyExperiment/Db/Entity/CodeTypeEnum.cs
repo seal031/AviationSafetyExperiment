@@ -28,5 +28,13 @@ namespace AviationSafetyExperiment.Db.Entity
         /// 任务状态
         /// </summary>
         State=5,
+        /// <summary>
+        /// 检测内容
+        /// </summary>
+        Detection=6,
+        /// <summary>
+        /// 检测分项
+        /// </summary>
+        SubDetection=7,
     }
 }

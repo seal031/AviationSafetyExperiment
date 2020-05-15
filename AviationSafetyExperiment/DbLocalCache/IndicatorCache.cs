@@ -1,13 +1,9 @@
-﻿using AviationSafetyExperiment.Db;
-using AviationSafetyExperiment.Db.DAO;
+﻿using AviationSafetyExperiment.Db.DAO;
 using AviationSafetyExperiment.Db.Entity;
 using DevComponents.DotNetBar;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace AviationSafetyExperiment.DbLocalCache
 {
@@ -22,7 +18,7 @@ namespace AviationSafetyExperiment.DbLocalCache
 
         public static void getFromDb()
         {
-            var tempList = IndicatorAdapter.getAll();
+            var tempList = BaseAdapter.getAll<Tb_indicator>();
             if (tempList.Count() > 0)
             {
                 list.Clear();
@@ -39,15 +35,15 @@ namespace AviationSafetyExperiment.DbLocalCache
         {
             try
             {
-                var foundIndicator = list.FirstOrDefault(i => i.indicatorId == indicator.indicatorId);
+                var foundIndicator = list.FirstOrDefault(i => i.id == indicator.id);
                 if (foundIndicator == null)
                 {
-                    IndicatorAdapter.save(indicator);
+                    BaseAdapter.save(indicator);
                     list.Add(indicator);
                 }
                 else
                 {
-                    IndicatorAdapter.edit<Tb_indicator>(indicator);
+                    BaseAdapter.edit(indicator);
                     //IndicatorAdapter.edit(indicator);
                     foundIndicator = indicator;
                 }

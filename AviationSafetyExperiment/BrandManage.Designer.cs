@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             this.groupPanel1 = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.groupPanel2 = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.groupPanel3 = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.itemPanel1 = new DevComponents.DotNetBar.ItemPanel();
-            this.itemPanel2 = new DevComponents.DotNetBar.ItemPanel();
-            this.itemPanel3 = new DevComponents.DotNetBar.ItemPanel();
-            this.btn_addClass = new DevComponents.DotNetBar.ButtonX();
             this.btn_editClass = new DevComponents.DotNetBar.ButtonX();
+            this.btn_addClass = new DevComponents.DotNetBar.ButtonX();
+            this.groupPanel2 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.btn_editBrand = new DevComponents.DotNetBar.ButtonX();
             this.btn_addBrand = new DevComponents.DotNetBar.ButtonX();
+            this.groupPanel3 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.btn_editModel = new DevComponents.DotNetBar.ButtonX();
             this.btn_addModel = new DevComponents.DotNetBar.ButtonX();
+            this.ip_brand = new System.Windows.Forms.ListBox();
+            this.ip_model = new System.Windows.Forms.ListBox();
+            this.ip_class = new System.Windows.Forms.ListBox();
             this.groupPanel1.SuspendLayout();
             this.groupPanel2.SuspendLayout();
             this.groupPanel3.SuspendLayout();
@@ -49,9 +49,9 @@
             // 
             this.groupPanel1.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.groupPanel1.Controls.Add(this.ip_class);
             this.groupPanel1.Controls.Add(this.btn_editClass);
             this.groupPanel1.Controls.Add(this.btn_addClass);
-            this.groupPanel1.Controls.Add(this.itemPanel1);
             this.groupPanel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupPanel1.Location = new System.Drawing.Point(0, 0);
             this.groupPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -91,13 +91,37 @@
             this.groupPanel1.TabIndex = 0;
             this.groupPanel1.Text = "分类管理";
             // 
+            // btn_editClass
+            // 
+            this.btn_editClass.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btn_editClass.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btn_editClass.Location = new System.Drawing.Point(201, 441);
+            this.btn_editClass.Name = "btn_editClass";
+            this.btn_editClass.Size = new System.Drawing.Size(75, 23);
+            this.btn_editClass.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btn_editClass.TabIndex = 2;
+            this.btn_editClass.Text = "编辑分类";
+            this.btn_editClass.Click += new System.EventHandler(this.btn_editClass_Click);
+            // 
+            // btn_addClass
+            // 
+            this.btn_addClass.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btn_addClass.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btn_addClass.Location = new System.Drawing.Point(32, 441);
+            this.btn_addClass.Name = "btn_addClass";
+            this.btn_addClass.Size = new System.Drawing.Size(75, 23);
+            this.btn_addClass.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btn_addClass.TabIndex = 1;
+            this.btn_addClass.Text = "新增分类";
+            this.btn_addClass.Click += new System.EventHandler(this.btn_addClass_Click);
+            // 
             // groupPanel2
             // 
             this.groupPanel2.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.groupPanel2.Controls.Add(this.ip_brand);
             this.groupPanel2.Controls.Add(this.btn_editBrand);
             this.groupPanel2.Controls.Add(this.btn_addBrand);
-            this.groupPanel2.Controls.Add(this.itemPanel2);
             this.groupPanel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupPanel2.Location = new System.Drawing.Point(300, 0);
             this.groupPanel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -137,13 +161,37 @@
             this.groupPanel2.TabIndex = 1;
             this.groupPanel2.Text = "品牌管理";
             // 
+            // btn_editBrand
+            // 
+            this.btn_editBrand.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btn_editBrand.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btn_editBrand.Location = new System.Drawing.Point(195, 441);
+            this.btn_editBrand.Name = "btn_editBrand";
+            this.btn_editBrand.Size = new System.Drawing.Size(75, 23);
+            this.btn_editBrand.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btn_editBrand.TabIndex = 4;
+            this.btn_editBrand.Text = "编辑品牌";
+            this.btn_editBrand.Click += new System.EventHandler(this.btn_editBrand_Click);
+            // 
+            // btn_addBrand
+            // 
+            this.btn_addBrand.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btn_addBrand.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btn_addBrand.Location = new System.Drawing.Point(26, 441);
+            this.btn_addBrand.Name = "btn_addBrand";
+            this.btn_addBrand.Size = new System.Drawing.Size(75, 23);
+            this.btn_addBrand.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btn_addBrand.TabIndex = 3;
+            this.btn_addBrand.Text = "新增品牌";
+            this.btn_addBrand.Click += new System.EventHandler(this.btn_addBrand_Click);
+            // 
             // groupPanel3
             // 
             this.groupPanel3.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel3.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.groupPanel3.Controls.Add(this.ip_model);
             this.groupPanel3.Controls.Add(this.btn_editModel);
             this.groupPanel3.Controls.Add(this.btn_addModel);
-            this.groupPanel3.Controls.Add(this.itemPanel3);
             this.groupPanel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupPanel3.Location = new System.Drawing.Point(600, 0);
             this.groupPanel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -183,108 +231,6 @@
             this.groupPanel3.TabIndex = 2;
             this.groupPanel3.Text = "型号管理";
             // 
-            // itemPanel1
-            // 
-            // 
-            // 
-            // 
-            this.itemPanel1.BackgroundStyle.Class = "ItemPanel";
-            this.itemPanel1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.itemPanel1.ContainerControlProcessDialogKey = true;
-            this.itemPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.itemPanel1.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
-            this.itemPanel1.Location = new System.Drawing.Point(0, 0);
-            this.itemPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.itemPanel1.MultiLine = true;
-            this.itemPanel1.Name = "itemPanel1";
-            this.itemPanel1.Size = new System.Drawing.Size(294, 421);
-            this.itemPanel1.TabIndex = 0;
-            this.itemPanel1.Text = "itemPanel1";
-            // 
-            // itemPanel2
-            // 
-            // 
-            // 
-            // 
-            this.itemPanel2.BackgroundStyle.Class = "ItemPanel";
-            this.itemPanel2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.itemPanel2.ContainerControlProcessDialogKey = true;
-            this.itemPanel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.itemPanel2.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
-            this.itemPanel2.Location = new System.Drawing.Point(0, 0);
-            this.itemPanel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.itemPanel2.MultiLine = true;
-            this.itemPanel2.Name = "itemPanel2";
-            this.itemPanel2.Size = new System.Drawing.Size(294, 421);
-            this.itemPanel2.TabIndex = 1;
-            this.itemPanel2.Text = "itemPanel2";
-            // 
-            // itemPanel3
-            // 
-            // 
-            // 
-            // 
-            this.itemPanel3.BackgroundStyle.Class = "ItemPanel";
-            this.itemPanel3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.itemPanel3.ContainerControlProcessDialogKey = true;
-            this.itemPanel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.itemPanel3.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
-            this.itemPanel3.Location = new System.Drawing.Point(0, 0);
-            this.itemPanel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.itemPanel3.MultiLine = true;
-            this.itemPanel3.Name = "itemPanel3";
-            this.itemPanel3.Size = new System.Drawing.Size(294, 421);
-            this.itemPanel3.TabIndex = 1;
-            this.itemPanel3.Text = "itemPanel3";
-            // 
-            // btn_addClass
-            // 
-            this.btn_addClass.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btn_addClass.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btn_addClass.Location = new System.Drawing.Point(32, 441);
-            this.btn_addClass.Name = "btn_addClass";
-            this.btn_addClass.Size = new System.Drawing.Size(75, 23);
-            this.btn_addClass.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btn_addClass.TabIndex = 1;
-            this.btn_addClass.Text = "新增分类";
-            this.btn_addClass.Click += new System.EventHandler(this.btn_addClass_Click);
-            // 
-            // btn_editClass
-            // 
-            this.btn_editClass.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btn_editClass.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btn_editClass.Location = new System.Drawing.Point(201, 441);
-            this.btn_editClass.Name = "btn_editClass";
-            this.btn_editClass.Size = new System.Drawing.Size(75, 23);
-            this.btn_editClass.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btn_editClass.TabIndex = 2;
-            this.btn_editClass.Text = "编辑分类";
-            this.btn_editClass.Click += new System.EventHandler(this.btn_editClass_Click);
-            // 
-            // btn_editBrand
-            // 
-            this.btn_editBrand.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btn_editBrand.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btn_editBrand.Location = new System.Drawing.Point(195, 441);
-            this.btn_editBrand.Name = "btn_editBrand";
-            this.btn_editBrand.Size = new System.Drawing.Size(75, 23);
-            this.btn_editBrand.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btn_editBrand.TabIndex = 4;
-            this.btn_editBrand.Text = "编辑品牌";
-            this.btn_editBrand.Click += new System.EventHandler(this.btn_editBrand_Click);
-            // 
-            // btn_addBrand
-            // 
-            this.btn_addBrand.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btn_addBrand.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btn_addBrand.Location = new System.Drawing.Point(26, 441);
-            this.btn_addBrand.Name = "btn_addBrand";
-            this.btn_addBrand.Size = new System.Drawing.Size(75, 23);
-            this.btn_addBrand.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btn_addBrand.TabIndex = 3;
-            this.btn_addBrand.Text = "新增品牌";
-            this.btn_addBrand.Click += new System.EventHandler(this.btn_addBrand_Click);
-            // 
             // btn_editModel
             // 
             this.btn_editModel.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
@@ -308,6 +254,41 @@
             this.btn_addModel.TabIndex = 3;
             this.btn_addModel.Text = "新增型号";
             this.btn_addModel.Click += new System.EventHandler(this.btn_addModel_Click);
+            // 
+            // ip_brand
+            // 
+            this.ip_brand.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ip_brand.FormattingEnabled = true;
+            this.ip_brand.ItemHeight = 20;
+            this.ip_brand.Location = new System.Drawing.Point(0, 0);
+            this.ip_brand.Name = "ip_brand";
+            this.ip_brand.Size = new System.Drawing.Size(294, 424);
+            this.ip_brand.TabIndex = 5;
+            this.ip_brand.SelectedIndexChanged += new System.EventHandler(this.ip_brand_SelectedIndexChanged);
+            this.ip_brand.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ip_brand_MouseDoubleClick);
+            // 
+            // ip_model
+            // 
+            this.ip_model.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ip_model.FormattingEnabled = true;
+            this.ip_model.ItemHeight = 20;
+            this.ip_model.Location = new System.Drawing.Point(0, 0);
+            this.ip_model.Name = "ip_model";
+            this.ip_model.Size = new System.Drawing.Size(294, 424);
+            this.ip_model.TabIndex = 5;
+            this.ip_model.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ip_model_MouseDoubleClick);
+            // 
+            // ip_class
+            // 
+            this.ip_class.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ip_class.FormattingEnabled = true;
+            this.ip_class.ItemHeight = 20;
+            this.ip_class.Location = new System.Drawing.Point(0, 0);
+            this.ip_class.Name = "ip_class";
+            this.ip_class.Size = new System.Drawing.Size(294, 424);
+            this.ip_class.TabIndex = 6;
+            this.ip_class.SelectedIndexChanged += new System.EventHandler(this.ip_class_SelectedIndexChanged);
+            this.ip_class.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ip_class_MouseDoubleClick);
             // 
             // BrandManage
             // 
@@ -337,14 +318,14 @@
         private DevComponents.DotNetBar.Controls.GroupPanel groupPanel1;
         private DevComponents.DotNetBar.Controls.GroupPanel groupPanel2;
         private DevComponents.DotNetBar.Controls.GroupPanel groupPanel3;
-        private DevComponents.DotNetBar.ItemPanel itemPanel1;
         private DevComponents.DotNetBar.ButtonX btn_editClass;
         private DevComponents.DotNetBar.ButtonX btn_addClass;
         private DevComponents.DotNetBar.ButtonX btn_editBrand;
         private DevComponents.DotNetBar.ButtonX btn_addBrand;
-        private DevComponents.DotNetBar.ItemPanel itemPanel2;
         private DevComponents.DotNetBar.ButtonX btn_editModel;
         private DevComponents.DotNetBar.ButtonX btn_addModel;
-        private DevComponents.DotNetBar.ItemPanel itemPanel3;
+        private System.Windows.Forms.ListBox ip_brand;
+        private System.Windows.Forms.ListBox ip_model;
+        private System.Windows.Forms.ListBox ip_class;
     }
 }

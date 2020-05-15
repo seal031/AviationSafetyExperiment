@@ -12,13 +12,8 @@ namespace AviationSafetyExperiment.Db.Entity
     /// 测试任务信息表
     /// </summary>
     [Table("tb_taskinfo")]
-    public class Tb_taskInfo
+    public class Tb_taskInfo:BaseEntity
     {
-        [Key]
-        /// <summary>
-        /// 测试任务id
-        /// </summary>
-        public int taskId { get; set; }
         /// <summary>
         /// 测试名称
         /// </summary>

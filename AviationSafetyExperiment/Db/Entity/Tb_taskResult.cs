@@ -7,17 +7,29 @@ using System.Threading.Tasks;
 
 namespace AviationSafetyExperiment.Db.Entity
 {
-    public class Tb_taskResult
+    public class Tb_taskResult:BaseEntity
     {
-        [Key]
         /// <summary>
-        /// 测试结果id
+        /// 测试id
         /// </summary>
-        public int taskResultId { get; set; }
+        public int taskId { get; set; }
         /// <summary>
-        /// 测试过程id
+        /// 测试轮次
         /// </summary>
-        public int taskProcessId { get; set; }
+        public int taskRound { get; set; }
+        /// <summary>
+        /// 测试执行者
+        /// </summary>
+        [MaxLength(30)]
+        public string taskExecutor { get; set; }
+        /// <summary>
+        /// 测试时间
+        /// </summary>
+        public DateTime taskDateTime { get; set; }
+        /// <summary>
+        /// 型号id
+        /// </summary>
+        public int modelId { get; set; }
         /// <summary>
         /// 指标项id
         /// </summary>

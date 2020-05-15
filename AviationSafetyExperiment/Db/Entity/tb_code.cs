@@ -12,13 +12,11 @@ namespace AviationSafetyExperiment.Db.Entity
     /// 代码表
     /// </summary>
     [Table("tb_code")]
-    public class Tb_code
+    public class Tb_code:BaseEntity
     {
-        /// <summary>
-        /// 代码id
-        /// </summary>
         [Key]
-        public int codeId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public override int id { get; set; }
         /// <summary>
         /// 代码类型
         /// </summary>

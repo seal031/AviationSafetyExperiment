@@ -21,7 +21,9 @@ namespace AviationSafetyExperiment.Db
 
         public virtual DbSet<Tb_taskLifecycle> Tb_taskLifecycles { get; set; }
 
-        public virtual DbSet<Tb_taskProcess> Tb_taskProcesses { get; set; }
+        public virtual DbSet<Tb_indicatorTemplate> Tb_indicatorTemplates { get; set; }
+
+        public virtual DbSet<Tb_indicatorTemplateMap> Tb_indicatorTemplateMaps { get; set; }
 
         public virtual DbSet<Tb_taskResult> Tb_taskResults { get; set; }
 
@@ -39,6 +41,35 @@ namespace AviationSafetyExperiment.Db
             {
                 return Tb_indicators as DbSet<T>;
             }
+            if (typeof(T) == typeof(Tb_indicatorTemplate))
+            {
+                return Tb_indicatorTemplates as DbSet<T>;
+            }
+            if (typeof(T) == typeof(Tb_indicatorTemplateMap))
+            {
+                return Tb_indicatorTemplateMaps as DbSet<T>;
+            }
+            if (typeof(T) == typeof(Tb_taskIndicatorMap))
+            {
+                return Tb_taskIndicatorMaps as DbSet<T>;
+            }
+            if (typeof(T) == typeof(Tb_taskInfo))
+            {
+                return Tb_taskInfos as DbSet<T>;
+            }
+            if (typeof(T) == typeof(Tb_taskLifecycle))
+            {
+                return Tb_taskLifecycles as DbSet<T>;
+            }
+            if (typeof(T) == typeof(Tb_taskModelMap))
+            {
+                return Tb_taskModelMaps as DbSet<T>;
+            }
+            if (typeof(T) == typeof(Tb_taskResult))
+            {
+                return Tb_taskResults as DbSet<T>;
+            }
+
             else
             {
                 return null;
