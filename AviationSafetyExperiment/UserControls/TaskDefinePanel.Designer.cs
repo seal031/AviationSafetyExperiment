@@ -28,46 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
-            this.labelX1 = new DevComponents.DotNetBar.LabelX();
-            this.textBoxX1 = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.labelX2 = new DevComponents.DotNetBar.LabelX();
-            this.textBoxX2 = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.labelX3 = new DevComponents.DotNetBar.LabelX();
-            this.comboBoxEx1 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
-            this.labelX4 = new DevComponents.DotNetBar.LabelX();
-            this.labelX5 = new DevComponents.DotNetBar.LabelX();
-            this.textBoxX3 = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.panelEx2 = new DevComponents.DotNetBar.PanelEx();
-            this.dataGridViewX1 = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.groupPanel1 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.lbl_taskType = new DevComponents.DotNetBar.LabelX();
+            this.btn_createTask = new DevComponents.DotNetBar.ButtonX();
+            this.btn_pickBrandModel = new DevComponents.DotNetBar.ButtonX();
             this.labelX6 = new DevComponents.DotNetBar.LabelX();
-            this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
-            this.buttonX2 = new DevComponents.DotNetBar.ButtonX();
-            this.labelX7 = new DevComponents.DotNetBar.LabelX();
+            this.txt_taskCode = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.labelX5 = new DevComponents.DotNetBar.LabelX();
+            this.labelX4 = new DevComponents.DotNetBar.LabelX();
+            this.cbb_taskClass = new DevComponents.DotNetBar.Controls.ComboBoxEx();
+            this.labelX3 = new DevComponents.DotNetBar.LabelX();
+            this.txt_taskExecutor = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.labelX2 = new DevComponents.DotNetBar.LabelX();
+            this.txt_taskName = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.labelX1 = new DevComponents.DotNetBar.LabelX();
+            this.panelEx2 = new DevComponents.DotNetBar.PanelEx();
+            this.indicatorTemplateSelecter1 = new AviationSafetyExperiment.UserControls.IndicatorTemplateSelecter();
             this.panelEx1.SuspendLayout();
+            this.groupPanel1.SuspendLayout();
             this.panelEx2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelEx1
             // 
             this.panelEx1.CanvasColor = System.Drawing.SystemColors.Control;
             this.panelEx1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.panelEx1.Controls.Add(this.labelX7);
-            this.panelEx1.Controls.Add(this.buttonX2);
-            this.panelEx1.Controls.Add(this.buttonX1);
-            this.panelEx1.Controls.Add(this.labelX6);
             this.panelEx1.Controls.Add(this.panelEx2);
-            this.panelEx1.Controls.Add(this.textBoxX3);
-            this.panelEx1.Controls.Add(this.labelX5);
-            this.panelEx1.Controls.Add(this.labelX4);
-            this.panelEx1.Controls.Add(this.comboBoxEx1);
-            this.panelEx1.Controls.Add(this.labelX3);
-            this.panelEx1.Controls.Add(this.textBoxX2);
-            this.panelEx1.Controls.Add(this.labelX2);
-            this.panelEx1.Controls.Add(this.textBoxX1);
-            this.panelEx1.Controls.Add(this.labelX1);
+            this.panelEx1.Controls.Add(this.groupPanel1);
             this.panelEx1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelEx1.Location = new System.Drawing.Point(0, 0);
             this.panelEx1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -82,168 +70,96 @@
             this.panelEx1.Style.GradientAngle = 90;
             this.panelEx1.TabIndex = 0;
             // 
-            // labelX1
+            // groupPanel1
             // 
-            this.labelX1.AutoSize = true;
-            // 
-            // 
-            // 
-            this.labelX1.BackgroundStyle.Class = "";
-            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX1.Location = new System.Drawing.Point(39, 36);
-            this.labelX1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.labelX1.Name = "labelX1";
-            this.labelX1.Size = new System.Drawing.Size(85, 24);
-            this.labelX1.TabIndex = 0;
-            this.labelX1.Text = "任务名称：";
-            // 
-            // textBoxX1
-            // 
-            // 
-            // 
-            // 
-            this.textBoxX1.Border.Class = "TextBoxBorder";
-            this.textBoxX1.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.textBoxX1.Location = new System.Drawing.Point(130, 28);
-            this.textBoxX1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBoxX1.Name = "textBoxX1";
-            this.textBoxX1.Size = new System.Drawing.Size(533, 32);
-            this.textBoxX1.TabIndex = 1;
-            // 
-            // labelX2
-            // 
-            this.labelX2.AutoSize = true;
+            this.groupPanel1.CanvasColor = System.Drawing.SystemColors.Control;
+            this.groupPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.groupPanel1.Controls.Add(this.lbl_taskType);
+            this.groupPanel1.Controls.Add(this.btn_createTask);
+            this.groupPanel1.Controls.Add(this.btn_pickBrandModel);
+            this.groupPanel1.Controls.Add(this.labelX6);
+            this.groupPanel1.Controls.Add(this.txt_taskCode);
+            this.groupPanel1.Controls.Add(this.labelX5);
+            this.groupPanel1.Controls.Add(this.labelX4);
+            this.groupPanel1.Controls.Add(this.cbb_taskClass);
+            this.groupPanel1.Controls.Add(this.labelX3);
+            this.groupPanel1.Controls.Add(this.txt_taskExecutor);
+            this.groupPanel1.Controls.Add(this.labelX2);
+            this.groupPanel1.Controls.Add(this.txt_taskName);
+            this.groupPanel1.Controls.Add(this.labelX1);
+            this.groupPanel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupPanel1.Location = new System.Drawing.Point(0, 0);
+            this.groupPanel1.Name = "groupPanel1";
+            this.groupPanel1.Size = new System.Drawing.Size(1040, 221);
             // 
             // 
             // 
-            this.labelX2.BackgroundStyle.Class = "";
-            this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX2.Location = new System.Drawing.Point(747, 36);
-            this.labelX2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.labelX2.Name = "labelX2";
-            this.labelX2.Size = new System.Drawing.Size(85, 24);
-            this.labelX2.TabIndex = 2;
-            this.labelX2.Text = "测试人员：";
-            // 
-            // textBoxX2
-            // 
-            // 
-            // 
-            // 
-            this.textBoxX2.Border.Class = "TextBoxBorder";
-            this.textBoxX2.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.textBoxX2.Location = new System.Drawing.Point(838, 28);
-            this.textBoxX2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBoxX2.Name = "textBoxX2";
-            this.textBoxX2.Size = new System.Drawing.Size(172, 32);
-            this.textBoxX2.TabIndex = 3;
-            // 
-            // labelX3
-            // 
-            this.labelX3.AutoSize = true;
+            this.groupPanel1.Style.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
+            this.groupPanel1.Style.BackColorGradientAngle = 90;
+            this.groupPanel1.Style.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+            this.groupPanel1.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel1.Style.BorderBottomWidth = 1;
+            this.groupPanel1.Style.BorderColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
+            this.groupPanel1.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel1.Style.BorderLeftWidth = 1;
+            this.groupPanel1.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel1.Style.BorderRightWidth = 1;
+            this.groupPanel1.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.groupPanel1.Style.BorderTopWidth = 1;
+            this.groupPanel1.Style.Class = "";
+            this.groupPanel1.Style.CornerDiameter = 4;
+            this.groupPanel1.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
+            this.groupPanel1.Style.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
+            this.groupPanel1.Style.TextColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
+            this.groupPanel1.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near;
             // 
             // 
             // 
-            this.labelX3.BackgroundStyle.Class = "";
-            this.labelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX3.Location = new System.Drawing.Point(39, 94);
-            this.labelX3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.labelX3.Name = "labelX3";
-            this.labelX3.Size = new System.Drawing.Size(85, 24);
-            this.labelX3.TabIndex = 4;
-            this.labelX3.Text = "测试分类：";
-            // 
-            // comboBoxEx1
-            // 
-            this.comboBoxEx1.DisplayMember = "Text";
-            this.comboBoxEx1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.comboBoxEx1.FormattingEnabled = true;
-            this.comboBoxEx1.ItemHeight = 21;
-            this.comboBoxEx1.Location = new System.Drawing.Point(130, 94);
-            this.comboBoxEx1.Name = "comboBoxEx1";
-            this.comboBoxEx1.Size = new System.Drawing.Size(152, 27);
-            this.comboBoxEx1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.comboBoxEx1.TabIndex = 5;
-            // 
-            // labelX4
-            // 
-            this.labelX4.AutoSize = true;
+            this.groupPanel1.StyleMouseDown.Class = "";
+            this.groupPanel1.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
             // 
             // 
-            this.labelX4.BackgroundStyle.Class = "";
-            this.labelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX4.Location = new System.Drawing.Point(357, 97);
-            this.labelX4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.labelX4.Name = "labelX4";
-            this.labelX4.Size = new System.Drawing.Size(85, 24);
-            this.labelX4.TabIndex = 6;
-            this.labelX4.Text = "测试类型：";
+            this.groupPanel1.StyleMouseOver.Class = "";
+            this.groupPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.groupPanel1.TabIndex = 14;
+            this.groupPanel1.Text = "新建测试任务";
             // 
-            // labelX5
-            // 
-            this.labelX5.AutoSize = true;
-            // 
-            // 
-            // 
-            this.labelX5.BackgroundStyle.Class = "";
-            this.labelX5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX5.Location = new System.Drawing.Point(747, 97);
-            this.labelX5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.labelX5.Name = "labelX5";
-            this.labelX5.Size = new System.Drawing.Size(85, 24);
-            this.labelX5.TabIndex = 7;
-            this.labelX5.Text = "测试编码：";
-            // 
-            // textBoxX3
+            // lbl_taskType
             // 
             // 
             // 
             // 
-            this.textBoxX3.Border.Class = "TextBoxBorder";
-            this.textBoxX3.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.textBoxX3.Location = new System.Drawing.Point(838, 94);
-            this.textBoxX3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBoxX3.Name = "textBoxX3";
-            this.textBoxX3.Size = new System.Drawing.Size(172, 32);
-            this.textBoxX3.TabIndex = 8;
+            this.lbl_taskType.BackgroundStyle.Class = "";
+            this.lbl_taskType.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lbl_taskType.Location = new System.Drawing.Point(437, 54);
+            this.lbl_taskType.Name = "lbl_taskType";
+            this.lbl_taskType.Size = new System.Drawing.Size(215, 23);
+            this.lbl_taskType.TabIndex = 26;
             // 
-            // panelEx2
+            // btn_createTask
             // 
-            this.panelEx2.CanvasColor = System.Drawing.SystemColors.Control;
-            this.panelEx2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.panelEx2.Controls.Add(this.dataGridViewX1);
-            this.panelEx2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelEx2.Location = new System.Drawing.Point(0, 335);
-            this.panelEx2.Name = "panelEx2";
-            this.panelEx2.Size = new System.Drawing.Size(1040, 425);
-            this.panelEx2.Style.Alignment = System.Drawing.StringAlignment.Center;
-            this.panelEx2.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.panelEx2.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
-            this.panelEx2.Style.Border = DevComponents.DotNetBar.eBorderType.DoubleLine;
-            this.panelEx2.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
-            this.panelEx2.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.panelEx2.Style.GradientAngle = 90;
-            this.panelEx2.TabIndex = 9;
+            this.btn_createTask.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btn_createTask.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_createTask.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btn_createTask.Location = new System.Drawing.Point(900, 143);
+            this.btn_createTask.Name = "btn_createTask";
+            this.btn_createTask.Size = new System.Drawing.Size(99, 45);
+            this.btn_createTask.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btn_createTask.TabIndex = 25;
+            this.btn_createTask.Text = "创建任务";
+            this.btn_createTask.Click += new System.EventHandler(this.btn_createTask_Click);
             // 
-            // dataGridViewX1
+            // btn_pickBrandModel
             // 
-            this.dataGridViewX1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewX1.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridViewX1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewX1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.dataGridViewX1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridViewX1.Name = "dataGridViewX1";
-            this.dataGridViewX1.RowTemplate.Height = 27;
-            this.dataGridViewX1.Size = new System.Drawing.Size(1040, 425);
-            this.dataGridViewX1.TabIndex = 0;
+            this.btn_pickBrandModel.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btn_pickBrandModel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btn_pickBrandModel.Location = new System.Drawing.Point(28, 121);
+            this.btn_pickBrandModel.Name = "btn_pickBrandModel";
+            this.btn_pickBrandModel.Size = new System.Drawing.Size(99, 23);
+            this.btn_pickBrandModel.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btn_pickBrandModel.TabIndex = 24;
+            this.btn_pickBrandModel.Text = "品牌型号选择";
             // 
             // labelX6
             // 
@@ -253,47 +169,170 @@
             // 
             this.labelX6.BackgroundStyle.Class = "";
             this.labelX6.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX6.Location = new System.Drawing.Point(39, 148);
+            this.labelX6.Location = new System.Drawing.Point(28, 90);
             this.labelX6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelX6.Name = "labelX6";
             this.labelX6.Size = new System.Drawing.Size(131, 24);
-            this.labelX6.TabIndex = 10;
+            this.labelX6.TabIndex = 23;
             this.labelX6.Text = "测试品牌、型号：";
             // 
-            // buttonX1
+            // txt_taskCode
             // 
-            this.buttonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.buttonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonX1.Location = new System.Drawing.Point(39, 179);
-            this.buttonX1.Name = "buttonX1";
-            this.buttonX1.Size = new System.Drawing.Size(99, 23);
-            this.buttonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.buttonX1.TabIndex = 11;
-            this.buttonX1.Text = "品牌型号选择";
-            // 
-            // buttonX2
-            // 
-            this.buttonX2.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.buttonX2.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonX2.Location = new System.Drawing.Point(911, 269);
-            this.buttonX2.Name = "buttonX2";
-            this.buttonX2.Size = new System.Drawing.Size(99, 45);
-            this.buttonX2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.buttonX2.TabIndex = 12;
-            this.buttonX2.Text = "创建任务";
-            // 
-            // labelX7
+            this.txt_taskCode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             // 
             // 
             // 
+            this.txt_taskCode.Border.Class = "TextBoxBorder";
+            this.txt_taskCode.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txt_taskCode.Location = new System.Drawing.Point(827, 50);
+            this.txt_taskCode.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txt_taskCode.Name = "txt_taskCode";
+            this.txt_taskCode.Size = new System.Drawing.Size(172, 32);
+            this.txt_taskCode.TabIndex = 22;
             // 
-            this.labelX7.BackgroundStyle.Class = "";
-            this.labelX7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX7.Location = new System.Drawing.Point(448, 98);
-            this.labelX7.Name = "labelX7";
-            this.labelX7.Size = new System.Drawing.Size(215, 23);
-            this.labelX7.TabIndex = 13;
-            this.labelX7.Text = "labelX7";
+            // labelX5
+            // 
+            this.labelX5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelX5.AutoSize = true;
+            // 
+            // 
+            // 
+            this.labelX5.BackgroundStyle.Class = "";
+            this.labelX5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX5.Location = new System.Drawing.Point(736, 53);
+            this.labelX5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelX5.Name = "labelX5";
+            this.labelX5.Size = new System.Drawing.Size(85, 24);
+            this.labelX5.TabIndex = 21;
+            this.labelX5.Text = "测试编码：";
+            // 
+            // labelX4
+            // 
+            this.labelX4.AutoSize = true;
+            // 
+            // 
+            // 
+            this.labelX4.BackgroundStyle.Class = "";
+            this.labelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX4.Location = new System.Drawing.Point(346, 53);
+            this.labelX4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelX4.Name = "labelX4";
+            this.labelX4.Size = new System.Drawing.Size(85, 24);
+            this.labelX4.TabIndex = 20;
+            this.labelX4.Text = "测试类型：";
+            // 
+            // cbb_taskClass
+            // 
+            this.cbb_taskClass.DisplayMember = "Text";
+            this.cbb_taskClass.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbb_taskClass.FormattingEnabled = true;
+            this.cbb_taskClass.ItemHeight = 21;
+            this.cbb_taskClass.Location = new System.Drawing.Point(119, 50);
+            this.cbb_taskClass.Name = "cbb_taskClass";
+            this.cbb_taskClass.Size = new System.Drawing.Size(152, 27);
+            this.cbb_taskClass.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.cbb_taskClass.TabIndex = 19;
+            // 
+            // labelX3
+            // 
+            this.labelX3.AutoSize = true;
+            // 
+            // 
+            // 
+            this.labelX3.BackgroundStyle.Class = "";
+            this.labelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX3.Location = new System.Drawing.Point(28, 50);
+            this.labelX3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelX3.Name = "labelX3";
+            this.labelX3.Size = new System.Drawing.Size(85, 24);
+            this.labelX3.TabIndex = 18;
+            this.labelX3.Text = "测试分类：";
+            // 
+            // txt_taskExecutor
+            // 
+            this.txt_taskExecutor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            // 
+            // 
+            this.txt_taskExecutor.Border.Class = "TextBoxBorder";
+            this.txt_taskExecutor.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txt_taskExecutor.Location = new System.Drawing.Point(827, 4);
+            this.txt_taskExecutor.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txt_taskExecutor.Name = "txt_taskExecutor";
+            this.txt_taskExecutor.Size = new System.Drawing.Size(172, 32);
+            this.txt_taskExecutor.TabIndex = 17;
+            // 
+            // labelX2
+            // 
+            this.labelX2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelX2.AutoSize = true;
+            // 
+            // 
+            // 
+            this.labelX2.BackgroundStyle.Class = "";
+            this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX2.Location = new System.Drawing.Point(736, 12);
+            this.labelX2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelX2.Name = "labelX2";
+            this.labelX2.Size = new System.Drawing.Size(85, 24);
+            this.labelX2.TabIndex = 16;
+            this.labelX2.Text = "测试人员：";
+            // 
+            // txt_taskName
+            // 
+            // 
+            // 
+            // 
+            this.txt_taskName.Border.Class = "TextBoxBorder";
+            this.txt_taskName.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txt_taskName.Location = new System.Drawing.Point(119, 4);
+            this.txt_taskName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txt_taskName.Name = "txt_taskName";
+            this.txt_taskName.Size = new System.Drawing.Size(533, 32);
+            this.txt_taskName.TabIndex = 15;
+            // 
+            // labelX1
+            // 
+            this.labelX1.AutoSize = true;
+            // 
+            // 
+            // 
+            this.labelX1.BackgroundStyle.Class = "";
+            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX1.Location = new System.Drawing.Point(28, 12);
+            this.labelX1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelX1.Name = "labelX1";
+            this.labelX1.Size = new System.Drawing.Size(85, 24);
+            this.labelX1.TabIndex = 14;
+            this.labelX1.Text = "任务名称：";
+            // 
+            // panelEx2
+            // 
+            this.panelEx2.CanvasColor = System.Drawing.SystemColors.Control;
+            this.panelEx2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.panelEx2.Controls.Add(this.indicatorTemplateSelecter1);
+            this.panelEx2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelEx2.Location = new System.Drawing.Point(0, 221);
+            this.panelEx2.Name = "panelEx2";
+            this.panelEx2.Size = new System.Drawing.Size(1040, 539);
+            this.panelEx2.Style.Alignment = System.Drawing.StringAlignment.Center;
+            this.panelEx2.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+            this.panelEx2.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
+            this.panelEx2.Style.Border = DevComponents.DotNetBar.eBorderType.DoubleLine;
+            this.panelEx2.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
+            this.panelEx2.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
+            this.panelEx2.Style.GradientAngle = 90;
+            this.panelEx2.TabIndex = 15;
+            // 
+            // indicatorTemplateSelecter1
+            // 
+            this.indicatorTemplateSelecter1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.indicatorTemplateSelecter1.isManage = false;
+            this.indicatorTemplateSelecter1.Location = new System.Drawing.Point(0, 0);
+            this.indicatorTemplateSelecter1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.indicatorTemplateSelecter1.Name = "indicatorTemplateSelecter1";
+            this.indicatorTemplateSelecter1.Size = new System.Drawing.Size(1040, 539);
+            this.indicatorTemplateSelecter1.TabIndex = 0;
             // 
             // TaskDefinePanel
             // 
@@ -305,9 +344,9 @@
             this.Name = "TaskDefinePanel";
             this.Size = new System.Drawing.Size(1040, 760);
             this.panelEx1.ResumeLayout(false);
-            this.panelEx1.PerformLayout();
+            this.groupPanel1.ResumeLayout(false);
+            this.groupPanel1.PerformLayout();
             this.panelEx2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -315,20 +354,21 @@
         #endregion
 
         private DevComponents.DotNetBar.PanelEx panelEx1;
-        private DevComponents.DotNetBar.Controls.TextBoxX textBoxX2;
-        private DevComponents.DotNetBar.LabelX labelX2;
-        private DevComponents.DotNetBar.Controls.TextBoxX textBoxX1;
-        private DevComponents.DotNetBar.LabelX labelX1;
-        private DevComponents.DotNetBar.Controls.TextBoxX textBoxX3;
+        private DevComponents.DotNetBar.Controls.GroupPanel groupPanel1;
+        private DevComponents.DotNetBar.LabelX lbl_taskType;
+        private DevComponents.DotNetBar.ButtonX btn_createTask;
+        private DevComponents.DotNetBar.ButtonX btn_pickBrandModel;
+        private DevComponents.DotNetBar.LabelX labelX6;
+        private DevComponents.DotNetBar.Controls.TextBoxX txt_taskCode;
         private DevComponents.DotNetBar.LabelX labelX5;
         private DevComponents.DotNetBar.LabelX labelX4;
-        private DevComponents.DotNetBar.Controls.ComboBoxEx comboBoxEx1;
+        private DevComponents.DotNetBar.Controls.ComboBoxEx cbb_taskClass;
         private DevComponents.DotNetBar.LabelX labelX3;
-        private DevComponents.DotNetBar.ButtonX buttonX1;
-        private DevComponents.DotNetBar.LabelX labelX6;
+        private DevComponents.DotNetBar.Controls.TextBoxX txt_taskExecutor;
+        private DevComponents.DotNetBar.LabelX labelX2;
+        private DevComponents.DotNetBar.Controls.TextBoxX txt_taskName;
+        private DevComponents.DotNetBar.LabelX labelX1;
         private DevComponents.DotNetBar.PanelEx panelEx2;
-        private DevComponents.DotNetBar.Controls.DataGridViewX dataGridViewX1;
-        private DevComponents.DotNetBar.ButtonX buttonX2;
-        private DevComponents.DotNetBar.LabelX labelX7;
+        private IndicatorTemplateSelecter indicatorTemplateSelecter1;
     }
 }

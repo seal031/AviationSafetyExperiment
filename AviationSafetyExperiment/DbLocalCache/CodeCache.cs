@@ -69,5 +69,15 @@ namespace AviationSafetyExperiment.DbLocalCache
         {
             return list.Where(c => c.codeType == (int)(CodeTypeEnum.SubDetection)).ToList();
         }
+
+        public static List<Tb_code> getState()
+        {
+            return list.Where(c => c.codeType == (int)(CodeTypeEnum.State)).ToList();
+        }
+
+        public static List<Tb_code> getType()
+        {
+            return list.Where(c => c.codeType == (int)(CodeTypeEnum.Type)).ToList();
+        }
     }
 }

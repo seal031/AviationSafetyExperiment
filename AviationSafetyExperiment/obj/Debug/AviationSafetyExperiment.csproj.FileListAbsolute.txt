@@ -28,4 +28,5 @@ E:\GitHubProject\AviationSafetyExperiment\AviationSafetyExperiment\obj\Debug\Avi
 E:\GitHubProject\AviationSafetyExperiment\AviationSafetyExperiment\obj\Debug\AviationSafetyExperiment.csproj.GenerateResource.Cache
 E:\GitHubProject\AviationSafetyExperiment\AviationSafetyExperiment\obj\Debug\AviationSafetyExperiment.exe
 E:\GitHubProject\AviationSafetyExperiment\AviationSafetyExperiment\obj\Debug\AviationSafetyExperiment.pdb
+E:\GitHubProject\AviationSafetyExperiment\AviationSafetyExperiment\obj\Debug\AviationSafetyExperiment.UserControls.IndicatorTemplateSelecter.resources
 E:\GitHubProject\AviationSafetyExperiment\AviationSafetyExperiment\obj\Debug\AviationSafetyExperiment.csprojResolveAssemblyReference.cache

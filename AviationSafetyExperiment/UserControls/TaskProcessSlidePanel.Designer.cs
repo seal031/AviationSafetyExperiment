@@ -97,9 +97,9 @@
         #endregion
 
         private DevComponents.DotNetBar.ItemPanel itemPanel1;
-        private DevComponents.DotNetBar.ButtonItem btn_taskDefine;
-        private DevComponents.DotNetBar.ButtonItem btn_taskApprove;
-        private DevComponents.DotNetBar.ButtonItem btn_taskProcess;
-        private DevComponents.DotNetBar.ButtonItem btn_taskExecute;
+        public DevComponents.DotNetBar.ButtonItem btn_taskDefine;
+        public DevComponents.DotNetBar.ButtonItem btn_taskApprove;
+        public DevComponents.DotNetBar.ButtonItem btn_taskProcess;
+        public DevComponents.DotNetBar.ButtonItem btn_taskExecute;
     }
 }

@@ -8,11 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevComponents;
+using AviationSafetyExperiment.UserControls;
 
 namespace AviationSafetyExperiment
 {
     public partial class MainForm : DevComponents.DotNetBar.Office2007Form
     {
+        TaskDefinePanel taskDefinePanel;
+
         public MainForm()
         {
             InitializeComponent();
@@ -26,6 +29,15 @@ namespace AviationSafetyExperiment
         private void MainForm_Shown(object sender, EventArgs e)
         {
             showHome();
+            bindSlideBarButtonClickEvent();//首次加载窗体时绑定侧边栏按钮事件
+        }
+
+        private void bindSlideBarButtonClickEvent()
+        {
+            taskProcessSlidePanel.btn_taskApprove.Click += Btn_taskApprove_Click;
+            taskProcessSlidePanel.btn_taskDefine.Click += Btn_taskDefine_Click;
+            taskProcessSlidePanel.btn_taskExecute.Click += Btn_taskExecute_Click;
+            taskProcessSlidePanel.btn_taskProcess.Click += Btn_taskProcess_Click;
         }
 
         #region 水平菜单点击事件
@@ -36,7 +48,7 @@ namespace AviationSafetyExperiment
 
         private void btn_item_taskManager_Click(object sender, EventArgs e)
         {
-            showTaskProcess();
+            showTaskSidebar();
         }
 
         private void btn_item_alarm_Click(object sender, EventArgs e)
@@ -63,6 +75,31 @@ namespace AviationSafetyExperiment
         }
         #endregion
 
+        #region 侧边栏点击事件
+        private void Btn_taskProcess_Click(object sender, EventArgs e)
+        {
+            showTaskProcess();
+        }
+
+        private void Btn_taskExecute_Click(object sender, EventArgs e)
+        {
+            showTaskExecute();
+        }
+
+        private void Btn_taskDefine_Click(object sender, EventArgs e)
+        {
+            showTaskDefine();
+        }
+
+        private void Btn_taskApprove_Click(object sender, EventArgs e)
+        {
+            showTaskApprove();
+        }
+        #endregion
+
+        /// <summary>
+        /// 显示主页
+        /// </summary>
         private void showHome()
         {
             expandablePanel.TitleText = "测试任务统计";
@@ -76,7 +113,10 @@ namespace AviationSafetyExperiment
             expandablePanel.Expanded = true;
             //panelExMain.Refresh();
         }
-        private void showTaskProcess()
+        /// <summary>
+        /// 显示任务处理侧边
+        /// </summary>
+        private void showTaskSidebar()
         {
             expandablePanel.TitleText = "测试任务操作";
             expandablePanel.MaximumSize = new System.Drawing.Size(150, 0);
@@ -88,7 +128,43 @@ namespace AviationSafetyExperiment
             expandablePanel.Expanded = true;
             //panelExMain.Refresh();
         }
+        /// <summary>
+        /// 显示任务定义
+        /// </summary>
+        private void showTaskDefine()
+        {
+            if (taskDefinePanel == null)
+            {
+                taskDefinePanel = new TaskDefinePanel();
+                taskDefinePanel.Dock = DockStyle.Fill;
+            }
+            if (panelExMain.Controls.Contains(taskDefinePanel)==false)
+            {
+                panelExMain.Controls.Add(taskDefinePanel);
+            }
+            taskDefinePanel.BringToFront();
+        }
+        /// <summary>
+        /// 显示任务审核
+        /// </summary>
+        private void showTaskApprove()
+        {
 
+        }
+        /// <summary>
+        /// 显示任务过程管理
+        /// </summary>
+        private void showTaskProcess()
+        {
+
+        }
+        /// <summary>
+        /// 显示任务执行管理
+        /// </summary>
+        private void showTaskExecute()
+        {
+
+        }
 
         private void addControl(Control parent, Control son)
         {

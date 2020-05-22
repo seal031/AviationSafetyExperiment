@@ -37,13 +37,13 @@
             this.btn_item_alarm = new DevComponents.DotNetBar.ButtonItem();
             this.btn_brandSet = new DevComponents.DotNetBar.ButtonItem();
             this.btn_indicatorSet = new DevComponents.DotNetBar.ButtonItem();
+            this.btn_taskReport = new DevComponents.DotNetBar.ButtonItem();
             this.panelExMain = new DevComponents.DotNetBar.PanelEx();
             this.slidePanelMain = new DevComponents.DotNetBar.Controls.SlidePanel();
             this.expandablePanel = new DevComponents.DotNetBar.ExpandablePanel();
+            this.taskMainPanel = new AviationSafetyExperiment.UserControls.TaskMainPanel();
             this.taskProcessSlidePanel = new AviationSafetyExperiment.UserControls.TaskProcessSlidePanel();
             this.taskChartSlidePanel = new AviationSafetyExperiment.UserControls.TaskChartSlidePanel();
-            this.taskMainPanel = new AviationSafetyExperiment.UserControls.TaskMainPanel();
-            this.btn_taskReport = new DevComponents.DotNetBar.ButtonItem();
             this.panelEx1.SuspendLayout();
             this.panelExMain.SuspendLayout();
             this.expandablePanel.SuspendLayout();
@@ -176,6 +176,13 @@
             this.btn_indicatorSet.Text = "指标项管理";
             this.btn_indicatorSet.Click += new System.EventHandler(this.btn_indicatorSet_Click);
             // 
+            // btn_taskReport
+            // 
+            this.btn_taskReport.Name = "btn_taskReport";
+            this.btn_taskReport.SubItemsExpandWidth = 14;
+            this.btn_taskReport.Text = "测试报告";
+            this.btn_taskReport.Click += new System.EventHandler(this.btn_taskReport_Click);
+            // 
             // panelExMain
             // 
             this.panelExMain.CanvasColor = System.Drawing.SystemColors.Control;
@@ -234,6 +241,17 @@
             this.expandablePanel.TitleStyle.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
             this.expandablePanel.TitleStyle.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
             this.expandablePanel.TitleStyle.GradientAngle = 90;
+            this.expandablePanel.TitleText = "Title Bar";
+            // 
+            // taskMainPanel
+            // 
+            this.taskMainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.taskMainPanel.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.taskMainPanel.Location = new System.Drawing.Point(150, 0);
+            this.taskMainPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.taskMainPanel.Name = "taskMainPanel";
+            this.taskMainPanel.Size = new System.Drawing.Size(1109, 646);
+            this.taskMainPanel.TabIndex = 3;
             // 
             // taskProcessSlidePanel
             // 
@@ -253,23 +271,6 @@
             this.taskChartSlidePanel.Name = "taskChartSlidePanel";
             this.taskChartSlidePanel.Size = new System.Drawing.Size(150, 620);
             this.taskChartSlidePanel.TabIndex = 2;
-            // 
-            // taskMainPanel
-            // 
-            this.taskMainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.taskMainPanel.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.taskMainPanel.Location = new System.Drawing.Point(150, 0);
-            this.taskMainPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.taskMainPanel.Name = "taskMainPanel";
-            this.taskMainPanel.Size = new System.Drawing.Size(1109, 646);
-            this.taskMainPanel.TabIndex = 3;
-            // 
-            // btn_taskReport
-            // 
-            this.btn_taskReport.Name = "btn_taskReport";
-            this.btn_taskReport.SubItemsExpandWidth = 14;
-            this.btn_taskReport.Text = "测试报告";
-            this.btn_taskReport.Click += new System.EventHandler(this.btn_taskReport_Click);
             // 
             // MainForm
             // 

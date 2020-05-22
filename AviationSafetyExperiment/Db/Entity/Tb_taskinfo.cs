@@ -30,11 +30,11 @@ namespace AviationSafetyExperiment.Db.Entity
         [MaxLength(30)]
         public string taskCode { get; set; }
         /// <summary>
-        /// 测试类型
+        /// 测试类型(单品牌、多品牌)
         /// </summary>
         public int taskType { get; set; }
         /// <summary>
-        /// 测试种类(单品牌、多品牌)
+        /// 测试分类
         /// </summary>
         public int taskClass { get; set; }
         /// <summary>

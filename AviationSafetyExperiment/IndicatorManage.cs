@@ -37,7 +37,8 @@ namespace AviationSafetyExperiment
             dgv_indicator.DataSource = indicatorModels;
             bindCheckBox();
 
-            bulidClasss();
+
+            initIts();
         }
 
 
@@ -254,76 +255,16 @@ namespace AviationSafetyExperiment
         #endregion
 
         #region 指标模板tab
-        List<Tb_indicatorTemplate> templateList = new List<Tb_indicatorTemplate>();
-        List<IndicatorForTemplateModel> selectedIndicatorModelList = new List<IndicatorForTemplateModel>();//模板中的已选指标
-        List<IndicatorForTemplateModel> unselectedIndicatorModelList = new List<IndicatorForTemplateModel>();//模板中的待选指标
-        private void bulidClasss()
+        /// <summary>
+        /// 初始化IndicatorTemplateSelecter控件
+        /// </summary>
+        private void initIts()
         {
-            var classList = CodeCache.getClass();
-            cbb_class.DataSource = classList;
-            cbb_class.DisplayMember = "codeName";
-            cbb_class.ValueMember = "id";
-        }
-        private void cbb_class_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            bindCbbExitsTemplate();
-        }
-
-        private void bindCbbExitsTemplate()
-        {
-            var templateList = TemplateCache.getCache().Where(t => t.classId == (int)cbb_class.SelectedValue).ToList();
-            cbb_exitsTemplate.DataSource = templateList;
-            cbb_exitsTemplate.DisplayMember = "templateName";
-            cbb_exitsTemplate.ValueMember = "id";
-        }
-
-        private void cbb_exitsTemplate_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            getTemplateIndicators();
-        }
-
-        private void getTemplateIndicators()
-        {
-            var anyClassIndicatorList = IndicatorCache.getCache().Where(i => i.classId == (int)cbb_class.SelectedValue).ToList();//获取某分类下所有指标
-            //获取所选模板的已选指标
-            selectedIndicatorModelList = (from indicatorMap in IndicatorTemplateMapCache.getCache().Where(i => i.templateId == (int)cbb_exitsTemplate.SelectedValue)
-                                          from indicator in indicatorList
-                                          from classType in classList
-                                          from detection in detectionList
-                                          from subDetection in subDetectionList
-                                          where indicatorMap.indicatorId == indicator.id && indicator.classId == classType.id && indicator.detectionId == detection.id && indicator.subDetectionId == subDetection.id
-                                          select new IndicatorForTemplateModel()
-                                          {
-                                              classId = indicator.classId,
-                                              className=classType.codeName,
-                                              detectionId=detection.id,
-                                              detectionName=detection.codeName,
-                                              indicatorDesc=indicator.indicatorDesc,
-                                              indicatorId=indicator.id,
-                                              indicatorName=indicator.indicatorName,
-                                              isObsolete= indicator.isObsolete == 1 ? "已废弃" : "生效中",
-                                              isSelected =false,
-                                              subDetectionId=subDetection.id,
-                                              subDetectionName=subDetection.codeName,
-                                          }).ToList();
-            //计算出所选模板的待选指标
-            unselectedIndicatorModelList = anyClassIndicatorList.Except(selectedIndicatorModelList);
-        }
-
-        private void btn_showNewTemplatePanel_Click(object sender, EventArgs e)
-        {
-            pnl_addTempla.Visible = true;
-        }
-
-        private void btn_addNewTemplate_Click(object sender, EventArgs e)
-        {
-            Tb_indicatorTemplate template = new Db.Entity.Tb_indicatorTemplate();
-            template.classId = (int)cbb_class.SelectedValue;
-            template.createDatetime = DateTime.Now.ToLocalTime(); ;
-            template.templateName = txt_newTemplateName.Text.Trim();
-            TemplateCache.addCache(template);
-            pnl_addTempla.Visible = false;
-            bindCbbExitsTemplate();
+            its.indicatorList = indicatorList;
+            its.classList = classList;
+            its.detectionList = detectionList;
+            its.subDetectionList = subDetectionList;
+            its.init();
         }
         #endregion
 
