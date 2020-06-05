@@ -19,10 +19,20 @@ namespace AviationSafetyExperiment.UserControls
     {
         public int cbb_classId;
 
-        public List<Tb_indicator> indicatorList;
-        public List<Tb_code> classList;
-        public List<Tb_code> detectionList;
-        public List<Tb_code> subDetectionList;
+        private List<Tb_indicator> indicatorList;
+        private List<Tb_code> classList;
+        private List<Tb_code> detectionList;
+        private List<Tb_code> subDetectionList;
+
+        List<Tb_indicatorTemplate> templateList = new List<Tb_indicatorTemplate>();
+        /// <summary>
+        /// 模板中的已选指标
+        /// </summary>
+        List<IndicatorForTemplateModel> selectedIndicatorModelList = new List<IndicatorForTemplateModel>();
+        /// <summary>
+        /// 模板中的待选指标
+        /// </summary>
+        List<IndicatorForTemplateModel> unselectedIndicatorModelList = new List<IndicatorForTemplateModel>();
 
         [Browsable(true)]
         [Description("是否处于模板管理界面"), Category("自定义"), DefaultValue(true)]
@@ -35,30 +45,29 @@ namespace AviationSafetyExperiment.UserControls
 
         public void init()
         {
+            getAllList();
             buildClasss();
             stc.SelectedTab = sti_selected;
             if (isManage == false)
             {
                 groupPanel3.Text = "指标选择";
-                btn_addNewTemplate.Visible = false;
+                btn_showNewTemplatePanel.Visible = false;
                 lbl_class.Visible = false;
                 cbb_class.Visible = false;
                 btn_save.Visible = false;
+                groupPanel3.Height = cbb_exitsTemplate.Height + 40;
             }
         }
+        private void getAllList()
+        {
+            indicatorList = IndicatorCache.getCache();
+            classList = CodeCache.getClass();
+            detectionList = CodeCache.getDetection();
+            subDetectionList = CodeCache.getSubDetection();
+        }
 
-        List<Tb_indicatorTemplate> templateList = new List<Tb_indicatorTemplate>();
-        /// <summary>
-        /// 模板中的已选指标
-        /// </summary>
-        List<IndicatorForTemplateModel> selectedIndicatorModelList = new List<IndicatorForTemplateModel>();
-        /// <summary>
-        /// 模板中的待选指标
-        /// </summary>
-        List<IndicatorForTemplateModel> unselectedIndicatorModelList = new List<IndicatorForTemplateModel>();
         private void buildClasss()
         {
-            var classList = CodeCache.getClass();
             cbb_class.DisplayMember = "codeName";
             cbb_class.ValueMember = "id";
             cbb_class.DataSource = classList;
@@ -240,6 +249,15 @@ namespace AviationSafetyExperiment.UserControls
                 source.Remove(indicatorToMove);
                 target.Add(indicatorToMove);
             }
+        }
+
+        /// <summary>
+        /// 对外提供选中指标id列表
+        /// </summary>
+        /// <returns></returns>
+        public List<int> getSelectedIndicatorIdList()
+        {
+            return selectedIndicatorModelList.Select(i => i.indicatorId).ToList();
         }
     }
 }

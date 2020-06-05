@@ -27,4 +27,49 @@ namespace AviationSafetyExperiment.Model
         /// </summary
         public bool isSelected { get; set; } = false;
     }
+
+    /// <summary>
+    /// 任务列表使用的模型
+    /// </summary>
+    public class TaskModel
+    {
+        public int taskId { get; set; }
+        public string taskName { get; set; }
+        public string taskBrandModelName { get; set; }
+        public string taskClassName { get; set; }
+        public DateTime taskStartTime { get; set; }
+        public string taskCode { get; set; }
+        public int taskStateId { get; set; }
+
+        public string taskStateName { get; set; }
+        public int percent { get; set; }
+    }
+
+    /// <summary>
+    /// 任务测试结果使用模型
+    /// </summary>
+    public class TaskResultModel
+    {
+        public int indicatorId { get; set; }
+        public string indicatorName { get; set; }
+
+        public string indicatorDesc { get; set; }
+        public int brandId { get; set; }
+        public string brandName { get; set; }
+        public int modelId { get; set; }
+        public string modelName { get; set; }
+        public int taskRound { get; set; } 
+        public string taskExecutor { get; set; }
+        public string taskDateTime { get; set; }
+        public string taskRecord { get; set; }
+        /// <summary>
+        /// 测试结果值  0未通过  1通过
+        /// </summary>
+        public int taskResult { get; set; }
+        /// <summary>
+        /// 测试结果的主键
+        /// </summary>
+        public int taskResultId { get; set; }
+        public string taskRemark { get; set; }
+    }
 }

@@ -28,7 +28,7 @@ namespace AviationSafetyExperiment.Db.Entity
         /// 状态变更执行人
         /// </summary>
         [MaxLength(30)]
-        public string taskStateChamgeExecutor { get; set; }
+        public string taskStateChangeExecutor { get; set; }
         /// <summary>
         /// 状态备注（如驳回原因等）
         /// </summary>

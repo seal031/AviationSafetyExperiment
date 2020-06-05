@@ -28,28 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
             this.panelEx6 = new DevComponents.DotNetBar.PanelEx();
             this.stc = new DevComponents.DotNetBar.SuperTabControl();
-            this.superTabControlPanel5 = new DevComponents.DotNetBar.SuperTabControlPanel();
-            this.dgv_unselected = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewLabelXColumn1 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.dataGridViewLabelXColumn2 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.dataGridViewLabelXColumn3 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.dataGridViewLabelXColumn4 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.dataGridViewLabelXColumn5 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.dataGridViewLabelXColumn6 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.dataGridViewLabelXColumn7 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.dataGridViewLabelXColumn8 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.dataGridViewLabelXColumn9 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.dataGridViewLabelXColumn10 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.dataGridViewLabelXColumn11 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.panelEx7 = new DevComponents.DotNetBar.PanelEx();
-            this.btn_moveToSelected = new DevComponents.DotNetBar.ButtonX();
-            this.sti_unselected = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel4 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.dgv_selected = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.isSelected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -68,6 +51,23 @@
             this.btn_moveToUnselected = new DevComponents.DotNetBar.ButtonX();
             this.btn_save = new DevComponents.DotNetBar.ButtonX();
             this.sti_selected = new DevComponents.DotNetBar.SuperTabItem();
+            this.superTabControlPanel5 = new DevComponents.DotNetBar.SuperTabControlPanel();
+            this.dgv_unselected = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewLabelXColumn1 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
+            this.dataGridViewLabelXColumn2 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
+            this.dataGridViewLabelXColumn3 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
+            this.dataGridViewLabelXColumn4 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
+            this.dataGridViewLabelXColumn5 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
+            this.dataGridViewLabelXColumn6 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
+            this.dataGridViewLabelXColumn7 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
+            this.dataGridViewLabelXColumn8 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
+            this.dataGridViewLabelXColumn9 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
+            this.dataGridViewLabelXColumn10 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
+            this.dataGridViewLabelXColumn11 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
+            this.panelEx7 = new DevComponents.DotNetBar.PanelEx();
+            this.btn_moveToSelected = new DevComponents.DotNetBar.ButtonX();
+            this.sti_unselected = new DevComponents.DotNetBar.SuperTabItem();
             this.labelItem1 = new DevComponents.DotNetBar.LabelItem();
             this.groupPanel3 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.pnl_addTempla = new DevComponents.DotNetBar.PanelEx();
@@ -82,12 +82,12 @@
             this.panelEx6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.stc)).BeginInit();
             this.stc.SuspendLayout();
-            this.superTabControlPanel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_unselected)).BeginInit();
-            this.panelEx7.SuspendLayout();
             this.superTabControlPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_selected)).BeginInit();
             this.panelEx5.SuspendLayout();
+            this.superTabControlPanel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_unselected)).BeginInit();
+            this.panelEx7.SuspendLayout();
             this.groupPanel3.SuspendLayout();
             this.pnl_addTempla.SuspendLayout();
             this.SuspendLayout();
@@ -117,9 +117,9 @@
             this.panelEx6.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.panelEx6.Controls.Add(this.stc);
             this.panelEx6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelEx6.Location = new System.Drawing.Point(0, 86);
+            this.panelEx6.Location = new System.Drawing.Point(0, 80);
             this.panelEx6.Name = "panelEx6";
-            this.panelEx6.Size = new System.Drawing.Size(1211, 622);
+            this.panelEx6.Size = new System.Drawing.Size(1211, 628);
             this.panelEx6.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.panelEx6.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
             this.panelEx6.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
@@ -155,7 +155,7 @@
             this.stc.ReorderTabsEnabled = true;
             this.stc.SelectedTabFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
             this.stc.SelectedTabIndex = 0;
-            this.stc.Size = new System.Drawing.Size(1211, 622);
+            this.stc.Size = new System.Drawing.Size(1211, 628);
             this.stc.TabFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.stc.TabIndex = 0;
             this.stc.Tabs.AddRange(new DevComponents.DotNetBar.BaseItem[] {
@@ -164,186 +164,6 @@
             this.labelItem1});
             this.stc.Text = "superTabControl2";
             // 
-            // superTabControlPanel5
-            // 
-            this.superTabControlPanel5.Controls.Add(this.dgv_unselected);
-            this.superTabControlPanel5.Controls.Add(this.panelEx7);
-            this.superTabControlPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.superTabControlPanel5.Location = new System.Drawing.Point(0, 34);
-            this.superTabControlPanel5.Name = "superTabControlPanel5";
-            this.superTabControlPanel5.Size = new System.Drawing.Size(1211, 588);
-            this.superTabControlPanel5.TabIndex = 2;
-            this.superTabControlPanel5.TabItem = this.sti_unselected;
-            // 
-            // dgv_unselected
-            // 
-            this.dgv_unselected.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgv_unselected.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewCheckBoxColumn1,
-            this.dataGridViewLabelXColumn1,
-            this.dataGridViewLabelXColumn2,
-            this.dataGridViewLabelXColumn3,
-            this.dataGridViewLabelXColumn4,
-            this.dataGridViewLabelXColumn5,
-            this.dataGridViewLabelXColumn6,
-            this.dataGridViewLabelXColumn7,
-            this.dataGridViewLabelXColumn8,
-            this.dataGridViewLabelXColumn9,
-            this.dataGridViewLabelXColumn10,
-            this.dataGridViewLabelXColumn11});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_unselected.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgv_unselected.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv_unselected.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dgv_unselected.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.dgv_unselected.Location = new System.Drawing.Point(0, 0);
-            this.dgv_unselected.MultiSelect = false;
-            this.dgv_unselected.Name = "dgv_unselected";
-            this.dgv_unselected.RowHeadersVisible = false;
-            this.dgv_unselected.RowTemplate.Height = 27;
-            this.dgv_unselected.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_unselected.Size = new System.Drawing.Size(1211, 552);
-            this.dgv_unselected.TabIndex = 3;
-            this.dgv_unselected.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_CellMouseDoubleClick);
-            // 
-            // dataGridViewCheckBoxColumn1
-            // 
-            this.dataGridViewCheckBoxColumn1.DataPropertyName = "isSelected";
-            this.dataGridViewCheckBoxColumn1.FillWeight = 5F;
-            this.dataGridViewCheckBoxColumn1.HeaderText = "";
-            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
-            // 
-            // dataGridViewLabelXColumn1
-            // 
-            this.dataGridViewLabelXColumn1.DataPropertyName = "id";
-            this.dataGridViewLabelXColumn1.HeaderText = "id";
-            this.dataGridViewLabelXColumn1.Name = "dataGridViewLabelXColumn1";
-            this.dataGridViewLabelXColumn1.ReadOnly = true;
-            this.dataGridViewLabelXColumn1.Visible = false;
-            // 
-            // dataGridViewLabelXColumn2
-            // 
-            this.dataGridViewLabelXColumn2.DataPropertyName = "indicatorId";
-            this.dataGridViewLabelXColumn2.HeaderText = "indicatorId";
-            this.dataGridViewLabelXColumn2.Name = "dataGridViewLabelXColumn2";
-            this.dataGridViewLabelXColumn2.ReadOnly = true;
-            this.dataGridViewLabelXColumn2.Visible = false;
-            // 
-            // dataGridViewLabelXColumn3
-            // 
-            this.dataGridViewLabelXColumn3.DataPropertyName = "classId";
-            this.dataGridViewLabelXColumn3.HeaderText = "classId";
-            this.dataGridViewLabelXColumn3.Name = "dataGridViewLabelXColumn3";
-            this.dataGridViewLabelXColumn3.ReadOnly = true;
-            this.dataGridViewLabelXColumn3.Visible = false;
-            // 
-            // dataGridViewLabelXColumn4
-            // 
-            this.dataGridViewLabelXColumn4.DataPropertyName = "className";
-            this.dataGridViewLabelXColumn4.FillWeight = 20F;
-            this.dataGridViewLabelXColumn4.HeaderText = "所属分类";
-            this.dataGridViewLabelXColumn4.Name = "dataGridViewLabelXColumn4";
-            this.dataGridViewLabelXColumn4.ReadOnly = true;
-            // 
-            // dataGridViewLabelXColumn5
-            // 
-            this.dataGridViewLabelXColumn5.DataPropertyName = "detectionId";
-            this.dataGridViewLabelXColumn5.HeaderText = "detectionId";
-            this.dataGridViewLabelXColumn5.Name = "dataGridViewLabelXColumn5";
-            this.dataGridViewLabelXColumn5.ReadOnly = true;
-            this.dataGridViewLabelXColumn5.Visible = false;
-            // 
-            // dataGridViewLabelXColumn6
-            // 
-            this.dataGridViewLabelXColumn6.DataPropertyName = "detectionName";
-            this.dataGridViewLabelXColumn6.FillWeight = 30F;
-            this.dataGridViewLabelXColumn6.HeaderText = "检测内容";
-            this.dataGridViewLabelXColumn6.Name = "dataGridViewLabelXColumn6";
-            this.dataGridViewLabelXColumn6.ReadOnly = true;
-            // 
-            // dataGridViewLabelXColumn7
-            // 
-            this.dataGridViewLabelXColumn7.DataPropertyName = "subDetectionId";
-            this.dataGridViewLabelXColumn7.HeaderText = "subDetectionId";
-            this.dataGridViewLabelXColumn7.Name = "dataGridViewLabelXColumn7";
-            this.dataGridViewLabelXColumn7.ReadOnly = true;
-            this.dataGridViewLabelXColumn7.Visible = false;
-            // 
-            // dataGridViewLabelXColumn8
-            // 
-            this.dataGridViewLabelXColumn8.DataPropertyName = "subDetectionName";
-            this.dataGridViewLabelXColumn8.FillWeight = 30F;
-            this.dataGridViewLabelXColumn8.HeaderText = "检测分项";
-            this.dataGridViewLabelXColumn8.Name = "dataGridViewLabelXColumn8";
-            this.dataGridViewLabelXColumn8.ReadOnly = true;
-            // 
-            // dataGridViewLabelXColumn9
-            // 
-            this.dataGridViewLabelXColumn9.DataPropertyName = "indicatorName";
-            this.dataGridViewLabelXColumn9.FillWeight = 50F;
-            this.dataGridViewLabelXColumn9.HeaderText = "指标名称";
-            this.dataGridViewLabelXColumn9.Name = "dataGridViewLabelXColumn9";
-            this.dataGridViewLabelXColumn9.ReadOnly = true;
-            // 
-            // dataGridViewLabelXColumn10
-            // 
-            this.dataGridViewLabelXColumn10.DataPropertyName = "indicatorDesc";
-            this.dataGridViewLabelXColumn10.HeaderText = "指标说明";
-            this.dataGridViewLabelXColumn10.Name = "dataGridViewLabelXColumn10";
-            this.dataGridViewLabelXColumn10.ReadOnly = true;
-            // 
-            // dataGridViewLabelXColumn11
-            // 
-            this.dataGridViewLabelXColumn11.DataPropertyName = "isObsolete";
-            this.dataGridViewLabelXColumn11.HeaderText = "isObsolete";
-            this.dataGridViewLabelXColumn11.Name = "dataGridViewLabelXColumn11";
-            this.dataGridViewLabelXColumn11.ReadOnly = true;
-            this.dataGridViewLabelXColumn11.Visible = false;
-            // 
-            // panelEx7
-            // 
-            this.panelEx7.CanvasColor = System.Drawing.SystemColors.Control;
-            this.panelEx7.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.panelEx7.Controls.Add(this.btn_moveToSelected);
-            this.panelEx7.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelEx7.Location = new System.Drawing.Point(0, 552);
-            this.panelEx7.Name = "panelEx7";
-            this.panelEx7.Size = new System.Drawing.Size(1211, 36);
-            this.panelEx7.Style.Alignment = System.Drawing.StringAlignment.Center;
-            this.panelEx7.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.panelEx7.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
-            this.panelEx7.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.panelEx7.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
-            this.panelEx7.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.panelEx7.Style.GradientAngle = 90;
-            this.panelEx7.TabIndex = 2;
-            // 
-            // btn_moveToSelected
-            // 
-            this.btn_moveToSelected.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btn_moveToSelected.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_moveToSelected.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btn_moveToSelected.Location = new System.Drawing.Point(1064, 6);
-            this.btn_moveToSelected.Name = "btn_moveToSelected";
-            this.btn_moveToSelected.Size = new System.Drawing.Size(75, 23);
-            this.btn_moveToSelected.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btn_moveToSelected.TabIndex = 14;
-            this.btn_moveToSelected.Text = "移至已选";
-            this.btn_moveToSelected.Click += new System.EventHandler(this.btn_moveToSelected_Click);
-            // 
-            // sti_unselected
-            // 
-            this.sti_unselected.AttachedControl = this.superTabControlPanel5;
-            this.sti_unselected.GlobalItem = false;
-            this.sti_unselected.Name = "sti_unselected";
-            this.sti_unselected.Text = "待选指标";
-            // 
             // superTabControlPanel4
             // 
             this.superTabControlPanel4.Controls.Add(this.dgv_selected);
@@ -351,7 +171,7 @@
             this.superTabControlPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.superTabControlPanel4.Location = new System.Drawing.Point(0, 34);
             this.superTabControlPanel4.Name = "superTabControlPanel4";
-            this.superTabControlPanel4.Size = new System.Drawing.Size(1211, 588);
+            this.superTabControlPanel4.Size = new System.Drawing.Size(1211, 594);
             this.superTabControlPanel4.TabIndex = 1;
             this.superTabControlPanel4.TabItem = this.sti_selected;
             // 
@@ -371,14 +191,14 @@
             this.indicatorName,
             this.indicatorDesc,
             this.isObsolete});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_selected.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_selected.DefaultCellStyle = dataGridViewCellStyle7;
             this.dgv_selected.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_selected.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgv_selected.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
@@ -388,7 +208,7 @@
             this.dgv_selected.RowHeadersVisible = false;
             this.dgv_selected.RowTemplate.Height = 27;
             this.dgv_selected.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_selected.Size = new System.Drawing.Size(1211, 552);
+            this.dgv_selected.Size = new System.Drawing.Size(1211, 558);
             this.dgv_selected.TabIndex = 2;
             this.dgv_selected.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_CellMouseDoubleClick);
             // 
@@ -493,7 +313,7 @@
             this.panelEx5.Controls.Add(this.btn_moveToUnselected);
             this.panelEx5.Controls.Add(this.btn_save);
             this.panelEx5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelEx5.Location = new System.Drawing.Point(0, 552);
+            this.panelEx5.Location = new System.Drawing.Point(0, 558);
             this.panelEx5.Name = "panelEx5";
             this.panelEx5.Size = new System.Drawing.Size(1211, 36);
             this.panelEx5.Style.Alignment = System.Drawing.StringAlignment.Center;
@@ -538,6 +358,186 @@
             this.sti_selected.Name = "sti_selected";
             this.sti_selected.Text = "已选指标";
             // 
+            // superTabControlPanel5
+            // 
+            this.superTabControlPanel5.Controls.Add(this.dgv_unselected);
+            this.superTabControlPanel5.Controls.Add(this.panelEx7);
+            this.superTabControlPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.superTabControlPanel5.Location = new System.Drawing.Point(0, 0);
+            this.superTabControlPanel5.Name = "superTabControlPanel5";
+            this.superTabControlPanel5.Size = new System.Drawing.Size(1211, 628);
+            this.superTabControlPanel5.TabIndex = 2;
+            this.superTabControlPanel5.TabItem = this.sti_unselected;
+            // 
+            // dgv_unselected
+            // 
+            this.dgv_unselected.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgv_unselected.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewCheckBoxColumn1,
+            this.dataGridViewLabelXColumn1,
+            this.dataGridViewLabelXColumn2,
+            this.dataGridViewLabelXColumn3,
+            this.dataGridViewLabelXColumn4,
+            this.dataGridViewLabelXColumn5,
+            this.dataGridViewLabelXColumn6,
+            this.dataGridViewLabelXColumn7,
+            this.dataGridViewLabelXColumn8,
+            this.dataGridViewLabelXColumn9,
+            this.dataGridViewLabelXColumn10,
+            this.dataGridViewLabelXColumn11});
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_unselected.DefaultCellStyle = dataGridViewCellStyle8;
+            this.dgv_unselected.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgv_unselected.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.dgv_unselected.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
+            this.dgv_unselected.Location = new System.Drawing.Point(0, 0);
+            this.dgv_unselected.MultiSelect = false;
+            this.dgv_unselected.Name = "dgv_unselected";
+            this.dgv_unselected.RowHeadersVisible = false;
+            this.dgv_unselected.RowTemplate.Height = 27;
+            this.dgv_unselected.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgv_unselected.Size = new System.Drawing.Size(1211, 592);
+            this.dgv_unselected.TabIndex = 3;
+            this.dgv_unselected.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_CellMouseDoubleClick);
+            // 
+            // dataGridViewCheckBoxColumn1
+            // 
+            this.dataGridViewCheckBoxColumn1.DataPropertyName = "isSelected";
+            this.dataGridViewCheckBoxColumn1.FillWeight = 5F;
+            this.dataGridViewCheckBoxColumn1.HeaderText = "";
+            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
+            // 
+            // dataGridViewLabelXColumn1
+            // 
+            this.dataGridViewLabelXColumn1.DataPropertyName = "id";
+            this.dataGridViewLabelXColumn1.HeaderText = "id";
+            this.dataGridViewLabelXColumn1.Name = "dataGridViewLabelXColumn1";
+            this.dataGridViewLabelXColumn1.ReadOnly = true;
+            this.dataGridViewLabelXColumn1.Visible = false;
+            // 
+            // dataGridViewLabelXColumn2
+            // 
+            this.dataGridViewLabelXColumn2.DataPropertyName = "indicatorId";
+            this.dataGridViewLabelXColumn2.HeaderText = "indicatorId";
+            this.dataGridViewLabelXColumn2.Name = "dataGridViewLabelXColumn2";
+            this.dataGridViewLabelXColumn2.ReadOnly = true;
+            this.dataGridViewLabelXColumn2.Visible = false;
+            // 
+            // dataGridViewLabelXColumn3
+            // 
+            this.dataGridViewLabelXColumn3.DataPropertyName = "classId";
+            this.dataGridViewLabelXColumn3.HeaderText = "classId";
+            this.dataGridViewLabelXColumn3.Name = "dataGridViewLabelXColumn3";
+            this.dataGridViewLabelXColumn3.ReadOnly = true;
+            this.dataGridViewLabelXColumn3.Visible = false;
+            // 
+            // dataGridViewLabelXColumn4
+            // 
+            this.dataGridViewLabelXColumn4.DataPropertyName = "className";
+            this.dataGridViewLabelXColumn4.FillWeight = 20F;
+            this.dataGridViewLabelXColumn4.HeaderText = "所属分类";
+            this.dataGridViewLabelXColumn4.Name = "dataGridViewLabelXColumn4";
+            this.dataGridViewLabelXColumn4.ReadOnly = true;
+            // 
+            // dataGridViewLabelXColumn5
+            // 
+            this.dataGridViewLabelXColumn5.DataPropertyName = "detectionId";
+            this.dataGridViewLabelXColumn5.HeaderText = "detectionId";
+            this.dataGridViewLabelXColumn5.Name = "dataGridViewLabelXColumn5";
+            this.dataGridViewLabelXColumn5.ReadOnly = true;
+            this.dataGridViewLabelXColumn5.Visible = false;
+            // 
+            // dataGridViewLabelXColumn6
+            // 
+            this.dataGridViewLabelXColumn6.DataPropertyName = "detectionName";
+            this.dataGridViewLabelXColumn6.FillWeight = 30F;
+            this.dataGridViewLabelXColumn6.HeaderText = "检测内容";
+            this.dataGridViewLabelXColumn6.Name = "dataGridViewLabelXColumn6";
+            this.dataGridViewLabelXColumn6.ReadOnly = true;
+            // 
+            // dataGridViewLabelXColumn7
+            // 
+            this.dataGridViewLabelXColumn7.DataPropertyName = "subDetectionId";
+            this.dataGridViewLabelXColumn7.HeaderText = "subDetectionId";
+            this.dataGridViewLabelXColumn7.Name = "dataGridViewLabelXColumn7";
+            this.dataGridViewLabelXColumn7.ReadOnly = true;
+            this.dataGridViewLabelXColumn7.Visible = false;
+            // 
+            // dataGridViewLabelXColumn8
+            // 
+            this.dataGridViewLabelXColumn8.DataPropertyName = "subDetectionName";
+            this.dataGridViewLabelXColumn8.FillWeight = 30F;
+            this.dataGridViewLabelXColumn8.HeaderText = "检测分项";
+            this.dataGridViewLabelXColumn8.Name = "dataGridViewLabelXColumn8";
+            this.dataGridViewLabelXColumn8.ReadOnly = true;
+            // 
+            // dataGridViewLabelXColumn9
+            // 
+            this.dataGridViewLabelXColumn9.DataPropertyName = "indicatorName";
+            this.dataGridViewLabelXColumn9.FillWeight = 50F;
+            this.dataGridViewLabelXColumn9.HeaderText = "指标名称";
+            this.dataGridViewLabelXColumn9.Name = "dataGridViewLabelXColumn9";
+            this.dataGridViewLabelXColumn9.ReadOnly = true;
+            // 
+            // dataGridViewLabelXColumn10
+            // 
+            this.dataGridViewLabelXColumn10.DataPropertyName = "indicatorDesc";
+            this.dataGridViewLabelXColumn10.HeaderText = "指标说明";
+            this.dataGridViewLabelXColumn10.Name = "dataGridViewLabelXColumn10";
+            this.dataGridViewLabelXColumn10.ReadOnly = true;
+            // 
+            // dataGridViewLabelXColumn11
+            // 
+            this.dataGridViewLabelXColumn11.DataPropertyName = "isObsolete";
+            this.dataGridViewLabelXColumn11.HeaderText = "isObsolete";
+            this.dataGridViewLabelXColumn11.Name = "dataGridViewLabelXColumn11";
+            this.dataGridViewLabelXColumn11.ReadOnly = true;
+            this.dataGridViewLabelXColumn11.Visible = false;
+            // 
+            // panelEx7
+            // 
+            this.panelEx7.CanvasColor = System.Drawing.SystemColors.Control;
+            this.panelEx7.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.panelEx7.Controls.Add(this.btn_moveToSelected);
+            this.panelEx7.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelEx7.Location = new System.Drawing.Point(0, 592);
+            this.panelEx7.Name = "panelEx7";
+            this.panelEx7.Size = new System.Drawing.Size(1211, 36);
+            this.panelEx7.Style.Alignment = System.Drawing.StringAlignment.Center;
+            this.panelEx7.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+            this.panelEx7.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
+            this.panelEx7.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.panelEx7.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
+            this.panelEx7.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
+            this.panelEx7.Style.GradientAngle = 90;
+            this.panelEx7.TabIndex = 2;
+            // 
+            // btn_moveToSelected
+            // 
+            this.btn_moveToSelected.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btn_moveToSelected.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_moveToSelected.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btn_moveToSelected.Location = new System.Drawing.Point(1064, 6);
+            this.btn_moveToSelected.Name = "btn_moveToSelected";
+            this.btn_moveToSelected.Size = new System.Drawing.Size(75, 23);
+            this.btn_moveToSelected.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btn_moveToSelected.TabIndex = 14;
+            this.btn_moveToSelected.Text = "移至已选";
+            this.btn_moveToSelected.Click += new System.EventHandler(this.btn_moveToSelected_Click);
+            // 
+            // sti_unselected
+            // 
+            this.sti_unselected.AttachedControl = this.superTabControlPanel5;
+            this.sti_unselected.GlobalItem = false;
+            this.sti_unselected.Name = "sti_unselected";
+            this.sti_unselected.Text = "待选指标";
+            // 
             // labelItem1
             // 
             this.labelItem1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
@@ -557,7 +557,7 @@
             this.groupPanel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupPanel3.Location = new System.Drawing.Point(0, 0);
             this.groupPanel3.Name = "groupPanel3";
-            this.groupPanel3.Size = new System.Drawing.Size(1211, 86);
+            this.groupPanel3.Size = new System.Drawing.Size(1211, 80);
             // 
             // 
             // 
@@ -651,6 +651,7 @@
             // 
             this.cbb_exitsTemplate.DisplayMember = "Text";
             this.cbb_exitsTemplate.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbb_exitsTemplate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbb_exitsTemplate.FormattingEnabled = true;
             this.cbb_exitsTemplate.ItemHeight = 21;
             this.cbb_exitsTemplate.Location = new System.Drawing.Point(503, 10);
@@ -662,16 +663,17 @@
             // 
             // labelX1
             // 
+            this.labelX1.AutoSize = true;
             this.labelX1.BackColor = System.Drawing.Color.Transparent;
             // 
             // 
             // 
             this.labelX1.BackgroundStyle.Class = "";
             this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX1.Location = new System.Drawing.Point(410, 10);
+            this.labelX1.Location = new System.Drawing.Point(410, 13);
             this.labelX1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelX1.Name = "labelX1";
-            this.labelX1.Size = new System.Drawing.Size(84, 31);
+            this.labelX1.Size = new System.Drawing.Size(69, 21);
             this.labelX1.TabIndex = 9;
             this.labelX1.Text = "现有模板";
             // 
@@ -679,6 +681,7 @@
             // 
             this.cbb_class.DisplayMember = "Text";
             this.cbb_class.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbb_class.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbb_class.FormattingEnabled = true;
             this.cbb_class.ItemHeight = 21;
             this.cbb_class.Location = new System.Drawing.Point(124, 10);
@@ -690,16 +693,17 @@
             // 
             // lbl_class
             // 
+            this.lbl_class.AutoSize = true;
             this.lbl_class.BackColor = System.Drawing.Color.Transparent;
             // 
             // 
             // 
             this.lbl_class.BackgroundStyle.Class = "";
             this.lbl_class.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lbl_class.Location = new System.Drawing.Point(31, 9);
+            this.lbl_class.Location = new System.Drawing.Point(31, 12);
             this.lbl_class.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lbl_class.Name = "lbl_class";
-            this.lbl_class.Size = new System.Drawing.Size(84, 31);
+            this.lbl_class.Size = new System.Drawing.Size(69, 21);
             this.lbl_class.TabIndex = 7;
             this.lbl_class.Text = "所属分类";
             // 
@@ -714,13 +718,14 @@
             this.panelEx6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.stc)).EndInit();
             this.stc.ResumeLayout(false);
-            this.superTabControlPanel5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_unselected)).EndInit();
-            this.panelEx7.ResumeLayout(false);
             this.superTabControlPanel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_selected)).EndInit();
             this.panelEx5.ResumeLayout(false);
+            this.superTabControlPanel5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_unselected)).EndInit();
+            this.panelEx7.ResumeLayout(false);
             this.groupPanel3.ResumeLayout(false);
+            this.groupPanel3.PerformLayout();
             this.pnl_addTempla.ResumeLayout(false);
             this.ResumeLayout(false);
 

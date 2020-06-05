@@ -260,10 +260,10 @@ namespace AviationSafetyExperiment
         /// </summary>
         private void initIts()
         {
-            its.indicatorList = indicatorList;
-            its.classList = classList;
-            its.detectionList = detectionList;
-            its.subDetectionList = subDetectionList;
+            //its.indicatorList = indicatorList;
+            //its.classList = classList;
+            //its.detectionList = detectionList;
+            //its.subDetectionList = subDetectionList;
             its.init();
         }
         #endregion

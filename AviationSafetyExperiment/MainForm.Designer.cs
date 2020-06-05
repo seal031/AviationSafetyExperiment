@@ -39,9 +39,9 @@
             this.btn_indicatorSet = new DevComponents.DotNetBar.ButtonItem();
             this.btn_taskReport = new DevComponents.DotNetBar.ButtonItem();
             this.panelExMain = new DevComponents.DotNetBar.PanelEx();
+            this.taskMainPanel = new AviationSafetyExperiment.UserControls.TaskMainPanel();
             this.slidePanelMain = new DevComponents.DotNetBar.Controls.SlidePanel();
             this.expandablePanel = new DevComponents.DotNetBar.ExpandablePanel();
-            this.taskMainPanel = new AviationSafetyExperiment.UserControls.TaskMainPanel();
             this.taskProcessSlidePanel = new AviationSafetyExperiment.UserControls.TaskProcessSlidePanel();
             this.taskChartSlidePanel = new AviationSafetyExperiment.UserControls.TaskChartSlidePanel();
             this.panelEx1.SuspendLayout();
@@ -87,6 +87,7 @@
             this.panelEx2.CanvasColor = System.Drawing.SystemColors.Control;
             this.panelEx2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.panelEx2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelEx2.Font = new System.Drawing.Font("新宋体", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.panelEx2.Location = new System.Drawing.Point(0, 0);
             this.panelEx2.Name = "panelEx2";
             this.panelEx2.Size = new System.Drawing.Size(840, 79);
@@ -98,7 +99,7 @@
             this.panelEx2.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
             this.panelEx2.Style.GradientAngle = 90;
             this.panelEx2.TabIndex = 0;
-            this.panelEx2.Text = "panelEx2";
+            this.panelEx2.Text = "航空安全实验基地智能监控系统检测平台";
             // 
             // ribbonBar1
             // 
@@ -204,6 +205,16 @@
             this.panelExMain.TabIndex = 2;
             this.panelExMain.Text = "panelEx3";
             // 
+            // taskMainPanel
+            // 
+            this.taskMainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.taskMainPanel.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.taskMainPanel.Location = new System.Drawing.Point(150, 0);
+            this.taskMainPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.taskMainPanel.Name = "taskMainPanel";
+            this.taskMainPanel.Size = new System.Drawing.Size(1109, 646);
+            this.taskMainPanel.TabIndex = 3;
+            // 
             // slidePanelMain
             // 
             this.slidePanelMain.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -242,16 +253,6 @@
             this.expandablePanel.TitleStyle.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
             this.expandablePanel.TitleStyle.GradientAngle = 90;
             this.expandablePanel.TitleText = "Title Bar";
-            // 
-            // taskMainPanel
-            // 
-            this.taskMainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.taskMainPanel.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.taskMainPanel.Location = new System.Drawing.Point(150, 0);
-            this.taskMainPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.taskMainPanel.Name = "taskMainPanel";
-            this.taskMainPanel.Size = new System.Drawing.Size(1109, 646);
-            this.taskMainPanel.TabIndex = 3;
             // 
             // taskProcessSlidePanel
             // 

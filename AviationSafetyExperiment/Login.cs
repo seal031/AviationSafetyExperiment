@@ -23,6 +23,7 @@ namespace AviationSafetyExperiment
             if (login())
             {
                 MainForm mainForm = new AviationSafetyExperiment.MainForm();
+                MainFormAdapter.setMainForm(mainForm);
                 mainForm.Show();
                 this.Hide();
             }
@@ -30,6 +31,9 @@ namespace AviationSafetyExperiment
 
         private bool login()
         {
+            UserInfo.userName = "齐可新";
+            UserInfo.indentity = UserIdentityEnum.Test_Officers;
+            //UserInfo.indentity = UserIdentityEnum.Approving_Officers;
             return true;
         }
     }

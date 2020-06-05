@@ -45,5 +45,7 @@ namespace AviationSafetyExperiment.Db.Entity
         /// 测试进度百分比
         /// </summary>
         public int percent { get; set; }
+
+        public DateTime createTime { get; set; }
     }
 }

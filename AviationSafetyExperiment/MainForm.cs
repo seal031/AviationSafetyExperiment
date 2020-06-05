@@ -15,6 +15,9 @@ namespace AviationSafetyExperiment
     public partial class MainForm : DevComponents.DotNetBar.Office2007Form
     {
         TaskDefinePanel taskDefinePanel;
+        TaskListPanel taskApprovePanel;
+        TaskListPanel taskProcessPanel;
+        TaskListPanel taskExecutePanel;
 
         public MainForm()
         {
@@ -70,8 +73,7 @@ namespace AviationSafetyExperiment
 
         private void btn_taskReport_Click(object sender, EventArgs e)
         {
-            TaskReport tr = new TaskReport();
-            tr.ShowDialog(this);
+            //todo 显示测试报告列表，或也可用已完成任务列表替代
         }
         #endregion
 
@@ -112,6 +114,8 @@ namespace AviationSafetyExperiment
             //expandablePanel.Refresh();
             expandablePanel.Expanded = true;
             //panelExMain.Refresh();
+            taskMainPanel.init();
+            taskMainPanel.BringToFront();
         }
         /// <summary>
         /// 显示任务处理侧边
@@ -138,32 +142,51 @@ namespace AviationSafetyExperiment
                 taskDefinePanel = new TaskDefinePanel();
                 taskDefinePanel.Dock = DockStyle.Fill;
             }
-            if (panelExMain.Controls.Contains(taskDefinePanel)==false)
-            {
-                panelExMain.Controls.Add(taskDefinePanel);
-            }
+            addControl(panelExMain, taskDefinePanel);
             taskDefinePanel.BringToFront();
+            taskDefinePanel.init();
         }
         /// <summary>
         /// 显示任务审核
         /// </summary>
         private void showTaskApprove()
         {
-
+            if (taskApprovePanel == null)
+            {
+                taskApprovePanel = new TaskListPanel();
+                taskApprovePanel.Dock = DockStyle.Fill;
+            }
+            addControl(panelExMain, taskApprovePanel);
+            taskApprovePanel.BringToFront();
+            taskApprovePanel.init(5001,TaskGridShownStyle.HideAll);
         }
         /// <summary>
         /// 显示任务过程管理
         /// </summary>
         private void showTaskProcess()
         {
-
+            if (taskProcessPanel == null)
+            {
+                taskProcessPanel = new TaskListPanel();
+                taskProcessPanel.Dock = DockStyle.Fill;
+            }
+            addControl(panelExMain, taskProcessPanel);
+            taskProcessPanel.BringToFront();
+            taskProcessPanel.init(5004, TaskGridShownStyle.HideAll);
         }
         /// <summary>
         /// 显示任务执行管理
         /// </summary>
         private void showTaskExecute()
         {
-
+            if (taskExecutePanel == null)
+            {
+                taskExecutePanel = new TaskListPanel();
+                taskExecutePanel.Dock = DockStyle.Fill;
+            }
+            addControl(panelExMain, taskExecutePanel);
+            taskExecutePanel.BringToFront();
+            taskExecutePanel.init(5004, TaskGridShownStyle.HideAll);
         }
 
         private void addControl(Control parent, Control son)
@@ -174,5 +197,12 @@ namespace AviationSafetyExperiment
         {
             if (parent.Controls.Contains(son)) { parent.Controls.Remove(son); }
         }
+
+        #region 供其他组件调用
+        public void reloadTaskMainPanel()
+        {
+            taskMainPanel.init();
+        }
+        #endregion
     }
 }

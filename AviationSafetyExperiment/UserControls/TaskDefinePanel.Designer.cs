@@ -44,7 +44,8 @@
             this.txt_taskName = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
             this.panelEx2 = new DevComponents.DotNetBar.PanelEx();
-            this.indicatorTemplateSelecter1 = new AviationSafetyExperiment.UserControls.IndicatorTemplateSelecter();
+            this.its = new AviationSafetyExperiment.UserControls.IndicatorTemplateSelecter();
+            this.lbl_brandModel = new DevComponents.DotNetBar.LabelX();
             this.panelEx1.SuspendLayout();
             this.groupPanel1.SuspendLayout();
             this.panelEx2.SuspendLayout();
@@ -74,6 +75,7 @@
             // 
             this.groupPanel1.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.groupPanel1.Controls.Add(this.lbl_brandModel);
             this.groupPanel1.Controls.Add(this.lbl_taskType);
             this.groupPanel1.Controls.Add(this.btn_createTask);
             this.groupPanel1.Controls.Add(this.btn_pickBrandModel);
@@ -127,12 +129,13 @@
             // 
             // lbl_taskType
             // 
+            this.lbl_taskType.AutoSize = true;
             // 
             // 
             // 
             this.lbl_taskType.BackgroundStyle.Class = "";
             this.lbl_taskType.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lbl_taskType.Location = new System.Drawing.Point(437, 54);
+            this.lbl_taskType.Location = new System.Drawing.Point(437, 53);
             this.lbl_taskType.Name = "lbl_taskType";
             this.lbl_taskType.Size = new System.Drawing.Size(215, 23);
             this.lbl_taskType.TabIndex = 26;
@@ -160,6 +163,7 @@
             this.btn_pickBrandModel.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.btn_pickBrandModel.TabIndex = 24;
             this.btn_pickBrandModel.Text = "品牌型号选择";
+            this.btn_pickBrandModel.Click += new System.EventHandler(this.btn_pickBrandModel_Click);
             // 
             // labelX6
             // 
@@ -310,7 +314,7 @@
             // 
             this.panelEx2.CanvasColor = System.Drawing.SystemColors.Control;
             this.panelEx2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.panelEx2.Controls.Add(this.indicatorTemplateSelecter1);
+            this.panelEx2.Controls.Add(this.its);
             this.panelEx2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelEx2.Location = new System.Drawing.Point(0, 221);
             this.panelEx2.Name = "panelEx2";
@@ -324,15 +328,32 @@
             this.panelEx2.Style.GradientAngle = 90;
             this.panelEx2.TabIndex = 15;
             // 
-            // indicatorTemplateSelecter1
+            // its
             // 
-            this.indicatorTemplateSelecter1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.indicatorTemplateSelecter1.isManage = false;
-            this.indicatorTemplateSelecter1.Location = new System.Drawing.Point(0, 0);
-            this.indicatorTemplateSelecter1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.indicatorTemplateSelecter1.Name = "indicatorTemplateSelecter1";
-            this.indicatorTemplateSelecter1.Size = new System.Drawing.Size(1040, 539);
-            this.indicatorTemplateSelecter1.TabIndex = 0;
+            this.its.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.its.isManage = false;
+            this.its.Location = new System.Drawing.Point(0, 0);
+            this.its.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.its.Name = "its";
+            this.its.Size = new System.Drawing.Size(1040, 539);
+            this.its.TabIndex = 0;
+            // 
+            // lbl_brandModel
+            // 
+            this.lbl_brandModel.AutoSize = true;
+            // 
+            // 
+            // 
+            this.lbl_brandModel.BackgroundStyle.BorderBottomWidth = 2;
+            this.lbl_brandModel.BackgroundStyle.BorderLeftWidth = 2;
+            this.lbl_brandModel.BackgroundStyle.BorderRightWidth = 2;
+            this.lbl_brandModel.BackgroundStyle.BorderTopWidth = 2;
+            this.lbl_brandModel.BackgroundStyle.Class = "";
+            this.lbl_brandModel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lbl_brandModel.Location = new System.Drawing.Point(156, 90);
+            this.lbl_brandModel.Name = "lbl_brandModel";
+            this.lbl_brandModel.Size = new System.Drawing.Size(462, 97);
+            this.lbl_brandModel.TabIndex = 27;
             // 
             // TaskDefinePanel
             // 
@@ -369,6 +390,7 @@
         private DevComponents.DotNetBar.Controls.TextBoxX txt_taskName;
         private DevComponents.DotNetBar.LabelX labelX1;
         private DevComponents.DotNetBar.PanelEx panelEx2;
-        private IndicatorTemplateSelecter indicatorTemplateSelecter1;
+        private IndicatorTemplateSelecter its;
+        private DevComponents.DotNetBar.LabelX lbl_brandModel;
     }
 }
