@@ -29,7 +29,10 @@
         private void InitializeComponent()
         {
             this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
+            this.panelEx2 = new DevComponents.DotNetBar.PanelEx();
+            this.its = new AviationSafetyExperiment.UserControls.IndicatorTemplateSelecter();
             this.groupPanel1 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.lbl_brandModel = new DevComponents.DotNetBar.LabelX();
             this.lbl_taskType = new DevComponents.DotNetBar.LabelX();
             this.btn_createTask = new DevComponents.DotNetBar.ButtonX();
             this.btn_pickBrandModel = new DevComponents.DotNetBar.ButtonX();
@@ -43,12 +46,9 @@
             this.labelX2 = new DevComponents.DotNetBar.LabelX();
             this.txt_taskName = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
-            this.panelEx2 = new DevComponents.DotNetBar.PanelEx();
-            this.its = new AviationSafetyExperiment.UserControls.IndicatorTemplateSelecter();
-            this.lbl_brandModel = new DevComponents.DotNetBar.LabelX();
             this.panelEx1.SuspendLayout();
-            this.groupPanel1.SuspendLayout();
             this.panelEx2.SuspendLayout();
+            this.groupPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelEx1
@@ -70,6 +70,34 @@
             this.panelEx1.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
             this.panelEx1.Style.GradientAngle = 90;
             this.panelEx1.TabIndex = 0;
+            // 
+            // panelEx2
+            // 
+            this.panelEx2.CanvasColor = System.Drawing.SystemColors.Control;
+            this.panelEx2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.panelEx2.Controls.Add(this.its);
+            this.panelEx2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelEx2.Location = new System.Drawing.Point(0, 221);
+            this.panelEx2.Name = "panelEx2";
+            this.panelEx2.Size = new System.Drawing.Size(1040, 539);
+            this.panelEx2.Style.Alignment = System.Drawing.StringAlignment.Center;
+            this.panelEx2.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+            this.panelEx2.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
+            this.panelEx2.Style.Border = DevComponents.DotNetBar.eBorderType.DoubleLine;
+            this.panelEx2.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
+            this.panelEx2.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
+            this.panelEx2.Style.GradientAngle = 90;
+            this.panelEx2.TabIndex = 15;
+            // 
+            // its
+            // 
+            this.its.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.its.isManage = false;
+            this.its.Location = new System.Drawing.Point(0, 0);
+            this.its.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.its.Name = "its";
+            this.its.Size = new System.Drawing.Size(1040, 539);
+            this.its.TabIndex = 0;
             // 
             // groupPanel1
             // 
@@ -127,6 +155,23 @@
             this.groupPanel1.TabIndex = 14;
             this.groupPanel1.Text = "新建测试任务";
             // 
+            // lbl_brandModel
+            // 
+            this.lbl_brandModel.AutoSize = true;
+            // 
+            // 
+            // 
+            this.lbl_brandModel.BackgroundStyle.BorderBottomWidth = 2;
+            this.lbl_brandModel.BackgroundStyle.BorderLeftWidth = 2;
+            this.lbl_brandModel.BackgroundStyle.BorderRightWidth = 2;
+            this.lbl_brandModel.BackgroundStyle.BorderTopWidth = 2;
+            this.lbl_brandModel.BackgroundStyle.Class = "";
+            this.lbl_brandModel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lbl_brandModel.Location = new System.Drawing.Point(156, 90);
+            this.lbl_brandModel.Name = "lbl_brandModel";
+            this.lbl_brandModel.Size = new System.Drawing.Size(0, 0);
+            this.lbl_brandModel.TabIndex = 27;
+            // 
             // lbl_taskType
             // 
             this.lbl_taskType.AutoSize = true;
@@ -137,7 +182,7 @@
             this.lbl_taskType.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lbl_taskType.Location = new System.Drawing.Point(437, 53);
             this.lbl_taskType.Name = "lbl_taskType";
-            this.lbl_taskType.Size = new System.Drawing.Size(215, 23);
+            this.lbl_taskType.Size = new System.Drawing.Size(0, 0);
             this.lbl_taskType.TabIndex = 26;
             // 
             // btn_createTask
@@ -228,14 +273,14 @@
             // cbb_taskClass
             // 
             this.cbb_taskClass.DisplayMember = "Text";
-            this.cbb_taskClass.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cbb_taskClass.FormattingEnabled = true;
-            this.cbb_taskClass.ItemHeight = 21;
+            this.cbb_taskClass.ItemHeight = 20;
             this.cbb_taskClass.Location = new System.Drawing.Point(119, 50);
             this.cbb_taskClass.Name = "cbb_taskClass";
-            this.cbb_taskClass.Size = new System.Drawing.Size(152, 27);
+            this.cbb_taskClass.Size = new System.Drawing.Size(152, 28);
             this.cbb_taskClass.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.cbb_taskClass.TabIndex = 19;
+            this.cbb_taskClass.SelectedValueChanged += new System.EventHandler(this.cbb_taskClass_SelectedValueChanged);
             // 
             // labelX3
             // 
@@ -310,51 +355,6 @@
             this.labelX1.TabIndex = 14;
             this.labelX1.Text = "任务名称：";
             // 
-            // panelEx2
-            // 
-            this.panelEx2.CanvasColor = System.Drawing.SystemColors.Control;
-            this.panelEx2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.panelEx2.Controls.Add(this.its);
-            this.panelEx2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelEx2.Location = new System.Drawing.Point(0, 221);
-            this.panelEx2.Name = "panelEx2";
-            this.panelEx2.Size = new System.Drawing.Size(1040, 539);
-            this.panelEx2.Style.Alignment = System.Drawing.StringAlignment.Center;
-            this.panelEx2.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.panelEx2.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
-            this.panelEx2.Style.Border = DevComponents.DotNetBar.eBorderType.DoubleLine;
-            this.panelEx2.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
-            this.panelEx2.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.panelEx2.Style.GradientAngle = 90;
-            this.panelEx2.TabIndex = 15;
-            // 
-            // its
-            // 
-            this.its.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.its.isManage = false;
-            this.its.Location = new System.Drawing.Point(0, 0);
-            this.its.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.its.Name = "its";
-            this.its.Size = new System.Drawing.Size(1040, 539);
-            this.its.TabIndex = 0;
-            // 
-            // lbl_brandModel
-            // 
-            this.lbl_brandModel.AutoSize = true;
-            // 
-            // 
-            // 
-            this.lbl_brandModel.BackgroundStyle.BorderBottomWidth = 2;
-            this.lbl_brandModel.BackgroundStyle.BorderLeftWidth = 2;
-            this.lbl_brandModel.BackgroundStyle.BorderRightWidth = 2;
-            this.lbl_brandModel.BackgroundStyle.BorderTopWidth = 2;
-            this.lbl_brandModel.BackgroundStyle.Class = "";
-            this.lbl_brandModel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lbl_brandModel.Location = new System.Drawing.Point(156, 90);
-            this.lbl_brandModel.Name = "lbl_brandModel";
-            this.lbl_brandModel.Size = new System.Drawing.Size(462, 97);
-            this.lbl_brandModel.TabIndex = 27;
-            // 
             // TaskDefinePanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -365,9 +365,9 @@
             this.Name = "TaskDefinePanel";
             this.Size = new System.Drawing.Size(1040, 760);
             this.panelEx1.ResumeLayout(false);
+            this.panelEx2.ResumeLayout(false);
             this.groupPanel1.ResumeLayout(false);
             this.groupPanel1.PerformLayout();
-            this.panelEx2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

@@ -74,15 +74,20 @@ namespace AviationSafetyExperiment.UserControls
         }
         private void cbb_class_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (isManage == true)
+            {
+                cbb_classId = (int)cbb_class.SelectedValue;
+            }
             bindCbbExitsTemplate();
         }
 
-        private void bindCbbExitsTemplate()
+        public void bindCbbExitsTemplate()
         {
-            templateList = TemplateCache.getCache().Where(t => t.classId == (int)cbb_class.SelectedValue).ToList();
+            templateList = TemplateCache.getCache().Where(t => t.classId == cbb_classId).ToList();
             cbb_exitsTemplate.DisplayMember = "templateName";
             cbb_exitsTemplate.ValueMember = "id";
             cbb_exitsTemplate.DataSource = templateList;
+            cbb_exitsTemplate.SelectedValue = 0;
         }
 
         private void cbb_exitsTemplate_SelectedIndexChanged(object sender, EventArgs e)
@@ -92,9 +97,9 @@ namespace AviationSafetyExperiment.UserControls
 
         private void getTemplateIndicators()
         {
-            var anyClassIndicatorList = IndicatorCache.getCache().Where(i => i.classId == (int)cbb_class.SelectedValue).ToList();//获取某分类下所有指标
+            var anyClassIndicatorList = IndicatorCache.getCache().Where(i => i.classId == cbb_classId).ToList();//获取某分类下所有指标
             //获取所选模板的已选指标
-            var selectedIndicatorList = IndicatorTemplateMapCache.getCache().Where(i => i.templateId == (int)cbb_exitsTemplate.SelectedValue);
+            var selectedIndicatorList = IndicatorTemplateMapCache.getCache().Where(i => i.templateId == (cbb_exitsTemplate.SelectedValue == null ? 0 : (int)cbb_exitsTemplate.SelectedValue));
             //生成已选指标model对象列表
             selectedIndicatorModelList = (from indicatorMap in selectedIndicatorList
                                           from indicator in indicatorList
@@ -162,7 +167,7 @@ namespace AviationSafetyExperiment.UserControls
         private void btn_addNewTemplate_Click(object sender, EventArgs e)
         {
             Tb_indicatorTemplate template = new Db.Entity.Tb_indicatorTemplate();
-            template.classId = (int)cbb_class.SelectedValue;
+            template.classId = cbb_classId;
             template.createDatetime = DateTime.Now.ToLocalTime(); ;
             template.templateName = txt_newTemplateName.Text.Trim();
             TemplateCache.addCache(template);

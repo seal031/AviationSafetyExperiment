@@ -27,11 +27,10 @@ namespace AviationSafetyExperiment.UserControls
 
         public void init()
         {
+            its.init();
             cbb_taskClass.DisplayMember = "codeName";
             cbb_taskClass.ValueMember = "id";
             cbb_taskClass.DataSource = CodeCache.getClass();
-
-            its.init();
         }
 
         public void createTask()
@@ -103,6 +102,15 @@ namespace AviationSafetyExperiment.UserControls
         private void btn_createTask_Click(object sender, EventArgs e)
         {
             createTask();
+        }
+
+        private void cbb_taskClass_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (cbb_taskClass.SelectedValue != null)
+            {
+                its.cbb_classId = (int)cbb_taskClass.SelectedValue;
+                its.bindCbbExitsTemplate();//切换分类时重新绑定已有模板下拉列表
+            }
         }
     }
 }
