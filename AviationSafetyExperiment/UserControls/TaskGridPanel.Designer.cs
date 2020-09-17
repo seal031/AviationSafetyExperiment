@@ -46,6 +46,7 @@
             this.btn_open = new DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn();
             this.btn_done = new DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn();
             this.btn_close = new DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn();
+            this.pagingPanel = new AviationSafetyExperiment.UserControls.PagingPanel();
             this.panelEx1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_taskList)).BeginInit();
             this.SuspendLayout();
@@ -55,6 +56,7 @@
             this.panelEx1.CanvasColor = System.Drawing.SystemColors.Control;
             this.panelEx1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.panelEx1.Controls.Add(this.dgv_taskList);
+            this.panelEx1.Controls.Add(this.pagingPanel);
             this.panelEx1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelEx1.Location = new System.Drawing.Point(0, 0);
             this.panelEx1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -73,7 +75,6 @@
             // 
             this.dgv_taskList.AllowUserToDeleteRows = false;
             this.dgv_taskList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgv_taskList.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
             this.dgv_taskList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_taskList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.taskId,
@@ -103,17 +104,15 @@
             this.dgv_taskList.Location = new System.Drawing.Point(0, 0);
             this.dgv_taskList.MultiSelect = false;
             this.dgv_taskList.Name = "dgv_taskList";
-            this.dgv_taskList.RowHeadersVisible = false;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgv_taskList.RowsDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgv_taskList.RowTemplate.Height = 27;
+            this.dgv_taskList.RowTemplate.Height = 45;
             this.dgv_taskList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgv_taskList.Size = new System.Drawing.Size(1014, 622);
-            this.dgv_taskList.TabIndex = 0;
+            this.dgv_taskList.Size = new System.Drawing.Size(1014, 587);
+            this.dgv_taskList.TabIndex = 2;
             this.dgv_taskList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_taskList_CellContentClick);
             this.dgv_taskList.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_taskList_CellMouseDoubleClick);
-            this.dgv_taskList.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgv_taskList_CellPainting);
-            this.dgv_taskList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgv_taskList_DataBindingComplete);
+            this.dgv_taskList.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgv_taskList_RowPostPaint);
             // 
             // taskId
             // 
@@ -192,6 +191,7 @@
             this.percent.DataPropertyName = "percent";
             this.percent.HeaderText = "完成进度";
             this.percent.Name = "percent";
+            this.percent.Text = null;
             this.percent.TextVisible = true;
             // 
             // btn_pass
@@ -220,9 +220,11 @@
             this.btn_open.HeaderText = "操作";
             this.btn_open.Name = "btn_open";
             this.btn_open.ReadOnly = true;
+            this.btn_open.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.btn_open.Shape = new DevComponents.DotNetBar.RoundRectangleShapeDescriptor(10);
             this.btn_open.Text = "打开任务";
             this.btn_open.UseColumnTextForButtonValue = true;
+            this.btn_open.Visible = false;
             // 
             // btn_done
             // 
@@ -244,6 +246,16 @@
             this.btn_close.UseColumnTextForButtonValue = true;
             this.btn_close.Visible = false;
             // 
+            // pagingPanel
+            // 
+            this.pagingPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pagingPanel.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.pagingPanel.Location = new System.Drawing.Point(0, 587);
+            this.pagingPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pagingPanel.Name = "pagingPanel";
+            this.pagingPanel.Size = new System.Drawing.Size(1014, 35);
+            this.pagingPanel.TabIndex = 1;
+            // 
             // TaskGridPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -263,6 +275,7 @@
 
         private DevComponents.DotNetBar.PanelEx panelEx1;
         private DevComponents.DotNetBar.Controls.DataGridViewX dgv_taskList;
+        private PagingPanel pagingPanel;
         private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn taskId;
         private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn taskName;
         private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn taskClassName;

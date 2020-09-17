@@ -1,4 +1,6 @@
 ﻿using AviationSafetyExperiment.Db.Entity;
+using AviationSafetyExperiment.DbLocalCache;
+using AviationSafetyExperiment.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,8 +33,8 @@ namespace AviationSafetyExperiment.Db.DAO
                         Tb_taskLifecycle lifecycle = new Tb_taskLifecycle();
                         lifecycle.taskId = taskId;
                         lifecycle.taskStateDateTime = DateTime.Now;
-                        lifecycle.taskStateChangeExecutor = task.taskExecutor;
-                        lifecycle.taskState = 5001;
+                        lifecycle.taskStateChangeExecutor = User.currentUser.name;
+                        lifecycle.taskState = (int)TaskStateEnum.Created;
                         lifecycle.remark = string.Empty;
                         context.Tb_taskLifecycles.Add(lifecycle);
                         context.SaveChanges();
@@ -64,10 +66,23 @@ namespace AviationSafetyExperiment.Db.DAO
                         context.SaveChanges();
                         //提交数据库
                         transaction.Commit();
+                        //更新任务生命周期缓存
+                        TaskLifecycleCache.addCacheOnly(lifecycle);
+                        //更新品牌型号映射缓存
+                        foreach (var tmm in tmmList)
+                        {
+                            TaskModelMapCache.addCacheOnly(tmm);
+                        }
+                        //更新指标映射缓存
+                        foreach (var tim in timList)
+                        {
+                            TaskIndicatorMapCache.addCacheOnly(tim);
+                        }
                     }
                     catch (Exception ex)
                     {
                         transaction.Rollback();
+                        throw ex;
                     }
                 }
             }
@@ -77,91 +92,91 @@ namespace AviationSafetyExperiment.Db.DAO
         /// 保存一次任务处理结果
         /// </summary>
         /// <param name="task"></param>
-        public static void saveTask(Tb_taskInfo task,List<Tb_taskResult> resultList)
-        {
-            using (EFMySqlDbContext context = new Db.EFMySqlDbContext())
-            {
-                using (var transaction = context.Database.BeginTransaction())
-                {
-                    try
-                    {
-                        var currentTask = context.Tb_taskInfos.FirstOrDefault(t => t.id == task.id);
-                        if (currentTask == null) { return; }
-                        else
-                        {
-                            currentTask = task;
-                            context.SaveChanges();
-                            //增加任务进度
-                            context.Tb_taskResults.AddRange(resultList);
-                            context.SaveChanges();
-                            //提交数据库
-                            transaction.Commit();
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        transaction.Rollback();
-                    }
-                }
-            }
-        }
+        //public static void saveTask(Tb_taskInfo task,List<Tb_taskResult> resultList)
+        //{
+        //    using (EFMySqlDbContext context = new Db.EFMySqlDbContext())
+        //    {
+        //        using (var transaction = context.Database.BeginTransaction())
+        //        {
+        //            try
+        //            {
+        //                var currentTask = context.Tb_taskInfos.FirstOrDefault(t => t.id == task.id);
+        //                if (currentTask == null) { return; }
+        //                else
+        //                {
+        //                    currentTask = task;
+        //                    context.SaveChanges();
+        //                    //增加任务进度
+        //                    context.Tb_taskResults.AddRange(resultList);
+        //                    context.SaveChanges();
+        //                    //提交数据库
+        //                    transaction.Commit();
+        //                }
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                transaction.Rollback();
+        //            }
+        //        }
+        //    }
+        //}
         /// <summary>
         /// 添加任务生命周期，同时更新任务信息中的任务最新状态
         /// </summary>
         /// <param name="taskLifecycle"></param>
-        public static void updateTaskLifecycle(Tb_taskLifecycle taskLifecycle)
-        {
-            using (EFMySqlDbContext context = new Db.EFMySqlDbContext())
-            {
-                using (var transaction = context.Database.BeginTransaction())
-                {
-                    try
-                    {
-                        var task = context.Tb_taskInfos.FirstOrDefault(t => t.id == taskLifecycle.taskId);
-                        if (task == null)
-                        {
-                            return;
-                        }
-                        else
-                        {
-                            //添加生命周期
-                            context.Tb_taskLifecycles.Add(taskLifecycle);
-                            context.SaveChanges();
-                            //修改任务最新状态
-                            task.taskState = taskLifecycle.taskState;
-                            context.SaveChanges();
-                            //提交数据库
-                            transaction.Commit();
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        transaction.Rollback();
-                    }
-                }
-            }
-        }
+        //public static void updateTaskLifecycle(Tb_taskLifecycle taskLifecycle)
+        //{
+        //    using (EFMySqlDbContext context = new Db.EFMySqlDbContext())
+        //    {
+        //        using (var transaction = context.Database.BeginTransaction())
+        //        {
+        //            try
+        //            {
+        //                var task = context.Tb_taskInfos.FirstOrDefault(t => t.id == taskLifecycle.taskId);
+        //                if (task == null)
+        //                {
+        //                    return;
+        //                }
+        //                else
+        //                {
+        //                    //添加生命周期
+        //                    context.Tb_taskLifecycles.Add(taskLifecycle);
+        //                    context.SaveChanges();
+        //                    //修改任务最新状态
+        //                    task.taskState = taskLifecycle.taskState;
+        //                    context.SaveChanges();
+        //                    //提交数据库
+        //                    transaction.Commit();
+        //                }
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                transaction.Rollback();
+        //            }
+        //        }
+        //    }
+        //}
 
         /// <summary>
         /// 完成任务
         /// </summary>
         /// <param name="task"></param>
-        public static void completeTask(Tb_taskInfo task)
-        {
-            using (EFMySqlDbContext context = new Db.EFMySqlDbContext())
-            {
-                using (var transaction = context.Database.BeginTransaction())
-                {
-                    try
-                    {
+        //public static void completeTask(Tb_taskInfo task)
+        //{
+        //    using (EFMySqlDbContext context = new Db.EFMySqlDbContext())
+        //    {
+        //        using (var transaction = context.Database.BeginTransaction())
+        //        {
+        //            try
+        //            {
 
-                    }
-                    catch (Exception ex)
-                    {
-                        transaction.Rollback();
-                    }
-                }
-            }
-        }
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                transaction.Rollback();
+        //            }
+        //        }
+        //    }
+        //}
     }
 }

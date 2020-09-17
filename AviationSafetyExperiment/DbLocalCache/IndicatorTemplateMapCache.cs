@@ -51,6 +51,7 @@ namespace AviationSafetyExperiment.DbLocalCache
         public static void addCache(int templateId, List<int> indicatorIdList)
         {
             IndicatorTemplateMapAdapter.updateMap(templateId, indicatorIdList);
+            getFromDb();
         }
     }
 }

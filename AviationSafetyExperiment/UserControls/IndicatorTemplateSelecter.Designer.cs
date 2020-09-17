@@ -28,12 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
             this.panelEx6 = new DevComponents.DotNetBar.PanelEx();
             this.stc = new DevComponents.DotNetBar.SuperTabControl();
             this.superTabControlPanel4 = new DevComponents.DotNetBar.SuperTabControlPanel();
+            this.progressBar = new DevComponents.DotNetBar.Controls.ProgressBarX();
+            this.pnl_addTempla = new DevComponents.DotNetBar.PanelEx();
+            this.labelX2 = new DevComponents.DotNetBar.LabelX();
+            this.btn_close = new DevComponents.DotNetBar.ButtonX();
+            this.btn_addNewTemplate = new DevComponents.DotNetBar.ButtonX();
+            this.txt_newTemplateName = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.dgv_selected = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.isSelected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.id = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
@@ -48,8 +54,10 @@
             this.indicatorDesc = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
             this.isObsolete = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
             this.panelEx5 = new DevComponents.DotNetBar.PanelEx();
+            this.chk_selected = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.btn_moveToUnselected = new DevComponents.DotNetBar.ButtonX();
             this.btn_save = new DevComponents.DotNetBar.ButtonX();
+            this.pagingPanel_selected = new AviationSafetyExperiment.UserControls.PagingPanel();
             this.sti_selected = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel5 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.dgv_unselected = new DevComponents.DotNetBar.Controls.DataGridViewX();
@@ -66,16 +74,15 @@
             this.dataGridViewLabelXColumn10 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
             this.dataGridViewLabelXColumn11 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
             this.panelEx7 = new DevComponents.DotNetBar.PanelEx();
+            this.chk_unselect = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.btn_moveToSelected = new DevComponents.DotNetBar.ButtonX();
+            this.pagingPanel_unselected = new AviationSafetyExperiment.UserControls.PagingPanel();
             this.sti_unselected = new DevComponents.DotNetBar.SuperTabItem();
             this.labelItem1 = new DevComponents.DotNetBar.LabelItem();
             this.groupPanel3 = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.pnl_addTempla = new DevComponents.DotNetBar.PanelEx();
-            this.btn_addNewTemplate = new DevComponents.DotNetBar.ButtonX();
-            this.txt_newTemplateName = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.btn_showNewTemplatePanel = new DevComponents.DotNetBar.ButtonX();
             this.cbb_exitsTemplate = new DevComponents.DotNetBar.Controls.ComboBoxEx();
-            this.labelX1 = new DevComponents.DotNetBar.LabelX();
+            this.lbl_exitsTemplate = new DevComponents.DotNetBar.LabelX();
             this.cbb_class = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.lbl_class = new DevComponents.DotNetBar.LabelX();
             this.panelEx1.SuspendLayout();
@@ -83,13 +90,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.stc)).BeginInit();
             this.stc.SuspendLayout();
             this.superTabControlPanel4.SuspendLayout();
+            this.pnl_addTempla.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_selected)).BeginInit();
             this.panelEx5.SuspendLayout();
             this.superTabControlPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_unselected)).BeginInit();
             this.panelEx7.SuspendLayout();
             this.groupPanel3.SuspendLayout();
-            this.pnl_addTempla.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelEx1
@@ -117,9 +124,9 @@
             this.panelEx6.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.panelEx6.Controls.Add(this.stc);
             this.panelEx6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelEx6.Location = new System.Drawing.Point(0, 80);
+            this.panelEx6.Location = new System.Drawing.Point(0, 63);
             this.panelEx6.Name = "panelEx6";
-            this.panelEx6.Size = new System.Drawing.Size(1211, 628);
+            this.panelEx6.Size = new System.Drawing.Size(1211, 645);
             this.panelEx6.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.panelEx6.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
             this.panelEx6.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
@@ -155,7 +162,7 @@
             this.stc.ReorderTabsEnabled = true;
             this.stc.SelectedTabFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
             this.stc.SelectedTabIndex = 0;
-            this.stc.Size = new System.Drawing.Size(1211, 628);
+            this.stc.Size = new System.Drawing.Size(1211, 645);
             this.stc.TabFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.stc.TabIndex = 0;
             this.stc.Tabs.AddRange(new DevComponents.DotNetBar.BaseItem[] {
@@ -166,14 +173,109 @@
             // 
             // superTabControlPanel4
             // 
+            this.superTabControlPanel4.Controls.Add(this.progressBar);
+            this.superTabControlPanel4.Controls.Add(this.pnl_addTempla);
             this.superTabControlPanel4.Controls.Add(this.dgv_selected);
             this.superTabControlPanel4.Controls.Add(this.panelEx5);
             this.superTabControlPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.superTabControlPanel4.Location = new System.Drawing.Point(0, 34);
             this.superTabControlPanel4.Name = "superTabControlPanel4";
-            this.superTabControlPanel4.Size = new System.Drawing.Size(1211, 594);
+            this.superTabControlPanel4.Size = new System.Drawing.Size(1211, 611);
             this.superTabControlPanel4.TabIndex = 1;
             this.superTabControlPanel4.TabItem = this.sti_selected;
+            // 
+            // progressBar
+            // 
+            this.progressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            // 
+            // 
+            this.progressBar.BackgroundStyle.Class = "";
+            this.progressBar.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.progressBar.Location = new System.Drawing.Point(339, 181);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.ProgressType = DevComponents.DotNetBar.eProgressItemType.Marquee;
+            this.progressBar.Size = new System.Drawing.Size(600, 40);
+            this.progressBar.TabIndex = 13;
+            this.progressBar.Text = "指标加载中……";
+            this.progressBar.TextVisible = true;
+            this.progressBar.Visible = false;
+            // 
+            // pnl_addTempla
+            // 
+            this.pnl_addTempla.CanvasColor = System.Drawing.SystemColors.Control;
+            this.pnl_addTempla.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.pnl_addTempla.Controls.Add(this.labelX2);
+            this.pnl_addTempla.Controls.Add(this.btn_close);
+            this.pnl_addTempla.Controls.Add(this.btn_addNewTemplate);
+            this.pnl_addTempla.Controls.Add(this.txt_newTemplateName);
+            this.pnl_addTempla.Location = new System.Drawing.Point(428, 182);
+            this.pnl_addTempla.Name = "pnl_addTempla";
+            this.pnl_addTempla.Size = new System.Drawing.Size(393, 94);
+            this.pnl_addTempla.Style.Alignment = System.Drawing.StringAlignment.Center;
+            this.pnl_addTempla.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+            this.pnl_addTempla.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
+            this.pnl_addTempla.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.pnl_addTempla.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
+            this.pnl_addTempla.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
+            this.pnl_addTempla.Style.GradientAngle = 90;
+            this.pnl_addTempla.TabIndex = 12;
+            this.pnl_addTempla.Visible = false;
+            // 
+            // labelX2
+            // 
+            this.labelX2.AutoSize = true;
+            this.labelX2.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.labelX2.BackgroundStyle.Class = "";
+            this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX2.Font = new System.Drawing.Font("微软雅黑", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelX2.ForeColor = System.Drawing.Color.Black;
+            this.labelX2.Location = new System.Drawing.Point(144, 16);
+            this.labelX2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelX2.Name = "labelX2";
+            this.labelX2.Size = new System.Drawing.Size(69, 24);
+            this.labelX2.TabIndex = 14;
+            this.labelX2.Text = "新增模板";
+            // 
+            // btn_close
+            // 
+            this.btn_close.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btn_close.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btn_close.Location = new System.Drawing.Point(324, 47);
+            this.btn_close.Name = "btn_close";
+            this.btn_close.Size = new System.Drawing.Size(61, 30);
+            this.btn_close.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btn_close.TabIndex = 13;
+            this.btn_close.Text = "取消";
+            this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
+            // 
+            // btn_addNewTemplate
+            // 
+            this.btn_addNewTemplate.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btn_addNewTemplate.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btn_addNewTemplate.Location = new System.Drawing.Point(257, 47);
+            this.btn_addNewTemplate.Name = "btn_addNewTemplate";
+            this.btn_addNewTemplate.Size = new System.Drawing.Size(61, 30);
+            this.btn_addNewTemplate.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btn_addNewTemplate.TabIndex = 12;
+            this.btn_addNewTemplate.Text = "确定";
+            this.btn_addNewTemplate.Click += new System.EventHandler(this.btn_addNewTemplate_Click);
+            // 
+            // txt_newTemplateName
+            // 
+            // 
+            // 
+            // 
+            this.txt_newTemplateName.Border.Class = "TextBoxBorder";
+            this.txt_newTemplateName.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txt_newTemplateName.Location = new System.Drawing.Point(13, 47);
+            this.txt_newTemplateName.Name = "txt_newTemplateName";
+            this.txt_newTemplateName.Size = new System.Drawing.Size(238, 32);
+            this.txt_newTemplateName.TabIndex = 0;
             // 
             // dgv_selected
             // 
@@ -191,31 +293,31 @@
             this.indicatorName,
             this.indicatorDesc,
             this.isObsolete});
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_selected.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_selected.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgv_selected.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_selected.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgv_selected.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgv_selected.Location = new System.Drawing.Point(0, 0);
             this.dgv_selected.MultiSelect = false;
             this.dgv_selected.Name = "dgv_selected";
-            this.dgv_selected.RowHeadersVisible = false;
             this.dgv_selected.RowTemplate.Height = 27;
             this.dgv_selected.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_selected.Size = new System.Drawing.Size(1211, 558);
+            this.dgv_selected.Size = new System.Drawing.Size(1211, 575);
             this.dgv_selected.TabIndex = 2;
             this.dgv_selected.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_CellMouseDoubleClick);
+            this.dgv_selected.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgv_selected_RowPostPaint);
             // 
             // isSelected
             // 
             this.isSelected.DataPropertyName = "isSelected";
-            this.isSelected.FillWeight = 5F;
+            this.isSelected.FillWeight = 6F;
             this.isSelected.HeaderText = "";
             this.isSelected.Name = "isSelected";
             // 
@@ -310,10 +412,12 @@
             // 
             this.panelEx5.CanvasColor = System.Drawing.SystemColors.Control;
             this.panelEx5.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.panelEx5.Controls.Add(this.chk_selected);
             this.panelEx5.Controls.Add(this.btn_moveToUnselected);
             this.panelEx5.Controls.Add(this.btn_save);
+            this.panelEx5.Controls.Add(this.pagingPanel_selected);
             this.panelEx5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelEx5.Location = new System.Drawing.Point(0, 558);
+            this.panelEx5.Location = new System.Drawing.Point(0, 575);
             this.panelEx5.Name = "panelEx5";
             this.panelEx5.Size = new System.Drawing.Size(1211, 36);
             this.panelEx5.Style.Alignment = System.Drawing.StringAlignment.Center;
@@ -325,12 +429,29 @@
             this.panelEx5.Style.GradientAngle = 90;
             this.panelEx5.TabIndex = 1;
             // 
+            // chk_selected
+            // 
+            this.chk_selected.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chk_selected.AutoSize = true;
+            // 
+            // 
+            // 
+            this.chk_selected.BackgroundStyle.Class = "";
+            this.chk_selected.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chk_selected.Location = new System.Drawing.Point(382, 6);
+            this.chk_selected.Name = "chk_selected";
+            this.chk_selected.Size = new System.Drawing.Size(89, 24);
+            this.chk_selected.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chk_selected.TabIndex = 15;
+            this.chk_selected.Text = "本页全选";
+            this.chk_selected.CheckedChanged += new System.EventHandler(this.chk_selected_CheckedChanged);
+            // 
             // btn_moveToUnselected
             // 
             this.btn_moveToUnselected.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btn_moveToUnselected.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_moveToUnselected.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btn_moveToUnselected.Location = new System.Drawing.Point(947, 6);
+            this.btn_moveToUnselected.Location = new System.Drawing.Point(481, 6);
             this.btn_moveToUnselected.Name = "btn_moveToUnselected";
             this.btn_moveToUnselected.Size = new System.Drawing.Size(75, 23);
             this.btn_moveToUnselected.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -343,7 +464,7 @@
             this.btn_save.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btn_save.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_save.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btn_save.Location = new System.Drawing.Point(1055, 6);
+            this.btn_save.Location = new System.Drawing.Point(589, 6);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(75, 23);
             this.btn_save.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -351,10 +472,21 @@
             this.btn_save.Text = "保存";
             this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
             // 
+            // pagingPanel_selected
+            // 
+            this.pagingPanel_selected.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pagingPanel_selected.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.pagingPanel_selected.Location = new System.Drawing.Point(0, 0);
+            this.pagingPanel_selected.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pagingPanel_selected.Name = "pagingPanel_selected";
+            this.pagingPanel_selected.Size = new System.Drawing.Size(1211, 36);
+            this.pagingPanel_selected.TabIndex = 0;
+            // 
             // sti_selected
             // 
             this.sti_selected.AttachedControl = this.superTabControlPanel4;
             this.sti_selected.GlobalItem = false;
+            this.sti_selected.Image = global::AviationSafetyExperiment.Properties.Resources.s_8;
             this.sti_selected.Name = "sti_selected";
             this.sti_selected.Text = "已选指标";
             // 
@@ -365,7 +497,7 @@
             this.superTabControlPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.superTabControlPanel5.Location = new System.Drawing.Point(0, 0);
             this.superTabControlPanel5.Name = "superTabControlPanel5";
-            this.superTabControlPanel5.Size = new System.Drawing.Size(1211, 628);
+            this.superTabControlPanel5.Size = new System.Drawing.Size(1211, 645);
             this.superTabControlPanel5.TabIndex = 2;
             this.superTabControlPanel5.TabItem = this.sti_unselected;
             // 
@@ -385,26 +517,26 @@
             this.dataGridViewLabelXColumn9,
             this.dataGridViewLabelXColumn10,
             this.dataGridViewLabelXColumn11});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_unselected.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_unselected.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv_unselected.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_unselected.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgv_unselected.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgv_unselected.Location = new System.Drawing.Point(0, 0);
             this.dgv_unselected.MultiSelect = false;
             this.dgv_unselected.Name = "dgv_unselected";
-            this.dgv_unselected.RowHeadersVisible = false;
             this.dgv_unselected.RowTemplate.Height = 27;
             this.dgv_unselected.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_unselected.Size = new System.Drawing.Size(1211, 592);
+            this.dgv_unselected.Size = new System.Drawing.Size(1211, 609);
             this.dgv_unselected.TabIndex = 3;
             this.dgv_unselected.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_CellMouseDoubleClick);
+            this.dgv_unselected.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgv_unselected_RowPostPaint);
             // 
             // dataGridViewCheckBoxColumn1
             // 
@@ -504,9 +636,11 @@
             // 
             this.panelEx7.CanvasColor = System.Drawing.SystemColors.Control;
             this.panelEx7.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.panelEx7.Controls.Add(this.chk_unselect);
             this.panelEx7.Controls.Add(this.btn_moveToSelected);
+            this.panelEx7.Controls.Add(this.pagingPanel_unselected);
             this.panelEx7.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelEx7.Location = new System.Drawing.Point(0, 592);
+            this.panelEx7.Location = new System.Drawing.Point(0, 609);
             this.panelEx7.Name = "panelEx7";
             this.panelEx7.Size = new System.Drawing.Size(1211, 36);
             this.panelEx7.Style.Alignment = System.Drawing.StringAlignment.Center;
@@ -518,12 +652,29 @@
             this.panelEx7.Style.GradientAngle = 90;
             this.panelEx7.TabIndex = 2;
             // 
+            // chk_unselect
+            // 
+            this.chk_unselect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chk_unselect.AutoSize = true;
+            // 
+            // 
+            // 
+            this.chk_unselect.BackgroundStyle.Class = "";
+            this.chk_unselect.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.chk_unselect.Location = new System.Drawing.Point(433, 6);
+            this.chk_unselect.Name = "chk_unselect";
+            this.chk_unselect.Size = new System.Drawing.Size(89, 24);
+            this.chk_unselect.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.chk_unselect.TabIndex = 16;
+            this.chk_unselect.Text = "本页全选";
+            this.chk_unselect.CheckedChanged += new System.EventHandler(this.chk_unselect_CheckedChanged);
+            // 
             // btn_moveToSelected
             // 
             this.btn_moveToSelected.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btn_moveToSelected.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_moveToSelected.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btn_moveToSelected.Location = new System.Drawing.Point(1064, 6);
+            this.btn_moveToSelected.Location = new System.Drawing.Point(528, 6);
             this.btn_moveToSelected.Name = "btn_moveToSelected";
             this.btn_moveToSelected.Size = new System.Drawing.Size(75, 23);
             this.btn_moveToSelected.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -531,10 +682,21 @@
             this.btn_moveToSelected.Text = "移至已选";
             this.btn_moveToSelected.Click += new System.EventHandler(this.btn_moveToSelected_Click);
             // 
+            // pagingPanel_unselected
+            // 
+            this.pagingPanel_unselected.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pagingPanel_unselected.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.pagingPanel_unselected.Location = new System.Drawing.Point(0, 0);
+            this.pagingPanel_unselected.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pagingPanel_unselected.Name = "pagingPanel_unselected";
+            this.pagingPanel_unselected.Size = new System.Drawing.Size(1211, 36);
+            this.pagingPanel_unselected.TabIndex = 0;
+            // 
             // sti_unselected
             // 
             this.sti_unselected.AttachedControl = this.superTabControlPanel5;
             this.sti_unselected.GlobalItem = false;
+            this.sti_unselected.Image = global::AviationSafetyExperiment.Properties.Resources.s_9;
             this.sti_unselected.Name = "sti_unselected";
             this.sti_unselected.Text = "待选指标";
             // 
@@ -548,16 +710,16 @@
             // 
             this.groupPanel3.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel3.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.groupPanel3.Controls.Add(this.pnl_addTempla);
             this.groupPanel3.Controls.Add(this.btn_showNewTemplatePanel);
             this.groupPanel3.Controls.Add(this.cbb_exitsTemplate);
-            this.groupPanel3.Controls.Add(this.labelX1);
+            this.groupPanel3.Controls.Add(this.lbl_exitsTemplate);
             this.groupPanel3.Controls.Add(this.cbb_class);
             this.groupPanel3.Controls.Add(this.lbl_class);
             this.groupPanel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupPanel3.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.groupPanel3.Location = new System.Drawing.Point(0, 0);
             this.groupPanel3.Name = "groupPanel3";
-            this.groupPanel3.Size = new System.Drawing.Size(1211, 80);
+            this.groupPanel3.Size = new System.Drawing.Size(1211, 63);
             // 
             // 
             // 
@@ -592,54 +754,11 @@
             this.groupPanel3.TabIndex = 4;
             this.groupPanel3.Text = "模板筛选";
             // 
-            // pnl_addTempla
-            // 
-            this.pnl_addTempla.CanvasColor = System.Drawing.SystemColors.Control;
-            this.pnl_addTempla.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.pnl_addTempla.Controls.Add(this.btn_addNewTemplate);
-            this.pnl_addTempla.Controls.Add(this.txt_newTemplateName);
-            this.pnl_addTempla.Location = new System.Drawing.Point(809, 0);
-            this.pnl_addTempla.Name = "pnl_addTempla";
-            this.pnl_addTempla.Size = new System.Drawing.Size(356, 50);
-            this.pnl_addTempla.Style.Alignment = System.Drawing.StringAlignment.Center;
-            this.pnl_addTempla.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.pnl_addTempla.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
-            this.pnl_addTempla.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.pnl_addTempla.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
-            this.pnl_addTempla.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.pnl_addTempla.Style.GradientAngle = 90;
-            this.pnl_addTempla.TabIndex = 12;
-            this.pnl_addTempla.Visible = false;
-            // 
-            // btn_addNewTemplate
-            // 
-            this.btn_addNewTemplate.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btn_addNewTemplate.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btn_addNewTemplate.Location = new System.Drawing.Point(257, 15);
-            this.btn_addNewTemplate.Name = "btn_addNewTemplate";
-            this.btn_addNewTemplate.Size = new System.Drawing.Size(75, 23);
-            this.btn_addNewTemplate.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btn_addNewTemplate.TabIndex = 12;
-            this.btn_addNewTemplate.Text = "新增";
-            this.btn_addNewTemplate.Click += new System.EventHandler(this.btn_addNewTemplate_Click);
-            // 
-            // txt_newTemplateName
-            // 
-            // 
-            // 
-            // 
-            this.txt_newTemplateName.Border.Class = "TextBoxBorder";
-            this.txt_newTemplateName.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txt_newTemplateName.Location = new System.Drawing.Point(13, 10);
-            this.txt_newTemplateName.Name = "txt_newTemplateName";
-            this.txt_newTemplateName.Size = new System.Drawing.Size(238, 30);
-            this.txt_newTemplateName.TabIndex = 0;
-            // 
             // btn_showNewTemplatePanel
             // 
             this.btn_showNewTemplatePanel.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btn_showNewTemplatePanel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btn_showNewTemplatePanel.Location = new System.Drawing.Point(721, 13);
+            this.btn_showNewTemplatePanel.Location = new System.Drawing.Point(706, 7);
             this.btn_showNewTemplatePanel.Name = "btn_showNewTemplatePanel";
             this.btn_showNewTemplatePanel.Size = new System.Drawing.Size(75, 23);
             this.btn_showNewTemplatePanel.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -654,28 +773,30 @@
             this.cbb_exitsTemplate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbb_exitsTemplate.FormattingEnabled = true;
             this.cbb_exitsTemplate.ItemHeight = 21;
-            this.cbb_exitsTemplate.Location = new System.Drawing.Point(503, 10);
+            this.cbb_exitsTemplate.Location = new System.Drawing.Point(488, 5);
             this.cbb_exitsTemplate.Name = "cbb_exitsTemplate";
             this.cbb_exitsTemplate.Size = new System.Drawing.Size(198, 27);
             this.cbb_exitsTemplate.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.cbb_exitsTemplate.TabIndex = 10;
             this.cbb_exitsTemplate.SelectedIndexChanged += new System.EventHandler(this.cbb_exitsTemplate_SelectedIndexChanged);
             // 
-            // labelX1
+            // lbl_exitsTemplate
             // 
-            this.labelX1.AutoSize = true;
-            this.labelX1.BackColor = System.Drawing.Color.Transparent;
+            this.lbl_exitsTemplate.AutoSize = true;
+            this.lbl_exitsTemplate.BackColor = System.Drawing.Color.Transparent;
             // 
             // 
             // 
-            this.labelX1.BackgroundStyle.Class = "";
-            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX1.Location = new System.Drawing.Point(410, 13);
-            this.labelX1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.labelX1.Name = "labelX1";
-            this.labelX1.Size = new System.Drawing.Size(69, 21);
-            this.labelX1.TabIndex = 9;
-            this.labelX1.Text = "现有模板";
+            this.lbl_exitsTemplate.BackgroundStyle.Class = "";
+            this.lbl_exitsTemplate.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lbl_exitsTemplate.Font = new System.Drawing.Font("微软雅黑", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbl_exitsTemplate.ForeColor = System.Drawing.Color.Black;
+            this.lbl_exitsTemplate.Location = new System.Drawing.Point(395, 8);
+            this.lbl_exitsTemplate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.lbl_exitsTemplate.Name = "lbl_exitsTemplate";
+            this.lbl_exitsTemplate.Size = new System.Drawing.Size(69, 24);
+            this.lbl_exitsTemplate.TabIndex = 9;
+            this.lbl_exitsTemplate.Text = "现有模板";
             // 
             // cbb_class
             // 
@@ -684,7 +805,7 @@
             this.cbb_class.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbb_class.FormattingEnabled = true;
             this.cbb_class.ItemHeight = 21;
-            this.cbb_class.Location = new System.Drawing.Point(124, 10);
+            this.cbb_class.Location = new System.Drawing.Point(109, 5);
             this.cbb_class.Name = "cbb_class";
             this.cbb_class.Size = new System.Drawing.Size(198, 27);
             this.cbb_class.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -700,18 +821,20 @@
             // 
             this.lbl_class.BackgroundStyle.Class = "";
             this.lbl_class.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lbl_class.Location = new System.Drawing.Point(31, 12);
+            this.lbl_class.Font = new System.Drawing.Font("微软雅黑", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbl_class.ForeColor = System.Drawing.Color.Black;
+            this.lbl_class.Location = new System.Drawing.Point(16, 8);
             this.lbl_class.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lbl_class.Name = "lbl_class";
-            this.lbl_class.Size = new System.Drawing.Size(69, 21);
+            this.lbl_class.Size = new System.Drawing.Size(69, 24);
             this.lbl_class.TabIndex = 7;
             this.lbl_class.Text = "所属分类";
             // 
             // IndicatorTemplateSelecter
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Controls.Add(this.panelEx1);
+            this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Name = "IndicatorTemplateSelecter";
             this.Size = new System.Drawing.Size(1211, 708);
             this.panelEx1.ResumeLayout(false);
@@ -719,14 +842,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.stc)).EndInit();
             this.stc.ResumeLayout(false);
             this.superTabControlPanel4.ResumeLayout(false);
+            this.pnl_addTempla.ResumeLayout(false);
+            this.pnl_addTempla.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_selected)).EndInit();
             this.panelEx5.ResumeLayout(false);
+            this.panelEx5.PerformLayout();
             this.superTabControlPanel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_unselected)).EndInit();
             this.panelEx7.ResumeLayout(false);
+            this.panelEx7.PerformLayout();
             this.groupPanel3.ResumeLayout(false);
             this.groupPanel3.PerformLayout();
-            this.pnl_addTempla.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -739,8 +865,6 @@
         private DevComponents.DotNetBar.ButtonX btn_addNewTemplate;
         private DevComponents.DotNetBar.Controls.TextBoxX txt_newTemplateName;
         private DevComponents.DotNetBar.ButtonX btn_showNewTemplatePanel;
-        private DevComponents.DotNetBar.Controls.ComboBoxEx cbb_exitsTemplate;
-        private DevComponents.DotNetBar.LabelX labelX1;
         private DevComponents.DotNetBar.Controls.ComboBoxEx cbb_class;
         private DevComponents.DotNetBar.LabelX lbl_class;
         private DevComponents.DotNetBar.PanelEx panelEx6;
@@ -781,5 +905,14 @@
         private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn indicatorName;
         private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn indicatorDesc;
         private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn isObsolete;
+        private DevComponents.DotNetBar.ButtonX btn_close;
+        private DevComponents.DotNetBar.LabelX labelX2;
+        public DevComponents.DotNetBar.Controls.ComboBoxEx cbb_exitsTemplate;
+        public DevComponents.DotNetBar.LabelX lbl_exitsTemplate;
+        private PagingPanel pagingPanel_selected;
+        private PagingPanel pagingPanel_unselected;
+        private DevComponents.DotNetBar.Controls.CheckBoxX chk_unselect;
+        private DevComponents.DotNetBar.Controls.CheckBoxX chk_selected;
+        private DevComponents.DotNetBar.Controls.ProgressBarX progressBar;
     }
 }

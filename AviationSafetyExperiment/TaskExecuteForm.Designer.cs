@@ -28,14 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tdbip = new AviationSafetyExperiment.UserControls.TaskDetialBaseInfoPanel();
             this.trp = new AviationSafetyExperiment.UserControls.TaskResultPanel();
-            this.groupPanel1 = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.btn_save = new DevComponents.DotNetBar.ButtonX();
+            this.tdbip = new AviationSafetyExperiment.UserControls.TaskDetialBaseInfoPanel();
+            this.ribbonBar_taskRound = new DevComponents.DotNetBar.RibbonBar();
+            this.btn_newRound = new DevComponents.DotNetBar.ButtonItem();
+            this.labelItem1 = new DevComponents.DotNetBar.LabelItem();
+            this.btn_reject = new DevComponents.DotNetBar.ButtonX();
+            this.btn_pass = new DevComponents.DotNetBar.ButtonX();
+            this.btn_close = new DevComponents.DotNetBar.ButtonX();
             this.btn_done = new DevComponents.DotNetBar.ButtonX();
-            this.ben_close = new DevComponents.DotNetBar.ButtonX();
-            this.groupPanel1.SuspendLayout();
+            this.btn_save = new DevComponents.DotNetBar.ButtonX();
+            this.labelItem2 = new DevComponents.DotNetBar.LabelItem();
             this.SuspendLayout();
+            // 
+            // trp
+            // 
+            this.trp.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.trp.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.trp.Location = new System.Drawing.Point(0, 106);
+            this.trp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.trp.Name = "trp";
+            this.trp.Size = new System.Drawing.Size(1393, 647);
+            this.trp.TabIndex = 1;
             // 
             // tdbip
             // 
@@ -44,113 +58,152 @@
             this.tdbip.Location = new System.Drawing.Point(0, 0);
             this.tdbip.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tdbip.Name = "tdbip";
-            this.tdbip.Size = new System.Drawing.Size(1182, 150);
+            this.tdbip.Size = new System.Drawing.Size(1393, 106);
             this.tdbip.TabIndex = 0;
             // 
-            // trp
+            // ribbonBar_taskRound
             // 
-            this.trp.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trp.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.trp.Location = new System.Drawing.Point(0, 150);
-            this.trp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.trp.Name = "trp";
-            this.trp.Size = new System.Drawing.Size(1182, 603);
-            this.trp.TabIndex = 1;
-            // 
-            // groupPanel1
-            // 
-            this.groupPanel1.BackColor = System.Drawing.Color.Transparent;
-            this.groupPanel1.CanvasColor = System.Drawing.Color.Transparent;
-            this.groupPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.groupPanel1.Controls.Add(this.ben_close);
-            this.groupPanel1.Controls.Add(this.btn_done);
-            this.groupPanel1.Controls.Add(this.btn_save);
-            this.groupPanel1.Location = new System.Drawing.Point(885, 76);
-            this.groupPanel1.Name = "groupPanel1";
-            this.groupPanel1.Size = new System.Drawing.Size(291, 71);
+            this.ribbonBar_taskRound.AutoOverflowEnabled = true;
+            this.ribbonBar_taskRound.BackColor = System.Drawing.Color.Transparent;
             // 
             // 
             // 
-            this.groupPanel1.Style.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
-            this.groupPanel1.Style.BackColorGradientAngle = 90;
-            this.groupPanel1.Style.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.groupPanel1.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel1.Style.BorderBottomWidth = 1;
-            this.groupPanel1.Style.BorderColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
-            this.groupPanel1.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel1.Style.BorderLeftWidth = 1;
-            this.groupPanel1.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel1.Style.BorderRightWidth = 1;
-            this.groupPanel1.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.groupPanel1.Style.BorderTopWidth = 1;
-            this.groupPanel1.Style.Class = "";
-            this.groupPanel1.Style.CornerDiameter = 4;
-            this.groupPanel1.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.groupPanel1.Style.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
-            this.groupPanel1.Style.TextColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.groupPanel1.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near;
+            this.ribbonBar_taskRound.BackgroundMouseOverStyle.Class = "";
+            this.ribbonBar_taskRound.BackgroundMouseOverStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
             // 
             // 
-            this.groupPanel1.StyleMouseDown.Class = "";
-            this.groupPanel1.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonBar_taskRound.BackgroundStyle.Class = "";
+            this.ribbonBar_taskRound.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonBar_taskRound.ContainerControlProcessDialogKey = true;
+            this.ribbonBar_taskRound.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.btn_newRound,
+            this.labelItem2,
+            this.labelItem1});
+            this.ribbonBar_taskRound.Location = new System.Drawing.Point(715, 52);
+            this.ribbonBar_taskRound.Name = "ribbonBar_taskRound";
+            this.ribbonBar_taskRound.Size = new System.Drawing.Size(385, 47);
+            this.ribbonBar_taskRound.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.ribbonBar_taskRound.TabIndex = 5;
+            this.ribbonBar_taskRound.Text = "ribbonBar1";
             // 
             // 
             // 
-            this.groupPanel1.StyleMouseOver.Class = "";
-            this.groupPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.groupPanel1.TabIndex = 2;
-            this.groupPanel1.Text = "操作";
+            this.ribbonBar_taskRound.TitleStyle.Class = "";
+            this.ribbonBar_taskRound.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
-            // btn_save
             // 
-            this.btn_save.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btn_save.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btn_save.Location = new System.Drawing.Point(15, 4);
-            this.btn_save.Name = "btn_save";
-            this.btn_save.Size = new System.Drawing.Size(77, 34);
-            this.btn_save.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btn_save.TabIndex = 0;
-            this.btn_save.Text = "保存任务";
-            this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
+            // 
+            this.ribbonBar_taskRound.TitleStyleMouseOver.Class = "";
+            this.ribbonBar_taskRound.TitleStyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ribbonBar_taskRound.TitleVisible = false;
+            // 
+            // btn_newRound
+            // 
+            this.btn_newRound.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.btn_newRound.FontBold = true;
+            this.btn_newRound.Image = global::AviationSafetyExperiment.Properties.Resources._15;
+            this.btn_newRound.ImagePaddingHorizontal = 2;
+            this.btn_newRound.Name = "btn_newRound";
+            this.btn_newRound.ShowSubItems = false;
+            this.btn_newRound.SubItemsExpandWidth = 14;
+            this.btn_newRound.Text = "新增一轮";
+            this.btn_newRound.Click += new System.EventHandler(this.btn_newRound_Click);
+            // 
+            // labelItem1
+            // 
+            this.labelItem1.Name = "labelItem1";
+            this.labelItem1.Text = "现有轮次";
+            // 
+            // btn_reject
+            // 
+            this.btn_reject.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btn_reject.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btn_reject.Image = global::AviationSafetyExperiment.Properties.Resources.s_25;
+            this.btn_reject.Location = new System.Drawing.Point(1300, 52);
+            this.btn_reject.Name = "btn_reject";
+            this.btn_reject.Size = new System.Drawing.Size(90, 34);
+            this.btn_reject.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btn_reject.TabIndex = 4;
+            this.btn_reject.Text = "驳回";
+            this.btn_reject.Click += new System.EventHandler(this.btn_reject_Click);
+            // 
+            // btn_pass
+            // 
+            this.btn_pass.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btn_pass.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btn_pass.Image = global::AviationSafetyExperiment.Properties.Resources.s_24;
+            this.btn_pass.Location = new System.Drawing.Point(1202, 52);
+            this.btn_pass.Name = "btn_pass";
+            this.btn_pass.Size = new System.Drawing.Size(94, 34);
+            this.btn_pass.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btn_pass.TabIndex = 3;
+            this.btn_pass.Text = "通过";
+            this.btn_pass.Click += new System.EventHandler(this.btn_pass_Click);
+            // 
+            // btn_close
+            // 
+            this.btn_close.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btn_close.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btn_close.Image = global::AviationSafetyExperiment.Properties.Resources.s_25;
+            this.btn_close.Location = new System.Drawing.Point(1300, 12);
+            this.btn_close.Name = "btn_close";
+            this.btn_close.Size = new System.Drawing.Size(90, 34);
+            this.btn_close.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btn_close.TabIndex = 2;
+            this.btn_close.Text = "关闭任务";
+            this.btn_close.Click += new System.EventHandler(this.ben_close_Click);
             // 
             // btn_done
             // 
             this.btn_done.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btn_done.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btn_done.Location = new System.Drawing.Point(106, 3);
+            this.btn_done.Image = global::AviationSafetyExperiment.Properties.Resources.s_24;
+            this.btn_done.Location = new System.Drawing.Point(1202, 12);
             this.btn_done.Name = "btn_done";
-            this.btn_done.Size = new System.Drawing.Size(77, 34);
+            this.btn_done.Size = new System.Drawing.Size(94, 34);
             this.btn_done.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.btn_done.TabIndex = 1;
             this.btn_done.Text = "完成任务";
             this.btn_done.Click += new System.EventHandler(this.btn_done_Click);
             // 
-            // ben_close
+            // btn_save
             // 
-            this.ben_close.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.ben_close.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.ben_close.Location = new System.Drawing.Point(195, 4);
-            this.ben_close.Name = "ben_close";
-            this.ben_close.Size = new System.Drawing.Size(77, 34);
-            this.ben_close.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.ben_close.TabIndex = 2;
-            this.ben_close.Text = "关闭任务";
-            this.ben_close.Click += new System.EventHandler(this.ben_close_Click);
+            this.btn_save.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btn_save.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btn_save.Image = global::AviationSafetyExperiment.Properties.Resources.s_23;
+            this.btn_save.Location = new System.Drawing.Point(1104, 12);
+            this.btn_save.Name = "btn_save";
+            this.btn_save.Size = new System.Drawing.Size(95, 34);
+            this.btn_save.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btn_save.TabIndex = 0;
+            this.btn_save.Text = "保存任务";
+            this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
+            // 
+            // labelItem2
+            // 
+            this.labelItem2.Name = "labelItem2";
+            this.labelItem2.Text = "    ";
             // 
             // TaskExecuteForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1182, 753);
-            this.Controls.Add(this.groupPanel1);
+            this.ClientSize = new System.Drawing.Size(1393, 753);
+            this.Controls.Add(this.ribbonBar_taskRound);
+            this.Controls.Add(this.btn_reject);
+            this.Controls.Add(this.btn_pass);
+            this.Controls.Add(this.btn_close);
+            this.Controls.Add(this.btn_done);
             this.Controls.Add(this.trp);
+            this.Controls.Add(this.btn_save);
             this.Controls.Add(this.tdbip);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "TaskExecuteForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "测试任务处理";
-            this.groupPanel1.ResumeLayout(false);
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ResumeLayout(false);
 
         }
@@ -159,9 +212,14 @@
 
         private UserControls.TaskDetialBaseInfoPanel tdbip;
         private UserControls.TaskResultPanel trp;
-        private DevComponents.DotNetBar.Controls.GroupPanel groupPanel1;
-        private DevComponents.DotNetBar.ButtonX ben_close;
+        private DevComponents.DotNetBar.ButtonX btn_close;
         private DevComponents.DotNetBar.ButtonX btn_done;
         private DevComponents.DotNetBar.ButtonX btn_save;
+        private DevComponents.DotNetBar.ButtonX btn_reject;
+        private DevComponents.DotNetBar.ButtonX btn_pass;
+        private DevComponents.DotNetBar.RibbonBar ribbonBar_taskRound;
+        private DevComponents.DotNetBar.ButtonItem btn_newRound;
+        private DevComponents.DotNetBar.LabelItem labelItem1;
+        private DevComponents.DotNetBar.LabelItem labelItem2;
     }
 }

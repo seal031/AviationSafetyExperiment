@@ -19,76 +19,107 @@ namespace AviationSafetyExperiment.UserControls
     /// <summary>
     /// 用于显示任务列表
     /// </summary>
-    public partial class TaskGridPanel : UserControl, ITaskQueryEnable
+    public partial class TaskGridPanel : UserControl, ITaskQueryEnable,IPagging
     {
-        public List<TaskModel> taskModelList = new List<TaskModel>();
-        private int _taskStateId;
+        public List<TaskModel> taskModelAllList = new List<TaskModel>();
+        private List<TaskModel> afterQueryTaskModelList = new List<TaskModel>();
+        //private int _taskStateId;
+        private int[] _taskStateArray;
         private TaskGridShownStyle _style;
         private static Dictionary<int, string> taskStateDic = new Dictionary<int, string>();
 
+        public delegate void dgvRowCountHandler(int rouCount);
+        public event dgvRowCountHandler OnDgvRowCountChange;
+        //protected override CreateParams CreateParams
+        //{
+        //    get
+        //    {
+        //        var parms = base.CreateParams;
+        //        parms.Style &= ~0x02000000; // Turn off WS_CLIPCHILDREN 
+        //        return parms;
+        //    }
+        //}
         static TaskGridPanel()
         {
-            taskStateDic.Add(5001, "未审批");
-            taskStateDic.Add(5002, "已通过");
-            taskStateDic.Add(5003, "已驳回");
-            taskStateDic.Add(5004, "执行中");
-            taskStateDic.Add(5005, "已完成");
-            taskStateDic.Add(5006, "已关闭");
+            taskStateDic.Add((int)TaskStateEnum.Created, "未审批");
+            taskStateDic.Add((int)TaskStateEnum.Passed, "已通过");
+            taskStateDic.Add((int)TaskStateEnum.Rejected, "已驳回");
+            taskStateDic.Add((int)TaskStateEnum.Running, "执行中");
+            taskStateDic.Add((int)TaskStateEnum.Completed, "已完成");
+            taskStateDic.Add((int)TaskStateEnum.Closed, "已关闭");
         }
 
         public TaskGridPanel()
         {
             InitializeComponent();
-            percent.TextVisible = false;
+            dgv_taskList.AutoGenerateColumns = false;//保证columns显示顺序
             percent.BeforeCellPaint += Percent_BeforeCellPaint;
+            pagingPanel.pagging = this;
         }
 
         private void Percent_BeforeCellPaint(object sender, BeforeCellPaintEventArgs e)
         {
-            //DataGridViewProgressBarXColumn pbc =sender as DataGridViewProgressBarXColumn;
-            //pbc.Text = dgv_taskList.Rows[e.RowIndex].Cells["taskId"].Value.ToString();
+            if (dgv_taskList.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
+            {
+                percent.Text = dgv_taskList.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() + "%";
+                percent.ToolTipText= "完成进度 "+dgv_taskList.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() + "%";
+            }
         }
 
-        public void init(int taskStateId,TaskGridShownStyle style)
+        public void init(int[] taskStateArray, TaskGridShownStyle style)
         {
-            this._taskStateId = taskStateId;
+            this._taskStateArray = taskStateArray;
             this._style = style;
             var classList = CodeCache.getClass();
             var brandList = CodeCache.getBrand();
             var modelList = CodeCache.getModel();
             var taskList = TaskCache.getCache();
+            var tasklifecycleList = TaskLifecycleCache.getCache();
             var taskModelMapList = TaskModelMapCache.getCache();
-            taskModelList = (from task in taskList
-                             from classCode in classList
-                                 //from brandCode in brandList
-                                 //from taskModelMap in taskModelMapList
-                             where task.taskState == taskStateId && task.taskClass == classCode.id //&& taskModelMap.taskId == task.id && taskModelMap.brandId == brandCode.id
-                             select new TaskModel
-                             {
-                                 taskId = task.id,
-                                 taskName = task.taskName,
-                                 taskStateId = task.taskState,
-                                 taskStateName = taskStateDic[task.taskState],
-                                 taskBrandModelName = string.Join(Environment.NewLine, from brandCode in brandList
-                                                                                       from modelCode in modelList
-                                                                                       from taskModelMap in taskModelMapList
-                                                                                       where taskModelMap.taskId == task.id && taskModelMap.brandId == brandCode.id && taskModelMap.ModelId == modelCode.id
-                                                                                       select brandCode.codeName + "    " + modelCode.codeName),
-                                 taskClassName = classCode.codeName,
-                                 taskStartTime = task.createTime,
-                                 taskCode = task.taskCode,
-                                 percent = task.percent
-                             }).ToList();
+            taskModelAllList = (from task in taskList
+                                from classCode in classList
+                                from tasklifecycle in tasklifecycleList
+                                    //from brandCode in brandList
+                                    //from taskModelMap in taskModelMapList
+                                //where (taskStateArray == (int)TaskStateEnum.Completed ? 
+                                //    (task.taskState == taskStateArray || task.taskState == (int)TaskStateEnum.Rejected || task.taskState == (int)TaskStateEnum.Closed) 
+                                //    : (task.taskState == taskStateArray))//如果是展示已完成任务，则需要附带已关闭、已驳回的任务
+                                where taskStateArray.Contains(task.taskState)
+                                && task.taskClass == classCode.id //&& taskModelMap.taskId == task.id && taskModelMap.brandId == brandCode.id
+                                //todo 跟当前用户相关 
+                                && task.id == tasklifecycle.taskId && tasklifecycle.taskState == 5001
+                                && (task.taskExecutor.Contains(User.currentUser.name) || tasklifecycle.taskStateChangeExecutor == User.currentUser.name)//当前用户创建或测试人包含当前用户
+                                select new TaskModel
+                                {
+                                    taskId = task.id,
+                                    taskName = task.taskName,
+                                    taskStateId = task.taskState,
+                                    taskStateName = taskStateDic[task.taskState],
+                                    taskBrandModelName = string.Join(Environment.NewLine, from brandCode in brandList
+                                                                                          from modelCode in modelList
+                                                                                          from taskModelMap in taskModelMapList
+                                                                                          where taskModelMap.taskId == task.id && taskModelMap.brandId == brandCode.id && taskModelMap.ModelId == modelCode.id
+                                                                                          select brandCode.codeName + "    " + modelCode.codeName),
+                                    taskClassName = classCode.codeName,
+                                    taskStartTime = task.createTime,
+                                    taskCode = task.taskCode,
+                                    percent = task.percent
+                                }).ToList();
             doQuery(new TaskQueryItem());
             showStyle(style);
         }
-        public void doQuery(TaskQueryItem queryItem)
+        public void doQuery(TaskQueryItem _queryItem)
         {
-            var dgvSource = (from taskModel in taskModelList
-                            where (queryItem.taskQueryName == string.Empty ? 1 == 1 : taskModel.taskName.Contains(queryItem.taskQueryName))
-                            && (queryItem.taskQueryBrand == string.Empty ? 1 == 1 : taskModel.taskBrandModelName.Contains(queryItem.taskQueryBrand))
-                            select taskModel).ToList();
-            dgv_taskList.DataSource = dgvSource;
+            queryItem = _queryItem;
+            afterQueryTaskModelList = (from taskModel in taskModelAllList
+                                       where (queryItem.taskQueryName == string.Empty ? 1 == 1 : taskModel.taskName.Contains(queryItem.taskQueryName))
+                                       && (queryItem.taskQueryBrand == string.Empty ? 1 == 1 : taskModel.taskBrandModelName.Contains(queryItem.taskQueryBrand))
+                                       && (queryItem.taskState == 0 ? 1 == 1 : taskModel.taskStateId == queryItem.taskState)
+                                       select taskModel).ToList();
+            pagingPanel.setDetail(afterQueryTaskModelList.Count);
+            var datasourcce = afterQueryTaskModelList.Skip(pageSize * (pageNum - 1)).Take(pageSize).ToList();
+            dgv_taskList.DataSource = datasourcce;
+            OnDgvRowCountChange(datasourcce.Count);//触发dgv行数变化事件，供父控件更新任务面板title
         }
 
         public void showStyle(TaskGridShownStyle style)
@@ -98,22 +129,13 @@ namespace AviationSafetyExperiment.UserControls
                 case TaskGridShownStyle.HideAll:
                     break;
                 case TaskGridShownStyle.NewTask:
-                    if (_taskStateId == 5001)//新建任务对于审批人员来说是新任务，所以可以看到通过、驳回
-                    {
-                        dgv_taskList.Columns["btn_pass"].Visible = true;
-                        dgv_taskList.Columns["btn_reject"].Visible = true;
-                    }
-                    if (_taskStateId == 5002)//审批通过任务对于测试人员来说是新任务，所以可以看到打开任务
-                    {
                         dgv_taskList.Columns["btn_open"].Visible = true;
-                    }
+                        dgv_taskList.ReadOnly = true;
                     break;
                 case TaskGridShownStyle.RunningTask:
-                    dgv_taskList.Columns["btn_done"].Visible = true;
                     dgv_taskList.Columns["btn_open"].Visible = true;
                     break;
                 case TaskGridShownStyle.DoneTask:
-                    dgv_taskList.Columns["btn_close"].Visible = true;
                     break;
                 case TaskGridShownStyle.CloseTask:
                     break;
@@ -130,7 +152,6 @@ namespace AviationSafetyExperiment.UserControls
             detialForm.init();
             detialForm.ShowDialog(this);
         }
-
         private void dgv_taskList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             switch (dgv_taskList.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString())
@@ -139,8 +160,8 @@ namespace AviationSafetyExperiment.UserControls
                     if (MessageBoxEx.Show("确定审批通过？", "操作确认", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                     {
                         var taskId = (int)dgv_taskList.Rows[e.RowIndex].Cells["taskId"].Value;
-                        TaskCache.updateTaskState(taskId, 5002);
-                        init(_taskStateId, _style);
+                        TaskCache.updateTaskState(taskId, (int)TaskStateEnum.Passed);
+                        init(_taskStateArray, _style);
                     }
                     break;
                 case "驳回":
@@ -149,58 +170,54 @@ namespace AviationSafetyExperiment.UserControls
                     {
                         string remark = tr.rejectReason;
                         var taskId = (int)dgv_taskList.Rows[e.RowIndex].Cells["taskId"].Value;
-                        TaskCache.updateTaskState(taskId, 5003, remark);
-                        init(_taskStateId, _style);
+                        TaskCache.updateTaskState(taskId, (int)TaskStateEnum.Rejected, remark);
+                        init(_taskStateArray, _style);
                     }
                     break;
                 case "打开任务":
                     var taskInfoId = (int)dgv_taskList.Rows[e.RowIndex].Cells["taskId"].Value;
                     TaskExecuteForm tef = new AviationSafetyExperiment.TaskExecuteForm(taskInfoId);
-                    tef.init();
+                    tef.init(_taskStateArray[0]);//用于打开任务时，取第一个任务状态
                     tef.ShowDialog(this);
                     break;
                 case "完成":
                     if (MessageBoxEx.Show("确定任务完成？", "操作确认", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                     {
                         var taskId = (int)dgv_taskList.Rows[e.RowIndex].Cells["taskId"].Value;
-                        TaskCache.updateTaskState(taskId, 5005);
-                        init(_taskStateId, _style);
+                        TaskCache.updateTaskState(taskId, (int)TaskStateEnum.Completed);
+                        init(_taskStateArray, _style);
                     }
                     break;
                 case "关闭":
                     if (MessageBoxEx.Show("确定关闭任务？", "操作确认", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                     {
                         var taskId = (int)dgv_taskList.Rows[e.RowIndex].Cells["taskId"].Value;
-                        TaskCache.updateTaskState(taskId, 5006);
-                        init(_taskStateId, _style);
+                        TaskCache.updateTaskState(taskId, (int)TaskStateEnum.Closed);
+                        init(_taskStateArray, _style);
                     }
                     break;
-                default: 
+                default:
                     break;
             }
         }
 
-        private void dgv_taskList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        private void dgv_taskList_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
-
+            //绘制行序号
+            Rectangle rectangle = new Rectangle(e.RowBounds.Location.X, e.RowBounds.Location.Y,dgv_taskList.RowHeadersWidth - 4,e.RowBounds.Height);
+            TextRenderer.DrawText(e.Graphics,(e.RowIndex + 1).ToString(),dgv_taskList.RowHeadersDefaultCellStyle.Font,
+                   rectangle,dgv_taskList.RowHeadersDefaultCellStyle.ForeColor,TextFormatFlags.VerticalCenter | TextFormatFlags.Right);
         }
 
-        private void dgv_taskList_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        int pageSize = 10;//默认每页10条
+        int pageNum = 1;//默认首页
+        TaskQueryItem queryItem = new TaskQueryItem();
+        public void doPagging(int pageNum, int pageSize)
         {
-            if (e.ColumnIndex == 13&&e.RowIndex>=0)
-            {
-                var processCell = dgv_taskList.Rows[e.RowIndex].Cells[e.ColumnIndex] as DataGridViewProgressBarXCell;
-                processCell.ToolTipText = processCell.Value.ToString()+"%";
-            }
+            this.pageSize = pageSize;
+            this.pageNum = pageNum;
+            doQuery(queryItem);
         }
     }
-
-    public enum TaskGridShownStyle
-    {
-        HideAll,
-        NewTask,
-        RunningTask,
-        DoneTask,
-        CloseTask
-    }
+   
 }

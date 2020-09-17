@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace AviationSafetyExperiment.DbLocalCache
 {
@@ -20,11 +21,18 @@ namespace AviationSafetyExperiment.DbLocalCache
 
         public static void getFromDb()
         {
-            var tempList = BaseAdapter.getAll<Tb_code>();
-            if (tempList.Count() > 0)
+            try
             {
-                list.Clear();
-                list = tempList.ToList();
+                var tempList = BaseAdapter.getAll<Tb_code>();
+                if (tempList.Count() > 0)
+                {
+                    list.Clear();
+                    list = tempList.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("无法从数据库获取数据，原因是："+ex.Message);
             }
         }
 

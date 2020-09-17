@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             this.txt_username = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.txt_password = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
@@ -42,7 +43,7 @@
             // 
             this.txt_username.Border.Class = "TextBoxBorder";
             this.txt_username.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txt_username.Location = new System.Drawing.Point(161, 278);
+            this.txt_username.Location = new System.Drawing.Point(153, 280);
             this.txt_username.Name = "txt_username";
             this.txt_username.Size = new System.Drawing.Size(180, 32);
             this.txt_username.TabIndex = 0;
@@ -54,7 +55,7 @@
             // 
             this.txt_password.Border.Class = "TextBoxBorder";
             this.txt_password.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txt_password.Location = new System.Drawing.Point(161, 316);
+            this.txt_password.Location = new System.Drawing.Point(153, 318);
             this.txt_password.Name = "txt_password";
             this.txt_password.PasswordChar = '*';
             this.txt_password.Size = new System.Drawing.Size(180, 32);
@@ -62,27 +63,33 @@
             // 
             // labelX1
             // 
+            this.labelX1.AutoSize = true;
+            this.labelX1.BackColor = System.Drawing.Color.Transparent;
             // 
             // 
             // 
             this.labelX1.BackgroundStyle.Class = "";
             this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX1.Location = new System.Drawing.Point(94, 282);
+            this.labelX1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelX1.Location = new System.Drawing.Point(104, 282);
             this.labelX1.Name = "labelX1";
-            this.labelX1.Size = new System.Drawing.Size(53, 23);
+            this.labelX1.Size = new System.Drawing.Size(43, 24);
             this.labelX1.TabIndex = 2;
             this.labelX1.Text = "账 号";
             // 
             // labelX2
             // 
+            this.labelX2.AutoSize = true;
+            this.labelX2.BackColor = System.Drawing.Color.Transparent;
             // 
             // 
             // 
             this.labelX2.BackgroundStyle.Class = "";
             this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX2.Location = new System.Drawing.Point(94, 320);
+            this.labelX2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelX2.Location = new System.Drawing.Point(104, 320);
             this.labelX2.Name = "labelX2";
-            this.labelX2.Size = new System.Drawing.Size(53, 23);
+            this.labelX2.Size = new System.Drawing.Size(43, 24);
             this.labelX2.TabIndex = 3;
             this.labelX2.Text = "密 码";
             // 
@@ -100,8 +107,11 @@
             // 
             // Login
             // 
+            this.AcceptButton = this.btn_login;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::AviationSafetyExperiment.Properties.Resources.loginbg;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(495, 380);
             this.Controls.Add(this.btn_login);
             this.Controls.Add(this.labelX2);
@@ -110,12 +120,15 @@
             this.Controls.Add(this.txt_username);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.IconTooltip = "航科院航空安全实验基地";
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "系统登录";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

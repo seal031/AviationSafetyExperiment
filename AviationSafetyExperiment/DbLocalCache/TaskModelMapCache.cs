@@ -1,5 +1,6 @@
 ﻿using AviationSafetyExperiment.Db.DAO;
 using AviationSafetyExperiment.Db.Entity;
+using DevComponents.DotNetBar;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,5 +33,16 @@ namespace AviationSafetyExperiment.DbLocalCache
             return list;
         }
 
+        public static void addCacheOnly(Tb_taskModelMap taskModelMap)
+        {
+            try
+            {
+                list.Add(taskModelMap);
+            }
+            catch (Exception ex)
+            {
+                MessageBoxEx.Show("缓存任务过程时出现异常:" + ex);
+            }
+        }
     }
 }

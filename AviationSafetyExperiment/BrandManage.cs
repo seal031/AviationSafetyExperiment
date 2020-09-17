@@ -75,12 +75,21 @@ namespace AviationSafetyExperiment
         #region 3个listbox中的按钮绑定的事件
         private void ip_class_SelectedIndexChanged(object sender, EventArgs e)
         {
-            loadBrand();
+            ListBox lb = sender as ListBox;
+            if (lb.SelectedItem != null)
+            {
+                loadBrand();
+                ip_model.Items.Clear();
+            }
         }
 
         private void ip_brand_SelectedIndexChanged(object sender, EventArgs e)
         {
-            loadModel();
+            ListBox lb = sender as ListBox;
+            if (lb.SelectedItem != null)
+            {
+                loadModel();
+            }
         }
 
         private void ip_class_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -112,7 +121,7 @@ namespace AviationSafetyExperiment
         {
             if (ip_class.SelectedItems.Count == 0 )
             {
-                MessageBoxEx.Show("请先选择一个分类");
+                MessageBoxEx.Show("请先选择一个分类", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
             else
             {
@@ -129,7 +138,7 @@ namespace AviationSafetyExperiment
         {
             if (ip_class.SelectedItems.Count == 0 || ip_brand.SelectedItems.Count == 0)
             {
-                MessageBoxEx.Show("请先选择一个分类和品牌");
+                MessageBoxEx.Show("请先选择一个分类和品牌", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
             else
             {
@@ -163,7 +172,7 @@ namespace AviationSafetyExperiment
         {
             if (ip_class.SelectedItems.Count == 0)
             {
-                MessageBoxEx.Show("请先选择一个分类");
+                MessageBoxEx.Show("请先选择一个分类", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
             else
             {
@@ -178,7 +187,7 @@ namespace AviationSafetyExperiment
         {
             if (ip_class.SelectedItems.Count == 0 || ip_brand.SelectedItems.Count == 0)
             {
-                MessageBoxEx.Show("请先选择一个分类和品牌");
+                MessageBoxEx.Show("请先选择一个分类和品牌", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
             else
             {
@@ -194,7 +203,7 @@ namespace AviationSafetyExperiment
         {
             if (ip_brand.SelectedItems.Count == 0 || ip_model.SelectedItems.Count == 0)
             {
-                MessageBoxEx.Show("请先选择一个品牌和型号");
+                MessageBoxEx.Show("请先选择一个品牌和型号", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
             else
             {

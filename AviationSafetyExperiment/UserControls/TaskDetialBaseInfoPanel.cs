@@ -19,7 +19,15 @@ namespace AviationSafetyExperiment.UserControls
     public partial class TaskDetialBaseInfoPanel : UserControl
     {
         private Tb_taskInfo taskInfo;
-
+        //protected override CreateParams CreateParams
+        //{
+        //    get
+        //    {
+        //        var parms = base.CreateParams;
+        //        parms.Style &= ~0x02000000; // Turn off WS_CLIPCHILDREN 
+        //        return parms;
+        //    }
+        //}
         public TaskDetialBaseInfoPanel()
         {
             InitializeComponent();

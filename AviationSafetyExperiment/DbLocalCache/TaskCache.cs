@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AviationSafetyExperiment.Db.DAO;
 using AviationSafetyExperiment.Db.Entity;
 using DevComponents.DotNetBar;
+using AviationSafetyExperiment.Model;
 
 namespace AviationSafetyExperiment.DbLocalCache
 {
@@ -50,26 +51,34 @@ namespace AviationSafetyExperiment.DbLocalCache
         /// <param name="indicatorIdList"></param>
         public static void createTask(Tb_taskInfo task, List<int> indicatorIdList, Dictionary<int, List<int>> brandModelIdDic)
         {
-            TaskAdapter.createTask(task, indicatorIdList, brandModelIdDic);
+            try
+            {
+                TaskAdapter.createTask(task, indicatorIdList, brandModelIdDic);
+                list.Add(task);//更新任务信息缓存
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         /// <summary>
         /// 保存一次任务处理结果
         /// </summary>
         /// <param name="task"></param>
-        public static void saveTask(Tb_taskInfo task, List<Tb_taskResult> resultList)
-        {
-            TaskAdapter.saveTask(task,resultList);
-        }
+        //public static void saveTask(Tb_taskInfo task, List<Tb_taskResult> resultList)
+        //{
+        //    TaskAdapter.saveTask(task,resultList);
+        //}
 
         /// <summary>
         /// 添加任务生命周期，同时更新任务信息中的任务最新状态
         /// </summary>
         /// <param name="taskLifecycle"></param>
-        public static void updateTaskLifecycle(Tb_taskLifecycle taskLifecycle)
-        {
-            TaskAdapter.updateTaskLifecycle(taskLifecycle);
-        }
+        //public static void updateTaskLifecycle(Tb_taskLifecycle taskLifecycle)
+        //{
+        //    TaskAdapter.updateTaskLifecycle(taskLifecycle);
+        //}
 
         public static void addCache(Tb_taskInfo taskInfo)
         {
@@ -103,7 +112,7 @@ namespace AviationSafetyExperiment.DbLocalCache
         {
             var task = TaskCache.getCacheById(taskId);
             task.taskState = stateId;
-            if (stateId == 5005)//如果任务已完成，将任务进度设置为100
+            if (stateId == (int)TaskStateEnum.Completed)//如果任务已完成，将任务进度设置为100
             {
                 task.percent = 100;
             }
@@ -113,7 +122,7 @@ namespace AviationSafetyExperiment.DbLocalCache
                 taskId = taskId,
                 taskStateDateTime = DateTime.Now,
                 taskState = stateId,
-                taskStateChangeExecutor = UserInfo.userName,
+                taskStateChangeExecutor = User.currentUser.name,
                 remark = remark
             };
             TaskLifecycleCache.addCache(life);

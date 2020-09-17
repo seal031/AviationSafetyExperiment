@@ -56,7 +56,7 @@
             // 
             this.btn_save.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btn_save.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btn_save.Location = new System.Drawing.Point(414, 141);
+            this.btn_save.Location = new System.Drawing.Point(409, 48);
             this.btn_save.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(84, 31);
@@ -73,7 +73,7 @@
             // 
             this.lbl_brand.BackgroundStyle.Class = "";
             this.lbl_brand.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lbl_brand.Location = new System.Drawing.Point(14, 48);
+            this.lbl_brand.Location = new System.Drawing.Point(283, 8);
             this.lbl_brand.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lbl_brand.Name = "lbl_brand";
             this.lbl_brand.Size = new System.Drawing.Size(54, 24);
@@ -88,7 +88,7 @@
             // 
             this.lbl_value.BackgroundStyle.Class = "";
             this.lbl_value.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lbl_value.Location = new System.Drawing.Point(14, 91);
+            this.lbl_value.Location = new System.Drawing.Point(14, 51);
             this.lbl_value.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lbl_value.Name = "lbl_value";
             this.lbl_value.Size = new System.Drawing.Size(62, 24);
@@ -103,7 +103,7 @@
             // 
             this.lbl_classValue.BackgroundStyle.Class = "";
             this.lbl_classValue.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lbl_classValue.Location = new System.Drawing.Point(124, 8);
+            this.lbl_classValue.Location = new System.Drawing.Point(82, 8);
             this.lbl_classValue.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lbl_classValue.Name = "lbl_classValue";
             this.lbl_classValue.Size = new System.Drawing.Size(62, 24);
@@ -118,7 +118,7 @@
             // 
             this.lbl_brandValue.BackgroundStyle.Class = "";
             this.lbl_brandValue.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lbl_brandValue.Location = new System.Drawing.Point(124, 48);
+            this.lbl_brandValue.Location = new System.Drawing.Point(343, 8);
             this.lbl_brandValue.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lbl_brandValue.Name = "lbl_brandValue";
             this.lbl_brandValue.Size = new System.Drawing.Size(62, 24);
@@ -132,16 +132,15 @@
             // 
             this.txt_value.Border.Class = "TextBoxBorder";
             this.txt_value.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txt_value.Location = new System.Drawing.Point(124, 91);
+            this.txt_value.Location = new System.Drawing.Point(82, 47);
             this.txt_value.Name = "txt_value";
-            this.txt_value.Size = new System.Drawing.Size(374, 32);
+            this.txt_value.Size = new System.Drawing.Size(293, 32);
             this.txt_value.TabIndex = 6;
             // 
             // BrandEdit
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(523, 177);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.ClientSize = new System.Drawing.Size(523, 96);
             this.Controls.Add(this.txt_value);
             this.Controls.Add(this.lbl_brandValue);
             this.Controls.Add(this.lbl_classValue);
@@ -151,6 +150,7 @@
             this.Controls.Add(this.lbl_class);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.Name = "BrandEdit";

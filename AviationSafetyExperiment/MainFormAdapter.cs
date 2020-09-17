@@ -25,5 +25,12 @@ namespace AviationSafetyExperiment
         {
             mainForm.reloadTaskMainPanel();
         }
+        /// <summary>
+        /// 重新加载mainform中的任务审批列表
+        /// </summary>
+        public static void reloadTaskApproval()
+        {
+            mainForm.reloadTaskApproval();
+        }
     }
 }

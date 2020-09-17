@@ -62,11 +62,12 @@
             this.dgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgv.Location = new System.Drawing.Point(0, 0);
+            this.dgv.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgv.Name = "dgv";
             this.dgv.RowHeadersVisible = false;
             this.dgv.RowTemplate.Height = 27;
             this.dgv.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.dgv.Size = new System.Drawing.Size(1728, 587);
+            this.dgv.Size = new System.Drawing.Size(1319, 663);
             this.dgv.TabIndex = 1;
             // 
             // col_number
@@ -118,6 +119,7 @@
             this.col_conclusion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.col_conclusion.HeaderText = "测试结论";
             this.col_conclusion.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.col_conclusion.IntegralHeight = false;
             this.col_conclusion.ItemHeight = 20;
             this.col_conclusion.Name = "col_conclusion";
             this.col_conclusion.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -131,17 +133,20 @@
             this.col_remark.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.col_remark.HeaderText = "备注";
             this.col_remark.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.col_remark.IntegralHeight = false;
             this.col_remark.ItemHeight = 20;
             this.col_remark.Name = "col_remark";
             this.col_remark.RightToLeft = System.Windows.Forms.RightToLeft.No;
             // 
             // IndicatorDataGrid
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dgv);
+            this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "IndicatorDataGrid";
-            this.Size = new System.Drawing.Size(1728, 587);
+            this.Size = new System.Drawing.Size(1319, 663);
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.ResumeLayout(false);
 

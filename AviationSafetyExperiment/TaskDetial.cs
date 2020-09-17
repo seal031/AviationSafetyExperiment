@@ -40,7 +40,7 @@ namespace AviationSafetyExperiment
             {
                 lbl_current.Text = "1/" + maxRound;
                 btn_previous.Enabled = false;
-                if (maxRound >= 1)
+                if (maxRound > 1)
                 {
                     btn_next.Enabled = true;
                 }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace AviationSafetyExperiment.Db.DAO
 {
@@ -12,9 +13,17 @@ namespace AviationSafetyExperiment.Db.DAO
     {
         public static IList<T> getAll<T>() where T : BaseEntity
         {
-            using (EFMySqlDbContext context = new Db.EFMySqlDbContext())
+            try
             {
-                return context.getDbSet<T>().ToList();
+                using (EFMySqlDbContext context = new Db.EFMySqlDbContext())
+                {
+                    return context.getDbSet<T>().ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("无法从数据库获取数据，原因是：" + ex.Message);
+                return new List<T>();
             }
         }
 

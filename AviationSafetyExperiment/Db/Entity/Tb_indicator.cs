@@ -28,13 +28,18 @@ namespace AviationSafetyExperiment.Db.Entity
         /// <summary>
         /// 指标名称
         /// </summary>
-        [MaxLength(30)]
+        [MaxLength(200)]
         public string indicatorName { get; set; }
         /// <summary>
         /// 指标描述
         /// </summary>
-        [MaxLength(300)]
+        [MaxLength(10000)]
         public string indicatorDesc { get; set; }
+        /// <summary>
+        /// 操作说明
+        /// </summary>
+        [MaxLength(10000)]
+        public string indicatorInstr { get; set; }
         /// <summary>
         /// 是否废弃的指标
         /// </summary>

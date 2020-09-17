@@ -9,7 +9,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AviationSafetyExperiment</RootNamespace>
-    <AssemblyName>AviationSafetyExperiment</AssemblyName>
+    <AssemblyName>航空安全实验基地智能监控系统检测平台</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
@@ -33,8 +33,16 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Airplane64px.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.BouncyCastle.1.8.6\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="DevComponents.DotNetBar2, Version=10.0.0.0, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>D:\Program Files (x86)\DotNetBar for Windows Forms\DevComponents.DotNetBar2.dll</HintPath>
@@ -52,6 +60,14 @@
       <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="FluentFTP, Version=32.4.3.0, Culture=neutral, PublicKeyToken=f4af092b1d8df44f, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentFTP.32.4.3\lib\net45\FluentFTP.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=1.2.0.246, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.1.2.0\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="MySql.Data, Version=6.9.12.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.6.9.12\lib\net45\MySql.Data.dll</HintPath>
       <Private>True</Private>
@@ -60,9 +76,31 @@
       <HintPath>..\packages\MySql.Data.Entity.6.9.12\lib\net45\MySql.Data.Entity.EF6.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI, Version=2.5.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.1\lib\net45\NPOI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.5.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.1\lib\net45\NPOI.OOXML.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.5.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.1\lib\net45\NPOI.OpenXml4Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.5.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.1\lib\net45\NPOI.OpenXmlFormats.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -108,7 +146,8 @@
     <Compile Include="Db\DAO\TaskResultAdapter.cs" />
     <Compile Include="Db\EFMySqlDbContext.cs" />
     <Compile Include="Db\Entity\BaseEntity.cs" />
-    <Compile Include="Db\Entity\CodeTypeEnum.cs" />
+    <Compile Include="Db\Entity\Enums.cs" />
+    <Compile Include="Db\Entity\ResultSupplement.cs" />
     <Compile Include="Db\Entity\Tb_indicatorTemplateMap.cs" />
     <Compile Include="Db\Entity\Tb_code.cs" />
     <Compile Include="Db\Entity\Tb_indicator.cs" />
@@ -118,6 +157,46 @@
     <Compile Include="Db\Entity\Tb_taskLifecycle.cs" />
     <Compile Include="Db\Entity\Tb_taskModelMap.cs" />
     <Compile Include="Db\Entity\Tb_taskResult.cs" />
+    <Compile Include="FtpListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FtpListForm.Designer.cs">
+      <DependentUpon>FtpListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\User.cs" />
+    <Compile Include="Office\WordHelper.cs" />
+    <Compile Include="SupplementForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SupplementForm.Designer.cs">
+      <DependentUpon>SupplementForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TaskNewRoundDefine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TaskNewRoundDefine.Designer.cs">
+      <DependentUpon>TaskNewRoundDefine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Test.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Test.Designer.cs">
+      <DependentUpon>Test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\PagingPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\PagingPanel.Designer.cs">
+      <DependentUpon>PagingPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\ConfigWorker.cs" />
+    <Compile Include="Utils\FtpHelper.cs" />
+    <Compile Include="FtpProcessForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FtpProcessForm.Designer.cs">
+      <DependentUpon>FtpProcessForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="IndicatorEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -236,7 +315,8 @@
     <Compile Include="UserControls\TaskResultPanel.Designer.cs">
       <DependentUpon>TaskResultPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserInfo.cs" />
+    <Compile Include="Utils\HttpWorker.cs" />
+    <Compile Include="Utils\RemoteFileNameMaker.cs" />
     <EmbeddedResource Include="BrandEdit.resx">
       <DependentUpon>BrandEdit.cs</DependentUpon>
     </EmbeddedResource>
@@ -245,6 +325,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BrandModelSelector.resx">
       <DependentUpon>BrandModelSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FtpListForm.resx">
+      <DependentUpon>FtpListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FtpProcessForm.resx">
+      <DependentUpon>FtpProcessForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IndicatorEdit.resx">
       <DependentUpon>IndicatorEdit.cs</DependentUpon>
@@ -266,21 +352,34 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="SupplementForm.resx">
+      <DependentUpon>SupplementForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TaskDetial.resx">
       <DependentUpon>TaskDetial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TaskExecuteForm.resx">
       <DependentUpon>TaskExecuteForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TaskNewRoundDefine.resx">
+      <DependentUpon>TaskNewRoundDefine.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TaskReject.resx">
       <DependentUpon>TaskReject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Test.resx">
+      <DependentUpon>Test.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\IndicatorDataGrid.resx">
       <DependentUpon>IndicatorDataGrid.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\IndicatorTemplateSelecter.resx">
       <DependentUpon>IndicatorTemplateSelecter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\PagingPanel.resx">
+      <DependentUpon>PagingPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\TaskChartSlidePanel.resx">
       <DependentUpon>TaskChartSlidePanel.cs</DependentUpon>
@@ -293,6 +392,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\TaskGridPanel.resx">
       <DependentUpon>TaskGridPanel.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\TaskLifecyclePanel.resx">
       <DependentUpon>TaskLifecyclePanel.cs</DependentUpon>
@@ -311,6 +411,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\TaskResultPanel.resx">
       <DependentUpon>TaskResultPanel.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="ClassDiagram2.cd" />
     <None Include="packages.config" />
@@ -325,10 +426,58 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Airplane64px.ico" />
     <Content Include="Db\Entity\taskStateDescribe.txt" />
+    <None Include="Pictures\32\15.png" />
+    <None Include="Pictures\loginbg.jpg" />
+    <None Include="Pictures\16\s_29.png" />
+    <None Include="Pictures\16\s_28.png" />
+    <None Include="Pictures\16\s_27.png" />
+    <None Include="Pictures\16\s_26.png" />
+    <None Include="Pictures\16\s_25.png" />
+    <None Include="Pictures\16\s_24.png" />
+    <None Include="Pictures\16\s_23.png" />
+    <None Include="Pictures\16\s_22.png" />
+    <None Include="Pictures\16\s_21.png" />
+    <None Include="Pictures\16\s_20.png" />
+    <None Include="Pictures\16\s_19.png" />
+    <None Include="Pictures\16\s_18.png" />
+    <None Include="Pictures\16\s_17.png" />
+    <None Include="Pictures\16\s_16.png" />
+    <None Include="Pictures\16\s_15.png" />
+    <None Include="Pictures\16\s_14.png" />
+    <None Include="Pictures\16\s_13.png" />
+    <None Include="Pictures\16\s_12.png" />
+    <None Include="Pictures\16\s_11.png" />
+    <None Include="Pictures\16\s_10.png" />
+    <None Include="Pictures\16\s_9.png" />
+    <None Include="Pictures\16\s_8.png" />
+    <None Include="Pictures\16\s_7.png" />
+    <None Include="Pictures\16\s_6.png" />
+    <None Include="Pictures\16\s_5.png" />
+    <None Include="Pictures\16\s_4.png" />
+    <None Include="Pictures\16\s_3.png" />
+    <None Include="Pictures\16\s_2.png" />
+    <None Include="Pictures\16\s_1.png" />
+    <None Include="Pictures\32\14.png" />
+    <None Include="Pictures\32\13.png" />
+    <None Include="Pictures\32\12.png" />
+    <None Include="Pictures\32\11.png" />
+    <None Include="Pictures\32\10.png" />
+    <None Include="Pictures\32\9.png" />
+    <None Include="Pictures\32\8.png" />
+    <None Include="Pictures\32\7.png" />
+    <None Include="Pictures\32\6.png" />
+    <None Include="Pictures\32\5.png" />
+    <None Include="Pictures\32\4.png" />
+    <None Include="Pictures\32\3.png" />
+    <None Include="Pictures\32\2.png" />
+    <None Include="Pictures\32\1.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

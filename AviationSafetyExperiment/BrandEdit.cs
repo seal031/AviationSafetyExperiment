@@ -1,5 +1,6 @@
 ﻿using AviationSafetyExperiment.Db.Entity;
 using AviationSafetyExperiment.DbLocalCache;
+using DevComponents.DotNetBar;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -89,44 +90,51 @@ namespace AviationSafetyExperiment
 
         private void btn_save_Click(object sender, EventArgs e)
         {
-            switch (codeType)
+            if (txt_value.Text.Trim() == string.Empty)
             {
-                case CodeTypeEnum.Brand:
-                    if (brandCode == null)
-                    {
-                        brandCode = new Tb_code();
-                        brandCode.id = CodeCache.getBrand().Count == 0 ? 1000 : CodeCache.getClass().Max(c => c.id) + 1;//品牌默认从1000开始
-                        brandCode.codeType = (int)CodeTypeEnum.Brand;
-                        brandCode.parentId = classCode.id;
-                    }
-                    brandCode.codeName = txt_value.Text.Trim();
-                    CodeCache.addCache(brandCode);
-                    break;
-                case CodeTypeEnum.Model:
-                    if (modelCode == null)
-                    {
-                        modelCode = new Tb_code();
-                        modelCode.id = CodeCache.getModel().Count == 0 ? 2000 : CodeCache.getModel().Max(c => c.id) + 1;//型号从2000开始
-                        modelCode.codeType = (int)CodeTypeEnum.Model;
-                        modelCode.parentId = brandCode.id;
-                    }
-                    modelCode.codeName = txt_value.Text.Trim();
-                    CodeCache.addCache(modelCode);
-                    break;
-                case CodeTypeEnum.Class:
-                    if (classCode == null)
-                    {
-                        classCode = new Db.Entity.Tb_code();
-                        classCode.id = CodeCache.getClass().Count == 0 ? 3000 : CodeCache.getClass().Max(c => c.id) + 1;//分类默认从3000开始
-                        classCode.codeType = (int)CodeTypeEnum.Class;
-                    }
-                    classCode.codeName = txt_value.Text.Trim();
-                    CodeCache.addCache(classCode);
-                    break;
-                default:
-                    break;
+                MessageBoxEx.Show("名称不能为空，请输入一个名称", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
-            this.Close();
+            else
+            {
+                switch (codeType)
+                {
+                    case CodeTypeEnum.Brand:
+                        if (brandCode == null)
+                        {
+                            brandCode = new Tb_code();
+                            brandCode.id = CodeCache.getBrand().Count == 0 ? 1000 : CodeCache.getBrand().Max(c => c.id) + 1;//品牌默认从1000开始
+                            brandCode.codeType = (int)CodeTypeEnum.Brand;
+                            brandCode.parentId = classCode.id;
+                        }
+                        brandCode.codeName = txt_value.Text.Trim();
+                        CodeCache.addCache(brandCode);
+                        break;
+                    case CodeTypeEnum.Model:
+                        if (modelCode == null)
+                        {
+                            modelCode = new Tb_code();
+                            modelCode.id = CodeCache.getModel().Count == 0 ? 2000 : CodeCache.getModel().Max(c => c.id) + 1;//型号从2000开始
+                            modelCode.codeType = (int)CodeTypeEnum.Model;
+                            modelCode.parentId = brandCode.id;
+                        }
+                        modelCode.codeName = txt_value.Text.Trim();
+                        CodeCache.addCache(modelCode);
+                        break;
+                    case CodeTypeEnum.Class:
+                        if (classCode == null)
+                        {
+                            classCode = new Db.Entity.Tb_code();
+                            classCode.id = CodeCache.getClass().Count == 0 ? 3000 : CodeCache.getClass().Max(c => c.id) + 1;//分类默认从3000开始
+                            classCode.codeType = (int)CodeTypeEnum.Class;
+                        }
+                        classCode.codeName = txt_value.Text.Trim();
+                        CodeCache.addCache(classCode);
+                        break;
+                    default:
+                        break;
+                }
+                this.Close();
+            }
         }
     }
 }

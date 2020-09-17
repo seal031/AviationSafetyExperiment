@@ -49,6 +49,8 @@
             this.requiredFieldValidator1 = new DevComponents.DotNetBar.Validator.RequiredFieldValidator("Your error message here.");
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.highlighter1 = new DevComponents.DotNetBar.Validator.Highlighter();
+            this.txt_indicatorInstr = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.labelX6 = new DevComponents.DotNetBar.LabelX();
             this.panelEx1.SuspendLayout();
             this.panelEx2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -166,10 +168,10 @@
             // 
             this.chk_isObsolete.BackgroundStyle.Class = "";
             this.chk_isObsolete.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.chk_isObsolete.Location = new System.Drawing.Point(523, 13);
+            this.chk_isObsolete.Location = new System.Drawing.Point(553, 13);
             this.chk_isObsolete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.chk_isObsolete.Name = "chk_isObsolete";
-            this.chk_isObsolete.Size = new System.Drawing.Size(112, 31);
+            this.chk_isObsolete.Size = new System.Drawing.Size(82, 31);
             this.chk_isObsolete.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.chk_isObsolete.TabIndex = 4;
             this.chk_isObsolete.Text = "已废弃";
@@ -178,6 +180,8 @@
             // 
             this.panelEx2.CanvasColor = System.Drawing.SystemColors.Control;
             this.panelEx2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.panelEx2.Controls.Add(this.txt_indicatorInstr);
+            this.panelEx2.Controls.Add(this.labelX6);
             this.panelEx2.Controls.Add(this.btn_save);
             this.panelEx2.Controls.Add(this.txt_indicatorDesc);
             this.panelEx2.Controls.Add(this.txt_indicatorName);
@@ -187,7 +191,7 @@
             this.panelEx2.Location = new System.Drawing.Point(0, 94);
             this.panelEx2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelEx2.Name = "panelEx2";
-            this.panelEx2.Size = new System.Drawing.Size(671, 392);
+            this.panelEx2.Size = new System.Drawing.Size(671, 508);
             this.panelEx2.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.panelEx2.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
             this.panelEx2.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
@@ -201,7 +205,7 @@
             // 
             this.btn_save.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btn_save.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btn_save.Location = new System.Drawing.Point(275, 341);
+            this.btn_save.Location = new System.Drawing.Point(289, 464);
             this.btn_save.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(98, 31);
@@ -221,7 +225,7 @@
             this.txt_indicatorDesc.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txt_indicatorDesc.Multiline = true;
             this.txt_indicatorDesc.Name = "txt_indicatorDesc";
-            this.txt_indicatorDesc.Size = new System.Drawing.Size(471, 241);
+            this.txt_indicatorDesc.Size = new System.Drawing.Size(513, 180);
             this.txt_indicatorDesc.TabIndex = 3;
             this.superValidator1.SetValidator1(this.txt_indicatorDesc, this.requiredFieldValidator2);
             // 
@@ -235,7 +239,7 @@
             this.txt_indicatorName.Location = new System.Drawing.Point(122, 20);
             this.txt_indicatorName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txt_indicatorName.Name = "txt_indicatorName";
-            this.txt_indicatorName.Size = new System.Drawing.Size(471, 32);
+            this.txt_indicatorName.Size = new System.Drawing.Size(513, 32);
             this.txt_indicatorName.TabIndex = 2;
             this.superValidator1.SetValidator1(this.txt_indicatorName, this.requiredFieldValidator1);
             // 
@@ -293,15 +297,44 @@
             // 
             this.highlighter1.ContainerControl = this;
             // 
+            // txt_indicatorInstr
+            // 
+            // 
+            // 
+            // 
+            this.txt_indicatorInstr.Border.Class = "TextBoxBorder";
+            this.txt_indicatorInstr.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txt_indicatorInstr.Location = new System.Drawing.Point(122, 267);
+            this.txt_indicatorInstr.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txt_indicatorInstr.Multiline = true;
+            this.txt_indicatorInstr.Name = "txt_indicatorInstr";
+            this.txt_indicatorInstr.Size = new System.Drawing.Size(513, 180);
+            this.txt_indicatorInstr.TabIndex = 7;
+            this.superValidator1.SetValidator1(this.txt_indicatorInstr, this.requiredFieldValidator2);
+            // 
+            // labelX6
+            // 
+            // 
+            // 
+            // 
+            this.labelX6.BackgroundStyle.Class = "";
+            this.labelX6.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX6.Location = new System.Drawing.Point(29, 263);
+            this.labelX6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelX6.Name = "labelX6";
+            this.labelX6.Size = new System.Drawing.Size(84, 31);
+            this.labelX6.TabIndex = 6;
+            this.labelX6.Text = "操作说明";
+            // 
             // IndicatorEdit
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(671, 486);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.ClientSize = new System.Drawing.Size(671, 602);
             this.Controls.Add(this.panelEx2);
             this.Controls.Add(this.panelEx1);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.Name = "IndicatorEdit";
@@ -336,5 +369,7 @@
         private DevComponents.DotNetBar.LabelX labelX5;
         private DevComponents.DotNetBar.Controls.ComboBoxEx cbb_detection;
         private DevComponents.DotNetBar.LabelX labelX4;
+        private DevComponents.DotNetBar.Controls.TextBoxX txt_indicatorInstr;
+        private DevComponents.DotNetBar.LabelX labelX6;
     }
 }

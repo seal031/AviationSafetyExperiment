@@ -20,5 +20,9 @@ namespace AviationSafetyExperiment.Db.Entity
         /// 指标项id
         /// </summary>
         public int indicatorId { get; set; }
+        /// <summary>
+        /// 测试轮次
+        /// </summary>
+        public int taskRound { get; set; } = 1;
     }
 }

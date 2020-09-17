@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
-            this.labelX1 = new DevComponents.DotNetBar.LabelX();
-            this.panelEx2 = new DevComponents.DotNetBar.PanelEx();
+            this.lbl_welcome = new DevComponents.DotNetBar.LabelX();
             this.ribbonBar1 = new DevComponents.DotNetBar.RibbonBar();
             this.btn_item_home = new DevComponents.DotNetBar.ButtonItem();
             this.btn_item_taskManager = new DevComponents.DotNetBar.ButtonItem();
@@ -53,12 +53,12 @@
             // 
             this.panelEx1.CanvasColor = System.Drawing.SystemColors.Control;
             this.panelEx1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.panelEx1.Controls.Add(this.labelX1);
-            this.panelEx1.Controls.Add(this.panelEx2);
+            this.panelEx1.Controls.Add(this.lbl_welcome);
             this.panelEx1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelEx1.Font = new System.Drawing.Font("新宋体", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.panelEx1.Location = new System.Drawing.Point(0, 0);
             this.panelEx1.Name = "panelEx1";
-            this.panelEx1.Size = new System.Drawing.Size(1259, 79);
+            this.panelEx1.Size = new System.Drawing.Size(1259, 60);
             this.panelEx1.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.panelEx1.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
             this.panelEx1.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
@@ -67,39 +67,25 @@
             this.panelEx1.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
             this.panelEx1.Style.GradientAngle = 90;
             this.panelEx1.TabIndex = 0;
+            this.panelEx1.Text = "航空安全实验基地智能监控系统检测平台";
             // 
-            // labelX1
+            // lbl_welcome
+            // 
+            this.lbl_welcome.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbl_welcome.AutoSize = true;
             // 
             // 
             // 
-            // 
-            this.labelX1.BackgroundStyle.Class = "";
-            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX1.Font = new System.Drawing.Font("微软雅黑", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX1.Location = new System.Drawing.Point(883, 53);
-            this.labelX1.Name = "labelX1";
-            this.labelX1.Size = new System.Drawing.Size(338, 23);
-            this.labelX1.TabIndex = 1;
-            this.labelX1.Text = "欢迎您，xxx， 2020年5月8日，星期六";
-            // 
-            // panelEx2
-            // 
-            this.panelEx2.CanvasColor = System.Drawing.SystemColors.Control;
-            this.panelEx2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.panelEx2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelEx2.Font = new System.Drawing.Font("新宋体", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.panelEx2.Location = new System.Drawing.Point(0, 0);
-            this.panelEx2.Name = "panelEx2";
-            this.panelEx2.Size = new System.Drawing.Size(840, 79);
-            this.panelEx2.Style.Alignment = System.Drawing.StringAlignment.Center;
-            this.panelEx2.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.panelEx2.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
-            this.panelEx2.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.panelEx2.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
-            this.panelEx2.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.panelEx2.Style.GradientAngle = 90;
-            this.panelEx2.TabIndex = 0;
-            this.panelEx2.Text = "航空安全实验基地智能监控系统检测平台";
+            this.lbl_welcome.BackgroundStyle.Class = "";
+            this.lbl_welcome.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lbl_welcome.Font = new System.Drawing.Font("微软雅黑", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbl_welcome.Image = global::AviationSafetyExperiment.Properties.Resources.s_29;
+            this.lbl_welcome.ImagePosition = DevComponents.DotNetBar.eImagePosition.Right;
+            this.lbl_welcome.Location = new System.Drawing.Point(1123, 28);
+            this.lbl_welcome.Name = "lbl_welcome";
+            this.lbl_welcome.Size = new System.Drawing.Size(133, 29);
+            this.lbl_welcome.TabIndex = 1;
+            this.lbl_welcome.Text = "欢迎您，xxx";
             // 
             // ribbonBar1
             // 
@@ -125,7 +111,7 @@
             this.btn_indicatorSet,
             this.btn_taskReport});
             this.ribbonBar1.ItemSpacing = 5;
-            this.ribbonBar1.Location = new System.Drawing.Point(0, 79);
+            this.ribbonBar1.Location = new System.Drawing.Point(0, 60);
             this.ribbonBar1.Name = "ribbonBar1";
             this.ribbonBar1.Size = new System.Drawing.Size(1259, 30);
             this.ribbonBar1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -144,6 +130,8 @@
             // 
             // btn_item_home
             // 
+            this.btn_item_home.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.btn_item_home.Image = global::AviationSafetyExperiment.Properties.Resources.s_2;
             this.btn_item_home.Name = "btn_item_home";
             this.btn_item_home.SubItemsExpandWidth = 14;
             this.btn_item_home.Text = "首页";
@@ -151,6 +139,8 @@
             // 
             // btn_item_taskManager
             // 
+            this.btn_item_taskManager.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.btn_item_taskManager.Image = global::AviationSafetyExperiment.Properties.Resources.s_1;
             this.btn_item_taskManager.Name = "btn_item_taskManager";
             this.btn_item_taskManager.SubItemsExpandWidth = 14;
             this.btn_item_taskManager.Text = "测试任务管理";
@@ -158,13 +148,18 @@
             // 
             // btn_item_alarm
             // 
+            this.btn_item_alarm.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.btn_item_alarm.Image = global::AviationSafetyExperiment.Properties.Resources.s_3;
             this.btn_item_alarm.Name = "btn_item_alarm";
             this.btn_item_alarm.SubItemsExpandWidth = 14;
             this.btn_item_alarm.Text = "报警联动";
+            this.btn_item_alarm.Visible = false;
             this.btn_item_alarm.Click += new System.EventHandler(this.btn_item_alarm_Click);
             // 
             // btn_brandSet
             // 
+            this.btn_brandSet.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.btn_brandSet.Image = global::AviationSafetyExperiment.Properties.Resources.s_7;
             this.btn_brandSet.Name = "btn_brandSet";
             this.btn_brandSet.SubItemsExpandWidth = 14;
             this.btn_brandSet.Text = "品牌型号管理";
@@ -172,6 +167,8 @@
             // 
             // btn_indicatorSet
             // 
+            this.btn_indicatorSet.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.btn_indicatorSet.Image = global::AviationSafetyExperiment.Properties.Resources.s_6;
             this.btn_indicatorSet.Name = "btn_indicatorSet";
             this.btn_indicatorSet.SubItemsExpandWidth = 14;
             this.btn_indicatorSet.Text = "指标项管理";
@@ -179,6 +176,8 @@
             // 
             // btn_taskReport
             // 
+            this.btn_taskReport.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.btn_taskReport.Image = global::AviationSafetyExperiment.Properties.Resources.s_4;
             this.btn_taskReport.Name = "btn_taskReport";
             this.btn_taskReport.SubItemsExpandWidth = 14;
             this.btn_taskReport.Text = "测试报告";
@@ -192,9 +191,9 @@
             this.panelExMain.Controls.Add(this.slidePanelMain);
             this.panelExMain.Controls.Add(this.expandablePanel);
             this.panelExMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelExMain.Location = new System.Drawing.Point(0, 109);
+            this.panelExMain.Location = new System.Drawing.Point(0, 90);
             this.panelExMain.Name = "panelExMain";
-            this.panelExMain.Size = new System.Drawing.Size(1259, 646);
+            this.panelExMain.Size = new System.Drawing.Size(1259, 665);
             this.panelExMain.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.panelExMain.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
             this.panelExMain.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
@@ -212,7 +211,7 @@
             this.taskMainPanel.Location = new System.Drawing.Point(150, 0);
             this.taskMainPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.taskMainPanel.Name = "taskMainPanel";
-            this.taskMainPanel.Size = new System.Drawing.Size(1109, 646);
+            this.taskMainPanel.Size = new System.Drawing.Size(1109, 665);
             this.taskMainPanel.TabIndex = 3;
             // 
             // slidePanelMain
@@ -220,7 +219,7 @@
             this.slidePanelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.slidePanelMain.Location = new System.Drawing.Point(150, 0);
             this.slidePanelMain.Name = "slidePanelMain";
-            this.slidePanelMain.Size = new System.Drawing.Size(1109, 646);
+            this.slidePanelMain.Size = new System.Drawing.Size(1109, 665);
             this.slidePanelMain.TabIndex = 1;
             this.slidePanelMain.Text = "slidePanel1";
             // 
@@ -236,7 +235,7 @@
             this.expandablePanel.Location = new System.Drawing.Point(0, 0);
             this.expandablePanel.MaximumSize = new System.Drawing.Size(150, 0);
             this.expandablePanel.Name = "expandablePanel";
-            this.expandablePanel.Size = new System.Drawing.Size(150, 646);
+            this.expandablePanel.Size = new System.Drawing.Size(150, 665);
             this.expandablePanel.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.expandablePanel.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
             this.expandablePanel.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
@@ -260,7 +259,7 @@
             this.taskProcessSlidePanel.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.taskProcessSlidePanel.Location = new System.Drawing.Point(0, 26);
             this.taskProcessSlidePanel.Name = "taskProcessSlidePanel";
-            this.taskProcessSlidePanel.Size = new System.Drawing.Size(150, 620);
+            this.taskProcessSlidePanel.Size = new System.Drawing.Size(150, 639);
             this.taskProcessSlidePanel.TabIndex = 1;
             // 
             // taskChartSlidePanel
@@ -270,7 +269,7 @@
             this.taskChartSlidePanel.Location = new System.Drawing.Point(0, 26);
             this.taskChartSlidePanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.taskChartSlidePanel.Name = "taskChartSlidePanel";
-            this.taskChartSlidePanel.Size = new System.Drawing.Size(150, 620);
+            this.taskChartSlidePanel.Size = new System.Drawing.Size(150, 639);
             this.taskChartSlidePanel.TabIndex = 2;
             // 
             // MainForm
@@ -283,12 +282,15 @@
             this.Controls.Add(this.panelEx1);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "MainForm";
             this.Text = "航空安全实验基地智能监控系统检测平台";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.panelEx1.ResumeLayout(false);
+            this.panelEx1.PerformLayout();
             this.panelExMain.ResumeLayout(false);
             this.expandablePanel.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -298,8 +300,7 @@
         #endregion
 
         private DevComponents.DotNetBar.PanelEx panelEx1;
-        private DevComponents.DotNetBar.LabelX labelX1;
-        private DevComponents.DotNetBar.PanelEx panelEx2;
+        private DevComponents.DotNetBar.LabelX lbl_welcome;
         private DevComponents.DotNetBar.RibbonBar ribbonBar1;
         private DevComponents.DotNetBar.ButtonItem btn_item_home;
         private DevComponents.DotNetBar.ButtonItem btn_item_taskManager;

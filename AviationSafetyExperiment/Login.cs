@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevComponents;
+using AviationSafetyExperiment.Utils;
+using AviationSafetyExperiment.Db.Entity;
+using AviationSafetyExperiment.Db.DAO;
 
 namespace AviationSafetyExperiment
 {
@@ -31,9 +34,12 @@ namespace AviationSafetyExperiment
 
         private bool login()
         {
-            UserInfo.userName = "齐可新";
-            UserInfo.indentity = UserIdentityEnum.Test_Officers;
-            //UserInfo.indentity = UserIdentityEnum.Approving_Officers;
+            var tempList = BaseAdapter.getAll<Tb_code>();
+            if (tempList.Count() == 0)
+            {
+                return false;
+            }
+            HttpWorker.getUser(txt_username.Text.Trim());//模拟用户获取 
             return true;
         }
     }

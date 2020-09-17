@@ -86,9 +86,11 @@
             this.lbl_taskLifecycle.BackgroundStyle.Class = "";
             this.lbl_taskLifecycle.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lbl_taskLifecycle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbl_taskLifecycle.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbl_taskLifecycle.ForeColor = System.Drawing.Color.Black;
             this.lbl_taskLifecycle.Location = new System.Drawing.Point(0, 0);
             this.lbl_taskLifecycle.Name = "lbl_taskLifecycle";
-            this.lbl_taskLifecycle.Size = new System.Drawing.Size(415, 24);
+            this.lbl_taskLifecycle.Size = new System.Drawing.Size(461, 27);
             this.lbl_taskLifecycle.TabIndex = 0;
             this.lbl_taskLifecycle.Text = "-------------------------------------------------------------";
             // 

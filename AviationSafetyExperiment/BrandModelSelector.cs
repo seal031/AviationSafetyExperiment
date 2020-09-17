@@ -33,8 +33,12 @@ namespace AviationSafetyExperiment
                 cbi.CheckedChanged += Cbi_CheckedChanged;
                 if (selectedDic.ContainsKey(brand.id)) { cbi.Checked = true; }
                 node.HostedItem = cbi;
-                tree.Nodes.Add(node);
                 var models = CodeCache.getModel().Where(c => c.parentId == brand.id);
+                if (models.Count() == 0)
+                {
+                    cbi.Enabled = false;
+                }
+                tree.Nodes.Add(node);
                 foreach(var model in models)
                 {
                     DevComponents.AdvTree.Node subNode = new DevComponents.AdvTree.Node();

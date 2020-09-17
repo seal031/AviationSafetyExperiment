@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevComponents;
 using AviationSafetyExperiment.UserControls;
+using AviationSafetyExperiment.Db.Entity;
+using AviationSafetyExperiment.Model;
 
 namespace AviationSafetyExperiment
 {
@@ -24,22 +26,25 @@ namespace AviationSafetyExperiment
             InitializeComponent();
         }
 
-        private void qatCustomizePanel1_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void MainForm_Shown(object sender, EventArgs e)
         {
+            showApplicationInfo();
             showHome();
             bindSlideBarButtonClickEvent();//首次加载窗体时绑定侧边栏按钮事件
+        }
+        /// <summary>
+        /// 显示程序信息，如登录用户等
+        /// </summary>
+        private void showApplicationInfo()
+        {
+            lbl_welcome.Text = "欢迎您，"+User.currentUser.name;
         }
 
         private void bindSlideBarButtonClickEvent()
         {
             taskProcessSlidePanel.btn_taskApprove.Click += Btn_taskApprove_Click;
             taskProcessSlidePanel.btn_taskDefine.Click += Btn_taskDefine_Click;
-            taskProcessSlidePanel.btn_taskExecute.Click += Btn_taskExecute_Click;
+            //taskProcessSlidePanel.btn_taskExecute.Click += Btn_taskExecute_Click;
             taskProcessSlidePanel.btn_taskProcess.Click += Btn_taskProcess_Click;
         }
 
@@ -95,7 +100,14 @@ namespace AviationSafetyExperiment
 
         private void Btn_taskApprove_Click(object sender, EventArgs e)
         {
-            showTaskApprove();
+            if (User.currentUser.indentity == UserIdentityEnum.Approving_Officers)
+            {
+                showTaskApprove();
+            }
+            else
+            {
+                MessageBox.Show("您不具有审批权限，无法审批任务");
+            }
         }
         #endregion
 
@@ -107,10 +119,12 @@ namespace AviationSafetyExperiment
             expandablePanel.TitleText = "测试任务统计";
             expandablePanel.MaximumSize = new System.Drawing.Size(300, 0);
             expandablePanel.Size= new System.Drawing.Size(300, 0);
-            slidePanelMain.Controls.Clear();
-            addControl(slidePanelMain, taskMainPanel);
+            //侧边
             removeControl(expandablePanel, taskProcessSlidePanel);
             addControl(expandablePanel, taskChartSlidePanel);
+            //中间
+            slidePanelMain.Controls.Clear();
+            addControl(slidePanelMain, taskMainPanel);
             //expandablePanel.Refresh();
             expandablePanel.Expanded = true;
             //panelExMain.Refresh();
@@ -125,8 +139,10 @@ namespace AviationSafetyExperiment
             expandablePanel.TitleText = "测试任务操作";
             expandablePanel.MaximumSize = new System.Drawing.Size(150, 0);
             expandablePanel.Size = new System.Drawing.Size(150, 0);
+            //侧边
             removeControl(expandablePanel, taskChartSlidePanel);
             addControl(expandablePanel, taskProcessSlidePanel);
+            //中间
             slidePanelMain.Controls.Clear();
             //expandablePanel.Refresh();
             expandablePanel.Expanded = true;
@@ -137,12 +153,12 @@ namespace AviationSafetyExperiment
         /// </summary>
         private void showTaskDefine()
         {
-            if (taskDefinePanel == null)
+            //if (taskDefinePanel == null)
             {
                 taskDefinePanel = new TaskDefinePanel();
                 taskDefinePanel.Dock = DockStyle.Fill;
             }
-            addControl(panelExMain, taskDefinePanel);
+            addControl(slidePanelMain, taskDefinePanel);
             taskDefinePanel.BringToFront();
             taskDefinePanel.init();
         }
@@ -156,12 +172,12 @@ namespace AviationSafetyExperiment
                 taskApprovePanel = new TaskListPanel();
                 taskApprovePanel.Dock = DockStyle.Fill;
             }
-            addControl(panelExMain, taskApprovePanel);
+            addControl(slidePanelMain, taskApprovePanel);
             taskApprovePanel.BringToFront();
-            taskApprovePanel.init(5001,TaskGridShownStyle.HideAll);
+            taskApprovePanel.init(new int[] { (int)TaskStateEnum.Created }, TaskGridShownStyle.NewTask);
         }
         /// <summary>
-        /// 显示任务过程管理
+        /// 显示任务过程查看
         /// </summary>
         private void showTaskProcess()
         {
@@ -170,9 +186,9 @@ namespace AviationSafetyExperiment
                 taskProcessPanel = new TaskListPanel();
                 taskProcessPanel.Dock = DockStyle.Fill;
             }
-            addControl(panelExMain, taskProcessPanel);
+            addControl(slidePanelMain, taskProcessPanel);
             taskProcessPanel.BringToFront();
-            taskProcessPanel.init(5004, TaskGridShownStyle.HideAll);
+            taskProcessPanel.init(new int[] { (int)TaskStateEnum.Closed, (int)TaskStateEnum.Completed, (int)TaskStateEnum.Created, (int)TaskStateEnum.Passed,(int)TaskStateEnum.Running , (int)TaskStateEnum.Rejected }, TaskGridShownStyle.HideAll);
         }
         /// <summary>
         /// 显示任务执行管理
@@ -184,9 +200,9 @@ namespace AviationSafetyExperiment
                 taskExecutePanel = new TaskListPanel();
                 taskExecutePanel.Dock = DockStyle.Fill;
             }
-            addControl(panelExMain, taskExecutePanel);
+            addControl(slidePanelMain, taskExecutePanel);
             taskExecutePanel.BringToFront();
-            taskExecutePanel.init(5004, TaskGridShownStyle.HideAll);
+            taskExecutePanel.init(new int[] { (int)TaskStateEnum.Running }, TaskGridShownStyle.HideAll);
         }
 
         private void addControl(Control parent, Control son)
@@ -203,6 +219,18 @@ namespace AviationSafetyExperiment
         {
             taskMainPanel.init();
         }
+        public void reloadTaskApproval()
+        {
+            taskApprovePanel.init(new int[] { (int)TaskStateEnum.Created }, TaskGridShownStyle.NewTask);
+        }
         #endregion
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (MessageBox.Show("是否想退出系统？","退出确认",MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+        }
     }
 }

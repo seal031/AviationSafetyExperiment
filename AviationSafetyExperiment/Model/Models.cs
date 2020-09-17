@@ -17,6 +17,7 @@ namespace AviationSafetyExperiment.Model
         public string subDetectionName { get; set; }
         public string indicatorName { get; set; }
         public string indicatorDesc { get; set; }
+        public string indicatorInstr { get; set; }
         public string isObsolete { get; set; }
     }
 
@@ -54,11 +55,12 @@ namespace AviationSafetyExperiment.Model
         public string indicatorName { get; set; }
 
         public string indicatorDesc { get; set; }
+        public string indicatorInstr { get; set; }
         public int brandId { get; set; }
         public string brandName { get; set; }
         public int modelId { get; set; }
         public string modelName { get; set; }
-        public int taskRound { get; set; } 
+        public int taskStep { get; set; } 
         public string taskExecutor { get; set; }
         public string taskDateTime { get; set; }
         public string taskRecord { get; set; }
@@ -71,5 +73,12 @@ namespace AviationSafetyExperiment.Model
         /// </summary>
         public int taskResultId { get; set; }
         public string taskRemark { get; set; }
+        public string attachment { get; set; }
+
+        public string attachmentCount { get; set; }
+        /// <summary>
+        /// 补充内容，包括漏报补报。json格式
+        /// </summary>
+        public string supplement { get; set; }
     }
 }

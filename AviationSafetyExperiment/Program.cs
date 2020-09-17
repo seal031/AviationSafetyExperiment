@@ -1,4 +1,6 @@
 ﻿using AviationSafetyExperiment.Db;
+using AviationSafetyExperiment.Office;
+using AviationSafetyExperiment.Utils;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -16,6 +18,7 @@ namespace AviationSafetyExperiment
         [STAThread]
         static void Main()
         {
+            //WordHelper.CreateFileByTemplate("ReportTemplate\\ReportTemplate.docx", "ReportStore\\1.docx");
             //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<EFMySqlDbContext>());
             Database.SetInitializer<EFMySqlDbContext>(null);
             using (var context = new EFMySqlDbContext())

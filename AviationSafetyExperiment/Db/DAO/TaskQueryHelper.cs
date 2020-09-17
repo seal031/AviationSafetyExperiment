@@ -25,5 +25,7 @@ namespace AviationSafetyExperiment.Db.DAO
         public string taskQueryName { get; set; } = string.Empty;
 
         public string taskQueryBrand { get; set; } = string.Empty;
+
+        public int taskState { get; set; } = 0;
     }
 }

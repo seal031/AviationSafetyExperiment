@@ -45,5 +45,17 @@ namespace AviationSafetyExperiment.DbLocalCache
                 MessageBoxEx.Show("保存任务过程时出现异常:"+ex);
             }
         }
+
+        public static void addCacheOnly(Tb_taskLifecycle life)
+        {
+            try
+            {
+                list.Add(life);
+            }
+            catch (Exception ex)
+            {
+                MessageBoxEx.Show("缓存任务过程时出现异常:" + ex);
+            }
+        }
     }
 }

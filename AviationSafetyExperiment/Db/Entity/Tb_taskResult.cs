@@ -14,9 +14,9 @@ namespace AviationSafetyExperiment.Db.Entity
         /// </summary>
         public int taskId { get; set; }
         /// <summary>
-        /// 测试轮次
+        /// 测试步次
         /// </summary>
-        public int taskRound { get; set; }
+        public int taskStep { get; set; }
         /// <summary>
         /// 测试执行者
         /// </summary>
@@ -25,6 +25,7 @@ namespace AviationSafetyExperiment.Db.Entity
         /// <summary>
         /// 测试时间
         /// </summary>
+        
         public DateTime taskDateTime { get; set; }
         /// <summary>
         /// 型号id
@@ -48,5 +49,19 @@ namespace AviationSafetyExperiment.Db.Entity
         /// </summary>
         [MaxLength(300)]
         public string taskRemark { get; set; }
+        /// <summary>
+        /// 附件
+        /// </summary>
+        [MaxLength(100)]
+        public string attachment { get; set; }
+        /// <summary>
+        /// 补充内容
+        /// </summary>
+        [MaxLength(500)]
+        public string supplement { get; set; }
+        /// <summary>
+        /// 测试轮次
+        /// </summary>
+        public int taskRound { get; set; }
     }
 }
