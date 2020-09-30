@@ -19,7 +19,7 @@ namespace AviationSafetyExperiment
 {
     public partial class TaskNewRoundDefine : DevComponents.DotNetBar.Office2007Form, IPagging
     {
-        private int taskInfoId, currentRound;
+        private int taskInfoId, currentRound,maxTaskStep;
         private List<Tb_indicator> indicatorList;
         //private List<Tb_code> classList;
         private List<Tb_code> detectionList;
@@ -35,25 +35,27 @@ namespace AviationSafetyExperiment
         /// <summary>
         /// 模板中的已选指标
         /// </summary>
-        List<IndicatorForTemplateModel> selectedIndicatorModelList = new List<IndicatorForTemplateModel>();
+        List<RoundIndicatorModel> selectedIndicatorModelList = new List<RoundIndicatorModel>();
         /// <summary>
         /// 模板中的待选指标
         /// </summary>
-        List<IndicatorForTemplateModel> unselectedIndicatorModelList = new List<IndicatorForTemplateModel>();
+        List<RoundIndicatorModel> unselectedIndicatorModelList = new List<RoundIndicatorModel>();
 
         [Browsable(true)]
         public bool isManage { get; set; } = true;//是否处于指标模板管理界面中，用于控制控件状态和行为
-        public TaskNewRoundDefine(int taskInfoId,int round)
+        public TaskNewRoundDefine(int taskInfoId,int round,int maxTaskStep)
         {
             InitializeComponent();
             this.taskInfoId = taskInfoId;
             this.currentRound = round;
+            this.maxTaskStep = maxTaskStep;
             dgv_selected.AutoGenerateColumns = false;
             dgv_unselected.AutoGenerateColumns = false;
             pagingPanel_selected.pagging = this;
             pagingPanel_unselected.pagging = this;
             initPaggingParams();
         }
+
         /// <summary>
         /// 初始化分页参数。当控件初始化、或已有模板下拉列表变化时调用本方法.
         /// </summary>
@@ -95,8 +97,11 @@ namespace AviationSafetyExperiment
         {
             var taskInfo = TaskCache.getCacheById(taskInfoId);
             var classInfo = CodeCache.getClass().FirstOrDefault(c => c.id == taskInfo.taskClass);
+            var brandList = CodeCache.getBrand();//全部品牌
+            var modelList = CodeCache.getModel();//全部型号
+
             //获取某任务下某轮次的所有指标测试结果
-            var currentRoundIndicatorList = TaskResultCache.getCache().Where(r => r.taskId == taskInfoId && r.taskRound == currentRound).ToList();
+            var currentRoundIndicatorList = TaskResultCache.getCache().Where(r => r.taskId == taskInfoId && r.taskRound == currentRound && r.taskStep == maxTaskStep).ToList();
             
             progress.Report("获取前序轮次全部指标");
             await Task.Factory.StartNew(() =>
@@ -105,22 +110,60 @@ namespace AviationSafetyExperiment
                 sw.Start();
                 var childOne = Task.Factory.StartNew(() =>
                 {
-                    //获取所有未通过指标作为已选指标
-                    var currentRoundRejectedIndicatorIdList = currentRoundIndicatorList.Where(r => r.taskResult == 1).Select(r => r.id).ToList();
-                    var currentRoundRejectedIndicatorList = from indicator in IndicatorCache.getCache()
-                                                            where currentRoundRejectedIndicatorIdList.Contains(indicator.id)
-                                                            select indicator;
-                    //结果2为已通过，1为未通过
-                    //生成已选指标model对象列表
-                    selectedIndicatorModelList = (from indicator in currentRoundRejectedIndicatorList
-                                                      //from classType in classList
+                    //所有未通过的测试结果
+                    var currentUnIndicatList = currentRoundIndicatorList.Where(r => r.taskResult == 1).ToList();
+                    selectedIndicatorModelList = (from unIndicat in currentUnIndicatList
+                               from brand in brandList
+                               from model in modelList
+                               from indicator in indicatorList
+                               from detection in detectionList
+                               from subDetection in subDetectionList
+                               where unIndicat.modelId == model.id
+                               && model.parentId == brand.id
+                               && unIndicat.indicatorId == indicator.id
+                               && indicator.detectionId == detection.id
+                               && indicator.subDetectionId == subDetection.id
+                               select new RoundIndicatorModel
+                               {
+                                   classId = indicator.classId,
+                                   className = (classInfo == null ? "" : classInfo.codeName),//classType.codeName,
+                                   detectionId = detection.id,
+                                   detectionName = detection.codeName,
+                                   indicatorDesc = indicator.indicatorDesc,
+                                   indicatorInstr = indicator.indicatorInstr,
+                                   indicatorId = indicator.id,
+                                   indicatorName = indicator.indicatorName,
+                                   isObsolete = indicator.isObsolete == 1 ? "已废弃" : "生效中",
+                                   isSelected = false,
+                                   subDetectionId = subDetection.id,
+                                   subDetectionName = subDetection.codeName,
+                                   modelId = model.id,
+                                   modelName = model.codeName,
+                                   brandId = brand.id,
+                                   brandName = brand.codeName,
+                                   taskStep = unIndicat.taskStep
+                               }).ToList();
+                    progress.Report("指标计算中……");
+                    Debug.WriteLine("one");
+                }, TaskCreationOptions.AttachedToParent);
+                var childTwo = Task.Factory.StartNew(() =>
+                {
+                    var currentUnIndicatList = currentRoundIndicatorList.Where(r => r.taskResult == 2).ToList();
+                    unselectedIndicatorModelList = (from unIndicat in currentUnIndicatList
+                                                  from brand in brandList
+                                                  from model in modelList
+                                                  from indicator in indicatorList
                                                   from detection in detectionList
                                                   from subDetection in subDetectionList
-                                                  where indicator.detectionId == detection.id && indicator.subDetectionId == subDetection.id
-                                                  select new IndicatorForTemplateModel()
+                                                  where unIndicat.modelId == model.id
+                                                  && model.parentId == brand.id
+                                                  && unIndicat.indicatorId == indicator.id
+                                                  && indicator.detectionId == detection.id
+                                                  && indicator.subDetectionId == subDetection.id
+                                                  select new RoundIndicatorModel
                                                   {
                                                       classId = indicator.classId,
-                                                      className = (classInfo==null?"": classInfo.codeName),//classType.codeName,
+                                                      className = (classInfo == null ? "" : classInfo.codeName),//classType.codeName,
                                                       detectionId = detection.id,
                                                       detectionName = detection.codeName,
                                                       indicatorDesc = indicator.indicatorDesc,
@@ -131,38 +174,11 @@ namespace AviationSafetyExperiment
                                                       isSelected = false,
                                                       subDetectionId = subDetection.id,
                                                       subDetectionName = subDetection.codeName,
+                                                      modelId = model.id,
+                                                      modelName = model.codeName,
+                                                      brandId = brand.id,
+                                                      brandName = brand.codeName
                                                   }).ToList();
-                    progress.Report("指标计算中……");
-                    Debug.WriteLine("one");
-                }, TaskCreationOptions.AttachedToParent);
-                var childTwo = Task.Factory.StartNew(() =>
-                {
-                    //获取所有已通过指标作为待选指标
-                    var currentRoundPassedIndicatorIdList = currentRoundIndicatorList.Where(r => r.taskResult == 2).Select(r => r.id).ToList();
-                    var currentRoundPassedIndicatorList = from indicator in IndicatorCache.getCache()
-                                                            where currentRoundPassedIndicatorIdList.Contains(indicator.id)
-                                                            select indicator;
-                    //结果2为已通过，1为未通过
-                    unselectedIndicatorModelList = (from indicator in currentRoundPassedIndicatorList
-                                                        //from classType in classList
-                                                    from detection in detectionList
-                                                    from subDetection in subDetectionList
-                                                    where indicator.detectionId == detection.id && indicator.subDetectionId == subDetection.id
-                                                    select new IndicatorForTemplateModel()
-                                                    {
-                                                        classId = indicator.classId,
-                                                        className = (classInfo == null ? "" : classInfo.codeName),// classType.codeName,
-                                                        detectionId = detection.id,
-                                                        detectionName = detection.codeName,
-                                                        indicatorDesc = indicator.indicatorDesc,
-                                                        indicatorInstr = indicator.indicatorInstr,
-                                                        indicatorId = indicator.id,
-                                                        indicatorName = indicator.indicatorName,
-                                                        isObsolete = indicator.isObsolete == 1 ? "已废弃" : "生效中",
-                                                        isSelected = false,
-                                                        subDetectionId = subDetection.id,
-                                                        subDetectionName = subDetection.codeName,
-                                                    }).ToList();
                     progress.Report("指标计算中……");
                     Debug.WriteLine("two");
                 }, TaskCreationOptions.AttachedToParent);
@@ -174,6 +190,25 @@ namespace AviationSafetyExperiment
             progressBar.Visible = false;
         }
 
+        public List<TaskResultModel> RoundInit()
+        {
+            var temp = (from seleIndicatList in selectedIndicatorModelList
+                        select new TaskResultModel
+                        {
+                            indicatorId = seleIndicatList.indicatorId,
+                            indicatorName = seleIndicatList.indicatorName,
+                            indicatorDesc = seleIndicatList.indicatorDesc,
+                            indicatorInstr = seleIndicatList.indicatorInstr,
+                            brandId = seleIndicatList.brandId,
+                            brandName = seleIndicatList.brandName,
+                            modelId = seleIndicatList.modelId,
+                            modelName = seleIndicatList.modelName,
+                            //taskStep,taskExecutor,taskDateTime,taskRecord,taskResult,taskResultId,
+                            //taskRemark,attachment,attachmentCount,supplement
+                        }).ToList();
+            return temp;
+        }
+
         private void bindDgv()
         {
             bindDgvSelected();
@@ -181,55 +216,76 @@ namespace AviationSafetyExperiment
         }
         private void bindDgvSelected()
         {
-            dgv_selected.DataSource = new List<IndicatorForTemplateModel>();
+            dgv_selected.DataSource = new List<RoundIndicatorModel>();
             pagingPanel_selected.setDetail(selectedIndicatorModelList.Count());
             dgv_selected.DataSource = selectedIndicatorModelList.Skip(pageSize_selected * (pageNum_selected - 1)).Take(pageSize_selected).ToList();
         }
         public void bindDgvUnselected()
         {
-            dgv_unselected.DataSource = new List<IndicatorForTemplateModel>();
+            dgv_unselected.DataSource = new List<RoundIndicatorModel>();
             pagingPanel_unselected.setDetail(unselectedIndicatorModelList.Count());
             dgv_unselected.DataSource = unselectedIndicatorModelList.Skip(pageSize_unselect * (pageNum_unselect - 1)).Take(pageSize_unselect).ToList();
         }
 
         private void btn_moveToUnselected_Click(object sender, EventArgs e)
         {
-            List<int> checkedIndicatorId = new List<int>();
+            List<int[]> checkedIndicatorId = new List<int[]>();
             foreach (DataGridViewRow row in dgv_selected.Rows)
             {
                 if (row.Cells[0].Value.ToString() == "True")
                 {
-                    checkedIndicatorId.Add((int)row.Cells[2].Value);
+                    int[] cellVal = new int[] { (int)row.Cells[4].Value, (int)row.Cells[6].Value };
+                    checkedIndicatorId.Add(cellVal);
                 }
             }
             if (checkedIndicatorId.Count == 0) { MessageBoxEx.Show("您没有选中任何指标", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk); }
             else
             {
-                foreach (var indicatorId in checkedIndicatorId)
+                List<Tb_taskResult> currentIndicatorList = new List<Tb_taskResult>();
+                bool flag = true;
+                foreach (var item in checkedIndicatorId)//遍历选择的所有指标,判断其中是否存在未通过的指标,该指标无法移到待选指标
                 {
-                    moveIndicator(selectedIndicatorModelList, unselectedIndicatorModelList, indicatorId);
+                    currentIndicatorList = TaskResultCache.getCache().Where(r => r.indicatorId == item[1] && r.taskId == taskInfoId && r.modelId == item[0] && r.taskStep == maxTaskStep && r.taskRound == currentRound).ToList();
+                    if (currentIndicatorList[0].taskResult == 1)
+                    {
+                        flag = false;
+                        break;
+                    }
                 }
-                chk_selected.Checked = false;
-                bindDgv();
+                if (flag)
+                {
+                    foreach (var checkItem in checkedIndicatorId)
+                    {
+                        moveIndicator(selectedIndicatorModelList, unselectedIndicatorModelList, checkItem[1],checkItem[0]);
+                    }
+                    chk_selected.Checked = false;
+                    bindDgv();
+                }
+                else
+                {
+                    MessageBoxEx.Show("当前选择的指标中存在未通过的指标", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    //表示当前选择的指标中存在未通过的指标
+                }
             }
         }
 
         private void btn_moveToSelected_Click(object sender, EventArgs e)
         {
-            List<int> checkedIndicatorId = new List<int>();
+            List<int[]> checkedIndicatorId = new List<int[]>();
             foreach (DataGridViewRow row in dgv_unselected.Rows)
             {
                 if (row.Cells[0].Value.ToString() == "True")
                 {
-                    checkedIndicatorId.Add((int)row.Cells[2].Value);
+                    int[] cellVal = new int[] { (int)row.Cells[4].Value, (int)row.Cells[6].Value };
+                    checkedIndicatorId.Add(cellVal);
                 }
             }
             if (checkedIndicatorId.Count == 0) { MessageBoxEx.Show("您没有选中任何指标", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk); }
             else
             {
-                foreach (var indicatorId in checkedIndicatorId)
+                foreach (var checkItem in checkedIndicatorId)
                 {
-                    moveIndicator(unselectedIndicatorModelList, selectedIndicatorModelList, indicatorId);
+                    moveIndicator(unselectedIndicatorModelList, selectedIndicatorModelList, checkItem[1],checkItem[0]);
                 }
                 chk_unselect.Checked = false;
                 bindDgv();
@@ -240,13 +296,44 @@ namespace AviationSafetyExperiment
         {
             try
             {
-                List<int> selectedIndicatorIdList = selectedIndicatorModelList.Select(i => i.indicatorId).ToList();
+                //List<int> selectedIndicatorIdList = selectedIndicatorModelList.Select(i => i.indicatorId).ToList();
                 //IndicatorTemplateMapCache.addCache(templateId, selectedIndicatorIdList);
+                List<Tb_taskResult> resultList = new List<Tb_taskResult>();
+                int id = TaskResultCache.getCache().Count;
+                if (selectedIndicatorModelList.Count == 0)
+                {
+                    MessageBox.Show("保存失败,未选择任务指标", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                foreach (var item in selectedIndicatorModelList)
+                {
+                    //Tb_taskIndicatorMap indicatorMap = new Tb_taskIndicatorMap();
+                    //indicatorMap.taskId = taskInfoId;
+                    //indicatorMap.indicatorId = item;
+                    //indicatorMap.taskRound = currentRound;
+                    //TaskIndicatorMapCache.addCacheOnly(indicatorMap);
+                    Tb_taskResult taskResult = new Tb_taskResult();
+                    taskResult.taskId = taskInfoId;
+                    taskResult.taskStep = 1;//新增轮次的步骤默认都是从1开始
+                    taskResult.taskExecutor = User.currentUser.name;
+                    taskResult.taskDateTime = DateTime.Now;
+                    taskResult.modelId = item.modelId;
+                    taskResult.indicatorId = item.indicatorId;
+                    taskResult.taskRecord = "";
+                    taskResult.taskResult = 0;
+                    taskResult.taskRemark = "";
+                    taskResult.attachment = "";
+                    taskResult.supplement = "";
+                    taskResult.taskRound = currentRound+1;
+                    resultList.Add(taskResult);
+                }
+                TaskResultCache.addCache(resultList);
                 MessageBoxEx.Show("保存成功", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.DialogResult = DialogResult.Yes;
             }
             catch (Exception ex)
             {
                 MessageBoxEx.Show("保存失败。" + ex.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.DialogResult = DialogResult.No;
             }
         }
 
@@ -255,26 +342,35 @@ namespace AviationSafetyExperiment
             if (e.RowIndex > -1)
             {
                 DataGridViewX dgv = sender as DataGridViewX;
-                int indicatorId = (int)dgv.Rows[e.RowIndex].Cells[2].Value;
-                swapIndicatro(dgv, indicatorId);
+                int indicatorId = (int)dgv.Rows[e.RowIndex].Cells[6].Value;
+                int modelId = (int)dgv.Rows[e.RowIndex].Cells[4].Value;
+                swapIndicatro(dgv, indicatorId,modelId);
             }
         }
-        private void swapIndicatro(DataGridViewX dgv, int indicatorId)
+        private void swapIndicatro(DataGridViewX dgv, int indicatorId,int modelId)
         {
             if (dgv.Name == "dgv_selected")//已选-》待选
             {
-                moveIndicator(selectedIndicatorModelList, unselectedIndicatorModelList, indicatorId);
+                var currentRoundIndicatorList = TaskResultCache.getCache().Where(r => r.indicatorId == indicatorId && r.modelId == modelId && r.taskId == taskInfoId && r.taskStep == maxTaskStep && r.taskRound == currentRound).ToList();
+                if (currentRoundIndicatorList[0].taskResult == 2) //表示已通过
+                {
+                    moveIndicator(selectedIndicatorModelList, unselectedIndicatorModelList, indicatorId,modelId);
+                }
+                else//1表示未通过,无法将该指标移到已选队列
+                {
+                    MessageBoxEx.Show("该指标未通过,无法移到待选", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                }
             }
             else//待选=》已选
             {
-                moveIndicator(unselectedIndicatorModelList, selectedIndicatorModelList, indicatorId);
+                moveIndicator(unselectedIndicatorModelList, selectedIndicatorModelList, indicatorId,modelId);
             }
 
             bindDgv();
         }
-        private void moveIndicator(List<IndicatorForTemplateModel> source, List<IndicatorForTemplateModel> target, int sourceIndicatorId)
+        private void moveIndicator(List<RoundIndicatorModel> source, List<RoundIndicatorModel> target, int sourceIndicatorId,int modelId)
         {
-            var indicatorToMove = source.FirstOrDefault(i => i.indicatorId == sourceIndicatorId);
+            var indicatorToMove = source.FirstOrDefault(i => i.indicatorId == sourceIndicatorId && i.modelId == modelId);
             if (indicatorToMove != null)
             {
                 source.Remove(indicatorToMove);

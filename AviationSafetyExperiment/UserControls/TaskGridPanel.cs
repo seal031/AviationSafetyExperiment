@@ -129,8 +129,21 @@ namespace AviationSafetyExperiment.UserControls
                 case TaskGridShownStyle.HideAll:
                     break;
                 case TaskGridShownStyle.NewTask:
-                        dgv_taskList.Columns["btn_open"].Visible = true;
-                        dgv_taskList.ReadOnly = true;
+                    foreach (DataGridViewRow item in dgv_taskList.Rows)
+                    {
+                        if (item.Cells[7].Value.ToString() == "未审批" )
+                        {
+                            dgv_taskList.Columns["btn_open"].Visible = false;
+                        }
+                        else
+                        {
+                            //item.Cells[11].Visible = true;
+                        }
+                    }
+                    dgv_taskList.Columns["btn_open"].Visible = true;
+                    //dgv_taskList.Rows
+                    //dgv_taskList.Columns["btn_open"].Visible = true;
+                    dgv_taskList.ReadOnly = true;
                     break;
                 case TaskGridShownStyle.RunningTask:
                     dgv_taskList.Columns["btn_open"].Visible = true;

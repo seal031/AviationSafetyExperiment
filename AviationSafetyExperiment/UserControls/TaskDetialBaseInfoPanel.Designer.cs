@@ -71,6 +71,14 @@
             this.panelEx1.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
             this.panelEx1.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
             this.panelEx1.Style.GradientAngle = 90;
+            this.panelEx1.StyleMouseDown.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(151)))), ((int)(((byte)(61)))));
+            this.panelEx1.StyleMouseDown.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(184)))), ((int)(((byte)(94)))));
+            this.panelEx1.StyleMouseDown.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(140)))), ((int)(((byte)(60)))));
+            this.panelEx1.StyleMouseDown.ForeColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.panelEx1.StyleMouseOver.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(245)))), ((int)(((byte)(204)))));
+            this.panelEx1.StyleMouseOver.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(219)))), ((int)(((byte)(117)))));
+            this.panelEx1.StyleMouseOver.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(189)))), ((int)(((byte)(105)))));
+            this.panelEx1.StyleMouseOver.ForeColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.panelEx1.TabIndex = 0;
             // 
             // lbl_brandModel
@@ -81,9 +89,9 @@
             // 
             this.lbl_brandModel.BackgroundStyle.Class = "";
             this.lbl_brandModel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lbl_brandModel.Location = new System.Drawing.Point(850, 9);
+            this.lbl_brandModel.Location = new System.Drawing.Point(735, 9);
             this.lbl_brandModel.Name = "lbl_brandModel";
-            this.lbl_brandModel.Size = new System.Drawing.Size(131, 24);
+            this.lbl_brandModel.Size = new System.Drawing.Size(105, 20);
             this.lbl_brandModel.TabIndex = 11;
             this.lbl_brandModel.Text = "测试品牌、型号：";
             // 
@@ -97,7 +105,7 @@
             this.lbl_taskType.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lbl_taskType.Location = new System.Drawing.Point(459, 39);
             this.lbl_taskType.Name = "lbl_taskType";
-            this.lbl_taskType.Size = new System.Drawing.Size(69, 24);
+            this.lbl_taskType.Size = new System.Drawing.Size(56, 20);
             this.lbl_taskType.TabIndex = 10;
             this.lbl_taskType.Text = "任务名称";
             // 
@@ -113,7 +121,7 @@
             this.labelX10.ForeColor = System.Drawing.Color.Black;
             this.labelX10.Location = new System.Drawing.Point(375, 39);
             this.labelX10.Name = "labelX10";
-            this.labelX10.Size = new System.Drawing.Size(85, 24);
+            this.labelX10.Size = new System.Drawing.Size(68, 20);
             this.labelX10.TabIndex = 9;
             this.labelX10.Text = "测试类型：";
             // 
@@ -127,9 +135,9 @@
             this.labelX8.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX8.Font = new System.Drawing.Font("微软雅黑", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.labelX8.ForeColor = System.Drawing.Color.Black;
-            this.labelX8.Location = new System.Drawing.Point(713, 9);
+            this.labelX8.Location = new System.Drawing.Point(622, 9);
             this.labelX8.Name = "labelX8";
-            this.labelX8.Size = new System.Drawing.Size(131, 24);
+            this.labelX8.Size = new System.Drawing.Size(105, 20);
             this.labelX8.TabIndex = 8;
             this.labelX8.Text = "测试品牌、型号：";
             // 
@@ -143,7 +151,7 @@
             this.lbl_taskCode.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lbl_taskCode.Location = new System.Drawing.Point(102, 69);
             this.lbl_taskCode.Name = "lbl_taskCode";
-            this.lbl_taskCode.Size = new System.Drawing.Size(69, 24);
+            this.lbl_taskCode.Size = new System.Drawing.Size(56, 20);
             this.lbl_taskCode.TabIndex = 7;
             this.lbl_taskCode.Text = "任务名称";
             // 
@@ -159,7 +167,7 @@
             this.labelX7.ForeColor = System.Drawing.Color.Black;
             this.labelX7.Location = new System.Drawing.Point(18, 69);
             this.labelX7.Name = "labelX7";
-            this.labelX7.Size = new System.Drawing.Size(85, 24);
+            this.labelX7.Size = new System.Drawing.Size(68, 20);
             this.labelX7.TabIndex = 6;
             this.labelX7.Text = "测试编码：";
             // 
@@ -173,7 +181,7 @@
             this.lbl_taskExecutor.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lbl_taskExecutor.Location = new System.Drawing.Point(459, 69);
             this.lbl_taskExecutor.Name = "lbl_taskExecutor";
-            this.lbl_taskExecutor.Size = new System.Drawing.Size(69, 24);
+            this.lbl_taskExecutor.Size = new System.Drawing.Size(56, 20);
             this.lbl_taskExecutor.TabIndex = 5;
             this.lbl_taskExecutor.Text = "任务名称";
             // 
@@ -189,7 +197,7 @@
             this.labelX5.ForeColor = System.Drawing.Color.Black;
             this.labelX5.Location = new System.Drawing.Point(375, 69);
             this.labelX5.Name = "labelX5";
-            this.labelX5.Size = new System.Drawing.Size(85, 24);
+            this.labelX5.Size = new System.Drawing.Size(68, 20);
             this.labelX5.TabIndex = 4;
             this.labelX5.Text = "测试人员：";
             // 
@@ -203,7 +211,7 @@
             this.lbl_taskClass.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lbl_taskClass.Location = new System.Drawing.Point(102, 39);
             this.lbl_taskClass.Name = "lbl_taskClass";
-            this.lbl_taskClass.Size = new System.Drawing.Size(69, 24);
+            this.lbl_taskClass.Size = new System.Drawing.Size(56, 20);
             this.lbl_taskClass.TabIndex = 3;
             this.lbl_taskClass.Text = "任务名称";
             // 
@@ -219,7 +227,7 @@
             this.labelX3.ForeColor = System.Drawing.Color.Black;
             this.labelX3.Location = new System.Drawing.Point(18, 39);
             this.labelX3.Name = "labelX3";
-            this.labelX3.Size = new System.Drawing.Size(85, 24);
+            this.labelX3.Size = new System.Drawing.Size(68, 20);
             this.labelX3.TabIndex = 2;
             this.labelX3.Text = "测试分类：";
             // 
@@ -233,7 +241,7 @@
             this.lbl_taskName.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lbl_taskName.Location = new System.Drawing.Point(102, 9);
             this.lbl_taskName.Name = "lbl_taskName";
-            this.lbl_taskName.Size = new System.Drawing.Size(69, 24);
+            this.lbl_taskName.Size = new System.Drawing.Size(56, 20);
             this.lbl_taskName.TabIndex = 1;
             this.lbl_taskName.Text = "任务名称";
             // 
@@ -249,13 +257,13 @@
             this.labelX1.ForeColor = System.Drawing.Color.Black;
             this.labelX1.Location = new System.Drawing.Point(18, 9);
             this.labelX1.Name = "labelX1";
-            this.labelX1.Size = new System.Drawing.Size(85, 24);
+            this.labelX1.Size = new System.Drawing.Size(68, 20);
             this.labelX1.TabIndex = 0;
             this.labelX1.Text = "任务名称：";
             // 
             // TaskDetialBaseInfoPanel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panelEx1);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));

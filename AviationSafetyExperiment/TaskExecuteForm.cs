@@ -19,6 +19,7 @@ namespace AviationSafetyExperiment
         private int _taskStateId;
         public int taskInfoId;
         private int currentRound = 1, maxRound = 1;
+        private int maxTaskStep = 0;
         public TaskExecuteForm(int taskInfoId)
         {
             InitializeComponent();
@@ -40,7 +41,22 @@ namespace AviationSafetyExperiment
             {
                 btn_pass.Visible = false;
                 btn_reject.Visible = false;
-                trp.init(taskInfoId, false, currentRound);
+                List<Tb_taskResult> resultList = TaskResultCache.getCache().Where(t => t.taskId == taskInfoId).ToList();
+                try
+                {
+                    maxRound = resultList.Max(x => x.taskRound);
+                }
+                catch (Exception ex)
+                {
+                }
+                if (maxRound == currentRound)
+                {
+                    trp.init(taskInfoId, false, currentRound);
+                }
+                else
+                {
+                    trp.init(taskInfoId, true, currentRound);
+                }
             }
             bindTaskRound();
             tdbip.init(taskInfoId);
@@ -61,6 +77,7 @@ namespace AviationSafetyExperiment
                 btn_round.SubItemsExpandWidth = 14;
                 btn_round.Text = "1";
                 btn_round.Click += new System.EventHandler(btn_round_Click);
+                btn_round.Checked = true;
                 this.ribbonBar_taskRound.Items.Add(btn_round);
             }
             else
@@ -73,6 +90,10 @@ namespace AviationSafetyExperiment
                     btn_round.SubItemsExpandWidth = 14;
                     btn_round.Text = round.ToString();
                     btn_round.Click += new System.EventHandler(btn_round_Click);
+                    if (round == currentRound)
+                    {
+                        btn_round.Checked = true;
+                    }
                     this.ribbonBar_taskRound.Items.Add(btn_round);
                 }
                 maxRound = orderRoundList.Count;
@@ -130,13 +151,17 @@ namespace AviationSafetyExperiment
         private void btn_save_Click(object sender, EventArgs e)
         {
             List<Tb_taskResult> resultList = new List<Db.Entity.Tb_taskResult>();
-            int oldRound = -1;
+            //int oldRound = -1;
+            if (currentRound != maxRound)
+            {
+                return;
+            }
             foreach (DataGridViewRow dr in trp.dgv.Rows)
             {
-                if (oldRound == -1)
-                {
-                    oldRound = (int)(dr.Cells["taskStep"].Value);
-                }
+                //if (oldRound == -1)
+                //{
+                //    oldRound = (int)(dr.Cells["taskStep"].Value);
+                //}
                 //如果修改过测试结果，或是测试结果内有内容（无论是否本次输入），都保存
                 if (dr.Cells["taskResult"].Style.BackColor == Color.LightSeaGreen
                     || dr.Cells["taskRecord"].Style.BackColor == Color.LightSeaGreen
@@ -153,12 +178,14 @@ namespace AviationSafetyExperiment
                     result.taskDateTime = DateTime.Now;
                     result.taskExecutor = User.currentUser.name;
                     result.taskId = taskInfoId;
-                    result.taskRecord = dr.Cells["taskRecord"].Value.ToString();
+                    result.taskRecord = dr.Cells["taskRecord"].Value == null ? "" : dr.Cells["taskRecord"].Value.ToString();
                     result.taskRemark = dr.Cells["taskRemark"].Value.ToString();
                     result.taskResult = (int)dr.Cells["taskResult"].Value;
                     result.attachment = dr.Cells["attachment"].Value.ToString();
                     result.supplement = dr.Cells["supplement"].Value == null ? "" : dr.Cells["supplement"].Value.ToString();
-                    result.taskStep = oldRound + 1;
+                    result.taskStep = maxTaskStep+1;
+                    result.taskRound = currentRound;
+                    //result.taskRound = int.Parse(labelItem2.Text);
                     resultList.Add(result);
                 }
             }
@@ -176,8 +203,10 @@ namespace AviationSafetyExperiment
                     dr.Cells["taskRecord"].Style.BackColor = Color.White;
                     dr.Cells["taskRemark"].Style.BackColor = Color.White;
                     dr.Cells["attachmentCount"].Style.BackColor = Color.White;
+                    dr.Cells["taskStep"].Value = int.Parse(dr.Cells["taskStep"].Value.ToString()) + 1;
                 }
                 MainFormAdapter.reloadTaskMainPanel();
+                maxTaskStep++;//最大步骤编号,每次保存,都加1,如果切换轮次,需重新获取该轮次的最大步骤编号
             }
         }
 
@@ -236,10 +265,46 @@ namespace AviationSafetyExperiment
             }
             else
             {
-                TaskNewRoundDefine tnrd = new TaskNewRoundDefine(taskInfoId, maxRound + 1);
-                tnrd.ShowDialog(this);
+                if (maxRound != currentRound)
+                {
+                    MessageBoxEx.Show("请先切换到最新的轮次,并确保其测试结果填写完整", "操作提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                maxTaskStep = (int)(trp.dgv.Rows[0].Cells["taskStep"].Value);
+                TaskNewRoundDefine tnrd = new TaskNewRoundDefine(taskInfoId, maxRound, maxTaskStep);
                 tnrd.init();
+                tnrd.getTemplateIndicators();
+                DialogResult result = tnrd.ShowDialog(this);
+                if (result == DialogResult.Yes)
+                {
+                    currentRound++;
+                    maxRound++;
+                    AddRoundButton(currentRound);
+                    trp.init(taskInfoId, false,currentRound);
+                    maxTaskStep = (int)(trp.dgv.Rows[0].Cells["taskStep"].Value);//轮次切换后,会进行页面刷新,获取当前轮次页面的最大步骤
+                }
+                else
+                {
+
+                }
             }
+        }
+
+        private void AddRoundButton(int currentRound)
+        {
+            for (int i = 3; i < ribbonBar_taskRound.Items.Count; i++)
+            {
+                ButtonItem btnItem = (ButtonItem)ribbonBar_taskRound.Items[i];
+                btnItem.Checked = false;
+            }
+            ButtonItem btn_round = new ButtonItem();
+            btn_round.ShowSubItems = false;
+            btn_round.SubItemsExpandWidth = 14;
+            btn_round.Text = currentRound.ToString();
+            btn_round.Click += new System.EventHandler(btn_round_Click);
+            btn_round.Checked = true;
+            this.ribbonBar_taskRound.Items.Add(btn_round);
+            this.ribbonBar_taskRound.Refresh();
         }
 
         private void btn_round_Click(object sender, EventArgs e)
@@ -248,24 +313,41 @@ namespace AviationSafetyExperiment
             int round;
             if (int.TryParse(btn_round.Text, out round))
             {
+                //maxRound = 2;
+                currentRound = round;
                 if (trpIsEdited())
                 {
                     MessageBoxEx.Show("当前轮次还有尚未保存的修改，请先保存任务，再进行轮次切换。", "操作风险", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                     return;
                 }
-                if (round == currentRound)
+                if (round == maxRound)
                 {
-                    trp.init(taskInfoId, false, round);//如果选中了当前轮次，可以编辑
+                        
+                    if (round != 1)
+                    {
+                        trp.maxRoundInit(taskInfoId, false, round);
+                    }
+                    else
+                    {
+                        trp.init(taskInfoId, false, round);//如果选中了当前轮次，可以编辑
+                    }
                 }
                 else
                 {
                     trp.init(taskInfoId, true, round);//如果选中了之前的轮次，只读
                 }
+                maxTaskStep = (int)(trp.dgv.Rows[0].Cells["taskStep"].Value);//轮次切换后,会进行页面刷新,获取当前轮次页面的最大步骤
             }
             else
             {
                 MessageBoxEx.Show("要查看的轮次无效。", "操作提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+            for (int i = 3; i < ribbonBar_taskRound.Items.Count; i++)
+            {
+                ButtonItem btnItem = (ButtonItem)ribbonBar_taskRound.Items[i];
+                btnItem.Checked = false;
+            }
+            btn_round.Checked = true;
         }
         private bool trpIsEdited()
         {
