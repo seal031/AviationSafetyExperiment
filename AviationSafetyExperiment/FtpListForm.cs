@@ -59,8 +59,21 @@ namespace AviationSafetyExperiment
             }
             if (supplement != null)
             {
-                txt_alarmType.Text = supplement.alarmType;
-                txt_alarmForm.Text = supplement.alarmForm;
+
+                //alarmSupplementPan.dgv.Rows.Add(supplement.alarmInputList.Count);
+                //for (int i = 0; i < supplement.alarmInputList.Count; i++)
+                //{
+                //    DataGridViewRow row = alarmSupplementPan.dgv.Rows[i];
+                //    row.Cells[0].Value = supplement.alarmInputList[i].taskId;
+                //    row.Cells[1].Value = supplement.alarmInputList[i].alarmType;
+                //    row.Cells[2].Value = supplement.alarmInputList[i].alarmForm;
+                //    row.Cells[3].Value = supplement.alarmInputList[i].classify;
+                //    row.Cells[4].Value = supplement.alarmInputList[i].describe;
+                //}
+                alarmSupplementPan.dgv.DataSource = supplement.alarmInputList;
+
+                //txt_alarmType.Text = supplement.alarmType;
+                //txt_alarmForm.Text = supplement.alarmForm;
                 ii_testCount.Text = supplement.totalTest.ToString();
                 ii_alarmCount.Text = supplement.alarmTest.ToString();
                 ii_omitCount.Text = supplement.omitCount.ToString();

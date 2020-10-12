@@ -102,6 +102,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -131,6 +132,12 @@
     <Compile Include="BrandModelSelector.Designer.cs">
       <DependentUpon>BrandModelSelector.cs</DependentUpon>
     </Compile>
+    <Compile Include="Chart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Chart.Designer.cs">
+      <DependentUpon>Chart.cs</DependentUpon>
+    </Compile>
     <Compile Include="DbLocalCache\CodeCache.cs" />
     <Compile Include="DbLocalCache\IndicatorCache.cs" />
     <Compile Include="DbLocalCache\IndicatorTemplateMapCache.cs" />
@@ -149,6 +156,7 @@
     <Compile Include="Db\Entity\BaseEntity.cs" />
     <Compile Include="Db\Entity\Enums.cs" />
     <Compile Include="Db\Entity\ResultSupplement.cs" />
+    <Compile Include="Db\Entity\Tb_alarminput.cs" />
     <Compile Include="Db\Entity\Tb_indicatorTemplateMap.cs" />
     <Compile Include="Db\Entity\Tb_code.cs" />
     <Compile Include="Db\Entity\Tb_indicator.cs" />
@@ -183,6 +191,12 @@
     </Compile>
     <Compile Include="Test.Designer.cs">
       <DependentUpon>Test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\AlarmSupplementPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\AlarmSupplementPanel.Designer.cs">
+      <DependentUpon>AlarmSupplementPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\PagingPanel.cs">
       <SubType>UserControl</SubType>
@@ -327,6 +341,9 @@
     <EmbeddedResource Include="BrandModelSelector.resx">
       <DependentUpon>BrandModelSelector.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Chart.resx">
+      <DependentUpon>Chart.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FtpListForm.resx">
       <DependentUpon>FtpListForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -372,6 +389,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Test.resx">
       <DependentUpon>Test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\AlarmSupplementPanel.resx">
+      <DependentUpon>AlarmSupplementPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\IndicatorDataGrid.resx">
       <DependentUpon>IndicatorDataGrid.cs</DependentUpon>

@@ -190,7 +190,8 @@ namespace AviationSafetyExperiment.UserControls
                                           taskResultId = resultList.id,
                                           taskRemark = resultList.taskRemark,
                                           attachment = resultList.attachment,
-                                          attachmentCount = "",
+                                          attachmentCount = (resultList.attachment == string.Empty ? "" : resultList.attachment.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries).Count() + "个")
+                                          + (resultList.supplement == "" ? "" : "(补)"),
                                           supplement = resultList.supplement
                                       }).ToList();
             }
@@ -505,7 +506,7 @@ namespace AviationSafetyExperiment.UserControls
                 if (dgv.Rows[cell.RowIndex].Cells["supplement"].Value != null)
                 {
                     string supplementJsonString = dgv.Rows[cell.RowIndex].Cells["supplement"].Value.ToString();
-                    SupplementForm sf = new SupplementForm(supplementJsonString);
+                    SupplementForm sf = new SupplementForm(supplementJsonString,taskId);
                     if (sf.ShowDialog(this) == DialogResult.OK)
                     {
                         dgv.Rows[cell.RowIndex].Cells["supplement"].Value = sf.getSupplimentJsonString();
