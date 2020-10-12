@@ -294,8 +294,8 @@ namespace AviationSafetyExperiment
         }
         private void DialogSeleFile(List<TaskResultModel> resultList,string infoId)
         {
-            //string path = System.IO.Path.GetFullPath(@"..//..") + "\\lib\\航科院安保设施实验室-测试报告模板20191206.docx";
-            string path = Application.StartupPath + @"\ReportTemplate" + "\\ReportTemplate.docx";
+            string path = System.IO.Path.GetFullPath(@"..//..") + "\\lib\\航科院安保设施实验室-测试报告模板20191206.docx";
+            //string path = Application.StartupPath + @"\ReportTemplate" + "\\ReportTemplate.docx";
             FolderBrowserDialog folderDlg = new FolderBrowserDialog();
             folderDlg.Description = "选择要生成测试报告的文件夹";
             if (folderDlg.ShowDialog() == DialogResult.OK)

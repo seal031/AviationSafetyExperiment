@@ -154,14 +154,23 @@ namespace AviationSafetyExperiment
             //int oldRound = -1;
             if (currentRound != maxRound)
             {
+                MessageBoxEx.Show("当前轮次不是最大轮次,无法保存", "操作提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             foreach (DataGridViewRow dr in trp.dgv.Rows)
             {
-                //if (oldRound == -1)
-                //{
-                //    oldRound = (int)(dr.Cells["taskStep"].Value);
-                //}
+                if (dr.Cells["taskRecord"].Value == null)
+                {
+                    dr.Cells["taskRecord"].Value = "";
+                }
+                if (dr.Cells["taskRemark"].Value == null)
+                {
+                    dr.Cells["taskRemark"].Value = "";
+                }
+                if (dr.Cells["attachment"].Value == null)
+                {
+                    dr.Cells["attachment"].Value = "";
+                }
                 //如果修改过测试结果，或是测试结果内有内容（无论是否本次输入），都保存
                 if (dr.Cells["taskResult"].Style.BackColor == Color.LightSeaGreen
                     || dr.Cells["taskRecord"].Style.BackColor == Color.LightSeaGreen
@@ -349,6 +358,21 @@ namespace AviationSafetyExperiment
             }
             btn_round.Checked = true;
         }
+
+        private void TaskExecuteForm_Shown(object sender, EventArgs e)
+        {
+            //maxTaskStep = 
+            List<Tb_taskResult> resultList = TaskResultCache.getCache().Where(t => t.taskId == taskInfoId && t.taskRound == currentRound).ToList();
+            try
+            {
+                maxTaskStep = resultList.Max(x => x.taskStep);
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
         private bool trpIsEdited()
         {
             foreach (DataGridViewRow dr in trp.dgv.Rows)

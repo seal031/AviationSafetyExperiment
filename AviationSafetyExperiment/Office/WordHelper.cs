@@ -51,21 +51,33 @@ namespace AviationSafetyExperiment.Office
                         }
                         else//如何测试项目大于当前文档已有的行数,需要进行添加行的操作
                         {
-                            //for (int i = num; i < 0; i++)
-                            //{
-                            //    //    NPOI.OpenXmlFormats.Wordprocessing.CT_Row nr = new NPOI.OpenXmlFormats.Wordprocessing.CT_Row();
-                            //    //    XWPFTableRow mr = new XWPFTableRow(nr, table);//创建行 
-
-                            //    XWPFTableRow newRow = table.GetRow(2);
-                            //    //for (int j = 0; j < newRow.GetTableCells().Count; j++)
-                            //    //{
-                            //    //    XWPFParagraph par = doc.CreateParagraph();
-                            //    //    XWPFRun run = par.CreateRun();
-                            //    //    run.SetText("");
-                            //    //    newRow.GetCell(j).SetParagraph(par);
-                            //    //}
-                            //    //table.AddRow(newRow, table.Rows.Count - 1);
-                            //}
+                            for (int i = num; i < 0; i++)
+                            {
+                                NPOI.OpenXmlFormats.Wordprocessing.CT_Row nr = new NPOI.OpenXmlFormats.Wordprocessing.CT_Row();
+                                XWPFTableRow mr = new XWPFTableRow(nr, table);//创建行 
+                                //mr.AddNewTableCell();
+                                //mr.AddNewTableCell();
+                                //mr.AddNewTableCell();
+                                //mr.AddNewTableCell();
+                                //mr.AddNewTableCell();
+                                //mr.AddNewTableCell();
+                                mr.CreateCell();
+                                mr.CreateCell();
+                                mr.CreateCell();
+                                mr.CreateCell();
+                                mr.CreateCell();
+                                mr.CreateCell();
+                                table.AddRow(mr, table.Rows.Count - 1);
+                                //XWPFTableRow newRow = table.GetRow(2);
+                                //for (int j = 0; j < newRow.GetTableCells().Count; j++)
+                                //{
+                                //    XWPFParagraph par = doc.CreateParagraph();
+                                //    XWPFRun run = par.CreateRun();
+                                //    run.SetText("");
+                                //    newRow.GetCell(j).SetParagraph(par);
+                                //}
+                                //table.AddRow(newRow, table.Rows.Count - 1);
+                            }
                         }
                         int item = 0;
                         for (int i = 0; i < table.Rows.Count; i++)

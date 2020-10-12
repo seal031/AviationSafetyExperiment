@@ -34,6 +34,8 @@ namespace AviationSafetyExperiment
                 remoteFileList.Add(remoteFile);
                 addIc(remoteFile,true);
             }
+            superTabItem2.Visible = false;
+            this.Text = "附件管理";
         }
         /// <summary>
         /// 只读模式的构造函数
@@ -49,6 +51,8 @@ namespace AviationSafetyExperiment
                 addIc(remoteFile, true);
             }
             btn_openFileDialog.Enabled = false;
+            superTabItem2.Visible = true;
+            this.Text = "附件及补漏报管理";
             try
             {
                 supplement = ResultSupplement.fromJson(supplementJsonString);

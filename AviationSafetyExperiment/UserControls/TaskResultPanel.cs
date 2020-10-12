@@ -162,7 +162,32 @@ namespace AviationSafetyExperiment.UserControls
             }
             else
             {
-                allResultModelList = (from resultList in TaskResultCache.getCache()
+                var initStepList = TaskResultCache.getCache().Where(r => r.taskId == taskId && r.taskRound == taskRound && r.taskResult == 0).ToList();
+                var a = (from initStep in initStepList
+                         join result in
+                         TaskResultCache.getCache().Where(r => r.taskId == taskId && r.taskRound == taskRound && r.taskStep == step).ToList()
+                         on new { initStep.modelId, initStep.indicatorId }
+                         equals new { result.modelId, result.indicatorId } into temp
+                         from tt in temp.DefaultIfEmpty()
+                         select new Tb_taskResult
+                                     {
+                                         id=initStep.id,
+                                         taskRecord=(tt==null?"": tt.taskRecord),
+                                         attachment = (tt == null ?"":tt.attachment),
+                                         taskResult = (tt==null?0:tt.taskResult),
+                                         taskId = initStep.taskId,
+                                         taskStep = step,
+                                         taskRound = round,
+                                         taskExecutor = initStep.taskExecutor,
+                                         taskDateTime = tt== null? DateTime.Now: tt.taskDateTime,
+                                         modelId = initStep.modelId,
+                                         indicatorId = initStep.indicatorId,
+                                         taskRemark = (tt == null ? "" : tt.taskRemark),
+                                         supplement = (tt == null ? "" : tt.supplement),
+
+                                     }).ToList();
+
+                allResultModelList = (from resultList in a
                                       from indicator in indicatorList
                                       from brand in brandList
                                       from model in modelList

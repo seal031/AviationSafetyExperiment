@@ -148,6 +148,7 @@
     <Compile Include="DbLocalCache\TaskResultCache.cs" />
     <Compile Include="DbLocalCache\TemplateCache.cs" />
     <Compile Include="Db\DAO\BaseAdapter.cs" />
+    <Compile Include="Db\DAO\CountChartAdapter.cs" />
     <Compile Include="Db\DAO\IndicatorTemplateMapAdapter.cs" />
     <Compile Include="Db\DAO\TaskAdapter.cs" />
     <Compile Include="Db\DAO\TaskQueryHelper.cs" />
