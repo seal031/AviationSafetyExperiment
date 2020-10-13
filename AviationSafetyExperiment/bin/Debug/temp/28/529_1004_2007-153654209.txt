@@ -1,0 +1,24 @@
+D00
+=2020/8/20 9:40:57
+=1234567890
+=1
+=E:\工作\工作文档\泉州车底\SDK FOR VSMNET V3.7(1)\SDK FOR VSMNET V3.7\DEMO\uvifile0.bmp
+=E:\工作\工作文档\泉州车底\SDK FOR VSMNET V3.7(1)\SDK FOR VSMNET V3.7\DEMO\carplateAKE653_cif.bmp
+=川A88888
+=1
+=E:\工作\工作文档\泉州车底\SDK FOR VSMNET V3.7(1)\SDK FOR VSMNET V3.7\DEMO\outlookfile0.bmp
+=-1
+=-1
+=8888
+=EOF 
+
+日志时间：2020-08-24 14:57:22,254 [1]
+接受车底信息记录D00:D00=2020/8/24 14:57:22=1234567890=1=D:\Program Files (x86)\HAYC\泉州车底数据接入程序\uvifile0.bmp=D:\Program Files (x86)\HAYC\泉州车底数据接入程序\carplateAKE653_cif.bmp=川AD8888=1=D:\Program Files (x86)\HAYC\泉州车底数据接入程序\outlookfile0.bmp=-1=-1=8888=EOF
+
+日志时间：2020-08-24 14:57:22,372 [1]
+正在向kafka发送MessComm消息:{"parkCode":"1","plateNo":"川AD8888","cardNo":"","carTypeCode":"","carType":"","capTime":"2020/8/24 14:57:22","capPlace":"","capFlag":"0","imgName":"","capRemark":"","vechicleShape":"","vechicleShapeName":"","vechicleColour":"","vechicleColourName":"","vechicleInUvssImg":"","vechicleInUvssPicpath":"D:\\Program Files (x86)\\HAYC\\泉州车底数据接入程序\\uvifile0.bmp","vechicleInAnprImg":"","vechicleInAnprPicpath":"D:\\Program Files (x86)\\HAYC\\泉州车底数据接入程序\\carplateAKE653_cif.bmp","vechicleInTopImg":"","vechicleInTopPicpath":"","vechicleOutTime":"","vechicleInState":"","vechicleInStateName":"","driverName":"","driverCard":"","driverLicense":"","driverJobNo":"8888","vechicleDept":"","createDate":"","updateDate":"","airportIata":"","airportIame":""}
+日志时间：2020-08-24 14:57:24,622 [4]
+Delivered message to cContianerCrossing [[2]] @0
+
+
+<Channel id="1000011$1$0$15" />

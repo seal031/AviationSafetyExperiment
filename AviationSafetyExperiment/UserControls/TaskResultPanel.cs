@@ -26,8 +26,8 @@ namespace AviationSafetyExperiment.UserControls
         List<TaskResultModel> allResultModelList = new List<TaskResultModel>();
         List<ListItem> items = new List<ListItem>();
         private int taskId;
-        private int taskRound;
-        private int maxResultStep, currentResultStep;
+        public int taskRound;
+        public int maxResultStep, currentResultStep;
         //protected override CreateParams CreateParams
         //{
         //    get
@@ -63,7 +63,7 @@ namespace AviationSafetyExperiment.UserControls
         {
             taskId = taskInfoId;
             this.taskRound = taskRound;
-            taskResultMapList = TaskResultCache.getCache().Where(t => t.taskId == taskId).ToList();
+            taskResultMapList = TaskResultCache.getCache().Where(t => t.taskId == taskId && t.taskRound == taskRound).ToList();
             maxResultStep = 0;
             try
             {
@@ -80,93 +80,229 @@ namespace AviationSafetyExperiment.UserControls
             setReadOnly(readOnly);
         }
 
-        private List<TaskResultModel> getData(int step,int round)
+        public List<TaskResultModel> getData(int step,int round)
         {
             var taskIndicatorMapList = TaskIndicatorMapCache.getCache().Where(i => i.taskId == taskId).ToList();
             var indicatorList = IndicatorCache.getCache();
             var brandList = CodeCache.getBrand();
             var modelList = CodeCache.getModel();
             var taskModelList = TaskModelMapCache.getCache();
-            //todo ***************确定后将下列ToList都去掉******************
-            var brand_model_list = (from brand in brandList
-                                    from model in modelList
-                                    where brand.id == model.parentId
-                                    select new
-                                    {
-                                        modelId = model.id,
-                                        modelName = model.codeName,
-                                        brandId = brand.id,
-                                        brandName = brand.codeName
-                                    }).ToList();
+            if (round == 1)
+            {
+                //todo ***************确定后将下列ToList都去掉******************
+                var brand_model_list = (from brand in brandList
+                                        from model in modelList
+                                        where brand.id == model.parentId
+                                        select new
+                                        {
+                                            modelId = model.id,
+                                            modelName = model.codeName,
+                                            brandId = brand.id,
+                                            brandName = brand.codeName
+                                        }).ToList();
 
-            var task_model_indicator_list = (from taskIndicator in taskIndicatorMapList
-                                             from taskModel in taskModelList
-                                             from bm in brand_model_list
-                                             where taskIndicator.taskId == taskId && taskModel.taskId == taskId && taskModel.ModelId == bm.modelId
-                                             select new
-                                             {
-                                                 taskIndicator,
-                                                 bm.brandId,
-                                                 bm.brandName,
-                                                 bm.modelId,
-                                                 bm.modelName
-                                             }).ToList();
+                var task_model_indicator_list = (from taskIndicator in taskIndicatorMapList
+                                                 from taskModel in taskModelList
+                                                 from bm in brand_model_list
+                                                 where taskIndicator.taskId == taskId && taskModel.taskId == taskId && taskModel.ModelId == bm.modelId
+                                                 select new
+                                                 {
+                                                     taskIndicator,
+                                                     bm.brandId,
+                                                     bm.brandName,
+                                                     bm.modelId,
+                                                     bm.modelName
+                                                 }).ToList();
 
-            var list_indicator = (from indicator in task_model_indicator_list
-                                  join result in taskResultMapList.Where(r => r.taskStep == step && r.taskRound == round) on new { indicator.taskIndicator.indicatorId, indicator.modelId } equals new { result.indicatorId, result.modelId } into temp
-                                  from tt in temp.DefaultIfEmpty()
-                                  select new
-                                  {
-                                      indicator,
-                                      taskRecord = tt == null ? "" : tt.taskRecord,
-                                      taskResult = tt == null ? 0 : tt.taskResult,
-                                      taskRemark = tt == null ? "" : tt.taskRemark,
-                                      attachment = tt == null ? "" : tt.attachment,
-                                      taskExecutor = tt == null ? "" : tt.taskExecutor,
-                                      taskDateTime = tt == null ? "" : tt.taskDateTime.ToString(),
-                                      taskStep = tt == null ? 0 : tt.taskStep,
-                                      modelId = tt == null ? 0 : tt.modelId,
-                                      taskResultId = tt == null ? 0 : tt.id,
-                                      supplement = tt == null ? "" : tt.supplement
-                                  }).ToList();
+                var list_indicator = (from indicator in task_model_indicator_list
+                                      join result in taskResultMapList.Where(r => r.taskStep == step && r.taskRound == round) 
+                                      on new { indicator.taskIndicator.indicatorId, indicator.modelId } 
+                                      equals new { result.indicatorId, result.modelId } into temp
+                                      from tt in temp.DefaultIfEmpty()
+                                      select new
+                                      {
+                                          indicator,
+                                          taskRecord = tt == null ? "" : tt.taskRecord,
+                                          taskResult = tt == null ? 0 : tt.taskResult,
+                                          taskRemark = tt == null ? "" : tt.taskRemark,
+                                          attachment = tt == null ? "" : tt.attachment,
+                                          taskExecutor = tt == null ? "" : tt.taskExecutor,
+                                          taskDateTime = tt == null ? "" : tt.taskDateTime.ToString(),
+                                          taskStep = tt == null ? 0 : tt.taskStep,
+                                          modelId = tt == null ? 0 : tt.modelId,
+                                          taskResultId = tt == null ? 0 : tt.id,
+                                          supplement = tt == null ? "" : tt.supplement
+                                      }).ToList();
 
-            allResultModelList = (from temp in list_indicator
-                                  from indicator in indicatorList
-                                  where temp.indicator.taskIndicator.indicatorId == indicator.id
-                                  select new TaskResultModel
-                                  {
-                                      indicatorId = indicator.id,
-                                      indicatorName = indicator.indicatorName,
-                                      indicatorDesc = indicator.indicatorDesc,
-                                      indicatorInstr = indicator.indicatorInstr,
-                                      taskDateTime = temp.taskDateTime,
-                                      taskStep = temp.taskStep,
-                                      taskExecutor = temp.taskExecutor,
-                                      taskRecord = temp.taskRecord,
-                                      taskRemark = temp.taskRemark,
-                                      attachment = temp.attachment,
-                                      attachmentCount = (temp.attachment == string.Empty ? "" : temp.attachment.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries).Count() + "个")
-                                      + (temp.supplement == "" ? "" : "(补)"),
-                                      taskResult = temp.taskResult,
-                                      modelId = temp.indicator.modelId,
-                                      modelName = temp.indicator.modelName,
-                                      brandId = temp.indicator.brandId,
-                                      brandName = temp.indicator.brandName,
-                                      taskResultId = temp.taskResultId,
-                                      supplement = temp.supplement
-                                  }).ToList();
+                allResultModelList = (from temp in list_indicator
+                                      from indicator in indicatorList
+                                      where temp.indicator.taskIndicator.indicatorId == indicator.id
+                                      select new TaskResultModel
+                                      {
+                                          indicatorId = indicator.id,
+                                          indicatorName = indicator.indicatorName,
+                                          indicatorDesc = indicator.indicatorDesc,
+                                          indicatorInstr = indicator.indicatorInstr,
+                                          taskDateTime = temp.taskDateTime,
+                                          taskStep = temp.taskStep,
+                                          taskExecutor = temp.taskExecutor,
+                                          taskRecord = temp.taskRecord,
+                                          taskRemark = temp.taskRemark,
+                                          attachment = temp.attachment,
+                                          attachmentCount = (temp.attachment == string.Empty ? "" : temp.attachment.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries).Count() + "个")
+                                          + (temp.supplement == "" ? "" : "(补)"),
+                                          taskResult = temp.taskResult,
+                                          modelId = temp.indicator.modelId,
+                                          modelName = temp.indicator.modelName,
+                                          brandId = temp.indicator.brandId,
+                                          brandName = temp.indicator.brandName,
+                                          taskResultId = temp.taskResultId,
+                                          supplement = temp.supplement
+                                      }).ToList();
+            }
+            else
+            {
+                var initStepList = TaskResultCache.getCache().Where(r => r.taskId == taskId && r.taskRound == taskRound && r.taskResult == 0).ToList();
+                var a = (from initStep in initStepList
+                         join result in
+                         TaskResultCache.getCache().Where(r => r.taskId == taskId && r.taskRound == taskRound && r.taskStep == step).ToList()
+                         on new { initStep.modelId, initStep.indicatorId }
+                         equals new { result.modelId, result.indicatorId } into temp
+                         from tt in temp.DefaultIfEmpty()
+                         select new Tb_taskResult
+                                     {
+                                         id=initStep.id,
+                                         taskRecord=(tt==null?"": tt.taskRecord),
+                                         attachment = (tt == null ?"":tt.attachment),
+                                         taskResult = (tt==null?0:tt.taskResult),
+                                         taskId = initStep.taskId,
+                                         taskStep = step,
+                                         taskRound = round,
+                                         taskExecutor = initStep.taskExecutor,
+                                         taskDateTime = tt== null? DateTime.Now: tt.taskDateTime,
+                                         modelId = initStep.modelId,
+                                         indicatorId = initStep.indicatorId,
+                                         taskRemark = (tt == null ? "" : tt.taskRemark),
+                                         supplement = (tt == null ? "" : tt.supplement),
+
+                                     }).ToList();
+
+                allResultModelList = (from resultList in a
+                                      from indicator in indicatorList
+                                      from brand in brandList
+                                      from model in modelList
+                                      where resultList.modelId == model.id
+                                      && model.parentId == brand.id
+                                      && resultList.indicatorId == indicator.id
+                                      && resultList.taskId == taskId
+                                      && resultList.taskRound == round
+                                      && resultList.taskStep == step
+                                      select new TaskResultModel
+                                      {
+                                          indicatorId = resultList.indicatorId,
+                                          indicatorName = indicator.indicatorName,
+                                          indicatorDesc = indicator.indicatorDesc,
+                                          indicatorInstr = indicator.indicatorInstr,
+                                          brandId = brand.id,
+                                          brandName = brand.codeName,
+                                          modelId = model.id,
+                                          modelName = model.codeName,
+                                          taskStep = resultList.taskStep,
+                                          taskExecutor = resultList.taskExecutor,
+                                          taskDateTime = resultList.taskDateTime.ToString(),
+                                          taskRecord = resultList.taskRecord,
+                                          taskResult = resultList.taskResult,
+                                          taskResultId = resultList.id,
+                                          taskRemark = resultList.taskRemark,
+                                          attachment = resultList.attachment,
+                                          attachmentCount = (resultList.attachment == string.Empty ? "" : resultList.attachment.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries).Count() + "个")
+                                          + (resultList.supplement == "" ? "" : "(补)"),
+                                          supplement = resultList.supplement
+                                      }).ToList();
+            }
+            
             pagingPanel.setDetail(allResultModelList.Count);
             return allResultModelList.Skip(pageSize * (pageNum - 1)).Take(pageSize).ToList();
         }
-
-        private void setReadOnly(bool readOnly)
+        public void setReadOnly(bool readOnly)
         {
             dgv.Columns["taskResult"].ReadOnly = readOnly;
             dgv.Columns["taskRecord"].ReadOnly = readOnly;
             dgv.Columns["taskRemark"].ReadOnly = readOnly;
             dgv.Columns["attachmentCount"].ReadOnly = readOnly;
         }
-
+        public void maxRoundInit(int taskInfoId,bool readOnly = false,int taskRound = 1)
+        {
+            taskId = taskInfoId;
+            this.taskRound = taskRound;
+            taskResultMapList = TaskResultCache.getCache().Where(t => t.taskId == taskId && t.taskRound == taskRound && t.taskStep == 1).ToList();
+            List<Tb_taskResult> allResult =TaskResultCache.getCache().Where(t => t.taskId == taskId && t.taskRound == taskRound).ToList();
+            maxResultStep = 0;
+            try
+            {
+                maxResultStep = allResult.Max(x => x.taskStep);
+                currentResultStep = maxResultStep;
+            }
+            catch (Exception ex)
+            {
+            }
+            var result = (from resultList in taskResultMapList
+                          join resultAll in TaskResultCache.getCache().Where(r => r.taskId == taskInfoId && r.taskStep == maxResultStep &&  r.taskRound == taskRound)
+                          on new { resultList.indicatorId, resultList.modelId }
+                          equals new { resultAll.indicatorId, resultAll.modelId } into temp
+                          from tt in temp.DefaultIfEmpty()
+                          select new
+                          {
+                              attachment = tt == null? resultList.attachment: tt.attachment,
+                              resultList.id,
+                              resultList.indicatorId,
+                              resultList.modelId,
+                              supplement=tt==null? resultList.supplement: tt.supplement,
+                              taskDateTime=tt==null? resultList.taskDateTime: tt.taskDateTime,
+                              resultList.taskExecutor,
+                              resultList.taskId,
+                              taskRecord=tt==null? resultList.taskRecord: tt.taskRecord,
+                              taskRemark=tt==null? resultList.taskRemark: tt.taskRemark,
+                              taskResult=tt==null? resultList.taskResult: tt.taskResult,
+                              taskRound = taskRound,
+                              taskStep =maxResultStep
+                              //resultList.taskRecord = tt.taskRecord
+                          }).ToList();
+            var indicatorList = IndicatorCache.getCache();
+            var brandList = CodeCache.getBrand();
+            var modelList = CodeCache.getModel();
+            List<TaskResultModel> resultModel = (from resultList in result
+                                                 from indicator in indicatorList
+                                                 from brand in brandList
+                                                 from model in modelList
+                                                 where resultList.modelId == model.id
+                                                 && model.parentId == brand.id
+                                                 && resultList.indicatorId == indicator.id
+                                                 select new TaskResultModel
+                                                 {
+                                                     indicatorId = resultList.indicatorId,
+                                                     indicatorName = indicator.indicatorName,
+                                                     indicatorDesc = indicator.indicatorDesc,
+                                                     indicatorInstr = indicator.indicatorInstr,
+                                                     brandId = brand.id,
+                                                     brandName = brand.codeName,
+                                                     modelId = model.id,
+                                                     modelName = model.codeName,
+                                                     taskStep = resultList.taskStep,
+                                                     taskExecutor = resultList.taskExecutor,
+                                                     taskDateTime = resultList.taskDateTime.ToString(),
+                                                     taskRecord = resultList.taskRecord,
+                                                     taskResult = resultList.taskResult,
+                                                     taskResultId = resultList.id,
+                                                     taskRemark = resultList.taskRemark,
+                                                     attachment = resultList.attachment,
+                                                     attachmentCount = "",
+                                                     supplement = resultList.supplement
+                                                 }).ToList();
+            dgv.DataSource = null;
+            dgv.DataSource = resultModel;
+            setReadOnly(readOnly);
+        }
         List<string> colsHeaderText_H = new List<string>() { "指标名称", "指标描述", "操作说明" };
         /// <summary>
         /// 合并单元格
@@ -190,7 +326,7 @@ namespace AviationSafetyExperiment.UserControls
                             /****** 绘制单元格相互间隔的区分线条，datagridview自己会处理左侧和上边缘的线条，因此只需绘制下边框和和右边框
                              DataGridView控件绘制单元格时，不绘制左边框和上边框，共用左单元格的右边框，上一单元格的下边框*****/
                             //不是最后一行且单元格的值不为null
-                            if (e.RowIndex < this.dgv.RowCount - 1 && this.dgv.Rows[e.RowIndex + 1].Cells[e.ColumnIndex].Value != null)
+                            if (e.Value != null && e.RowIndex < this.dgv.RowCount - 1 && this.dgv.Rows[e.RowIndex + 1].Cells[e.ColumnIndex].Value != null)
                             {
                                 //若与下一单元格值不同
                                 if (e.Value.ToString() != this.dgv.Rows[e.RowIndex + 1].Cells[e.ColumnIndex].Value.ToString())
@@ -395,7 +531,7 @@ namespace AviationSafetyExperiment.UserControls
                 if (dgv.Rows[cell.RowIndex].Cells["supplement"].Value != null)
                 {
                     string supplementJsonString = dgv.Rows[cell.RowIndex].Cells["supplement"].Value.ToString();
-                    SupplementForm sf = new SupplementForm(supplementJsonString);
+                    SupplementForm sf = new SupplementForm(supplementJsonString,taskId);
                     if (sf.ShowDialog(this) == DialogResult.OK)
                     {
                         dgv.Rows[cell.RowIndex].Cells["supplement"].Value = sf.getSupplimentJsonString();

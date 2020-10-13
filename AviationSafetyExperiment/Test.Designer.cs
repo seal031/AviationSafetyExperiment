@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.tgp_done = new AviationSafetyExperiment.UserControls.TaskGridPanel();
             this.btni_new_more = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar1 = new DevComponents.DotNetBar.RibbonBar();
             this.groupPanel1 = new DevComponents.DotNetBar.Controls.GroupPanel();
@@ -37,6 +36,7 @@
             this.btni_done_more = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar3 = new DevComponents.DotNetBar.RibbonBar();
             this.groupPanel3 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.tgp_done = new AviationSafetyExperiment.UserControls.TaskGridPanel();
             this.dgv_report = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.btni_report_more = new DevComponents.DotNetBar.ButtonItem();
             this.ribbonBar4 = new DevComponents.DotNetBar.RibbonBar();
@@ -55,16 +55,6 @@
             this.groupPanel2.SuspendLayout();
             this.panelEx1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // tgp_done
-            // 
-            this.tgp_done.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tgp_done.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tgp_done.Location = new System.Drawing.Point(0, 0);
-            this.tgp_done.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tgp_done.Name = "tgp_done";
-            this.tgp_done.Size = new System.Drawing.Size(603, 153);
-            this.tgp_done.TabIndex = 2;
             // 
             // btni_new_more
             // 
@@ -90,10 +80,11 @@
             this.ribbonBar1.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ribbonBar1.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.btni_new_more});
-            this.ribbonBar1.Location = new System.Drawing.Point(0, 168);
+            this.ribbonBar1.Location = new System.Drawing.Point(0, 132);
+            this.ribbonBar1.Margin = new System.Windows.Forms.Padding(2);
             this.ribbonBar1.Name = "ribbonBar1";
             this.ribbonBar1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ribbonBar1.Size = new System.Drawing.Size(1299, 28);
+            this.ribbonBar1.Size = new System.Drawing.Size(973, 22);
             this.ribbonBar1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar1.TabIndex = 0;
             this.ribbonBar1.Text = "ribbonBar1";
@@ -117,8 +108,9 @@
             this.groupPanel1.Controls.Add(this.ribbonBar1);
             this.groupPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupPanel1.Location = new System.Drawing.Point(0, 0);
+            this.groupPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.groupPanel1.Name = "groupPanel1";
-            this.groupPanel1.Size = new System.Drawing.Size(1305, 223);
+            this.groupPanel1.Size = new System.Drawing.Size(979, 178);
             // 
             // 
             // 
@@ -158,9 +150,9 @@
             this.tgp_new.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tgp_new.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tgp_new.Location = new System.Drawing.Point(0, 0);
-            this.tgp_new.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tgp_new.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.tgp_new.Name = "tgp_new";
-            this.tgp_new.Size = new System.Drawing.Size(1299, 168);
+            this.tgp_new.Size = new System.Drawing.Size(973, 132);
             this.tgp_new.TabIndex = 1;
             // 
             // btni_done_more
@@ -187,10 +179,11 @@
             this.ribbonBar3.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ribbonBar3.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.btni_done_more});
-            this.ribbonBar3.Location = new System.Drawing.Point(0, 153);
+            this.ribbonBar3.Location = new System.Drawing.Point(0, 120);
+            this.ribbonBar3.Margin = new System.Windows.Forms.Padding(2);
             this.ribbonBar3.Name = "ribbonBar3";
             this.ribbonBar3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ribbonBar3.Size = new System.Drawing.Size(603, 28);
+            this.ribbonBar3.Size = new System.Drawing.Size(451, 22);
             this.ribbonBar3.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar3.TabIndex = 1;
             this.ribbonBar3.Text = "ribbonBar3";
@@ -214,8 +207,9 @@
             this.groupPanel3.Controls.Add(this.ribbonBar3);
             this.groupPanel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupPanel3.Location = new System.Drawing.Point(0, 0);
+            this.groupPanel3.Margin = new System.Windows.Forms.Padding(2);
             this.groupPanel3.Name = "groupPanel3";
-            this.groupPanel3.Size = new System.Drawing.Size(609, 208);
+            this.groupPanel3.Size = new System.Drawing.Size(457, 166);
             // 
             // 
             // 
@@ -250,6 +244,16 @@
             this.groupPanel3.TabIndex = 1;
             this.groupPanel3.Text = "已完成任务";
             // 
+            // tgp_done
+            // 
+            this.tgp_done.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tgp_done.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tgp_done.Location = new System.Drawing.Point(0, 0);
+            this.tgp_done.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.tgp_done.Name = "tgp_done";
+            this.tgp_done.Size = new System.Drawing.Size(451, 120);
+            this.tgp_done.TabIndex = 2;
+            // 
             // dgv_report
             // 
             this.dgv_report.BackgroundColor = System.Drawing.Color.White;
@@ -265,9 +269,10 @@
             this.dgv_report.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_report.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgv_report.Location = new System.Drawing.Point(0, 0);
+            this.dgv_report.Margin = new System.Windows.Forms.Padding(2);
             this.dgv_report.Name = "dgv_report";
             this.dgv_report.RowTemplate.Height = 27;
-            this.dgv_report.Size = new System.Drawing.Size(690, 153);
+            this.dgv_report.Size = new System.Drawing.Size(516, 120);
             this.dgv_report.TabIndex = 2;
             // 
             // btni_report_more
@@ -294,10 +299,11 @@
             this.ribbonBar4.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ribbonBar4.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.btni_report_more});
-            this.ribbonBar4.Location = new System.Drawing.Point(0, 153);
+            this.ribbonBar4.Location = new System.Drawing.Point(0, 120);
+            this.ribbonBar4.Margin = new System.Windows.Forms.Padding(2);
             this.ribbonBar4.Name = "ribbonBar4";
             this.ribbonBar4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ribbonBar4.Size = new System.Drawing.Size(690, 28);
+            this.ribbonBar4.Size = new System.Drawing.Size(516, 22);
             this.ribbonBar4.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar4.TabIndex = 1;
             this.ribbonBar4.Text = "ribbonBar4";
@@ -320,9 +326,10 @@
             this.groupPanel4.Controls.Add(this.dgv_report);
             this.groupPanel4.Controls.Add(this.ribbonBar4);
             this.groupPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupPanel4.Location = new System.Drawing.Point(609, 0);
+            this.groupPanel4.Location = new System.Drawing.Point(457, 0);
+            this.groupPanel4.Margin = new System.Windows.Forms.Padding(2);
             this.groupPanel4.Name = "groupPanel4";
-            this.groupPanel4.Size = new System.Drawing.Size(696, 208);
+            this.groupPanel4.Size = new System.Drawing.Size(522, 166);
             // 
             // 
             // 
@@ -364,9 +371,10 @@
             this.panelEx2.Controls.Add(this.groupPanel4);
             this.panelEx2.Controls.Add(this.groupPanel3);
             this.panelEx2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelEx2.Location = new System.Drawing.Point(0, 486);
+            this.panelEx2.Location = new System.Drawing.Point(0, 389);
+            this.panelEx2.Margin = new System.Windows.Forms.Padding(2);
             this.panelEx2.Name = "panelEx2";
-            this.panelEx2.Size = new System.Drawing.Size(1305, 208);
+            this.panelEx2.Size = new System.Drawing.Size(979, 166);
             this.panelEx2.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.panelEx2.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
             this.panelEx2.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
@@ -400,10 +408,11 @@
             this.ribbonBar2.Font = new System.Drawing.Font("微软雅黑", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ribbonBar2.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.btni_running_more});
-            this.ribbonBar2.Location = new System.Drawing.Point(0, 208);
+            this.ribbonBar2.Location = new System.Drawing.Point(0, 165);
+            this.ribbonBar2.Margin = new System.Windows.Forms.Padding(2);
             this.ribbonBar2.Name = "ribbonBar2";
             this.ribbonBar2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ribbonBar2.Size = new System.Drawing.Size(1299, 28);
+            this.ribbonBar2.Size = new System.Drawing.Size(973, 22);
             this.ribbonBar2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ribbonBar2.TabIndex = 1;
             this.ribbonBar2.Text = "ribbonBar2";
@@ -426,9 +435,10 @@
             this.groupPanel2.Controls.Add(this.tgp_running);
             this.groupPanel2.Controls.Add(this.ribbonBar2);
             this.groupPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupPanel2.Location = new System.Drawing.Point(0, 223);
+            this.groupPanel2.Location = new System.Drawing.Point(0, 178);
+            this.groupPanel2.Margin = new System.Windows.Forms.Padding(2);
             this.groupPanel2.Name = "groupPanel2";
-            this.groupPanel2.Size = new System.Drawing.Size(1305, 263);
+            this.groupPanel2.Size = new System.Drawing.Size(979, 211);
             // 
             // 
             // 
@@ -468,9 +478,9 @@
             this.tgp_running.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tgp_running.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tgp_running.Location = new System.Drawing.Point(0, 0);
-            this.tgp_running.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tgp_running.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.tgp_running.Name = "tgp_running";
-            this.tgp_running.Size = new System.Drawing.Size(1299, 208);
+            this.tgp_running.Size = new System.Drawing.Size(973, 165);
             this.tgp_running.TabIndex = 2;
             // 
             // panelEx1
@@ -482,8 +492,9 @@
             this.panelEx1.Controls.Add(this.groupPanel1);
             this.panelEx1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelEx1.Location = new System.Drawing.Point(0, 0);
+            this.panelEx1.Margin = new System.Windows.Forms.Padding(2);
             this.panelEx1.Name = "panelEx1";
-            this.panelEx1.Size = new System.Drawing.Size(1305, 694);
+            this.panelEx1.Size = new System.Drawing.Size(979, 555);
             this.panelEx1.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.panelEx1.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
             this.panelEx1.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
@@ -495,10 +506,11 @@
             // 
             // Test
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1305, 694);
+            this.ClientSize = new System.Drawing.Size(979, 555);
             this.Controls.Add(this.panelEx1);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Test";
             this.Text = "Test";
             this.groupPanel1.ResumeLayout(false);

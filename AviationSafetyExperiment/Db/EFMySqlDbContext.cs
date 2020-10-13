@@ -31,6 +31,8 @@ namespace AviationSafetyExperiment.Db
 
         public virtual DbSet<Tb_taskIndicatorMap> Tb_taskIndicatorMaps { get; set; }
 
+        public virtual DbSet<Tb_alarminput> Tb_alarminputs { get; set; }
+
         public DbSet<T> getDbSet<T>() where T : class
         {
             if (typeof(T)==typeof(Tb_code))
@@ -69,11 +71,15 @@ namespace AviationSafetyExperiment.Db
             {
                 return Tb_taskResults as DbSet<T>;
             }
-
+            if (typeof(T) == typeof(Tb_alarminput))
+            {
+                return Tb_alarminputs as DbSet<T>;
+            }
             else
             {
                 return null;
             }
         }
+
     }
 }

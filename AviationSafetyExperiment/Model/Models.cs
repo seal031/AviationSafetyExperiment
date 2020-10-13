@@ -28,6 +28,33 @@ namespace AviationSafetyExperiment.Model
         /// </summary
         public bool isSelected { get; set; } = false;
     }
+    public class RoundIndicatorModel : IndicatorModel
+    {
+        /// <summary>
+        /// 是否被选中，用于指标模板中切换指标状态时，记录指标是否被选择，以免datasource刷新后，用户已勾选的指标消失。默认false
+        /// </summary
+        public bool isSelected { get; set; } = false;
+        /// <summary>
+        /// 品牌Id
+        /// </summary>
+        public int brandId { get; set; }
+        /// <summary>
+        /// 品牌名称
+        /// </summary>
+        public string brandName { get; set; }
+        /// <summary>
+        /// 型号Id
+        /// </summary>
+        public int modelId { get; set; }
+        /// <summary>
+        /// 型号名称
+        /// </summary>
+        public string modelName { get; set; }
+        /// <summary>
+        /// 步骤
+        /// </summary>
+        public int taskStep { get; set; }
+    }
 
     /// <summary>
     /// 任务列表使用的模型

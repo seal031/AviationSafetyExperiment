@@ -23,14 +23,14 @@ namespace AviationSafetyExperiment.Db.Entity
 
     public class ResultSupplement
     {
-        /// <summary>
-        /// 报警类型
-        /// </summary>
-        public string alarmType { get; set; }
-        /// <summary>
-        /// 报警形式
-        /// </summary>
-        public string alarmForm { get; set; }
+        ///// <summary>
+        ///// 报警类型
+        ///// </summary>
+        //public string alarmType { get; set; }
+        ///// <summary>
+        ///// 报警形式
+        ///// </summary>
+        //public string alarmForm { get; set; }
         /// <summary>
         /// 总测试数量
         /// </summary>
@@ -51,6 +51,16 @@ namespace AviationSafetyExperiment.Db.Entity
         /// 误报数量
         /// </summary>
         public int misinformationCount { get; set; }
+
+        public List<AlarmInput> alarmInputList { get; set; }
+        public class AlarmInput
+        {
+            public int taskId { get; set; }
+            public string alarmType { get; set; }
+            public string alarmForm { get; set; }
+            public string classify { get; set; }
+            public string describe { get; set; }
+        }
 
         public string toJson()
         {

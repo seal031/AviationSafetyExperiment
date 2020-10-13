@@ -46,6 +46,7 @@
     <Reference Include="DevComponents.DotNetBar2, Version=10.0.0.0, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>D:\Program Files (x86)\DotNetBar for Windows Forms\DevComponents.DotNetBar2.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DevComponents.Instrumentation, Version=10.0.0.0, Culture=neutral, PublicKeyToken=bc4a9d761ea44ef0, processorArchitecture=MSIL" />
     <Reference Include="DevComponents.TreeGX, Version=10.0.0.0, Culture=neutral, PublicKeyToken=cfcbd7476b2389d1, processorArchitecture=MSIL">
@@ -64,8 +65,8 @@
       <HintPath>..\packages\FluentFTP.32.4.3\lib\net45\FluentFTP.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ICSharpCode.SharpZipLib, Version=1.2.0.246, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpZipLib.1.2.0\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.1.3\lib\net40\ICSharpCode.SharpZipLib.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MySql.Data, Version=6.9.12.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
@@ -80,20 +81,20 @@
       <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NPOI, Version=2.5.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
-      <HintPath>..\packages\NPOI.2.5.1\lib\net45\NPOI.dll</HintPath>
+    <Reference Include="NPOI, Version=2.1.3.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.1.3\lib\net40\NPOI.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NPOI.OOXML, Version=2.5.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
-      <HintPath>..\packages\NPOI.2.5.1\lib\net45\NPOI.OOXML.dll</HintPath>
+    <Reference Include="NPOI.OOXML, Version=2.1.3.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.1.3\lib\net40\NPOI.OOXML.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NPOI.OpenXml4Net, Version=2.5.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
-      <HintPath>..\packages\NPOI.2.5.1\lib\net45\NPOI.OpenXml4Net.dll</HintPath>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.1.3.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.1.3\lib\net40\NPOI.OpenXml4Net.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NPOI.OpenXmlFormats, Version=2.5.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
-      <HintPath>..\packages\NPOI.2.5.1\lib\net45\NPOI.OpenXmlFormats.dll</HintPath>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.1.3.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.1.3\lib\net40\NPOI.OpenXmlFormats.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -101,6 +102,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -130,6 +132,12 @@
     <Compile Include="BrandModelSelector.Designer.cs">
       <DependentUpon>BrandModelSelector.cs</DependentUpon>
     </Compile>
+    <Compile Include="Chart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Chart.Designer.cs">
+      <DependentUpon>Chart.cs</DependentUpon>
+    </Compile>
     <Compile Include="DbLocalCache\CodeCache.cs" />
     <Compile Include="DbLocalCache\IndicatorCache.cs" />
     <Compile Include="DbLocalCache\IndicatorTemplateMapCache.cs" />
@@ -140,6 +148,7 @@
     <Compile Include="DbLocalCache\TaskResultCache.cs" />
     <Compile Include="DbLocalCache\TemplateCache.cs" />
     <Compile Include="Db\DAO\BaseAdapter.cs" />
+    <Compile Include="Db\DAO\CountChartAdapter.cs" />
     <Compile Include="Db\DAO\IndicatorTemplateMapAdapter.cs" />
     <Compile Include="Db\DAO\TaskAdapter.cs" />
     <Compile Include="Db\DAO\TaskQueryHelper.cs" />
@@ -148,6 +157,7 @@
     <Compile Include="Db\Entity\BaseEntity.cs" />
     <Compile Include="Db\Entity\Enums.cs" />
     <Compile Include="Db\Entity\ResultSupplement.cs" />
+    <Compile Include="Db\Entity\Tb_alarminput.cs" />
     <Compile Include="Db\Entity\Tb_indicatorTemplateMap.cs" />
     <Compile Include="Db\Entity\Tb_code.cs" />
     <Compile Include="Db\Entity\Tb_indicator.cs" />
@@ -182,6 +192,12 @@
     </Compile>
     <Compile Include="Test.Designer.cs">
       <DependentUpon>Test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\AlarmSupplementPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\AlarmSupplementPanel.Designer.cs">
+      <DependentUpon>AlarmSupplementPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\PagingPanel.cs">
       <SubType>UserControl</SubType>
@@ -326,6 +342,9 @@
     <EmbeddedResource Include="BrandModelSelector.resx">
       <DependentUpon>BrandModelSelector.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Chart.resx">
+      <DependentUpon>Chart.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FtpListForm.resx">
       <DependentUpon>FtpListForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -372,6 +391,9 @@
     <EmbeddedResource Include="Test.resx">
       <DependentUpon>Test.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\AlarmSupplementPanel.resx">
+      <DependentUpon>AlarmSupplementPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\IndicatorDataGrid.resx">
       <DependentUpon>IndicatorDataGrid.cs</DependentUpon>
     </EmbeddedResource>
@@ -414,6 +436,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="ClassDiagram2.cd" />
+    <None Include="lib\航科院安保设施实验室-测试报告模板20191206.docx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

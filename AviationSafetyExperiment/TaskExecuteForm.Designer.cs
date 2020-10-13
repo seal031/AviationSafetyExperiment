@@ -32,13 +32,13 @@
             this.tdbip = new AviationSafetyExperiment.UserControls.TaskDetialBaseInfoPanel();
             this.ribbonBar_taskRound = new DevComponents.DotNetBar.RibbonBar();
             this.btn_newRound = new DevComponents.DotNetBar.ButtonItem();
+            this.labelItem2 = new DevComponents.DotNetBar.LabelItem();
             this.labelItem1 = new DevComponents.DotNetBar.LabelItem();
             this.btn_reject = new DevComponents.DotNetBar.ButtonX();
             this.btn_pass = new DevComponents.DotNetBar.ButtonX();
             this.btn_close = new DevComponents.DotNetBar.ButtonX();
             this.btn_done = new DevComponents.DotNetBar.ButtonX();
             this.btn_save = new DevComponents.DotNetBar.ButtonX();
-            this.labelItem2 = new DevComponents.DotNetBar.LabelItem();
             this.SuspendLayout();
             // 
             // trp
@@ -48,7 +48,7 @@
             this.trp.Location = new System.Drawing.Point(0, 106);
             this.trp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.trp.Name = "trp";
-            this.trp.Size = new System.Drawing.Size(1393, 647);
+            this.trp.Size = new System.Drawing.Size(1370, 643);
             this.trp.TabIndex = 1;
             // 
             // tdbip
@@ -58,7 +58,7 @@
             this.tdbip.Location = new System.Drawing.Point(0, 0);
             this.tdbip.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tdbip.Name = "tdbip";
-            this.tdbip.Size = new System.Drawing.Size(1393, 106);
+            this.tdbip.Size = new System.Drawing.Size(1370, 106);
             this.tdbip.TabIndex = 0;
             // 
             // ribbonBar_taskRound
@@ -109,6 +109,11 @@
             this.btn_newRound.SubItemsExpandWidth = 14;
             this.btn_newRound.Text = "新增一轮";
             this.btn_newRound.Click += new System.EventHandler(this.btn_newRound_Click);
+            // 
+            // labelItem2
+            // 
+            this.labelItem2.Name = "labelItem2";
+            this.labelItem2.Text = "    ";
             // 
             // labelItem1
             // 
@@ -180,16 +185,11 @@
             this.btn_save.Text = "保存任务";
             this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
             // 
-            // labelItem2
-            // 
-            this.labelItem2.Name = "labelItem2";
-            this.labelItem2.Text = "    ";
-            // 
             // TaskExecuteForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1393, 753);
+            this.ClientSize = new System.Drawing.Size(1370, 749);
             this.Controls.Add(this.ribbonBar_taskRound);
             this.Controls.Add(this.btn_reject);
             this.Controls.Add(this.btn_pass);
@@ -204,6 +204,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "测试任务处理";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Shown += new System.EventHandler(this.TaskExecuteForm_Shown);
             this.ResumeLayout(false);
 
         }
