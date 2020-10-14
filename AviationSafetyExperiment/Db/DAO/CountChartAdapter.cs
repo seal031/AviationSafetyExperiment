@@ -45,6 +45,24 @@ GROUP BY taskClass";
                 return context.Database.SqlQuery<queryClassifyResult>(sql).ToList();
             }
         }
+
+        public static List<queryEveryPersonTaskNum> selectEveryPersonTaskNum(string startTime,string endTime)
+        {
+            string sql = string.Format(@"SELECT * FROM
+(
+select taskExecutor,DATE_FORMAT(taskDateTime,'%Y.%m') as dateNum,count(1)as number
+from tb_taskresult temp
+where taskStep=(SELECT max(taskStep) from tb_taskresult where taskId=temp.taskId and taskExecutor=temp.taskExecutor and taskRound=temp.taskRound)
+and taskDateTime BETWEEN '{0}' AND '{1}'
+GROUP BY taskExecutor,dateNum
+ORDER BY taskExecutor
+) tb
+ORDER BY dateNum", startTime,endTime);
+            using (EFMySqlDbContext context = new EFMySqlDbContext())
+            {
+                return context.Database.SqlQuery<queryEveryPersonTaskNum>(sql).ToList();
+            }
+        }
     }
     public class queryDateResult
     {
@@ -55,5 +73,11 @@ GROUP BY taskClass";
     {
         public int number { get; set; }
         public string taskClass { get; set; }
+    }
+    public class queryEveryPersonTaskNum
+    {
+        public string taskExecutor { get; set; }//姓名
+        public string dateNum { get; set; }//日期
+        public int number { get; set; }//统计结果
     }
 }

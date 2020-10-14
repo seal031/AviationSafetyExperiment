@@ -76,5 +76,11 @@ namespace AviationSafetyExperiment.UserControls
             chartClassify.Titles[0].Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
             #endregion
         }
+
+        private void btn_more_Click(object sender, EventArgs e)
+        {
+            ChartForm chartForm = new ChartForm();
+            DialogResult result = chartForm.ShowDialog(this);
+        }
     }
 }

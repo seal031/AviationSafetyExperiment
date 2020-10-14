@@ -37,7 +37,7 @@
             this.itemPanel1 = new DevComponents.DotNetBar.ItemPanel();
             this.chartClassify = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chartMonthCountTask = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.microChartItem1 = new DevComponents.DotNetBar.MicroChartItem();
+            this.btn_more = new DevComponents.DotNetBar.ButtonX();
             this.itemPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartClassify)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartMonthCountTask)).BeginInit();
@@ -51,11 +51,10 @@
             this.itemPanel1.BackgroundStyle.Class = "ItemPanel";
             this.itemPanel1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.itemPanel1.ContainerControlProcessDialogKey = true;
+            this.itemPanel1.Controls.Add(this.btn_more);
             this.itemPanel1.Controls.Add(this.chartClassify);
             this.itemPanel1.Controls.Add(this.chartMonthCountTask);
             this.itemPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.itemPanel1.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.microChartItem1});
             this.itemPanel1.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
             this.itemPanel1.Location = new System.Drawing.Point(0, 0);
             this.itemPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -81,7 +80,7 @@
             legend1.Position.X = 38F;
             legend1.Position.Y = 88F;
             this.chartClassify.Legends.Add(legend1);
-            this.chartClassify.Location = new System.Drawing.Point(4, 243);
+            this.chartClassify.Location = new System.Drawing.Point(4, 250);
             this.chartClassify.Name = "chartClassify";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
@@ -108,7 +107,7 @@
             legend2.Position.X = 38F;
             legend2.Position.Y = 88F;
             this.chartMonthCountTask.Legends.Add(legend2);
-            this.chartMonthCountTask.Location = new System.Drawing.Point(4, 30);
+            this.chartMonthCountTask.Location = new System.Drawing.Point(4, 10);
             this.chartMonthCountTask.Name = "chartMonthCountTask";
             series2.ChartArea = "ChartArea1";
             series2.Legend = "Legend1";
@@ -118,9 +117,17 @@
             this.chartMonthCountTask.TabIndex = 0;
             this.chartMonthCountTask.Text = "chart1";
             // 
-            // microChartItem1
+            // btn_more
             // 
-            this.microChartItem1.Name = "microChartItem1";
+            this.btn_more.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btn_more.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btn_more.Location = new System.Drawing.Point(190, 530);
+            this.btn_more.Name = "btn_more";
+            this.btn_more.Size = new System.Drawing.Size(98, 30);
+            this.btn_more.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btn_more.TabIndex = 4;
+            this.btn_more.Text = "更多";
+            this.btn_more.Click += new System.EventHandler(this.btn_more_Click);
             // 
             // TaskChartSlidePanel
             // 
@@ -141,8 +148,8 @@
         #endregion
 
         private DevComponents.DotNetBar.ItemPanel itemPanel1;
-        private DevComponents.DotNetBar.MicroChartItem microChartItem1;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartMonthCountTask;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartClassify;
+        private DevComponents.DotNetBar.ButtonX btn_more;
     }
 }
