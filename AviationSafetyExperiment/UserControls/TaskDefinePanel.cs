@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using AviationSafetyExperiment.Db.Entity;
 using AviationSafetyExperiment.DbLocalCache;
 using DevComponents.DotNetBar;
+using AviationSafetyExperiment.Model;
 
 namespace AviationSafetyExperiment.UserControls
 {
@@ -41,6 +42,13 @@ namespace AviationSafetyExperiment.UserControls
             cbb_taskClass.ValueMember = "id";
             cbb_taskClass.DataSource = CodeCache.getClass();
             cbb_taskClass.SelectedValueChanged += cbb_taskClass_SelectedValueChanged;
+
+            foreach (User user in User.list)
+            {
+                ccb_taskExecutor.Items.Add(user);
+            }
+            ccb_taskExecutor.ValueMember = "id";
+            ccb_taskExecutor.DisplayMember = "name";
         }
 
         public void createTask()
@@ -55,7 +63,7 @@ namespace AviationSafetyExperiment.UserControls
             task.percent = 0;
             task.taskClass = (int)cbb_taskClass.SelectedValue;
             task.taskCode = txt_taskCode.Text.Trim();
-            task.taskExecutor = txt_taskExecutor.Text.Trim();
+            task.taskExecutor = ccb_taskExecutor.Text;//txt_taskExecutor.Text.Trim();
             task.taskName = txt_taskName.Text.Trim();
             task.taskType = taskType;
             task.taskState = (int)TaskStateEnum.Created;
