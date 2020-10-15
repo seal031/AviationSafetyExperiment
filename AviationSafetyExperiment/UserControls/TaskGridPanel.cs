@@ -129,17 +129,19 @@ namespace AviationSafetyExperiment.UserControls
                 case TaskGridShownStyle.HideAll:
                     break;
                 case TaskGridShownStyle.NewTask:
-                    foreach (DataGridViewRow item in dgv_taskList.Rows)
-                    {
-                        if (item.Cells[7].Value.ToString() == "未审批" )
-                        {
-                            dgv_taskList.Columns["btn_open"].Visible = false;
-                        }
-                        else
-                        {
-                            //item.Cells[11].Visible = true;
-                        }
-                    }
+                    //foreach (DataGridViewRow item in dgv_taskList.Rows)
+                    //{
+                    //    if (item.Cells[7].Value.ToString() == "未审批" )
+                    //    {
+                    //        item.Cells[11].Value = "";
+                    //        //dgv_taskList.Columns["btn_open"].Visible = false;
+                    //    }
+                    //    else
+                    //    {
+                    //        item.Cells[11].Value = "打开任务";
+                    //        //item.Cells[11].Visible = true;
+                    //    }
+                    //}
                     dgv_taskList.Columns["btn_open"].Visible = true;
                     //dgv_taskList.Rows
                     //dgv_taskList.Columns["btn_open"].Visible = true;
@@ -189,9 +191,17 @@ namespace AviationSafetyExperiment.UserControls
                     break;
                 case "打开任务":
                     var taskInfoId = (int)dgv_taskList.Rows[e.RowIndex].Cells["taskId"].Value;
-                    TaskExecuteForm tef = new AviationSafetyExperiment.TaskExecuteForm(taskInfoId);
-                    tef.init(_taskStateArray[0]);//用于打开任务时，取第一个任务状态
-                    tef.ShowDialog(this);
+                    //this.Parent
+                    if (dgv_taskList.Rows[e.RowIndex].Cells["taskStateName"].Value.ToString() == "未审批" && this.Parent.Name == "expandablePanel_new")
+                    {
+                    }
+                    else
+                    {
+                        TaskExecuteForm tef = new AviationSafetyExperiment.TaskExecuteForm(taskInfoId);
+                        tef.init(_taskStateArray[0]);//用于打开任务时，取第一个任务状态
+                        tef.ShowDialog(this);
+
+                    }
                     break;
                 case "完成":
                     if (MessageBoxEx.Show("确定任务完成？", "操作确认", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)

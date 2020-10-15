@@ -174,6 +174,7 @@ namespace AviationSafetyExperiment
             }
             #endregion
             string title = "不同测试员的测试项数量";
+            reportChart.Titles.Clear();
             if (reportChart.Titles.Count == 0 && seriesName.Count !=0)
             {
                 reportChart.Titles.Add(title);
