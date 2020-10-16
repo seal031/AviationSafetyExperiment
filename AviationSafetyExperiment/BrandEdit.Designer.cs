@@ -127,11 +127,13 @@
             // 
             // txt_value
             // 
+            this.txt_value.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(80)))), ((int)(((byte)(225)))));
             // 
             // 
             // 
             this.txt_value.Border.Class = "TextBoxBorder";
             this.txt_value.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txt_value.ForeColor = System.Drawing.Color.Black;
             this.txt_value.Location = new System.Drawing.Point(82, 47);
             this.txt_value.Name = "txt_value";
             this.txt_value.Size = new System.Drawing.Size(293, 32);
@@ -149,6 +151,7 @@
             this.Controls.Add(this.btn_save);
             this.Controls.Add(this.lbl_class);
             this.DoubleBuffered = true;
+            this.EnableGlass = false;
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);

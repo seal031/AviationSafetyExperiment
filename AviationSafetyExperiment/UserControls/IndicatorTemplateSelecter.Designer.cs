@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
             this.panelEx6 = new DevComponents.DotNetBar.PanelEx();
             this.stc = new DevComponents.DotNetBar.SuperTabControl();
@@ -154,8 +154,8 @@
             this.stc.ControlBox.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.stc.ControlBox.MenuBox,
             this.stc.ControlBox.CloseBox});
-            this.stc.Controls.Add(this.superTabControlPanel4);
             this.stc.Controls.Add(this.superTabControlPanel5);
+            this.stc.Controls.Add(this.superTabControlPanel4);
             this.stc.Dock = System.Windows.Forms.DockStyle.Fill;
             this.stc.Location = new System.Drawing.Point(0, 0);
             this.stc.Name = "stc";
@@ -173,6 +173,7 @@
             // 
             // superTabControlPanel4
             // 
+            this.superTabControlPanel4.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.superTabControlPanel4.Controls.Add(this.progressBar);
             this.superTabControlPanel4.Controls.Add(this.pnl_addTempla);
             this.superTabControlPanel4.Controls.Add(this.dgv_selected);
@@ -293,17 +294,17 @@
             this.indicatorName,
             this.indicatorDesc,
             this.isObsolete});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_selected.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_selected.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgv_selected.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_selected.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dgv_selected.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
+            this.dgv_selected.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(158)))), ((int)(((byte)(226)))));
             this.dgv_selected.Location = new System.Drawing.Point(0, 0);
             this.dgv_selected.MultiSelect = false;
             this.dgv_selected.Name = "dgv_selected";
@@ -492,12 +493,13 @@
             // 
             // superTabControlPanel5
             // 
+            this.superTabControlPanel5.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.superTabControlPanel5.Controls.Add(this.dgv_unselected);
             this.superTabControlPanel5.Controls.Add(this.panelEx7);
             this.superTabControlPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.superTabControlPanel5.Location = new System.Drawing.Point(0, 0);
+            this.superTabControlPanel5.Location = new System.Drawing.Point(0, 34);
             this.superTabControlPanel5.Name = "superTabControlPanel5";
-            this.superTabControlPanel5.Size = new System.Drawing.Size(1211, 645);
+            this.superTabControlPanel5.Size = new System.Drawing.Size(1211, 611);
             this.superTabControlPanel5.TabIndex = 2;
             this.superTabControlPanel5.TabItem = this.sti_unselected;
             // 
@@ -517,23 +519,23 @@
             this.dataGridViewLabelXColumn9,
             this.dataGridViewLabelXColumn10,
             this.dataGridViewLabelXColumn11});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_unselected.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_unselected.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgv_unselected.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_unselected.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dgv_unselected.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
+            this.dgv_unselected.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(158)))), ((int)(((byte)(226)))));
             this.dgv_unselected.Location = new System.Drawing.Point(0, 0);
             this.dgv_unselected.MultiSelect = false;
             this.dgv_unselected.Name = "dgv_unselected";
             this.dgv_unselected.RowTemplate.Height = 27;
             this.dgv_unselected.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_unselected.Size = new System.Drawing.Size(1211, 609);
+            this.dgv_unselected.Size = new System.Drawing.Size(1211, 575);
             this.dgv_unselected.TabIndex = 3;
             this.dgv_unselected.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_CellMouseDoubleClick);
             this.dgv_unselected.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgv_unselected_RowPostPaint);
@@ -640,7 +642,7 @@
             this.panelEx7.Controls.Add(this.btn_moveToSelected);
             this.panelEx7.Controls.Add(this.pagingPanel_unselected);
             this.panelEx7.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelEx7.Location = new System.Drawing.Point(0, 609);
+            this.panelEx7.Location = new System.Drawing.Point(0, 575);
             this.panelEx7.Name = "panelEx7";
             this.panelEx7.Size = new System.Drawing.Size(1211, 36);
             this.panelEx7.Style.Alignment = System.Drawing.StringAlignment.Center;
@@ -656,9 +658,12 @@
             // 
             this.chk_unselect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chk_unselect.AutoSize = true;
+            this.chk_unselect.BackColor = System.Drawing.Color.Transparent;
             // 
             // 
             // 
+            this.chk_unselect.BackgroundStyle.BackColor = System.Drawing.Color.Transparent;
+            this.chk_unselect.BackgroundStyle.BackColor2 = System.Drawing.Color.Transparent;
             this.chk_unselect.BackgroundStyle.Class = "";
             this.chk_unselect.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.chk_unselect.Location = new System.Drawing.Point(433, 6);
@@ -709,7 +714,7 @@
             // groupPanel3
             // 
             this.groupPanel3.CanvasColor = System.Drawing.SystemColors.Control;
-            this.groupPanel3.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.groupPanel3.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.groupPanel3.Controls.Add(this.btn_showNewTemplatePanel);
             this.groupPanel3.Controls.Add(this.cbb_exitsTemplate);
             this.groupPanel3.Controls.Add(this.lbl_exitsTemplate);

@@ -218,7 +218,9 @@ namespace AviationSafetyExperiment
                     Tb_taskResult result = new Tb_taskResult();
                     result.indicatorId = item.indicatorId;
                     result.modelId = item.modelId;
-                    result.taskDateTime = DateTime.Now;
+                    DateTime taskDateTime;
+                    result.taskDateTime = DateTime.TryParse(item.taskDateTime, out taskDateTime) ? taskDateTime : DateTime.Now;
+                    //result.taskDateTime = DateTime.TryParse(dr.Cells["taskDateTime"].Value.ToString(), out taskDateTime) ? taskDateTime : DateTime.Now;//DateTime.Now;
                     result.taskExecutor = User.currentUser.name;
                     result.taskId = taskInfoId;
                     result.taskRecord = item.taskRecord;
@@ -332,6 +334,14 @@ namespace AviationSafetyExperiment
                     AddRoundButton(currentRound);
                     trp.init(taskInfoId, false,currentRound);
                     maxTaskStep = (int)(trp.dgv.Rows[0].Cells["taskStep"].Value);//轮次切换后,会进行页面刷新,获取当前轮次页面的最大步骤
+                    //新增轮次后，task的最新轮次更新，且进度重置为0
+                    Tb_taskInfo task = TaskCache.getCacheById(taskInfoId);
+                    if (task != null)
+                    {
+                        task.taskRound = maxRound;
+                        task.percent = 0;
+                        TaskCache.addCache(task);
+                    }
                 }
                 else
                 {

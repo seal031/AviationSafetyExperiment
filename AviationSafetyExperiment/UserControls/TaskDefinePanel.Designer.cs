@@ -103,7 +103,7 @@
             // groupPanel1
             // 
             this.groupPanel1.CanvasColor = System.Drawing.SystemColors.Control;
-            this.groupPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.groupPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.groupPanel1.Controls.Add(this.ccb_taskExecutor);
             this.groupPanel1.Controls.Add(this.lbl_brandModel);
             this.groupPanel1.Controls.Add(this.lbl_taskType);

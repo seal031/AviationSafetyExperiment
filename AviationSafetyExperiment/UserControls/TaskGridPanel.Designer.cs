@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
             this.dgv_taskList = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.pagingPanel = new AviationSafetyExperiment.UserControls.PagingPanel();
             this.taskId = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
             this.taskName = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
             this.taskClassName = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
@@ -41,12 +42,12 @@
             this.taskStateId = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
             this.taskStateName = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
             this.percent = new DevComponents.DotNetBar.Controls.DataGridViewProgressBarXColumn();
+            this.taskRound = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
             this.btn_pass = new DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn();
             this.btn_reject = new DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn();
             this.btn_open = new DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn();
             this.btn_done = new DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn();
             this.btn_close = new DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn();
-            this.pagingPanel = new AviationSafetyExperiment.UserControls.PagingPanel();
             this.panelEx1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_taskList)).BeginInit();
             this.SuspendLayout();
@@ -86,6 +87,7 @@
             this.taskStateId,
             this.taskStateName,
             this.percent,
+            this.taskRound,
             this.btn_pass,
             this.btn_reject,
             this.btn_open,
@@ -100,12 +102,13 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgv_taskList.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgv_taskList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv_taskList.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
+            this.dgv_taskList.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(88)))), ((int)(((byte)(137)))));
             this.dgv_taskList.Location = new System.Drawing.Point(0, 0);
             this.dgv_taskList.MultiSelect = false;
             this.dgv_taskList.Name = "dgv_taskList";
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgv_taskList.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgv_taskList.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.dgv_taskList.RowTemplate.Height = 45;
             this.dgv_taskList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dgv_taskList.Size = new System.Drawing.Size(1014, 587);
@@ -113,6 +116,16 @@
             this.dgv_taskList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_taskList_CellContentClick);
             this.dgv_taskList.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_taskList_CellMouseDoubleClick);
             this.dgv_taskList.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgv_taskList_RowPostPaint);
+            // 
+            // pagingPanel
+            // 
+            this.pagingPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pagingPanel.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.pagingPanel.Location = new System.Drawing.Point(0, 587);
+            this.pagingPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pagingPanel.Name = "pagingPanel";
+            this.pagingPanel.Size = new System.Drawing.Size(1014, 35);
+            this.pagingPanel.TabIndex = 1;
             // 
             // taskId
             // 
@@ -134,6 +147,7 @@
             // taskClassName
             // 
             this.taskClassName.DataPropertyName = "taskClassName";
+            this.taskClassName.FillWeight = 60F;
             this.taskClassName.HeaderText = "任务分类";
             this.taskClassName.Name = "taskClassName";
             this.taskClassName.ReadOnly = true;
@@ -143,6 +157,7 @@
             // taskBrandModelName
             // 
             this.taskBrandModelName.DataPropertyName = "taskBrandModelName";
+            this.taskBrandModelName.FillWeight = 70F;
             this.taskBrandModelName.HeaderText = "品牌型号";
             this.taskBrandModelName.Name = "taskBrandModelName";
             this.taskBrandModelName.ReadOnly = true;
@@ -152,6 +167,7 @@
             // taskCode
             // 
             this.taskCode.DataPropertyName = "taskCode";
+            this.taskCode.FillWeight = 80F;
             this.taskCode.HeaderText = "任务编码";
             this.taskCode.Name = "taskCode";
             this.taskCode.ReadOnly = true;
@@ -161,6 +177,7 @@
             // taskStartTime
             // 
             this.taskStartTime.DataPropertyName = "taskStartTime";
+            this.taskStartTime.FillWeight = 60F;
             this.taskStartTime.HeaderText = "创建时间";
             this.taskStartTime.Name = "taskStartTime";
             this.taskStartTime.ReadOnly = true;
@@ -180,6 +197,7 @@
             // taskStateName
             // 
             this.taskStateName.DataPropertyName = "taskStateName";
+            this.taskStateName.FillWeight = 40F;
             this.taskStateName.HeaderText = "任务状态";
             this.taskStateName.Name = "taskStateName";
             this.taskStateName.ReadOnly = true;
@@ -189,10 +207,19 @@
             // percent
             // 
             this.percent.DataPropertyName = "percent";
+            this.percent.FillWeight = 60F;
             this.percent.HeaderText = "完成进度";
             this.percent.Name = "percent";
             this.percent.Text = null;
             this.percent.TextVisible = true;
+            // 
+            // taskRound
+            // 
+            this.taskRound.DataPropertyName = "taskRound";
+            this.taskRound.HeaderText = "最新轮次";
+            this.taskRound.Name = "taskRound";
+            this.taskRound.ReadOnly = true;
+            this.taskRound.Visible = false;
             // 
             // btn_pass
             // 
@@ -216,7 +243,7 @@
             // 
             // btn_open
             // 
-            this.btn_open.FillWeight = 40F;
+            this.btn_open.FillWeight = 50F;
             this.btn_open.HeaderText = "操作";
             this.btn_open.Name = "btn_open";
             this.btn_open.ReadOnly = true;
@@ -245,16 +272,6 @@
             this.btn_close.Text = "关闭";
             this.btn_close.UseColumnTextForButtonValue = true;
             this.btn_close.Visible = false;
-            // 
-            // pagingPanel
-            // 
-            this.pagingPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pagingPanel.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.pagingPanel.Location = new System.Drawing.Point(0, 587);
-            this.pagingPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.pagingPanel.Name = "pagingPanel";
-            this.pagingPanel.Size = new System.Drawing.Size(1014, 35);
-            this.pagingPanel.TabIndex = 1;
             // 
             // TaskGridPanel
             // 
@@ -285,6 +302,7 @@
         private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn taskStateId;
         private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn taskStateName;
         private DevComponents.DotNetBar.Controls.DataGridViewProgressBarXColumn percent;
+        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn taskRound;
         private DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn btn_pass;
         private DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn btn_reject;
         private DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn btn_open;

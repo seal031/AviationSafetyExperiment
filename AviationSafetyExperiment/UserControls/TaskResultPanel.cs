@@ -409,6 +409,7 @@ namespace AviationSafetyExperiment.UserControls
                 {
                     dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.LightSeaGreen;
                     dgv.Rows[e.RowIndex].Cells["isHaveModi"].Value = 1;
+                    dgv.Rows[e.RowIndex].Cells["taskDateTime"].Value = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");//修改操作日期单元格内容
                     //allResultModelList.Find()
                     //for (int i = 0; i < allResultModelList.Count; i++)
                     //{

@@ -61,7 +61,7 @@ namespace AviationSafetyExperiment.UserControls
         {
             if (dgv_taskList.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
             {
-                percent.Text = dgv_taskList.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() + "%";
+                percent.Text = "第" + dgv_taskList.Rows[e.RowIndex].Cells["taskRound"].Value.ToString() + "轮 " + dgv_taskList.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() + "%";
                 percent.ToolTipText= "完成进度 "+dgv_taskList.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() + "%";
             }
         }
@@ -81,14 +81,15 @@ namespace AviationSafetyExperiment.UserControls
                                 from tasklifecycle in tasklifecycleList
                                     //from brandCode in brandList
                                     //from taskModelMap in taskModelMapList
-                                //where (taskStateArray == (int)TaskStateEnum.Completed ? 
-                                //    (task.taskState == taskStateArray || task.taskState == (int)TaskStateEnum.Rejected || task.taskState == (int)TaskStateEnum.Closed) 
-                                //    : (task.taskState == taskStateArray))//如果是展示已完成任务，则需要附带已关闭、已驳回的任务
+                                    //where (taskStateArray == (int)TaskStateEnum.Completed ? 
+                                    //    (task.taskState == taskStateArray || task.taskState == (int)TaskStateEnum.Rejected || task.taskState == (int)TaskStateEnum.Closed) 
+                                    //    : (task.taskState == taskStateArray))//如果是展示已完成任务，则需要附带已关闭、已驳回的任务
                                 where taskStateArray.Contains(task.taskState)
                                 && task.taskClass == classCode.id //&& taskModelMap.taskId == task.id && taskModelMap.brandId == brandCode.id
                                 //todo 跟当前用户相关 
                                 && task.id == tasklifecycle.taskId && tasklifecycle.taskState == 5001
                                 && (task.taskExecutor.Contains(User.currentUser.name) || tasklifecycle.taskStateChangeExecutor == User.currentUser.name)//当前用户创建或测试人包含当前用户
+                                orderby task.createTime descending
                                 select new TaskModel
                                 {
                                     taskId = task.id,
@@ -103,7 +104,8 @@ namespace AviationSafetyExperiment.UserControls
                                     taskClassName = classCode.codeName,
                                     taskStartTime = task.createTime,
                                     taskCode = task.taskCode,
-                                    percent = task.percent
+                                    percent = task.percent,
+                                    taskRound = task.taskRound
                                 }).ToList();
             doQuery(new TaskQueryItem());
             showStyle(style);

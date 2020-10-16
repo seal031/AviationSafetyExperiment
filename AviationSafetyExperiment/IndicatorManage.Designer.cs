@@ -149,7 +149,7 @@
             // groupPanel1
             // 
             this.groupPanel1.CanvasColor = System.Drawing.SystemColors.Control;
-            this.groupPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.groupPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.groupPanel1.Controls.Add(this.dgv_indicator);
             this.groupPanel1.Controls.Add(this.pagingPanel);
             this.groupPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -262,7 +262,7 @@
             // groupPanel2
             // 
             this.groupPanel2.CanvasColor = System.Drawing.SystemColors.Control;
-            this.groupPanel2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.groupPanel2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.groupPanel2.Controls.Add(this.btn_search);
             this.groupPanel2.Controls.Add(this.txt_keyword);
             this.groupPanel2.Controls.Add(this.labelX3);
