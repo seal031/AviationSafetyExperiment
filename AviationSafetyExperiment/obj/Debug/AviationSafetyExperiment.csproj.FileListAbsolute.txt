@@ -58,7 +58,6 @@ D:\HAYC\AviationSafetyExperiment\AviationSafetyExperiment\bin\Debug\NPOI.OOXML.x
 D:\HAYC\AviationSafetyExperiment\AviationSafetyExperiment\bin\Debug\NPOI.OpenXml4Net.xml
 D:\HAYC\AviationSafetyExperiment\AviationSafetyExperiment\obj\Debug\AviationSafetyExperiment.ChartForm.resources
 D:\HAYC\AviationSafetyExperiment\AviationSafetyExperiment\obj\Debug\AviationSafetyExperiment.UserControls.AlarmSupplementPanel.resources
-D:\HAYC\AviationSafetyExperiment\AviationSafetyExperiment\obj\Debug\AviationSafetyExperiment.csprojResolveAssemblyReference.cache
 E:\GitHubProject\AviationSafetyExperiment\AviationSafetyExperiment\bin\Debug\航空安全实验基地智能监控系统检测平台.exe.config
 E:\GitHubProject\AviationSafetyExperiment\AviationSafetyExperiment\bin\Debug\航空安全实验基地智能监控系统检测平台.exe
 E:\GitHubProject\AviationSafetyExperiment\AviationSafetyExperiment\bin\Debug\航空安全实验基地智能监控系统检测平台.pdb
@@ -121,3 +120,5 @@ E:\GitHubProject\AviationSafetyExperiment\AviationSafetyExperiment\obj\Debug\航
 E:\GitHubProject\AviationSafetyExperiment\AviationSafetyExperiment\obj\Debug\航空安全实验基地智能监控系统检测平台.pdb
 E:\GitHubProject\AviationSafetyExperiment\AviationSafetyExperiment\bin\Debug\CheckComboBox.dll
 E:\GitHubProject\AviationSafetyExperiment\AviationSafetyExperiment\obj\Debug\AviationSafetyExperiment.csprojResolveAssemblyReference.cache
+D:\HAYC\AviationSafetyExperiment\AviationSafetyExperiment\bin\Debug\CheckComboBox.dll
+D:\HAYC\AviationSafetyExperiment\AviationSafetyExperiment\obj\Debug\AviationSafetyExperiment.csprojResolveAssemblyReference.cache

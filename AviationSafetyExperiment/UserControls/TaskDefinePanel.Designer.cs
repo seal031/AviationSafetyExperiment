@@ -30,7 +30,9 @@
         {
             this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
             this.panelEx2 = new DevComponents.DotNetBar.PanelEx();
+            this.its = new AviationSafetyExperiment.UserControls.IndicatorTemplateSelecter();
             this.groupPanel1 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.ccb_taskExecutor = new CheckComboBoxTest.CheckedComboBox();
             this.lbl_brandModel = new DevComponents.DotNetBar.LabelX();
             this.lbl_taskType = new DevComponents.DotNetBar.LabelX();
             this.btn_createTask = new DevComponents.DotNetBar.ButtonX();
@@ -44,8 +46,6 @@
             this.labelX2 = new DevComponents.DotNetBar.LabelX();
             this.txt_taskName = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
-            this.ccb_taskExecutor = new CheckComboBoxTest.CheckedComboBox();
-            this.its = new AviationSafetyExperiment.UserControls.IndicatorTemplateSelecter();
             this.panelEx1.SuspendLayout();
             this.panelEx2.SuspendLayout();
             this.groupPanel1.SuspendLayout();
@@ -88,6 +88,17 @@
             this.panelEx2.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
             this.panelEx2.Style.GradientAngle = 90;
             this.panelEx2.TabIndex = 15;
+            // 
+            // its
+            // 
+            this.its.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.its.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.its.isManage = false;
+            this.its.Location = new System.Drawing.Point(0, 0);
+            this.its.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.its.Name = "its";
+            this.its.Size = new System.Drawing.Size(1040, 539);
+            this.its.TabIndex = 0;
             // 
             // groupPanel1
             // 
@@ -145,6 +156,21 @@
             this.groupPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.groupPanel1.TabIndex = 14;
             this.groupPanel1.Text = "新建测试任务";
+            // 
+            // ccb_taskExecutor
+            // 
+            this.ccb_taskExecutor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ccb_taskExecutor.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.ccb_taskExecutor.CheckOnClick = true;
+            this.ccb_taskExecutor.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.ccb_taskExecutor.DropDownHeight = 1;
+            this.ccb_taskExecutor.FormattingEnabled = true;
+            this.ccb_taskExecutor.IntegralHeight = false;
+            this.ccb_taskExecutor.Location = new System.Drawing.Point(827, 11);
+            this.ccb_taskExecutor.Name = "ccb_taskExecutor";
+            this.ccb_taskExecutor.Size = new System.Drawing.Size(172, 24);
+            this.ccb_taskExecutor.TabIndex = 29;
+            this.ccb_taskExecutor.ValueSeparator = ", ";
             // 
             // lbl_brandModel
             // 
@@ -217,7 +243,7 @@
             this.txt_taskCode.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txt_taskCode.Name = "txt_taskCode";
             this.txt_taskCode.ReadOnly = true;
-            this.txt_taskCode.Size = new System.Drawing.Size(172, 32);
+            this.txt_taskCode.Size = new System.Drawing.Size(172, 23);
             this.txt_taskCode.TabIndex = 22;
             // 
             // labelX5
@@ -234,7 +260,7 @@
             this.labelX5.Location = new System.Drawing.Point(736, 50);
             this.labelX5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelX5.Name = "labelX5";
-            this.labelX5.Size = new System.Drawing.Size(85, 24);
+            this.labelX5.Size = new System.Drawing.Size(68, 20);
             this.labelX5.TabIndex = 21;
             this.labelX5.Text = "测试编码：";
             // 
@@ -251,7 +277,7 @@
             this.labelX4.Location = new System.Drawing.Point(346, 50);
             this.labelX4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelX4.Name = "labelX4";
-            this.labelX4.Size = new System.Drawing.Size(85, 24);
+            this.labelX4.Size = new System.Drawing.Size(68, 20);
             this.labelX4.TabIndex = 20;
             this.labelX4.Text = "测试类型：";
             // 
@@ -259,10 +285,10 @@
             // 
             this.cbb_taskClass.DisplayMember = "Text";
             this.cbb_taskClass.FormattingEnabled = true;
-            this.cbb_taskClass.ItemHeight = 19;
+            this.cbb_taskClass.ItemHeight = 17;
             this.cbb_taskClass.Location = new System.Drawing.Point(119, 48);
             this.cbb_taskClass.Name = "cbb_taskClass";
-            this.cbb_taskClass.Size = new System.Drawing.Size(152, 27);
+            this.cbb_taskClass.Size = new System.Drawing.Size(152, 25);
             this.cbb_taskClass.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.cbb_taskClass.TabIndex = 19;
             this.cbb_taskClass.SelectedValueChanged += new System.EventHandler(this.cbb_taskClass_SelectedValueChanged);
@@ -280,7 +306,7 @@
             this.labelX3.Location = new System.Drawing.Point(28, 50);
             this.labelX3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelX3.Name = "labelX3";
-            this.labelX3.Size = new System.Drawing.Size(85, 24);
+            this.labelX3.Size = new System.Drawing.Size(68, 20);
             this.labelX3.TabIndex = 18;
             this.labelX3.Text = "测试分类：";
             // 
@@ -295,7 +321,7 @@
             this.txt_taskExecutor.Location = new System.Drawing.Point(722, 143);
             this.txt_taskExecutor.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txt_taskExecutor.Name = "txt_taskExecutor";
-            this.txt_taskExecutor.Size = new System.Drawing.Size(172, 32);
+            this.txt_taskExecutor.Size = new System.Drawing.Size(172, 23);
             this.txt_taskExecutor.TabIndex = 17;
             this.txt_taskExecutor.Visible = false;
             // 
@@ -313,7 +339,7 @@
             this.labelX2.Location = new System.Drawing.Point(736, 12);
             this.labelX2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelX2.Name = "labelX2";
-            this.labelX2.Size = new System.Drawing.Size(85, 24);
+            this.labelX2.Size = new System.Drawing.Size(68, 20);
             this.labelX2.TabIndex = 16;
             this.labelX2.Text = "测试人员：";
             // 
@@ -327,7 +353,7 @@
             this.txt_taskName.Location = new System.Drawing.Point(119, 8);
             this.txt_taskName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txt_taskName.Name = "txt_taskName";
-            this.txt_taskName.Size = new System.Drawing.Size(533, 32);
+            this.txt_taskName.Size = new System.Drawing.Size(533, 23);
             this.txt_taskName.TabIndex = 15;
             // 
             // labelX1
@@ -343,38 +369,13 @@
             this.labelX1.Location = new System.Drawing.Point(28, 12);
             this.labelX1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelX1.Name = "labelX1";
-            this.labelX1.Size = new System.Drawing.Size(85, 24);
+            this.labelX1.Size = new System.Drawing.Size(68, 20);
             this.labelX1.TabIndex = 14;
             this.labelX1.Text = "任务名称：";
             // 
-            // ccb_taskExecutor
-            // 
-            this.ccb_taskExecutor.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.ccb_taskExecutor.CheckOnClick = true;
-            this.ccb_taskExecutor.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.ccb_taskExecutor.DropDownHeight = 1;
-            this.ccb_taskExecutor.FormattingEnabled = true;
-            this.ccb_taskExecutor.IntegralHeight = false;
-            this.ccb_taskExecutor.Location = new System.Drawing.Point(827, 11);
-            this.ccb_taskExecutor.Name = "ccb_taskExecutor";
-            this.ccb_taskExecutor.Size = new System.Drawing.Size(172, 28);
-            this.ccb_taskExecutor.TabIndex = 29;
-            this.ccb_taskExecutor.ValueSeparator = ", ";
-            // 
-            // its
-            // 
-            this.its.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.its.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.its.isManage = false;
-            this.its.Location = new System.Drawing.Point(0, 0);
-            this.its.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.its.Name = "its";
-            this.its.Size = new System.Drawing.Size(1040, 539);
-            this.its.TabIndex = 0;
-            // 
             // TaskDefinePanel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panelEx1);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));

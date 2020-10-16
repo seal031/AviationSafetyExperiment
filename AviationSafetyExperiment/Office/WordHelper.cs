@@ -17,7 +17,6 @@ namespace AviationSafetyExperiment.Office
     {
         public static void CreateFileByTemplate(List<TaskResultModel> resultList, string tempFile, string saveFile,string taskId)
         {
-
             using (FileStream stream = File.OpenRead(tempFile))
             {
                 XWPFDocument doc = new XWPFDocument(stream);
@@ -90,49 +89,49 @@ namespace AviationSafetyExperiment.Office
                                 {
                                     if (col == 0) //序号   列
                                     {
-                                        //if (columnsList[col].GetText() != "")
-                                        //{
-                                        //    columnsList[col].Paragraphs[0].RemoveRun(0);
+                                        if (columnsList[col].GetText() != "")
+                                        {
+                                            columnsList[col].Paragraphs[0].RemoveRun(0);
 
-                                        //}
-                                        XWPFParagraph par = doc.CreateParagraph();
-                                        XWPFRun run = par.CreateRun();
-                                        run.SetText((item + 1).ToString());
-                                        table.Rows[i].GetCell(col).SetParagraph(par);
-                                        //columnsList[col].SetText((item + 1).ToString());
-                                        //string test = columnsList[col].GetText();
+                                        }
+                                        columnsList[col].SetText((item + 1).ToString());
+                                        string test = columnsList[col].GetText();
+                                        //XWPFParagraph par = doc.CreateParagraph();
+                                        //XWPFRun run = par.CreateRun();
+                                        //run.SetText((item + 1).ToString());
+                                        //table.Rows[i].GetCell(col).SetParagraph(par);
                                     }
                                     else if (col == 1) //检验项目
                                     {
-                                        XWPFParagraph par = doc.CreateParagraph();
-                                        XWPFRun run = par.CreateRun();
-                                        run.SetText(resultList[item].indicatorName);
-                                        table.Rows[i].GetCell(col).SetParagraph(par);
-                                        //columnsList[col].SetText(resultList[item].indicatorName);
+                                        //XWPFParagraph par = doc.CreateParagraph();
+                                        //XWPFRun run = par.CreateRun();
+                                        //run.SetText(resultList[item].indicatorName);
+                                        //table.Rows[i].GetCell(col).SetParagraph(par);
+                                        columnsList[col].SetText(resultList[item].indicatorName);
                                     }
                                     else if (col == 2)//技术标准要求
                                     {
-                                        XWPFParagraph par = doc.CreateParagraph();
-                                        XWPFRun run = par.CreateRun();
-                                        run.SetText(resultList[item].indicatorDesc);
-                                        table.Rows[i].GetCell(col).SetParagraph(par);
-                                        //columnsList[col].SetText(resultList[item].indicatorDesc);
+                                        //XWPFParagraph par = doc.CreateParagraph();
+                                        //XWPFRun run = par.CreateRun();
+                                        //run.SetText(resultList[item].indicatorDesc);
+                                        //table.Rows[i].GetCell(col).SetParagraph(par);
+                                        columnsList[col].SetText(resultList[item].indicatorDesc);
                                     }
                                     else if (col == 3) 
                                     {
-                                        XWPFParagraph par = doc.CreateParagraph();
-                                        XWPFRun run = par.CreateRun();
-                                        run.SetText(resultList[item].indicatorId.ToString());
-                                        table.Rows[i].GetCell(col).SetParagraph(par);
-                                        //columnsList[col].SetText(resultList[item].indicatorId.ToString());
+                                        //XWPFParagraph par = doc.CreateParagraph();
+                                        //XWPFRun run = par.CreateRun();
+                                        //run.SetText(resultList[item].indicatorId.ToString());
+                                        //table.Rows[i].GetCell(col).SetParagraph(par);
+                                        columnsList[col].SetText(resultList[item].indicatorId.ToString());
                                     }
                                     else if (col == 4)
                                     {
-                                        XWPFParagraph par = doc.CreateParagraph();
-                                        XWPFRun run = par.CreateRun();
-                                        run.SetText(resultList[item].taskRecord);
-                                        table.Rows[i].GetCell(col).SetParagraph(par);
-                                        //columnsList[col].SetText(resultList[item].taskRecord);
+                                        //XWPFParagraph par = doc.CreateParagraph();
+                                        //XWPFRun run = par.CreateRun();
+                                        //run.SetText(resultList[item].taskRecord);
+                                        //table.Rows[i].GetCell(col).SetParagraph(par);
+                                        columnsList[col].SetText(resultList[item].taskRecord);
                                     }
                                     else if (col == 5)
                                     {
@@ -141,15 +140,15 @@ namespace AviationSafetyExperiment.Office
                                         
                                         if (resultList[item].taskResult == 2)
                                         {
-                                            run.SetText("合格");
-                                            //columnsList[col].SetText("合格");
+                                            //run.SetText("合格");
+                                            columnsList[col].SetText("合格");
                                         }
                                         else
                                         {
-                                            run.SetText("不合格");
-                                            //columnsList[col].SetText("不合格");
+                                            //run.SetText("不合格");
+                                            columnsList[col].SetText("不合格");
                                         }
-                                        table.Rows[i].GetCell(col).SetParagraph(par);
+                                        //table.Rows[i].GetCell(col).SetParagraph(par);
                                     }
                                 }
                                 item++;

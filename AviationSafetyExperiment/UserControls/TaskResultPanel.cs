@@ -296,7 +296,8 @@ namespace AviationSafetyExperiment.UserControls
                                                      taskResultId = resultList.id,
                                                      taskRemark = resultList.taskRemark,
                                                      attachment = resultList.attachment,
-                                                     attachmentCount = "",
+                                                     attachmentCount = (resultList.attachment == string.Empty ? "" : resultList.attachment.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries).Count() + "个")
+                                          + (resultList.supplement == "" ? "" : "(补)"),
                                                      supplement = resultList.supplement
                                                  }).ToList();
             dgv.DataSource = null;

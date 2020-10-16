@@ -39,9 +39,9 @@ namespace AviationSafetyExperiment
             {
                 return false;
             }
-            //HttpWorker.getUser(txt_username.Text.Trim());//模拟用户获取 
-            HttpWorker.login(txt_username.Text.Trim(), txt_password.Text.Trim());
-            HttpWorker.getUserList();
+            HttpWorker.getUser(txt_username.Text.Trim());//模拟用户获取 
+            //HttpWorker.login(txt_username.Text.Trim(), txt_password.Text.Trim());
+            //HttpWorker.getUserList();
             return true;
         }
     }

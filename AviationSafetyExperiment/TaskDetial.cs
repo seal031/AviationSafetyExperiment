@@ -91,7 +91,7 @@ namespace AviationSafetyExperiment
             }
             else
             {
-                lbl_current.Text = "尚无轮次";
+                lbl_current.Text = "尚无步骤";
                 btn_next.Enabled = false;
                 btn_previous.Enabled = false;
             }
