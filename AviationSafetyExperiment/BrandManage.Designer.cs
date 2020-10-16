@@ -47,8 +47,9 @@
             // 
             // groupPanel1
             // 
+            this.groupPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(66)))), ((int)(((byte)(186)))));
             this.groupPanel1.CanvasColor = System.Drawing.SystemColors.Control;
-            this.groupPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.groupPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.groupPanel1.Controls.Add(this.ip_class);
             this.groupPanel1.Controls.Add(this.btn_editClass);
             this.groupPanel1.Controls.Add(this.btn_addClass);
@@ -129,8 +130,9 @@
             // 
             // groupPanel2
             // 
+            this.groupPanel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(66)))), ((int)(((byte)(186)))));
             this.groupPanel2.CanvasColor = System.Drawing.SystemColors.Control;
-            this.groupPanel2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.groupPanel2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.groupPanel2.Controls.Add(this.ip_brand);
             this.groupPanel2.Controls.Add(this.btn_editBrand);
             this.groupPanel2.Controls.Add(this.btn_addBrand);
@@ -211,8 +213,9 @@
             // 
             // groupPanel3
             // 
+            this.groupPanel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(66)))), ((int)(((byte)(186)))));
             this.groupPanel3.CanvasColor = System.Drawing.SystemColors.Control;
-            this.groupPanel3.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.groupPanel3.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.groupPanel3.Controls.Add(this.ip_model);
             this.groupPanel3.Controls.Add(this.btn_editModel);
             this.groupPanel3.Controls.Add(this.btn_addModel);
@@ -293,11 +296,13 @@
             // BrandManage
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(80)))), ((int)(((byte)(125)))));
             this.ClientSize = new System.Drawing.Size(902, 514);
             this.Controls.Add(this.groupPanel3);
             this.Controls.Add(this.groupPanel2);
             this.Controls.Add(this.groupPanel1);
             this.DoubleBuffered = true;
+            this.EnableGlass = false;
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);

@@ -45,8 +45,6 @@
             this.styleManager1 = new DevComponents.DotNetBar.StyleManager(this.components);
             this.taskMainPanel = new AviationSafetyExperiment.UserControls.TaskMainPanel();
             this.taskProcessSlidePanel = new AviationSafetyExperiment.UserControls.TaskProcessSlidePanel();
-            this.taskChartSlidePanel = new AviationSafetyExperiment.UserControls.TaskChartSlidePanel();
-            this.expandablePanel.Controls.Add(this.taskChartSlidePanel);
             this.panelEx1.SuspendLayout();
             this.panelExMain.SuspendLayout();
             this.expandablePanel.SuspendLayout();
@@ -86,7 +84,7 @@
             this.lbl_welcome.ImagePosition = DevComponents.DotNetBar.eImagePosition.Right;
             this.lbl_welcome.Location = new System.Drawing.Point(1123, 28);
             this.lbl_welcome.Name = "lbl_welcome";
-            this.lbl_welcome.Size = new System.Drawing.Size(111, 24);
+            this.lbl_welcome.Size = new System.Drawing.Size(133, 29);
             this.lbl_welcome.TabIndex = 1;
             this.lbl_welcome.Text = "欢迎您，xxx";
             // 
@@ -139,16 +137,6 @@
             this.btn_item_home.SubItemsExpandWidth = 14;
             this.btn_item_home.Text = "首页";
             this.btn_item_home.Click += new System.EventHandler(this.btn_item_home_Click);
-            // 
-            // taskChartSlidePanel
-            // 
-            this.taskChartSlidePanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.taskChartSlidePanel.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.taskChartSlidePanel.Location = new System.Drawing.Point(0, 26);
-            this.taskChartSlidePanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.taskChartSlidePanel.Name = "taskChartSlidePanel";
-            this.taskChartSlidePanel.Size = new System.Drawing.Size(150, 639);
-            this.taskChartSlidePanel.TabIndex = 2;
             // 
             // btn_item_taskManager
             // 
@@ -257,9 +245,9 @@
             // 
             // styleManager1
             // 
-            this.styleManager1.ManagerColorTint = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.styleManager1.ManagerStyle = DevComponents.DotNetBar.eStyle.Office2007Blue;
-            this.styleManager1.MetroColorParameters = new DevComponents.DotNetBar.Metro.ColorTables.MetroColorGeneratorParameters(System.Drawing.Color.White, System.Drawing.Color.Navy);
+            this.styleManager1.ManagerColorTint = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(100)))), ((int)(((byte)(255)))));
+            this.styleManager1.ManagerStyle = DevComponents.DotNetBar.eStyle.Office2010Black;
+            this.styleManager1.MetroColorParameters = new DevComponents.DotNetBar.Metro.ColorTables.MetroColorGeneratorParameters(System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(80)))), ((int)(((byte)(125))))), System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(80)))), ((int)(((byte)(125))))));
             // 
             // taskMainPanel
             // 
@@ -282,13 +270,15 @@
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(85)))));
             this.ClientSize = new System.Drawing.Size(1259, 749);
             this.Controls.Add(this.panelExMain);
             this.Controls.Add(this.ribbonBar1);
             this.Controls.Add(this.panelEx1);
             this.DoubleBuffered = true;
+            this.EnableGlass = false;
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);

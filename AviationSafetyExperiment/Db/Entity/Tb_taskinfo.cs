@@ -47,5 +47,9 @@ namespace AviationSafetyExperiment.Db.Entity
         public int percent { get; set; }
 
         public DateTime createTime { get; set; }
+        /// <summary>
+        /// 测试最新轮次
+        /// </summary>
+        public int taskRound { get; set; }
     }
 }

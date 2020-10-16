@@ -61,6 +61,7 @@ namespace AviationSafetyExperiment.UserControls
             }
             Tb_taskInfo task = new Db.Entity.Tb_taskInfo();
             task.percent = 0;
+            task.taskRound = 1;
             task.taskClass = (int)cbb_taskClass.SelectedValue;
             task.taskCode = txt_taskCode.Text.Trim();
             task.taskExecutor = ccb_taskExecutor.Text;//txt_taskExecutor.Text.Trim();

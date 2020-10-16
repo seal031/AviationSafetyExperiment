@@ -71,6 +71,7 @@ namespace AviationSafetyExperiment.Model
 
         public string taskStateName { get; set; }
         public int percent { get; set; }
+        public int taskRound { get; set; }
     }
 
     /// <summary>
@@ -107,5 +108,9 @@ namespace AviationSafetyExperiment.Model
         /// 补充内容，包括漏报补报。json格式
         /// </summary>
         public string supplement { get; set; }
+        /// <summary>
+        /// 表示该行测试结果是否填写完毕。
+        /// </summary>
+        public int isFilled { get; set; }
     }
 }

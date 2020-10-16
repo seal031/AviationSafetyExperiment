@@ -23,7 +23,7 @@ namespace AviationSafetyExperiment.UserControls
     public partial class TaskResultPanel : UserControl, IPagging
     {
         List<Tb_taskResult> taskResultMapList;
-        List<TaskResultModel> allResultModelList = new List<TaskResultModel>();
+        public List<TaskResultModel> allResultModelList = new List<TaskResultModel>();
         List<ListItem> items = new List<ListItem>();
         private int taskId;
         public int taskRound;
@@ -397,7 +397,8 @@ namespace AviationSafetyExperiment.UserControls
             {
                 if (oldValue != dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString())
                 {
-                    dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.LightSeaGreen;
+                    dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.LightSeaGreen;//改变单元格背景颜色
+                    dgv.Rows[e.RowIndex].Cells["taskDateTime"].Value = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");//修改操作日期单元格内容
                 }
             }
         }

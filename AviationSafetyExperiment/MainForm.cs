@@ -23,6 +23,7 @@ namespace AviationSafetyExperiment
 
         public MainForm()
         {
+            this.EnableGlass = false;
             InitializeComponent();
         }
 
