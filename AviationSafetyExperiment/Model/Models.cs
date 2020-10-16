@@ -107,5 +107,13 @@ namespace AviationSafetyExperiment.Model
         /// 补充内容，包括漏报补报。json格式
         /// </summary>
         public string supplement { get; set; }
+        /// <summary>
+        /// 判断内容是否已经填写完成,用于完成任务和新增轮次的判断
+        /// </summary>
+        public int isFillFinish { get; set; }
+        /// <summary>
+        /// 判断当前是否已修改过值,不管修改了那个值,都为1,未修改为0
+        /// </summary>
+        public int isHaveModi { get; set;}
     }
 }

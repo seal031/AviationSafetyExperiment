@@ -118,32 +118,39 @@ namespace AviationSafetyExperiment
         /// <returns></returns>
         private bool checkCanDone()
         {
-            foreach (DataGridViewRow dr in trp.dgv.Rows)
+            foreach (var item in trp.allResultModelList)
             {
-                if (dr.Cells["taskResult"].Value == null)
+                if (item.isFillFinish == 0)
                 {
-                    dr.Cells["taskResult"].Selected = true;
                     return false;
-                }
-                else if (dr.Cells["taskResult"].Value.ToString() == "0")
-                {
-                    dr.Cells["taskResult"].Selected = true;
-                    return false;
-                }
-                else
-                {
-                    if (dr.Cells["taskRecord"].Value == null)
-                    {
-                        dr.Cells["taskRecord"].Selected = true;
-                        return false;
-                    }
-                    else if (dr.Cells["taskRecord"].Value.ToString() == string.Empty)
-                    {
-                        dr.Cells["taskRecord"].Selected = true;
-                        return false;
-                    }
-                }
+                }         
             }
+            //foreach (DataGridViewRow dr in trp.dgv.Rows)
+            //{
+            //    if (dr.Cells["taskResult"].Value == null)
+            //    {
+            //        dr.Cells["taskResult"].Selected = true;
+            //        return false;
+            //    }
+            //    else if (dr.Cells["taskResult"].Value.ToString() == "0")
+            //    {
+            //        dr.Cells["taskResult"].Selected = true;
+            //        return false;
+            //    }
+            //    else
+            //    {
+            //        if (dr.Cells["taskRecord"].Value == null)
+            //        {
+            //            dr.Cells["taskRecord"].Selected = true;
+            //            return false;
+            //        }
+            //        else if (dr.Cells["taskRecord"].Value.ToString() == string.Empty)
+            //        {
+            //            dr.Cells["taskRecord"].Selected = true;
+            //            return false;
+            //        }
+            //    }
+            //}
             return true;
         }
 
@@ -157,45 +164,77 @@ namespace AviationSafetyExperiment
                 MessageBoxEx.Show("当前轮次不是最大轮次,无法保存", "操作提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            foreach (DataGridViewRow dr in trp.dgv.Rows)
+            //foreach (DataGridViewRow dr in trp.dgv.Rows)
+            //{
+            //    if (dr.Cells["taskRecord"].Value == null)
+            //    {
+            //        dr.Cells["taskRecord"].Value = "";
+            //    }
+            //    if (dr.Cells["taskRemark"].Value == null)
+            //    {
+            //        dr.Cells["taskRemark"].Value = "";
+            //    }
+            //    if (dr.Cells["attachment"].Value == null)
+            //    {
+            //        dr.Cells["attachment"].Value = "";
+            //    }
+            //    //如果修改过测试结果，或是测试结果内有内容（无论是否本次输入），都保存
+            //    if (dr.Cells["taskResult"].Style.BackColor == Color.LightSeaGreen
+            //        || dr.Cells["taskRecord"].Style.BackColor == Color.LightSeaGreen
+            //        || dr.Cells["taskRemark"].Style.BackColor == Color.LightSeaGreen
+            //        || dr.Cells["attachmentCount"].Style.BackColor == Color.LightSeaGreen
+            //        || dr.Cells["taskResult"].Value.ToString() != "0"
+            //        || dr.Cells["taskRecord"].Value.ToString() != string.Empty
+            //        || dr.Cells["taskRemark"].Value.ToString() != string.Empty
+            //        || dr.Cells["attachment"].Value.ToString() != string.Empty)
+            //    {
+            //        Tb_taskResult result = new Tb_taskResult();
+            //        result.indicatorId = (int)dr.Cells["indicatorId"].Value;
+            //        result.modelId = (int)dr.Cells["modelId"].Value;
+            //        result.taskDateTime = DateTime.Now;
+            //        result.taskExecutor = User.currentUser.name;
+            //        result.taskId = taskInfoId;
+            //        result.taskRecord = dr.Cells["taskRecord"].Value == null ? "" : dr.Cells["taskRecord"].Value.ToString();
+            //        result.taskRemark = dr.Cells["taskRemark"].Value.ToString();
+            //        result.taskResult = (int)dr.Cells["taskResult"].Value;
+            //        result.attachment = dr.Cells["attachment"].Value.ToString();
+            //        result.supplement = dr.Cells["supplement"].Value == null ? "" : dr.Cells["supplement"].Value.ToString();
+            //        result.taskStep = maxTaskStep + 1;
+            //        result.taskRound = currentRound;
+            //        //result.taskRound = int.Parse(labelItem2.Text);
+            //        resultList.Add(result);
+
+            //        //保存任务之时,判断当前项是否填写完整,如果填写完整,则修改该控件下的isFillFinish值
+            //        if (result.taskResult != 0 && result.taskRecord != "")
+            //        {
+            //            dr.Cells["isFill"].Value = 1;
+            //        }
+            //    }
+            //}
+            foreach (var item in trp.allResultModelList)
             {
-                if (dr.Cells["taskRecord"].Value == null)
-                {
-                    dr.Cells["taskRecord"].Value = "";
-                }
-                if (dr.Cells["taskRemark"].Value == null)
-                {
-                    dr.Cells["taskRemark"].Value = "";
-                }
-                if (dr.Cells["attachment"].Value == null)
-                {
-                    dr.Cells["attachment"].Value = "";
-                }
-                //如果修改过测试结果，或是测试结果内有内容（无论是否本次输入），都保存
-                if (dr.Cells["taskResult"].Style.BackColor == Color.LightSeaGreen
-                    || dr.Cells["taskRecord"].Style.BackColor == Color.LightSeaGreen
-                    || dr.Cells["taskRemark"].Style.BackColor == Color.LightSeaGreen
-                    || dr.Cells["attachmentCount"].Style.BackColor == Color.LightSeaGreen
-                    || dr.Cells["taskResult"].Value.ToString() != "0"
-                    || dr.Cells["taskRecord"].Value.ToString() != string.Empty
-                    || dr.Cells["taskRemark"].Value.ToString() != string.Empty
-                    || dr.Cells["attachment"].Value.ToString() != string.Empty)
+                if (item.isHaveModi == 1)
                 {
                     Tb_taskResult result = new Tb_taskResult();
-                    result.indicatorId = (int)dr.Cells["indicatorId"].Value;
-                    result.modelId = (int)dr.Cells["modelId"].Value;
+                    result.indicatorId = item.indicatorId;
+                    result.modelId = item.modelId;
                     result.taskDateTime = DateTime.Now;
                     result.taskExecutor = User.currentUser.name;
                     result.taskId = taskInfoId;
-                    result.taskRecord = dr.Cells["taskRecord"].Value == null ? "" : dr.Cells["taskRecord"].Value.ToString();
-                    result.taskRemark = dr.Cells["taskRemark"].Value.ToString();
-                    result.taskResult = (int)dr.Cells["taskResult"].Value;
-                    result.attachment = dr.Cells["attachment"].Value.ToString();
-                    result.supplement = dr.Cells["supplement"].Value == null ? "" : dr.Cells["supplement"].Value.ToString();
-                    result.taskStep = maxTaskStep+1;
+                    result.taskRecord = item.taskRecord;
+                    result.taskRemark = item.taskRemark;
+                    result.taskResult = item.taskResult;
+                    result.attachment = item.attachment;
+                    result.supplement = item.supplement;
+                    result.taskStep = maxTaskStep + 1;
                     result.taskRound = currentRound;
                     //result.taskRound = int.Parse(labelItem2.Text);
                     resultList.Add(result);
+
+                    if (result.taskResult != 0 && result.taskRecord != "")
+                    {
+                        item.isFillFinish = 1;
+                    }
                 }
             }
             if (resultList.Count > 0)
@@ -216,6 +255,8 @@ namespace AviationSafetyExperiment
                 }
                 MainFormAdapter.reloadTaskMainPanel();
                 maxTaskStep++;//最大步骤编号,每次保存,都加1,如果切换轮次,需重新获取该轮次的最大步骤编号
+                trp.maxResultStep = maxTaskStep;
+                trp.currentResultStep = maxTaskStep;
             }
         }
 

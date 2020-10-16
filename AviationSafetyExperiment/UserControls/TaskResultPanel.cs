@@ -23,7 +23,7 @@ namespace AviationSafetyExperiment.UserControls
     public partial class TaskResultPanel : UserControl, IPagging
     {
         List<Tb_taskResult> taskResultMapList;
-        List<TaskResultModel> allResultModelList = new List<TaskResultModel>();
+        public List<TaskResultModel> allResultModelList = new List<TaskResultModel>();
         List<ListItem> items = new List<ListItem>();
         private int taskId;
         public int taskRound;
@@ -87,6 +87,7 @@ namespace AviationSafetyExperiment.UserControls
             var brandList = CodeCache.getBrand();
             var modelList = CodeCache.getModel();
             var taskModelList = TaskModelMapCache.getCache();
+            taskResultMapList = TaskResultCache.getCache().Where(t => t.taskId == taskId && t.taskRound == taskRound).ToList();
             if (round == 1)
             {
                 //todo ***************确定后将下列ToList都去掉******************
@@ -157,7 +158,9 @@ namespace AviationSafetyExperiment.UserControls
                                           brandId = temp.indicator.brandId,
                                           brandName = temp.indicator.brandName,
                                           taskResultId = temp.taskResultId,
-                                          supplement = temp.supplement
+                                          supplement = temp.supplement,
+                                          isFillFinish = (temp.taskResult == 0 && temp.taskRecord == "") ? 0 : 1,
+                                          isHaveModi = ((temp.taskResult != 0 || temp.taskRecord != "" || temp.taskRemark != "" || temp.attachment != "" || temp.supplement != "") ? 1:0)
                                       }).ToList();
             }
             else
@@ -217,7 +220,9 @@ namespace AviationSafetyExperiment.UserControls
                                           attachment = resultList.attachment,
                                           attachmentCount = (resultList.attachment == string.Empty ? "" : resultList.attachment.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries).Count() + "个")
                                           + (resultList.supplement == "" ? "" : "(补)"),
-                                          supplement = resultList.supplement
+                                          supplement = resultList.supplement,
+                                          isFillFinish = (resultList.taskResult == 0 && resultList.taskRecord == "") ? 0 : 1,
+                                          isHaveModi = ((resultList.taskResult != 0 || resultList.taskRecord != "" || resultList.taskRemark != "" || resultList.attachment != "" || resultList.supplement != "") ? 1 : 0)
                                       }).ToList();
             }
             
@@ -271,7 +276,7 @@ namespace AviationSafetyExperiment.UserControls
             var indicatorList = IndicatorCache.getCache();
             var brandList = CodeCache.getBrand();
             var modelList = CodeCache.getModel();
-            List<TaskResultModel> resultModel = (from resultList in result
+            allResultModelList = (from resultList in result
                                                  from indicator in indicatorList
                                                  from brand in brandList
                                                  from model in modelList
@@ -298,10 +303,14 @@ namespace AviationSafetyExperiment.UserControls
                                                      attachment = resultList.attachment,
                                                      attachmentCount = (resultList.attachment == string.Empty ? "" : resultList.attachment.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries).Count() + "个")
                                           + (resultList.supplement == "" ? "" : "(补)"),
-                                                     supplement = resultList.supplement
+                                                     supplement = resultList.supplement,
+                                                     isFillFinish = (resultList.taskResult == 0 && resultList.taskRecord == "") ? 0 : 1,
+                                                     isHaveModi = ((resultList.taskResult != 0 || resultList.taskRecord != "" || resultList.taskRemark != "" || resultList.attachment != "" || resultList.supplement != "") ? 1 : 0)
                                                  }).ToList();
             dgv.DataSource = null;
-            dgv.DataSource = resultModel;
+            pagingPanel.setDetail(allResultModelList.Count);
+            //return allResultModelList.Skip(pageSize * (pageNum - 1)).Take(pageSize).ToList();
+            dgv.DataSource = allResultModelList.Skip(pageSize * (pageNum - 1)).Take(pageSize).ToList();
             setReadOnly(readOnly);
         }
         List<string> colsHeaderText_H = new List<string>() { "指标名称", "指标描述", "操作说明" };
@@ -391,6 +400,7 @@ namespace AviationSafetyExperiment.UserControls
         }
 
         string oldValue;
+        private DataGridViewCell cell;
         private void dgv_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             if (dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
@@ -398,6 +408,48 @@ namespace AviationSafetyExperiment.UserControls
                 if (oldValue != dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString())
                 {
                     dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.LightSeaGreen;
+                    dgv.Rows[e.RowIndex].Cells["isHaveModi"].Value = 1;
+                    //allResultModelList.Find()
+                    //for (int i = 0; i < allResultModelList.Count; i++)
+                    //{
+                    //    if (allResultModelList[i].indicatorId == (int)dgv.Rows[e.RowIndex].Cells["indicatorId"].Value
+                    //        && allResultModelList[i].modelId == (int)dgv.Rows[e.RowIndex].Cells["modelId"].Value)
+                    //    {
+                    //        if (dgv.Columns[e.ColumnIndex].Name == "taskRecord")
+                    //        {
+                    //            allResultModelList[i].taskRecord = dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value == null ? "" : dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+                    //        }
+                    //        else if (dgv.Columns[e.ColumnIndex].Name == "taskResult")
+                    //        {
+                    //            allResultModelList[i].taskResult = (int)dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                    //        }
+                    //        else if (dgv.Columns[e.ColumnIndex].Name == "taskRemark")
+                    //        {
+                    //            allResultModelList[i].taskRemark = dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value == null ? "" : dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+                    //        }
+                    //        else if (dgv.Columns[e.ColumnIndex].Name == "attachment")
+                    //        {
+                    //            allResultModelList[i].attachment = dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value == null ? "" : dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+                    //        }
+                    //        else if (dgv.Columns[e.ColumnIndex].Name == "supplement")
+                    //        {
+                    //            allResultModelList[i].supplement = dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value == null ? "" : dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+                    //        }
+
+                    //        //if (dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].ColumnIndex)
+                    //        //{
+
+                    //        //}
+                    //        break;
+                    //    }
+                    //}
+                }
+            }
+            else
+            {
+                if (cell != null)
+                {
+                    dgv.Rows[e.RowIndex].Cells["isHaveModi"].Value = 1;
                 }
             }
         }
@@ -407,6 +459,11 @@ namespace AviationSafetyExperiment.UserControls
             if (dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
             {
                 oldValue = dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+                cell = dgv.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            }
+            else
+            {
+                cell = null;
             }
         }
 

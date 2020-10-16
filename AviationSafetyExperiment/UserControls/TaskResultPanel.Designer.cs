@@ -51,6 +51,8 @@
             this.taskExecutor = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
             this.taskDateTime = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
             this.supplement = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
+            this.isFill = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
+            this.isHaveModi = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.SuspendLayout();
             // 
@@ -92,7 +94,9 @@
             this.attachment,
             this.taskExecutor,
             this.taskDateTime,
-            this.supplement});
+            this.supplement,
+            this.isFill,
+            this.isHaveModi});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -103,7 +107,7 @@
             this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dgv.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
+            this.dgv.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(181)))), ((int)(((byte)(241)))));
             this.dgv.Location = new System.Drawing.Point(0, 0);
             this.dgv.MultiSelect = false;
             this.dgv.Name = "dgv";
@@ -279,9 +283,23 @@
             this.supplement.Name = "supplement";
             this.supplement.Visible = false;
             // 
+            // isFill
+            // 
+            this.isFill.DataPropertyName = "isFillFinish";
+            this.isFill.HeaderText = "isFill";
+            this.isFill.Name = "isFill";
+            this.isFill.Visible = false;
+            // 
+            // isHaveModi
+            // 
+            this.isHaveModi.DataPropertyName = "isHaveModi";
+            this.isHaveModi.HeaderText = "isHaveModi";
+            this.isHaveModi.Name = "isHaveModi";
+            this.isHaveModi.Visible = false;
+            // 
             // TaskResultPanel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dgv);
             this.Controls.Add(this.pagingPanel);
@@ -316,5 +334,7 @@
         private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn taskExecutor;
         private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn taskDateTime;
         private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn supplement;
+        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn isFill;
+        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn isHaveModi;
     }
 }
