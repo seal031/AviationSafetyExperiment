@@ -71,6 +71,8 @@ namespace AviationSafetyExperiment.Model
 
         public string taskStateName { get; set; }
         public int percent { get; set; }
+
+        public int taskRound { get; set; }
     }
 
     /// <summary>

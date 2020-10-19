@@ -55,6 +55,7 @@ namespace AviationSafetyExperiment
                     node.Nodes.Add(subNode);
                 }
             }
+            tree.ExpandAll();
         }
 
         private void Cbi_CheckedChanged(object sender, CheckBoxChangeEventArgs e)

@@ -333,7 +333,10 @@ namespace AviationSafetyExperiment
                     maxRound++;
                     AddRoundButton(currentRound);
                     trp.init(taskInfoId, false,currentRound);
-                    maxTaskStep = (int)(trp.dgv.Rows[0].Cells["taskStep"].Value);//轮次切换后,会进行页面刷新,获取当前轮次页面的最大步骤
+                    if (trp.dgv.Rows.Count > 0)
+                    {
+                        maxTaskStep = (int)(trp.dgv.Rows[0].Cells["taskStep"].Value);//轮次切换后,会进行页面刷新,获取当前轮次页面的最大步骤
+                    }
                     //新增轮次后，task的最新轮次更新，且进度重置为0
                     Tb_taskInfo task = TaskCache.getCacheById(taskInfoId);
                     if (task != null)
@@ -396,7 +399,10 @@ namespace AviationSafetyExperiment
                 {
                     trp.init(taskInfoId, true, round);//如果选中了之前的轮次，只读
                 }
-                maxTaskStep = (int)(trp.dgv.Rows[0].Cells["taskStep"].Value);//轮次切换后,会进行页面刷新,获取当前轮次页面的最大步骤
+                if (trp.dgv.Rows.Count>0)
+                {
+                    maxTaskStep = (int)(trp.dgv.Rows[0].Cells["taskStep"].Value);//轮次切换后,会进行页面刷新,获取当前轮次页面的最大步骤
+                }
             }
             else
             {

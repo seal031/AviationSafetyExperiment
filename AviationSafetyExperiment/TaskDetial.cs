@@ -300,6 +300,7 @@ namespace AviationSafetyExperiment
             if (folderDlg.ShowDialog() == DialogResult.OK)
             {
                 Office.WordHelper.CreateFileByTemplate(resultList,path, folderDlg.SelectedPath,infoId);
+                MessageBoxEx.Show("报告生成成功", "操作提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

@@ -45,6 +45,8 @@
             this.styleManager1 = new DevComponents.DotNetBar.StyleManager(this.components);
             this.taskMainPanel = new AviationSafetyExperiment.UserControls.TaskMainPanel();
             this.taskProcessSlidePanel = new AviationSafetyExperiment.UserControls.TaskProcessSlidePanel();
+            this.taskChartSlidePanel = new AviationSafetyExperiment.UserControls.TaskChartSlidePanel();
+            this.expandablePanel.Controls.Add(this.taskChartSlidePanel);
             this.panelEx1.SuspendLayout();
             this.panelExMain.SuspendLayout();
             this.expandablePanel.SuspendLayout();
@@ -74,6 +76,16 @@
             // 
             this.lbl_welcome.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_welcome.AutoSize = true;
+            // 
+            // taskChartSlidePanel
+            // 
+            this.taskChartSlidePanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.taskChartSlidePanel.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.taskChartSlidePanel.Location = new System.Drawing.Point(0, 26);
+            this.taskChartSlidePanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.taskChartSlidePanel.Name = "taskChartSlidePanel";
+            this.taskChartSlidePanel.Size = new System.Drawing.Size(150, 639);
+            this.taskChartSlidePanel.TabIndex = 2;
             // 
             // 
             // 

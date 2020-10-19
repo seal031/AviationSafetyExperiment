@@ -165,7 +165,7 @@ namespace AviationSafetyExperiment.UserControls
             }
             else
             {
-                var initStepList = TaskResultCache.getCache().Where(r => r.taskId == taskId && r.taskRound == taskRound && r.taskResult == 0).ToList();
+                var initStepList = TaskResultCache.getCache().Where(r => r.taskId == taskId && r.taskRound == taskRound && r.taskResult == 0 && r.taskStep == 1).ToList();
                 var a = (from initStep in initStepList
                          join result in
                          TaskResultCache.getCache().Where(r => r.taskId == taskId && r.taskRound == taskRound && r.taskStep == step).ToList()
@@ -246,7 +246,7 @@ namespace AviationSafetyExperiment.UserControls
             try
             {
                 maxResultStep = allResult.Max(x => x.taskStep);
-                currentResultStep = maxResultStep;
+                currentResultStep = 1;
             }
             catch (Exception ex)
             {
