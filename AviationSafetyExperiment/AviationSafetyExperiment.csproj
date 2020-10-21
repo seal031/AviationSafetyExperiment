@@ -460,6 +460,9 @@
   <ItemGroup>
     <Content Include="Airplane64px.ico" />
     <Content Include="Db\Entity\taskStateDescribe.txt" />
+    <None Include="Pictures\32\16.png" />
+    <None Include="Pictures\16\s_30.png" />
+    <None Include="Resources\新增.png" />
     <None Include="Pictures\32\15.png" />
     <None Include="Pictures\loginbg.jpg" />
     <None Include="Pictures\16\s_29.png" />

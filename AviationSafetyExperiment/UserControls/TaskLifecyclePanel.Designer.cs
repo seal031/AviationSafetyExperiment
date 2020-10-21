@@ -90,13 +90,13 @@
             this.lbl_taskLifecycle.ForeColor = System.Drawing.Color.Black;
             this.lbl_taskLifecycle.Location = new System.Drawing.Point(0, 0);
             this.lbl_taskLifecycle.Name = "lbl_taskLifecycle";
-            this.lbl_taskLifecycle.Size = new System.Drawing.Size(461, 27);
+            this.lbl_taskLifecycle.Size = new System.Drawing.Size(370, 22);
             this.lbl_taskLifecycle.TabIndex = 0;
             this.lbl_taskLifecycle.Text = "-------------------------------------------------------------";
             // 
             // TaskLifecyclePanel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupPanel1);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));

@@ -133,6 +133,16 @@ namespace AviationSafetyExperiment.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap _16 {
+            get {
+                object obj = ResourceManager.GetObject("_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap _2 {
             get {
                 object obj = ResourceManager.GetObject("_2", resourceCulture);
@@ -476,6 +486,16 @@ namespace AviationSafetyExperiment.Properties {
         internal static System.Drawing.Bitmap s_3 {
             get {
                 object obj = ResourceManager.GetObject("s_3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap s_30 {
+            get {
+                object obj = ResourceManager.GetObject("s_30", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

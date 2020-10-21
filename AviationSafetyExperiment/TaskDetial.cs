@@ -59,19 +59,36 @@ namespace AviationSafetyExperiment
             }
             currentRound = 1;
             currentStep = 1;
-            taskRound_BtnColl.Items.Clear();
-            for (int i = 0; i < maxRound; i++)
+            //taskRound_BtnColl.Items.Clear();
+            //for (int i = 0; i < maxRound; i++)
+            //{
+            //    ButtonItem btn_round = new ButtonItem();
+            //    btn_round.ShowSubItems = false;
+            //    btn_round.SubItemsExpandWidth = 14;
+            //    btn_round.Text = (i+1).ToString();
+            //    btn_round.Click += new System.EventHandler(btn_round_Click);
+            //    if (i == 0)
+            //    {
+            //        btn_round.Checked = true;
+            //    }
+            //    this.taskRound_BtnColl.Items.Add(btn_round);
+            //}
+            lbl_roundText.Text = string.Format("{0}/{1}", currentRound, maxRound);
+            if (currentRound == maxRound)
             {
-                ButtonItem btn_round = new ButtonItem();
-                btn_round.ShowSubItems = false;
-                btn_round.SubItemsExpandWidth = 14;
-                btn_round.Text = (i+1).ToString();
-                btn_round.Click += new System.EventHandler(btn_round_Click);
-                if (i == 0)
-                {
-                    btn_round.Checked = true;
-                }
-                this.taskRound_BtnColl.Items.Add(btn_round);
+                Btn_nextRound.Enabled = false;
+            }
+            else
+            {
+                Btn_nextRound.Enabled = true;
+            }
+            if (currentRound == 1)
+            {
+                Btn_lastRound.Enabled = false;
+            }
+            else
+            {
+                Btn_lastRound.Enabled = true;
             }
             //taskRound_BtnColl.AutoSize = true;
             //this.task
@@ -96,21 +113,24 @@ namespace AviationSafetyExperiment
                 btn_previous.Enabled = false;
             }
         }
-
-        private void btn_round_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 轮次切换,并在页面进行显示
+        /// </summary>
+        /// <param name="round"></param>
+        private void roundSwitchShow(int round)
         {
-            ButtonItem btn_round = (ButtonItem)sender;
-            foreach (ButtonItem item in taskRound_BtnColl.Items)
-            {
-                item.Checked = false;
-            }
-            btn_round.Checked = true;
-            currentRound = int.Parse(btn_round.Text);
-            roundSwitch(currentRound);
-            trp.taskRound = currentRound;
+            //ButtonItem btn_round = (ButtonItem)sender;
+            //foreach (ButtonItem item in taskRound_BtnColl.Items)
+            //{
+            //    item.Checked = false;
+            //}
+            //btn_round.Checked = true;
+            //currentRound = int.Parse(btn_round.Text);
+            roundSwitch(round);
+            trp.taskRound = round;
             trp.currentResultStep = currentStep;
             trp.maxResultStep = maxStep;
-            List<TaskResultModel> resModelList = trp.getData(currentStep,currentRound);
+            List<TaskResultModel> resModelList = trp.getData(currentStep, round);
             trp.dgv.DataSource = null;
             trp.dgv.DataSource = resModelList;
             trp.dgv.AutoGenerateColumns = false;
@@ -307,6 +327,58 @@ namespace AviationSafetyExperiment
         private void tdbip_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void Btn_lastRound_Click(object sender, EventArgs e)
+        {
+            if (currentRound > 1)
+            {
+                currentRound--;
+                lbl_roundText.Text = string.Format("{0}/{1}", currentRound, maxRound);
+                roundSwitchShow(currentRound);
+                if (currentRound == 1)
+                {
+                    Btn_lastRound.Enabled = false;
+                }
+                else
+                {
+                    Btn_lastRound.Enabled = true;
+                }
+                if (currentRound<maxRound)
+                {
+                    Btn_nextRound.Enabled = true;
+                }
+                else
+                {
+                    Btn_nextRound.Enabled = false;
+                }
+            }
+        }
+
+        private void Btn_nextRound_Click(object sender, EventArgs e)
+        {
+            if (currentRound < maxRound)
+            {
+                currentRound++;
+                lbl_roundText.Text = string.Format("{0}/{1}", currentRound, maxRound);
+                roundSwitchShow(currentRound);
+                if (currentRound == maxRound)
+                {
+                    Btn_nextRound.Enabled = false;
+                }
+                else
+                {
+                    Btn_nextRound.Enabled = true;
+                }
+                if (currentRound > 1)
+                {
+                    Btn_lastRound.Enabled = true;
+                }
+                else
+                {
+                    Btn_lastRound.Enabled = false;
+                }
+            }
         }
     }
 }

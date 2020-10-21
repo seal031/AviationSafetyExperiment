@@ -34,8 +34,9 @@ namespace AviationSafetyExperiment
                 btn_done.Visible = false;
                 btn_save.Visible = false;
                 btn_close.Visible = false;
+                btn_newRound.Visible = false;
                 trp.init(taskInfoId, true, currentRound);//此时只读
-                ribbonBar_taskRound.Visible = false;//不显示轮次操作
+                showTaskRound_Panel.Visible = false;//不显示轮次操作
             }
             else//如果是处理中的任务，显示保存、完成、关闭
             {
@@ -72,30 +73,32 @@ namespace AviationSafetyExperiment
             {
                 currentRound = 1;
                 maxRound = 1;
-                ButtonItem btn_round = new ButtonItem();
-                btn_round.ShowSubItems = false;
-                btn_round.SubItemsExpandWidth = 14;
-                btn_round.Text = "1";
-                btn_round.Click += new System.EventHandler(btn_round_Click);
-                btn_round.Checked = true;
-                this.ribbonBar_taskRound.Items.Add(btn_round);
+                lbl_round.Text = string.Format("{0}/{1}", currentRound, maxRound);
+                //ButtonItem btn_round = new ButtonItem();
+                //btn_round.ShowSubItems = false;
+                //btn_round.SubItemsExpandWidth = 14;
+                //btn_round.Text = "1";
+                //btn_round.Click += new System.EventHandler(btn_round_Click);
+                //btn_round.Checked = true;
+                //this.ribbonBar_taskRound.Items.Add(btn_round);
             }
             else
             {
-                foreach (var tr in orderRoundList)
-                {
-                    int round = tr.Key;
-                    ButtonItem btn_round = new ButtonItem();
-                    btn_round.ShowSubItems = false;
-                    btn_round.SubItemsExpandWidth = 14;
-                    btn_round.Text = round.ToString();
-                    btn_round.Click += new System.EventHandler(btn_round_Click);
-                    if (round == currentRound)
-                    {
-                        btn_round.Checked = true;
-                    }
-                    this.ribbonBar_taskRound.Items.Add(btn_round);
-                }
+                lbl_round.Text = string.Format("{0}/{1}", currentRound, orderRoundList.Count);
+                //foreach (var tr in orderRoundList)
+                //{
+                //    int round = tr.Key;
+                //    ButtonItem btn_round = new ButtonItem();
+                //    btn_round.ShowSubItems = false;
+                //    btn_round.SubItemsExpandWidth = 14;
+                //    btn_round.Text = round.ToString();
+                //    btn_round.Click += new System.EventHandler(btn_round_Click);
+                //    if (round == currentRound)
+                //    {
+                //        btn_round.Checked = true;
+                //    }
+                //    this.ribbonBar_taskRound.Items.Add(btn_round);
+                //}
                 maxRound = orderRoundList.Count;
             }
         }
@@ -331,7 +334,7 @@ namespace AviationSafetyExperiment
                 {
                     currentRound++;
                     maxRound++;
-                    AddRoundButton(currentRound);
+                    ModiRoundText(currentRound);
                     trp.init(taskInfoId, false,currentRound);
                     if (trp.dgv.Rows.Count > 0)
                     {
@@ -352,68 +355,75 @@ namespace AviationSafetyExperiment
                 }
             }
         }
-
-        private void AddRoundButton(int currentRound)
+        /// <summary>
+        /// 修改文字
+        /// </summary>
+        /// <param name="currentRound"></param>
+        private void ModiRoundText(int currentRound)
         {
-            for (int i = 3; i < ribbonBar_taskRound.Items.Count; i++)
+            lbl_round.Text = string.Format("{0}/{0}", currentRound);
+            if (currentRound == 1)
             {
-                ButtonItem btnItem = (ButtonItem)ribbonBar_taskRound.Items[i];
-                btnItem.Checked = false;
+                btn_previous.Enabled = false;
             }
-            ButtonItem btn_round = new ButtonItem();
-            btn_round.ShowSubItems = false;
-            btn_round.SubItemsExpandWidth = 14;
-            btn_round.Text = currentRound.ToString();
-            btn_round.Click += new System.EventHandler(btn_round_Click);
-            btn_round.Checked = true;
-            this.ribbonBar_taskRound.Items.Add(btn_round);
-            this.ribbonBar_taskRound.Refresh();
+            else
+            {
+                btn_previous.Enabled = true;
+            }
+            if (currentRound == maxRound)
+            {
+                btn_next.Enabled = false;
+            }
+            else
+            {
+                btn_next.Enabled = true;
+            }
         }
 
         private void btn_round_Click(object sender, EventArgs e)
         {
-            var btn_round = sender as ButtonItem;
-            int round;
-            if (int.TryParse(btn_round.Text, out round))
-            {
-                //maxRound = 2;
-                currentRound = round;
-                if (trpIsEdited())
-                {
-                    MessageBoxEx.Show("当前轮次还有尚未保存的修改，请先保存任务，再进行轮次切换。", "操作风险", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                    return;
-                }
-                if (round == maxRound)
-                {
+            //var btn_round = sender as ButtonItem;
+            //int round;
+            //if (int.TryParse(btn_round.Text, out round))
+            //{
+            //    //maxRound = 2;
+            //    currentRound = round;
+            //    if (trpIsEdited())
+            //    {
+            //        MessageBoxEx.Show("当前轮次还有尚未保存的修改，请先保存任务，再进行轮次切换。", "操作风险", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            //        return;
+            //    }
+            //    if (round == maxRound)
+            //    {
                         
-                    if (round != 1)
-                    {
-                        trp.maxRoundInit(taskInfoId, false, round);
-                    }
-                    else
-                    {
-                        trp.init(taskInfoId, false, round);//如果选中了当前轮次，可以编辑
-                    }
-                }
-                else
-                {
-                    trp.init(taskInfoId, true, round);//如果选中了之前的轮次，只读
-                }
-                if (trp.dgv.Rows.Count>0)
-                {
-                    maxTaskStep = (int)(trp.dgv.Rows[0].Cells["taskStep"].Value);//轮次切换后,会进行页面刷新,获取当前轮次页面的最大步骤
-                }
-            }
-            else
-            {
-                MessageBoxEx.Show("要查看的轮次无效。", "操作提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            for (int i = 3; i < ribbonBar_taskRound.Items.Count; i++)
-            {
-                ButtonItem btnItem = (ButtonItem)ribbonBar_taskRound.Items[i];
-                btnItem.Checked = false;
-            }
-            btn_round.Checked = true;
+            //        if (round != 1)
+            //        {
+            //            trp.maxRoundInit(taskInfoId, false, round);
+            //        }
+            //        else
+            //        {
+            //            trp.init(taskInfoId, false, round);//如果选中了当前轮次，可以编辑
+            //        }
+            //    }
+            //    else
+            //    {
+            //        trp.init(taskInfoId, true, round);//如果选中了之前的轮次，只读
+            //    }
+            //    if (trp.dgv.Rows.Count>0)
+            //    {
+            //        maxTaskStep = (int)(trp.dgv.Rows[0].Cells["taskStep"].Value);//轮次切换后,会进行页面刷新,获取当前轮次页面的最大步骤
+            //    }
+            //}
+            //else
+            //{
+            //    MessageBoxEx.Show("要查看的轮次无效。", "操作提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //}
+            //for (int i = 3; i < ribbonBar_taskRound.Items.Count; i++)
+            //{
+            //    ButtonItem btnItem = (ButtonItem)ribbonBar_taskRound.Items[i];
+            //    btnItem.Checked = false;
+            //}
+            //btn_round.Checked = true;
         }
 
         private void TaskExecuteForm_Shown(object sender, EventArgs e)
@@ -428,8 +438,111 @@ namespace AviationSafetyExperiment
             {
 
             }
+            if (currentRound == 1)
+            {
+                btn_previous.Enabled = false;
+            }
+            else
+            {
+                btn_previous.Enabled = true;
+            }
+            if (currentRound == maxRound)
+            {
+                btn_next.Enabled = false;
+            }
+            else
+            {
+                btn_next.Enabled = true;
+            }
         }
-
+        /// <summary>
+        /// 上一轮次
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btn_previous_Click(object sender, EventArgs e)
+        {
+            if (trpIsEdited())
+            {
+                MessageBoxEx.Show("当前轮次还有尚未保存的修改，请先保存任务，再进行轮次切换。", "操作风险", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                return;
+            }
+            //lbl_round 中间显示的文本
+            if (currentRound > 1)
+            {
+                currentRound--;
+                lbl_round.Text = string.Format("{0}/{1}", currentRound, maxRound);
+                BindDataRound(currentRound);
+                if (currentRound == 1)
+                {
+                    btn_previous.Enabled = false;
+                }
+                else
+                {
+                    btn_previous.Enabled = true;
+                }
+                if (currentRound < maxRound)
+                {
+                    btn_next.Enabled = true;
+                }
+                else
+                {
+                    btn_next.Enabled = false;
+                }
+            }
+        }
+        /// <summary>
+        /// 下一轮次
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btn_next_Click(object sender, EventArgs e)
+        {
+            if (currentRound <maxRound)
+            {
+                currentRound++;
+                lbl_round.Text = string.Format("{0}/{1}", currentRound, maxRound);
+                BindDataRound(currentRound);
+                if (currentRound == maxRound)
+                {
+                    btn_next.Enabled = false;
+                }
+                else
+                {
+                    btn_next.Enabled = true;
+                }
+                if (currentRound > 1)
+                {
+                    btn_previous.Enabled = true;
+                }
+                else
+                {
+                    btn_previous.Enabled = false;
+                }
+            }
+        }
+        private void BindDataRound(int round)
+        {
+            if (round == maxRound)
+            {
+                if (round != 1)
+                {
+                    trp.maxRoundInit(taskInfoId, false, round);
+                }
+                else
+                {
+                    trp.init(taskInfoId, false, round);//如果选中了当前轮次，可以编辑
+                }
+            }
+            else
+            {
+                trp.init(taskInfoId, true, round);//如果选中了之前的轮次，只读
+            }
+            if (trp.dgv.Rows.Count > 0)
+            {
+                maxTaskStep = (int)(trp.dgv.Rows[0].Cells["taskStep"].Value);//轮次切换后,会进行页面刷新,获取当前轮次页面的最大步骤
+            }
+        }
         private bool trpIsEdited()
         {
             foreach (DataGridViewRow dr in trp.dgv.Rows)
