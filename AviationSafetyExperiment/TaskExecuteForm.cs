@@ -250,14 +250,14 @@ namespace AviationSafetyExperiment
                 taskInfo.percent = resultList.Count*100 / taskResultMainCount;
                 TaskCache.addCache(taskInfo);
                 //刷新单元格背景色为白色
-                foreach (DataGridViewRow dr in trp.dgv.Rows)
-                {
-                    dr.Cells["taskResult"].Style.BackColor = Color.White;
-                    dr.Cells["taskRecord"].Style.BackColor = Color.White;
-                    dr.Cells["taskRemark"].Style.BackColor = Color.White;
-                    dr.Cells["attachmentCount"].Style.BackColor = Color.White;
-                    dr.Cells["taskStep"].Value = int.Parse(dr.Cells["taskStep"].Value.ToString()) + 1;
-                }
+                //foreach (DataGridViewRow dr in trp.dgv.Rows)
+                //{
+                //    dr.Cells["taskResult"].Style.BackColor = Color.White;
+                //    dr.Cells["taskRecord"].Style.BackColor = Color.White;
+                //    dr.Cells["taskRemark"].Style.BackColor = Color.White;
+                //    dr.Cells["attachmentCount"].Style.BackColor = Color.White;
+                //    dr.Cells["taskStep"].Value = int.Parse(dr.Cells["taskStep"].Value.ToString()) + 1;
+                //}
                 MainFormAdapter.reloadTaskMainPanel();
                 maxTaskStep++;//最大步骤编号,每次保存,都加1,如果切换轮次,需重新获取该轮次的最大步骤编号
                 trp.maxResultStep = maxTaskStep;
@@ -325,7 +325,7 @@ namespace AviationSafetyExperiment
                     MessageBoxEx.Show("请先切换到最新的轮次,并确保其测试结果填写完整", "操作提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
-                maxTaskStep = (int)(trp.dgv.Rows[0].Cells["taskStep"].Value);
+                maxTaskStep = (int)(trp.gv.GetRowCellValue(0, "taskStep"));  
                 TaskNewRoundDefine tnrd = new TaskNewRoundDefine(taskInfoId, maxRound, maxTaskStep);
                 tnrd.init();
                 tnrd.getTemplateIndicators();
@@ -336,9 +336,9 @@ namespace AviationSafetyExperiment
                     maxRound++;
                     ModiRoundText(currentRound);
                     trp.init(taskInfoId, false,currentRound);
-                    if (trp.dgv.Rows.Count > 0)
+                    if (trp.gv.DataRowCount > 0)
                     {
-                        maxTaskStep = (int)(trp.dgv.Rows[0].Cells["taskStep"].Value);//轮次切换后,会进行页面刷新,获取当前轮次页面的最大步骤
+                        maxTaskStep = (int)(trp.gv.GetRowCellValue(0, "taskStep"));  //轮次切换后,会进行页面刷新,获取当前轮次页面的最大步骤
                     }
                     //新增轮次后，task的最新轮次更新，且进度重置为0
                     Tb_taskInfo task = TaskCache.getCacheById(taskInfoId);
@@ -538,24 +538,27 @@ namespace AviationSafetyExperiment
             {
                 trp.init(taskInfoId, true, round);//如果选中了之前的轮次，只读
             }
-            if (trp.dgv.Rows.Count > 0)
+            if (trp.gv.DataRowCount > 0)
             {
-                maxTaskStep = (int)(trp.dgv.Rows[0].Cells["taskStep"].Value);//轮次切换后,会进行页面刷新,获取当前轮次页面的最大步骤
+                maxTaskStep = (int)(trp.gv.GetRowCellValue(0, "taskStep"));//轮次切换后,会进行页面刷新,获取当前轮次页面的最大步骤
             }
         }
         private bool trpIsEdited()
         {
-            foreach (DataGridViewRow dr in trp.dgv.Rows)
-            {
-                if (dr.Cells["taskResult"].Style.BackColor == Color.LightSeaGreen
-                    || dr.Cells["taskRecord"].Style.BackColor == Color.LightSeaGreen
-                    || dr.Cells["taskRemark"].Style.BackColor == Color.LightSeaGreen
-                    || dr.Cells["attachmentCount"].Style.BackColor == Color.LightSeaGreen)
-                {
-                    return true;
-                }
-            }
-            return false;
+            //foreach (DataGridViewRow dr in trp.dgv.Rows)
+            //{
+            //    if (dr.Cells["taskResult"].Style.BackColor == Color.LightSeaGreen
+            //        || dr.Cells["taskRecord"].Style.BackColor == Color.LightSeaGreen
+            //        || dr.Cells["taskRemark"].Style.BackColor == Color.LightSeaGreen
+            //        || dr.Cells["attachmentCount"].Style.BackColor == Color.LightSeaGreen)
+            //    {
+            //        return true;
+            //    }
+            //}
+            //return false;
+            var datasource = trp.dgv.DataSource as List<TaskResultModel>;
+            int editCount = datasource.Where(r => r.isHaveModi == 1).Count();
+            return editCount > 0 ? true : false;
         }
     }
 }

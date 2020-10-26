@@ -133,7 +133,7 @@ namespace AviationSafetyExperiment
             List<TaskResultModel> resModelList = trp.getData(currentStep, round);
             trp.dgv.DataSource = null;
             trp.dgv.DataSource = resModelList;
-            trp.dgv.AutoGenerateColumns = false;
+            //trp.dgv.AutoGenerateColumns = false;
             //setReadOnly(readOnly);
         }
         /// <summary>

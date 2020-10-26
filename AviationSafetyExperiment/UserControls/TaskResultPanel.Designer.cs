@@ -28,32 +28,40 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ofd = new System.Windows.Forms.OpenFileDialog();
             this.pagingPanel = new AviationSafetyExperiment.UserControls.PagingPanel();
-            this.dgv = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.indicatorId = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.taskResultId = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.indicatorName = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.indicatorDesc = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.indicatorInstr = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.brandId = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.brandName = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.modelId = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.modelName = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.taskStep = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.taskRecord = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.taskResult = new DevComponents.DotNetBar.Controls.DataGridViewComboBoxExColumn();
-            this.taskRemark = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.attachmentCount = new DevComponents.DotNetBar.Controls.DataGridViewMaskedTextBoxAdvColumn();
-            this.attachment = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.taskExecutor = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.taskDateTime = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.supplement = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.isFill = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.isHaveModi = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
+            this.dgv = new DevExpress.XtraGrid.GridControl();
+            this.gv = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.indicatorId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.indicatorName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.indicatorDesc = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
+            this.indicatorInstr = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.brandId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.brandName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.modelId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.modelName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.taskStep = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.taskRecord = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.taskResult = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.taskResultRadioGroup = new DevExpress.XtraEditors.Repository.RepositoryItemRadioGroup();
+            this.taskExecutor = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.taskResultId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.taskRemark = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.taskDateTime = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.attachment = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.attachmentCount = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.supplement = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.isFillFinish = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.isHaveModi = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemMemoExEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoExEdit();
+            this.repositoryItemRichTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemRichTextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.taskResultRadioGroup)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoExEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemRichTextEdit1)).BeginInit();
             this.SuspendLayout();
             // 
             // ofd
@@ -72,13 +80,24 @@
             // 
             // dgv
             // 
-            this.dgv.AllowUserToAddRows = false;
-            this.dgv.AllowUserToDeleteRows = false;
-            this.dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgv.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgv.Location = new System.Drawing.Point(0, 0);
+            this.dgv.MainView = this.gv;
+            this.dgv.Name = "dgv";
+            this.dgv.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.taskResultRadioGroup,
+            this.repositoryItemMemoExEdit1,
+            this.repositoryItemMemoEdit1,
+            this.repositoryItemRichTextEdit1});
+            this.dgv.Size = new System.Drawing.Size(1101, 716);
+            this.dgv.TabIndex = 2;
+            this.dgv.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gv});
+            // 
+            // gv
+            // 
+            this.gv.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.indicatorId,
-            this.taskResultId,
             this.indicatorName,
             this.indicatorDesc,
             this.indicatorInstr,
@@ -89,217 +108,240 @@
             this.taskStep,
             this.taskRecord,
             this.taskResult,
-            this.taskRemark,
-            this.attachmentCount,
-            this.attachment,
             this.taskExecutor,
+            this.taskResultId,
+            this.taskRemark,
             this.taskDateTime,
+            this.attachment,
+            this.attachmentCount,
             this.supplement,
-            this.isFill,
+            this.isFillFinish,
             this.isHaveModi});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgv.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dgv.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(181)))), ((int)(((byte)(241)))));
-            this.dgv.Location = new System.Drawing.Point(0, 0);
-            this.dgv.MultiSelect = false;
-            this.dgv.Name = "dgv";
-            this.dgv.RowTemplate.Height = 27;
-            this.dgv.Size = new System.Drawing.Size(1101, 716);
-            this.dgv.TabIndex = 2;
-            this.dgv.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dgv_CellBeginEdit);
-            this.dgv.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellEndEdit);
-            this.dgv.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_CellMouseDoubleClick);
-            this.dgv.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgv_CellPainting);
-            this.dgv.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgv_RowPostPaint);
+            this.gv.GridControl = this.dgv;
+            this.gv.IndicatorWidth = 30;
+            this.gv.Name = "gv";
+            this.gv.OptionsCustomization.AllowFilter = false;
+            this.gv.OptionsCustomization.AllowGroup = false;
+            this.gv.OptionsCustomization.AllowSort = false;
+            this.gv.OptionsMenu.EnableColumnMenu = false;
+            this.gv.OptionsView.AllowCellMerge = true;
+            this.gv.OptionsView.RowAutoHeight = true;
+            this.gv.OptionsView.ShowGroupPanel = false;
+            this.gv.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gv_RowCellClick);
+            this.gv.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gv_CustomDrawRowIndicator);
+            this.gv.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gv_CellValueChanged);
             // 
             // indicatorId
             // 
-            this.indicatorId.DataPropertyName = "indicatorId";
-            this.indicatorId.HeaderText = "indicatorId";
+            this.indicatorId.Caption = "indicatorId";
+            this.indicatorId.FieldName = "indicatorId";
             this.indicatorId.Name = "indicatorId";
-            this.indicatorId.ReadOnly = true;
-            this.indicatorId.Visible = false;
-            // 
-            // taskResultId
-            // 
-            this.taskResultId.DataPropertyName = "taskResultId";
-            this.taskResultId.HeaderText = "taskResultId";
-            this.taskResultId.Name = "taskResultId";
-            this.taskResultId.Visible = false;
+            this.indicatorId.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             // 
             // indicatorName
             // 
-            this.indicatorName.DataPropertyName = "indicatorName";
-            this.indicatorName.FillWeight = 50F;
-            this.indicatorName.HeaderText = "指标名称";
+            this.indicatorName.Caption = "指标名称";
+            this.indicatorName.FieldName = "indicatorName";
             this.indicatorName.Name = "indicatorName";
-            this.indicatorName.ReadOnly = true;
+            this.indicatorName.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
+            this.indicatorName.OptionsColumn.FixedWidth = true;
+            this.indicatorName.OptionsColumn.ReadOnly = true;
+            this.indicatorName.Visible = true;
+            this.indicatorName.VisibleIndex = 0;
             // 
             // indicatorDesc
             // 
-            this.indicatorDesc.DataPropertyName = "indicatorDesc";
-            this.indicatorDesc.HeaderText = "指标描述";
+            this.indicatorDesc.Caption = "指标描述";
+            this.indicatorDesc.ColumnEdit = this.repositoryItemMemoEdit1;
+            this.indicatorDesc.FieldName = "indicatorDesc";
             this.indicatorDesc.Name = "indicatorDesc";
-            this.indicatorDesc.ReadOnly = true;
+            this.indicatorDesc.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
+            this.indicatorDesc.OptionsColumn.ReadOnly = true;
+            this.indicatorDesc.Visible = true;
+            this.indicatorDesc.VisibleIndex = 1;
+            this.indicatorDesc.Width = 150;
+            // 
+            // repositoryItemMemoEdit1
+            // 
+            this.repositoryItemMemoEdit1.Appearance.Options.UseTextOptions = true;
+            this.repositoryItemMemoEdit1.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.repositoryItemMemoEdit1.Name = "repositoryItemMemoEdit1";
+            this.repositoryItemMemoEdit1.ReadOnly = true;
+            this.repositoryItemMemoEdit1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             // 
             // indicatorInstr
             // 
-            this.indicatorInstr.DataPropertyName = "indicatorInstr";
-            this.indicatorInstr.HeaderText = "操作说明";
+            this.indicatorInstr.AppearanceCell.Options.UseTextOptions = true;
+            this.indicatorInstr.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.indicatorInstr.Caption = "指标说明";
+            this.indicatorInstr.FieldName = "indicatorInstr";
             this.indicatorInstr.Name = "indicatorInstr";
-            this.indicatorInstr.ReadOnly = true;
+            this.indicatorInstr.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
+            this.indicatorInstr.OptionsColumn.ReadOnly = true;
+            this.indicatorInstr.OptionsFilter.AllowAutoFilter = false;
+            this.indicatorInstr.OptionsFilter.AllowFilter = false;
+            this.indicatorInstr.Visible = true;
+            this.indicatorInstr.VisibleIndex = 2;
+            this.indicatorInstr.Width = 180;
             // 
             // brandId
             // 
-            this.brandId.DataPropertyName = "brandId";
-            this.brandId.HeaderText = "brandId";
+            this.brandId.Caption = "brandId";
+            this.brandId.FieldName = "brandId";
             this.brandId.Name = "brandId";
-            this.brandId.ReadOnly = true;
-            this.brandId.Visible = false;
             // 
             // brandName
             // 
-            this.brandName.DataPropertyName = "brandName";
-            this.brandName.FillWeight = 25F;
-            this.brandName.HeaderText = "品牌";
+            this.brandName.Caption = "品牌";
+            this.brandName.FieldName = "brandName";
             this.brandName.Name = "brandName";
-            this.brandName.ReadOnly = true;
+            this.brandName.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.brandName.OptionsColumn.ReadOnly = true;
+            this.brandName.Visible = true;
+            this.brandName.VisibleIndex = 3;
+            this.brandName.Width = 93;
             // 
             // modelId
             // 
-            this.modelId.DataPropertyName = "modelId";
-            this.modelId.HeaderText = "modelId";
+            this.modelId.Caption = "modelId";
+            this.modelId.FieldName = "modelId";
             this.modelId.Name = "modelId";
-            this.modelId.ReadOnly = true;
-            this.modelId.Visible = false;
             // 
             // modelName
             // 
-            this.modelName.DataPropertyName = "modelName";
-            this.modelName.FillWeight = 40F;
-            this.modelName.HeaderText = "型号";
+            this.modelName.Caption = "型号";
+            this.modelName.FieldName = "modelName";
             this.modelName.Name = "modelName";
-            this.modelName.ReadOnly = true;
+            this.modelName.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.modelName.OptionsColumn.ReadOnly = true;
+            this.modelName.Visible = true;
+            this.modelName.VisibleIndex = 4;
+            this.modelName.Width = 93;
             // 
             // taskStep
             // 
-            this.taskStep.DataPropertyName = "taskStep";
-            this.taskStep.HeaderText = "taskStep";
+            this.taskStep.Caption = "taskStep";
+            this.taskStep.FieldName = "taskStep";
             this.taskStep.Name = "taskStep";
-            this.taskStep.ReadOnly = true;
-            this.taskStep.Visible = false;
+            this.taskStep.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.taskStep.OptionsColumn.ReadOnly = true;
             // 
             // taskRecord
             // 
-            this.taskRecord.DataPropertyName = "taskRecord";
-            this.taskRecord.FillWeight = 150F;
-            this.taskRecord.HeaderText = "测试记录";
+            this.taskRecord.Caption = "测试记录";
+            this.taskRecord.FieldName = "taskRecord";
             this.taskRecord.Name = "taskRecord";
+            this.taskRecord.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.taskRecord.Visible = true;
+            this.taskRecord.VisibleIndex = 6;
+            this.taskRecord.Width = 100;
             // 
             // taskResult
             // 
-            this.taskResult.DataPropertyName = "taskResult";
-            this.taskResult.DropDownHeight = 106;
-            this.taskResult.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.taskResult.DropDownWidth = 121;
-            this.taskResult.FillWeight = 40F;
-            this.taskResult.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.taskResult.HeaderText = "结论";
-            this.taskResult.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.taskResult.IntegralHeight = false;
-            this.taskResult.ItemHeight = 20;
+            this.taskResult.Caption = "测试结论";
+            this.taskResult.ColumnEdit = this.taskResultRadioGroup;
+            this.taskResult.FieldName = "taskResult";
             this.taskResult.Name = "taskResult";
-            this.taskResult.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.taskResult.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.taskResult.Visible = true;
+            this.taskResult.VisibleIndex = 7;
+            this.taskResult.Width = 89;
             // 
-            // taskRemark
+            // taskResultRadioGroup
             // 
-            this.taskRemark.DataPropertyName = "taskRemark";
-            this.taskRemark.FillWeight = 60F;
-            this.taskRemark.HeaderText = "备注";
-            this.taskRemark.Name = "taskRemark";
-            // 
-            // attachmentCount
-            // 
-            this.attachmentCount.BackColor = System.Drawing.SystemColors.Window;
-            // 
-            // 
-            // 
-            this.attachmentCount.BackgroundStyle.Class = "DataGridViewBorder";
-            this.attachmentCount.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.attachmentCount.ButtonCustom.Image = global::AviationSafetyExperiment.Properties.Resources.s_21;
-            this.attachmentCount.ButtonCustom.Visible = true;
-            this.attachmentCount.ButtonCustom2.Image = global::AviationSafetyExperiment.Properties.Resources.s_26;
-            this.attachmentCount.ButtonCustom2.Visible = true;
-            this.attachmentCount.Culture = new System.Globalization.CultureInfo("zh-CN");
-            this.attachmentCount.DataPropertyName = "attachmentCount";
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("等线", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.attachmentCount.DefaultCellStyle = dataGridViewCellStyle1;
-            this.attachmentCount.FillWeight = 40F;
-            this.attachmentCount.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.attachmentCount.HeaderText = "附件";
-            this.attachmentCount.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.attachmentCount.Mask = "";
-            this.attachmentCount.Name = "attachmentCount";
-            this.attachmentCount.PasswordChar = '\0';
-            this.attachmentCount.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.attachmentCount.Text = "";
-            // 
-            // attachment
-            // 
-            this.attachment.DataPropertyName = "attachment";
-            this.attachment.HeaderText = "附件文件路径";
-            this.attachment.Name = "attachment";
-            this.attachment.Visible = false;
+            this.taskResultRadioGroup.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(2, "通过"),
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(1, "未通过")});
+            this.taskResultRadioGroup.ItemsLayout = DevExpress.XtraEditors.RadioGroupItemsLayout.Column;
+            this.taskResultRadioGroup.Name = "taskResultRadioGroup";
             // 
             // taskExecutor
             // 
-            this.taskExecutor.DataPropertyName = "taskExecutor";
-            this.taskExecutor.FillWeight = 20F;
-            this.taskExecutor.HeaderText = "操作人";
+            this.taskExecutor.Caption = "操作人";
+            this.taskExecutor.FieldName = "taskExecutor";
             this.taskExecutor.Name = "taskExecutor";
-            this.taskExecutor.ReadOnly = true;
-            this.taskExecutor.Visible = false;
+            this.taskExecutor.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.taskExecutor.OptionsColumn.ReadOnly = true;
+            this.taskExecutor.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
+            this.taskExecutor.Width = 93;
+            // 
+            // taskResultId
+            // 
+            this.taskResultId.Caption = "taskResultId";
+            this.taskResultId.FieldName = "taskResultId";
+            this.taskResultId.Name = "taskResultId";
+            // 
+            // taskRemark
+            // 
+            this.taskRemark.Caption = "备注";
+            this.taskRemark.FieldName = "taskRemark";
+            this.taskRemark.Name = "taskRemark";
+            this.taskRemark.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.taskRemark.Visible = true;
+            this.taskRemark.VisibleIndex = 8;
+            this.taskRemark.Width = 113;
             // 
             // taskDateTime
             // 
-            this.taskDateTime.DataPropertyName = "taskDateTime";
-            this.taskDateTime.FillWeight = 30F;
-            this.taskDateTime.HeaderText = "操作时间";
+            this.taskDateTime.Caption = "操作时间";
+            this.taskDateTime.DisplayFormat.FormatString = "yyyy/MM/dd HH:mm:ss";
+            this.taskDateTime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.taskDateTime.FieldName = "taskDateTime";
             this.taskDateTime.Name = "taskDateTime";
-            this.taskDateTime.ReadOnly = true;
+            this.taskDateTime.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.taskDateTime.OptionsColumn.ReadOnly = true;
+            this.taskDateTime.Visible = true;
+            this.taskDateTime.VisibleIndex = 5;
+            this.taskDateTime.Width = 93;
+            // 
+            // attachment
+            // 
+            this.attachment.Caption = "attachment";
+            this.attachment.FieldName = "attachment";
+            this.attachment.Name = "attachment";
+            this.attachment.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            // 
+            // attachmentCount
+            // 
+            this.attachmentCount.Caption = "attachmentCount";
+            this.attachmentCount.FieldName = "attachmentCount";
+            this.attachmentCount.Name = "attachmentCount";
             // 
             // supplement
             // 
-            this.supplement.DataPropertyName = "supplement";
-            this.supplement.HeaderText = "补充内容";
+            this.supplement.Caption = "supplement";
+            this.supplement.FieldName = "supplement";
             this.supplement.Name = "supplement";
-            this.supplement.Visible = false;
             // 
-            // isFill
+            // isFillFinish
             // 
-            this.isFill.DataPropertyName = "isFillFinish";
-            this.isFill.HeaderText = "isFill";
-            this.isFill.Name = "isFill";
-            this.isFill.Visible = false;
+            this.isFillFinish.Caption = "isFillFinish";
+            this.isFillFinish.FieldName = "isFillFinish";
+            this.isFillFinish.Name = "isFillFinish";
             // 
             // isHaveModi
             // 
-            this.isHaveModi.DataPropertyName = "isHaveModi";
-            this.isHaveModi.HeaderText = "isHaveModi";
+            this.isHaveModi.Caption = "isHaveModi";
+            this.isHaveModi.FieldName = "isHaveModi";
             this.isHaveModi.Name = "isHaveModi";
-            this.isHaveModi.Visible = false;
+            // 
+            // repositoryItemMemoExEdit1
+            // 
+            this.repositoryItemMemoExEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemMemoExEdit1.Name = "repositoryItemMemoExEdit1";
+            // 
+            // repositoryItemRichTextEdit1
+            // 
+            this.repositoryItemRichTextEdit1.Name = "repositoryItemRichTextEdit1";
+            this.repositoryItemRichTextEdit1.OptionsExport.PlainText.ExportFinalParagraphMark = DevExpress.XtraRichEdit.Export.PlainText.ExportFinalParagraphMark.Never;
+            this.repositoryItemRichTextEdit1.OptionsHorizontalScrollbar.Visibility = DevExpress.XtraRichEdit.RichEditScrollbarVisibility.Auto;
+            this.repositoryItemRichTextEdit1.ReadOnly = true;
+            this.repositoryItemRichTextEdit1.ShowCaretInReadOnly = false;
             // 
             // TaskResultPanel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dgv);
             this.Controls.Add(this.pagingPanel);
@@ -308,6 +350,11 @@
             this.Name = "TaskResultPanel";
             this.Size = new System.Drawing.Size(1101, 746);
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.taskResultRadioGroup)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoExEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemRichTextEdit1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -315,26 +362,31 @@
         #endregion
         private System.Windows.Forms.OpenFileDialog ofd;
         private PagingPanel pagingPanel;
-        public DevComponents.DotNetBar.Controls.DataGridViewX dgv;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn indicatorId;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn taskResultId;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn indicatorName;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn indicatorDesc;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn indicatorInstr;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn brandId;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn brandName;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn modelId;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn modelName;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn taskStep;
-        private System.Windows.Forms.DataGridViewTextBoxColumn taskRecord;
-        private DevComponents.DotNetBar.Controls.DataGridViewComboBoxExColumn taskResult;
-        private System.Windows.Forms.DataGridViewTextBoxColumn taskRemark;
-        private DevComponents.DotNetBar.Controls.DataGridViewMaskedTextBoxAdvColumn attachmentCount;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn attachment;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn taskExecutor;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn taskDateTime;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn supplement;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn isFill;
-        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn isHaveModi;
+        private DevExpress.XtraGrid.Columns.GridColumn indicatorId;
+        private DevExpress.XtraGrid.Columns.GridColumn indicatorName;
+        private DevExpress.XtraGrid.Columns.GridColumn indicatorDesc;
+        private DevExpress.XtraGrid.Columns.GridColumn indicatorInstr;
+        private DevExpress.XtraGrid.Columns.GridColumn brandId;
+        private DevExpress.XtraGrid.Columns.GridColumn brandName;
+        private DevExpress.XtraGrid.Columns.GridColumn modelId;
+        private DevExpress.XtraGrid.Columns.GridColumn modelName;
+        private DevExpress.XtraGrid.Columns.GridColumn taskStep;
+        private DevExpress.XtraGrid.Columns.GridColumn taskRecord;
+        private DevExpress.XtraGrid.Columns.GridColumn taskResult;
+        private DevExpress.XtraEditors.Repository.RepositoryItemRadioGroup taskResultRadioGroup;
+        private DevExpress.XtraGrid.Columns.GridColumn taskExecutor;
+        private DevExpress.XtraGrid.Columns.GridColumn taskDateTime;
+        private DevExpress.XtraGrid.Columns.GridColumn taskResultId;
+        private DevExpress.XtraGrid.Columns.GridColumn taskRemark;
+        private DevExpress.XtraGrid.Columns.GridColumn attachment;
+        private DevExpress.XtraGrid.Columns.GridColumn attachmentCount;
+        private DevExpress.XtraGrid.Columns.GridColumn supplement;
+        private DevExpress.XtraGrid.Columns.GridColumn isFillFinish;
+        private DevExpress.XtraGrid.Columns.GridColumn isHaveModi;
+        public DevExpress.XtraGrid.Views.Grid.GridView gv;
+        public DevExpress.XtraGrid.GridControl dgv;
+        private DevExpress.XtraEditors.Repository.RepositoryItemMemoExEdit repositoryItemMemoExEdit1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemRichTextEdit repositoryItemRichTextEdit1;
     }
 }
