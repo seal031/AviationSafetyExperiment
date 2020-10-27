@@ -165,6 +165,10 @@
             // 
             this.repositoryItemMemoEdit1.Appearance.Options.UseTextOptions = true;
             this.repositoryItemMemoEdit1.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.repositoryItemMemoEdit1.AppearanceFocused.Options.UseTextOptions = true;
+            this.repositoryItemMemoEdit1.AppearanceFocused.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.repositoryItemMemoEdit1.AppearanceReadOnly.Options.UseTextOptions = true;
+            this.repositoryItemMemoEdit1.AppearanceReadOnly.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.repositoryItemMemoEdit1.Name = "repositoryItemMemoEdit1";
             this.repositoryItemMemoEdit1.ReadOnly = true;
             this.repositoryItemMemoEdit1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
@@ -174,6 +178,7 @@
             this.indicatorInstr.AppearanceCell.Options.UseTextOptions = true;
             this.indicatorInstr.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.indicatorInstr.Caption = "指标说明";
+            this.indicatorInstr.ColumnEdit = this.repositoryItemMemoEdit1;
             this.indicatorInstr.FieldName = "indicatorInstr";
             this.indicatorInstr.Name = "indicatorInstr";
             this.indicatorInstr.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
