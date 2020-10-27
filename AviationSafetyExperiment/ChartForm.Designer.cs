@@ -37,9 +37,9 @@
             this.labelX2 = new DevComponents.DotNetBar.LabelX();
             this.endTime = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
             this.chartTaskClassify = new DevComponents.DotNetBar.Controls.ComboBoxEx();
+            this.comboItem1 = new DevComponents.Editors.ComboItem();
             this.lbl_taskState = new DevComponents.DotNetBar.LabelX();
             this.btn_chartReport = new DevComponents.DotNetBar.ButtonX();
-            this.comboItem1 = new DevComponents.Editors.ComboItem();
             ((System.ComponentModel.ISupportInitialize)(this.reportChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.startTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.endTime)).BeginInit();
@@ -229,6 +229,10 @@
             this.chartTaskClassify.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.chartTaskClassify.TabIndex = 8;
             // 
+            // comboItem1
+            // 
+            this.comboItem1.Text = "统计不同测试人员测试项数量";
+            // 
             // lbl_taskState
             // 
             this.lbl_taskState.AutoSize = true;
@@ -255,10 +259,6 @@
             this.btn_chartReport.Text = "图表生成";
             this.btn_chartReport.Click += new System.EventHandler(this.btn_query_Click);
             // 
-            // comboItem1
-            // 
-            this.comboItem1.Text = "统计不同测试人员测试项数量";
-            // 
             // ChartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -276,7 +276,7 @@
             this.MaximizeBox = false;
             this.Name = "ChartForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Chart";
+            this.Text = "图表生成";
             this.Load += new System.EventHandler(this.Chart_Load);
             ((System.ComponentModel.ISupportInitialize)(this.reportChart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.startTime)).EndInit();

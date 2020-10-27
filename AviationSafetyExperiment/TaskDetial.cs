@@ -59,22 +59,29 @@ namespace AviationSafetyExperiment
             }
             currentRound = 1;
             currentStep = 1;
-            //taskRound_BtnColl.Items.Clear();
-            //for (int i = 0; i < maxRound; i++)
-            //{
-            //    ButtonItem btn_round = new ButtonItem();
-            //    btn_round.ShowSubItems = false;
-            //    btn_round.SubItemsExpandWidth = 14;
-            //    btn_round.Text = (i+1).ToString();
-            //    btn_round.Click += new System.EventHandler(btn_round_Click);
-            //    if (i == 0)
-            //    {
-            //        btn_round.Checked = true;
-            //    }
-            //    this.taskRound_BtnColl.Items.Add(btn_round);
-            //}
-            lbl_roundText.Text = string.Format("{0}/{1}", currentRound, maxRound);
-            if (currentRound == maxRound)
+            Point point = new Point();
+            if (maxRound>=10)
+            {
+                point.X = 158;
+                point.Y = Btn_nextRound.Location.Y;
+                Btn_nextRound.Location = point;
+            }
+            else
+            {
+                point.X = 148;
+                point.Y = Btn_nextRound.Location.Y;
+                Btn_nextRound.Location = point;
+            }
+
+            if (maxRound > 0)
+            {
+                lbl_roundText.Text = string.Format("{0}/{1}", currentRound, maxRound);
+            }
+            else
+            {
+                lbl_roundText.Text = string.Format("{0}/{1}", currentRound, 1);
+            }
+            if (currentRound == maxRound || maxRound == 0)
             {
                 Btn_nextRound.Enabled = false;
             }
@@ -111,6 +118,12 @@ namespace AviationSafetyExperiment
                 lbl_current.Text = "尚无步骤";
                 btn_next.Enabled = false;
                 btn_previous.Enabled = false;
+                point.X = 350;
+                point.Y = btn_next.Location.Y;
+                btn_next.Location = point;
+                point.X = 388;
+                point.Y = ben_closeHistory.Location.Y;
+                ben_closeHistory.Location = point;
             }
         }
         /// <summary>
@@ -196,6 +209,16 @@ namespace AviationSafetyExperiment
             {
                 btn_previous.Enabled = true;
             }
+            Point point = new Point();
+            if (currentStep<10)
+            {
+                point.X = 325;
+                point.Y = btn_next.Location.Y;
+                btn_next.Location = point;
+                point.X = 368;
+                point.Y = ben_closeHistory.Location.Y;
+                ben_closeHistory.Location = point;
+            }
         }
 
         private void btn_next_Click(object sender, EventArgs e)
@@ -219,6 +242,17 @@ namespace AviationSafetyExperiment
             {
                 btn_previous.Enabled = true;
             }
+            Point point = new Point();
+            if (currentStep >= 10)
+            {
+                point.X = 335;
+                point.Y = btn_next.Location.Y;
+                btn_next.Location = point;
+                point.X = 378;
+                point.Y = ben_closeHistory.Location.Y;
+                ben_closeHistory.Location = point;
+            }
+
         }
 
         private void reportCreate_Click(object sender, EventArgs e)

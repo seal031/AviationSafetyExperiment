@@ -245,7 +245,7 @@ namespace AviationSafetyExperiment.UserControls
             try
             {
                 maxResultStep = allResult.Max(x => x.taskStep);
-                currentResultStep = 1;
+                currentResultStep = maxResultStep;
             }
             catch (Exception ex)
             {

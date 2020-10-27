@@ -135,8 +135,8 @@ namespace AviationSafetyExperiment.Office
                                     }
                                     else if (col == 5)
                                     {
-                                        XWPFParagraph par = doc.CreateParagraph();
-                                        XWPFRun run = par.CreateRun();
+                                        //XWPFParagraph par = doc.CreateParagraph();
+                                        //XWPFRun run = par.CreateRun();
                                         
                                         if (resultList[item].taskResult == 2)
                                         {

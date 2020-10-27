@@ -31,6 +31,7 @@ namespace AviationSafetyExperiment
         }
         private void Chart_Load(object sender, EventArgs e)
         {
+            this.BackColor = Color.FromArgb(194, 217, 247); 
             //this.BackColor = Color.FromArgb(194, 217, 247);
             //List<Tb_taskResult> resultList = TaskResultCache.getCache().Where(t => t.taskId == taskInfoId).ToList();
             //int maxRound = 0;

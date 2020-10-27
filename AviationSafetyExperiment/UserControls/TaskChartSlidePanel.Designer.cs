@@ -35,9 +35,9 @@
             System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.itemPanel1 = new DevComponents.DotNetBar.ItemPanel();
+            this.btn_more = new DevComponents.DotNetBar.ButtonX();
             this.chartClassify = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chartMonthCountTask = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.btn_more = new DevComponents.DotNetBar.ButtonX();
             this.itemPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartClassify)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartMonthCountTask)).BeginInit();
@@ -45,6 +45,7 @@
             // 
             // itemPanel1
             // 
+            this.itemPanel1.BackColor = System.Drawing.SystemColors.Control;
             // 
             // 
             // 
@@ -62,6 +63,18 @@
             this.itemPanel1.Size = new System.Drawing.Size(300, 500);
             this.itemPanel1.TabIndex = 0;
             this.itemPanel1.Text = "itemPanel1";
+            // 
+            // btn_more
+            // 
+            this.btn_more.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btn_more.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btn_more.Location = new System.Drawing.Point(190, 530);
+            this.btn_more.Name = "btn_more";
+            this.btn_more.Size = new System.Drawing.Size(98, 30);
+            this.btn_more.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btn_more.TabIndex = 4;
+            this.btn_more.Text = "更多";
+            this.btn_more.Click += new System.EventHandler(this.btn_more_Click);
             // 
             // chartClassify
             // 
@@ -116,18 +129,6 @@
             this.chartMonthCountTask.Size = new System.Drawing.Size(293, 196);
             this.chartMonthCountTask.TabIndex = 0;
             this.chartMonthCountTask.Text = "chart1";
-            // 
-            // btn_more
-            // 
-            this.btn_more.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btn_more.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btn_more.Location = new System.Drawing.Point(190, 530);
-            this.btn_more.Name = "btn_more";
-            this.btn_more.Size = new System.Drawing.Size(98, 30);
-            this.btn_more.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btn_more.TabIndex = 4;
-            this.btn_more.Text = "更多";
-            this.btn_more.Click += new System.EventHandler(this.btn_more_Click);
             // 
             // TaskChartSlidePanel
             // 

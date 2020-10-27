@@ -31,6 +31,9 @@
             this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
             this.btn_report = new DevComponents.DotNetBar.ButtonX();
             this.panel_history = new DevComponents.DotNetBar.PanelEx();
+            this.lbl_roundText = new DevComponents.DotNetBar.LabelX();
+            this.Btn_nextRound = new DevComponents.DotNetBar.ButtonX();
+            this.Btn_lastRound = new DevComponents.DotNetBar.ButtonX();
             this.labelX2 = new DevComponents.DotNetBar.LabelX();
             this.lbl_current = new DevComponents.DotNetBar.LabelX();
             this.btn_next = new DevComponents.DotNetBar.ButtonX();
@@ -43,9 +46,6 @@
             this.tlp = new AviationSafetyExperiment.UserControls.TaskLifecyclePanel();
             this.panelEx2 = new DevComponents.DotNetBar.PanelEx();
             this.trp = new AviationSafetyExperiment.UserControls.TaskResultPanel();
-            this.lbl_roundText = new DevComponents.DotNetBar.LabelX();
-            this.Btn_nextRound = new DevComponents.DotNetBar.ButtonX();
-            this.Btn_lastRound = new DevComponents.DotNetBar.ButtonX();
             this.panelEx1.SuspendLayout();
             this.panel_history.SuspendLayout();
             this.panelEx3.SuspendLayout();
@@ -121,6 +121,46 @@
             this.panel_history.TabIndex = 2;
             this.panel_history.Visible = false;
             // 
+            // lbl_roundText
+            // 
+            this.lbl_roundText.AutoSize = true;
+            // 
+            // 
+            // 
+            this.lbl_roundText.BackgroundStyle.Class = "";
+            this.lbl_roundText.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lbl_roundText.Font = new System.Drawing.Font("微软雅黑", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbl_roundText.ForeColor = System.Drawing.Color.OrangeRed;
+            this.lbl_roundText.Location = new System.Drawing.Point(109, 12);
+            this.lbl_roundText.Name = "lbl_roundText";
+            this.lbl_roundText.Size = new System.Drawing.Size(37, 23);
+            this.lbl_roundText.TabIndex = 11;
+            this.lbl_roundText.Text = "轮次";
+            // 
+            // Btn_nextRound
+            // 
+            this.Btn_nextRound.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.Btn_nextRound.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.Btn_nextRound.Location = new System.Drawing.Point(148, 12);
+            this.Btn_nextRound.Name = "Btn_nextRound";
+            this.Btn_nextRound.Size = new System.Drawing.Size(29, 23);
+            this.Btn_nextRound.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.Btn_nextRound.TabIndex = 10;
+            this.Btn_nextRound.Text = ">>";
+            this.Btn_nextRound.Click += new System.EventHandler(this.Btn_nextRound_Click);
+            // 
+            // Btn_lastRound
+            // 
+            this.Btn_lastRound.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.Btn_lastRound.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.Btn_lastRound.Location = new System.Drawing.Point(73, 12);
+            this.Btn_lastRound.Name = "Btn_lastRound";
+            this.Btn_lastRound.Size = new System.Drawing.Size(29, 23);
+            this.Btn_lastRound.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.Btn_lastRound.TabIndex = 9;
+            this.Btn_lastRound.Text = "<<";
+            this.Btn_lastRound.Click += new System.EventHandler(this.Btn_lastRound_Click);
+            // 
             // labelX2
             // 
             this.labelX2.AutoSize = true;
@@ -147,9 +187,9 @@
             this.lbl_current.ForeColor = System.Drawing.Color.OrangeRed;
             this.lbl_current.Location = new System.Drawing.Point(283, 12);
             this.lbl_current.Name = "lbl_current";
-            this.lbl_current.Size = new System.Drawing.Size(37, 23);
+            this.lbl_current.Size = new System.Drawing.Size(40, 23);
             this.lbl_current.TabIndex = 4;
-            this.lbl_current.Text = "步骤";
+            this.lbl_current.Text = "1/11";
             // 
             // btn_next
             // 
@@ -287,46 +327,6 @@
             this.trp.Name = "trp";
             this.trp.Size = new System.Drawing.Size(1370, 525);
             this.trp.TabIndex = 0;
-            // 
-            // lbl_roundText
-            // 
-            this.lbl_roundText.AutoSize = true;
-            // 
-            // 
-            // 
-            this.lbl_roundText.BackgroundStyle.Class = "";
-            this.lbl_roundText.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lbl_roundText.Font = new System.Drawing.Font("微软雅黑", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbl_roundText.ForeColor = System.Drawing.Color.OrangeRed;
-            this.lbl_roundText.Location = new System.Drawing.Point(109, 12);
-            this.lbl_roundText.Name = "lbl_roundText";
-            this.lbl_roundText.Size = new System.Drawing.Size(37, 23);
-            this.lbl_roundText.TabIndex = 11;
-            this.lbl_roundText.Text = "轮次";
-            // 
-            // Btn_nextRound
-            // 
-            this.Btn_nextRound.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.Btn_nextRound.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.Btn_nextRound.Location = new System.Drawing.Point(148, 12);
-            this.Btn_nextRound.Name = "Btn_nextRound";
-            this.Btn_nextRound.Size = new System.Drawing.Size(29, 23);
-            this.Btn_nextRound.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.Btn_nextRound.TabIndex = 10;
-            this.Btn_nextRound.Text = ">>";
-            this.Btn_nextRound.Click += new System.EventHandler(this.Btn_nextRound_Click);
-            // 
-            // Btn_lastRound
-            // 
-            this.Btn_lastRound.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.Btn_lastRound.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.Btn_lastRound.Location = new System.Drawing.Point(73, 12);
-            this.Btn_lastRound.Name = "Btn_lastRound";
-            this.Btn_lastRound.Size = new System.Drawing.Size(29, 23);
-            this.Btn_lastRound.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.Btn_lastRound.TabIndex = 9;
-            this.Btn_lastRound.Text = "<<";
-            this.Btn_lastRound.Click += new System.EventHandler(this.Btn_lastRound_Click);
             // 
             // TaskDetial
             // 
