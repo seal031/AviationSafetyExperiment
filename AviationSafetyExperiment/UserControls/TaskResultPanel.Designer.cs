@@ -238,7 +238,7 @@
             this.taskRecord.Name = "taskRecord";
             this.taskRecord.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.taskRecord.Visible = true;
-            this.taskRecord.VisibleIndex = 6;
+            this.taskRecord.VisibleIndex = 5;
             this.taskRecord.Width = 100;
             // 
             // taskResult
@@ -249,7 +249,7 @@
             this.taskResult.Name = "taskResult";
             this.taskResult.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.taskResult.Visible = true;
-            this.taskResult.VisibleIndex = 7;
+            this.taskResult.VisibleIndex = 6;
             this.taskResult.Width = 89;
             // 
             // taskResultRadioGroup
@@ -283,7 +283,7 @@
             this.taskRemark.Name = "taskRemark";
             this.taskRemark.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.taskRemark.Visible = true;
-            this.taskRemark.VisibleIndex = 8;
+            this.taskRemark.VisibleIndex = 7;
             this.taskRemark.Width = 113;
             // 
             // taskDateTime
@@ -296,7 +296,7 @@
             this.taskDateTime.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.taskDateTime.OptionsColumn.ReadOnly = true;
             this.taskDateTime.Visible = true;
-            this.taskDateTime.VisibleIndex = 5;
+            this.taskDateTime.VisibleIndex = 8;
             this.taskDateTime.Width = 93;
             // 
             // attachment
