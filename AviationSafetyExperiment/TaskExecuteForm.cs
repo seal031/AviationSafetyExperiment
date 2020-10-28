@@ -240,6 +240,11 @@ namespace AviationSafetyExperiment
                     {
                         item.isFillFinish = 1;
                     }
+                    else
+                    {
+                        item.isFillFinish = 0;
+                    }
+                    item.isHaveModi = 0;
                 }
             }
             if (resultList.Count > 0)
@@ -247,7 +252,17 @@ namespace AviationSafetyExperiment
                 TaskResultCache.addCache(resultList);//添加测试记录
                 var taskInfo = TaskCache.getCacheById(taskInfoId);//更新任务进度字段
                 var taskResultMainCount = trp.getAllResultModelCount();
-                taskInfo.percent = resultList.Count*100 / taskResultMainCount;
+                #region
+                var taskResultMapList = TaskResultCache.getCache().Where(t => t.taskId == taskInfoId && t.taskRound == currentRound).ToList();
+                var currentStepBeforeList = taskResultMapList.Where(r => r.taskId == taskInfoId && r.taskRound == currentRound && r.taskStep <= maxTaskStep+1).ToList();
+                var maxStepResultList = (from test in currentStepBeforeList
+                                         where test.taskStep == (
+                                        currentStepBeforeList.Where(l => l.taskId == test.taskId && l.indicatorId == test.indicatorId
+                                        && l.modelId == test.modelId && l.taskRound == test.taskRound).Max(l => l.taskStep)
+                                        )
+                                         select test).ToList();
+                #endregion
+                taskInfo.percent = maxStepResultList.Count*100 / taskResultMainCount;
                 TaskCache.addCache(taskInfo);
                 //刷新单元格背景色为白色
                 //foreach (DataGridViewRow dr in trp.dgv.Rows)
@@ -325,7 +340,17 @@ namespace AviationSafetyExperiment
                     MessageBoxEx.Show("请先切换到最新的轮次,并确保其测试结果填写完整", "操作提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
-                maxTaskStep = (int)(trp.gv.GetRowCellValue(0, "taskStep"));  
+                #region 获取当前页面最大轮次,并传给新增轮次页面,用于查询数据
+                var taskResultMapList = TaskResultCache.getCache().Where(t => t.taskId == taskInfoId && t.taskRound == 1).ToList();
+                int maxResultStep = 0;
+                try
+                {
+                    maxResultStep = taskResultMapList.Max(x => x.taskStep);
+                }
+                catch (Exception ex)
+                {
+                }
+                #endregion  
                 TaskNewRoundDefine tnrd = new TaskNewRoundDefine(taskInfoId, maxRound, maxTaskStep);
                 tnrd.init();
                 tnrd.getTemplateIndicators();
