@@ -254,7 +254,7 @@ namespace AviationSafetyExperiment
                 var taskResultMainCount = trp.getAllResultModelCount();
                 #region
                 var taskResultMapList = TaskResultCache.getCache().Where(t => t.taskId == taskInfoId && t.taskRound == currentRound).ToList();
-                var currentStepBeforeList = taskResultMapList.Where(r => r.taskId == taskInfoId && r.taskRound == currentRound && r.taskStep <= maxTaskStep+1).ToList();
+                var currentStepBeforeList = taskResultMapList.Where(r => r.taskId == taskInfoId && r.taskRound == currentRound && r.taskStep <= maxTaskStep+1 && r.taskStep > 0).ToList();
                 var maxStepResultList = (from test in currentStepBeforeList
                                          where test.taskStep == (
                                         currentStepBeforeList.Where(l => l.taskId == test.taskId && l.indicatorId == test.indicatorId
