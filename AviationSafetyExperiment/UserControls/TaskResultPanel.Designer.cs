@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             this.ofd = new System.Windows.Forms.OpenFileDialog();
             this.pagingPanel = new AviationSafetyExperiment.UserControls.PagingPanel();
             this.dgv = new DevExpress.XtraGrid.GridControl();
@@ -51,6 +53,7 @@
             this.taskDateTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.attachment = new DevExpress.XtraGrid.Columns.GridColumn();
             this.attachmentCount = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.supplement = new DevExpress.XtraGrid.Columns.GridColumn();
             this.isFillFinish = new DevExpress.XtraGrid.Columns.GridColumn();
             this.isHaveModi = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -60,6 +63,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.taskResultRadioGroup)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoExEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemRichTextEdit1)).BeginInit();
             this.SuspendLayout();
@@ -88,7 +92,8 @@
             this.taskResultRadioGroup,
             this.repositoryItemMemoExEdit1,
             this.repositoryItemMemoEdit1,
-            this.repositoryItemRichTextEdit1});
+            this.repositoryItemRichTextEdit1,
+            this.repositoryItemButtonEdit1});
             this.dgv.Size = new System.Drawing.Size(1101, 716);
             this.dgv.TabIndex = 2;
             this.dgv.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -123,6 +128,7 @@
             this.gv.OptionsCustomization.AllowFilter = false;
             this.gv.OptionsCustomization.AllowGroup = false;
             this.gv.OptionsCustomization.AllowSort = false;
+            this.gv.OptionsEditForm.ShowOnDoubleClick = DevExpress.Utils.DefaultBoolean.True;
             this.gv.OptionsMenu.EnableColumnMenu = false;
             this.gv.OptionsView.AllowCellMerge = true;
             this.gv.OptionsView.RowAutoHeight = true;
@@ -283,7 +289,7 @@
             this.taskRemark.Name = "taskRemark";
             this.taskRemark.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.taskRemark.Visible = true;
-            this.taskRemark.VisibleIndex = 7;
+            this.taskRemark.VisibleIndex = 8;
             this.taskRemark.Width = 113;
             // 
             // taskDateTime
@@ -296,7 +302,7 @@
             this.taskDateTime.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.taskDateTime.OptionsColumn.ReadOnly = true;
             this.taskDateTime.Visible = true;
-            this.taskDateTime.VisibleIndex = 8;
+            this.taskDateTime.VisibleIndex = 9;
             this.taskDateTime.Width = 93;
             // 
             // attachment
@@ -308,9 +314,39 @@
             // 
             // attachmentCount
             // 
-            this.attachmentCount.Caption = "attachmentCount";
+            this.attachmentCount.AppearanceCell.Options.UseImage = true;
+            this.attachmentCount.Caption = "附件及补漏报";
+            this.attachmentCount.ColumnEdit = this.repositoryItemButtonEdit1;
             this.attachmentCount.FieldName = "attachmentCount";
             this.attachmentCount.Name = "attachmentCount";
+            this.attachmentCount.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.attachmentCount.OptionsColumn.ReadOnly = true;
+            this.attachmentCount.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
+            this.attachmentCount.SortMode = DevExpress.XtraGrid.ColumnSortMode.Custom;
+            this.attachmentCount.Visible = true;
+            this.attachmentCount.VisibleIndex = 7;
+            // 
+            // repositoryItemButtonEdit1
+            // 
+            this.repositoryItemButtonEdit1.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.repositoryItemButtonEdit1.Appearance.Options.UseBackColor = true;
+            this.repositoryItemButtonEdit1.Appearance.Options.UseImage = true;
+            this.repositoryItemButtonEdit1.AppearanceDisabled.Options.UseImage = true;
+            this.repositoryItemButtonEdit1.AppearanceFocused.Options.UseImage = true;
+            this.repositoryItemButtonEdit1.AppearanceReadOnly.Options.UseImage = true;
+            serializableAppearanceObject1.Image = global::AviationSafetyExperiment.Properties.Resources.s_13;
+            serializableAppearanceObject1.Options.UseImage = true;
+            serializableAppearanceObject2.Image = global::AviationSafetyExperiment.Properties.Resources.s_21;
+            serializableAppearanceObject2.Options.UseImage = true;
+            this.repositoryItemButtonEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "附件管理", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, global::AviationSafetyExperiment.Properties.Resources.s_13, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "附件管理", null, null, false),
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "补报漏报", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, global::AviationSafetyExperiment.Properties.Resources.s_21, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "补报漏报", null, null, false)});
+            this.repositoryItemButtonEdit1.ExportMode = DevExpress.XtraEditors.Repository.ExportMode.DisplayText;
+            this.repositoryItemButtonEdit1.Name = "repositoryItemButtonEdit1";
+            this.repositoryItemButtonEdit1.ReadOnly = true;
+            this.repositoryItemButtonEdit1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.repositoryItemButtonEdit1.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemButtonEdit1_ButtonClick);
+            this.repositoryItemButtonEdit1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.repositoryItemButtonEdit1_MouseDown);
             // 
             // supplement
             // 
@@ -358,6 +394,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gv)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.taskResultRadioGroup)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoExEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemRichTextEdit1)).EndInit();
             this.ResumeLayout(false);
@@ -393,5 +430,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemMemoExEdit repositoryItemMemoExEdit1;
         private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit1;
         private DevExpress.XtraEditors.Repository.RepositoryItemRichTextEdit repositoryItemRichTextEdit1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit1;
     }
 }

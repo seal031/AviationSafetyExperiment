@@ -25,6 +25,8 @@ namespace AviationSafetyExperiment
         {
             if (login())
             {
+                ScreenForm screenForm = new ScreenForm();
+                screenForm.Show();
                 MainForm mainForm = new AviationSafetyExperiment.MainForm();
                 MainFormAdapter.setMainForm(mainForm);
                 mainForm.Show();
@@ -39,10 +41,10 @@ namespace AviationSafetyExperiment
             {
                 return false;
             }
-            HttpWorker.getUser(txt_username.Text.Trim());//模拟用户获取 
-            //HttpWorker.login(txt_username.Text.Trim(), txt_password.Text.Trim());
-            //HttpWorker.getUserList();
-            return true;
+            //HttpWorker.getUser(txt_username.Text.Trim());//模拟用户获取 
+            bool loginResult = HttpWorker.login(txt_username.Text.Trim(), txt_password.Text.Trim());
+            bool getUserListResult = HttpWorker.getUserList();
+            return loginResult && getUserListResult;
         }
     }
 }

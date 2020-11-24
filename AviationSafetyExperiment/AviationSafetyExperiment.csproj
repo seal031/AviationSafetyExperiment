@@ -192,6 +192,13 @@
     </Compile>
     <Compile Include="Model\User.cs" />
     <Compile Include="Office\WordHelper.cs" />
+    <Compile Include="RsaWorker.cs" />
+    <Compile Include="ScreenForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ScreenForm.Designer.cs">
+      <DependentUpon>ScreenForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SupplementForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -391,6 +398,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ScreenForm.resx">
+      <DependentUpon>ScreenForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SupplementForm.resx">
       <DependentUpon>SupplementForm.cs</DependentUpon>
     </EmbeddedResource>

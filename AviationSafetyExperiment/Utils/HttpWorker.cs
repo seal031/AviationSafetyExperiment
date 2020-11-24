@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -78,11 +79,14 @@ namespace AviationSafetyExperiment.Utils
             }
         }
 
-        public static void login(string username,string password)
+        public static bool login(string username,string password)
         {
             try
             {
-                string head = "{\"loginName\": \"" + username + "\",\"loginPass\": \"" + password + "\"}";
+                //导入公钥 加密
+                string publicKey = @"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCqRK6V0ylacNFH+K7b/PG9txPzXk69gjslEi5N16CQUUHh6aVhhsyj7aAKDTEp76odCdi0tIlv3FTuW41G8ma+QKGChOF+036a3DoKysDHrkuaB5o//jDBfE48mGtNZt4chsJdvYEDsj7StmsZPW5wuQoJzvzZu4oKO5SRZzjDPQIDAQAB"; 
+                string RsaPassword = RsaWorker.EncryptByPublicKey(password + "," + RsaWorker.GetTimeStamp(), publicKey);
+                string head = "{\"loginName\": \"" + username + "\",\"loginPass\": \"" + RsaPassword + "\"}";
                 string response = PostByHttpClient(loginUrl, head);
                 HttpEntity httpEntity = HttpEntity.fromJson(response);
                 if (httpEntity.resultCode == 200)
@@ -91,23 +95,27 @@ namespace AviationSafetyExperiment.Utils
                     user.id = httpEntity.data.userVo.uuid;
                     user.departmentId = httpEntity.data.userVo.departmentId;
                     user.departmentName = httpEntity.data.userVo.departmentName;
+                    user.cookieValue = response;//将cookie值设为请求返回的全部内容即可
                     user.indentity = (httpEntity.data.userVo.userType == "1" ? UserIdentityEnum.Approving_Officers : UserIdentityEnum.Test_Officers);
                     user.name = httpEntity.data.userVo.userName;
                     User.add(user);
                     User.currentUser = user;
+                    return true;
                 }
                 else
                 {
                     MessageBox.Show("用户登录失败：" + httpEntity.msg);
+                    return false;
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("用户登录失败：" + ex.Message);
+                return false;
             }
         }
 
-        public static void getUserList()
+        public static bool getUserList()
         {
             try
             {
@@ -132,15 +140,18 @@ namespace AviationSafetyExperiment.Utils
                             continue;
                         }
                     }
+                    return true;
                 }
                 else
                 {
                     MessageBox.Show("获取用户信息列表失败：" + httpEntity.msg);
+                    return false;
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("获取用户信息列表失败：" + ex.Message);
+                return false;
             }
         }
 

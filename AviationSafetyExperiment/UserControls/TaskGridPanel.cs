@@ -21,8 +21,8 @@ namespace AviationSafetyExperiment.UserControls
     /// </summary>
     public partial class TaskGridPanel : UserControl, ITaskQueryEnable,IPagging
     {
-        public List<TaskModel> taskModelAllList = new List<TaskModel>();
-        private List<TaskModel> afterQueryTaskModelList = new List<TaskModel>();
+        public IEnumerable<TaskModel> taskModelAllList = new List<TaskModel>();
+        private IEnumerable<TaskModel> afterQueryTaskModelList = new List<TaskModel>();
         //private int _taskStateId;
         private int[] _taskStateArray;
         private TaskGridShownStyle _style;
@@ -106,7 +106,7 @@ namespace AviationSafetyExperiment.UserControls
                                     taskCode = task.taskCode,
                                     percent = task.percent,
                                     taskRound = task.taskRound
-                                }).ToList();
+                                });
             doQuery(new TaskQueryItem());
             showStyle(style);
         }
@@ -117,8 +117,8 @@ namespace AviationSafetyExperiment.UserControls
                                        where (queryItem.taskQueryName == string.Empty ? 1 == 1 : taskModel.taskName.Contains(queryItem.taskQueryName))
                                        && (queryItem.taskQueryBrand == string.Empty ? 1 == 1 : taskModel.taskBrandModelName.Contains(queryItem.taskQueryBrand))
                                        && (queryItem.taskState == 0 ? 1 == 1 : taskModel.taskStateId == queryItem.taskState)
-                                       select taskModel).ToList();
-            pagingPanel.setDetail(afterQueryTaskModelList.Count);
+                                       select taskModel);
+            pagingPanel.setDetail(afterQueryTaskModelList.Count());
             var datasourcce = afterQueryTaskModelList.Skip(pageSize * (pageNum - 1)).Take(pageSize).ToList();
             dgv_taskList.DataSource = datasourcce;
             OnDgvRowCountChange(datasourcce.Count);//触发dgv行数变化事件，供父控件更新任务面板title

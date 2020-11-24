@@ -55,23 +55,24 @@ namespace AviationSafetyExperiment.UserControls
             expandablePanel_done.TitleText = "已完成任务(" + rouCount + ")";
         }
 
-        private void Tgp_reload()
-        {
-            init();
-        }
-
         public void init()
         {
-            //if (UserInfo.indentity == UserIdentityEnum.Approving_Officers)//根据权限区分。审批者可以看到的是5001新建的；测试人员可以看到的是5002已通过的
+            //Task.Run(() =>
             //{
-            //    tgp_new.init((int)TaskStateEnum.Created, TaskGridShownStyle.NewTask);
-            //}
-            //else
-            {
-                tgp_new.init(new int[] { (int)TaskStateEnum.Passed, (int)TaskStateEnum.Created }, TaskGridShownStyle.NewTask);//已创建、已审批
-            }
+            //    tgp_new.init(new int[] { (int)TaskStateEnum.Passed, (int)TaskStateEnum.Created }, TaskGridShownStyle.NewTask);//已创建、已审批
+            //    });
+            //Task.Run(() =>
+            //{
+            //    tgp_running.init(new int[] { (int)TaskStateEnum.Running }, TaskGridShownStyle.RunningTask);//已开始
+            //});
+            //Task.Run(() =>
+            //{
+            //    tgp_done.init(new int[] { (int)TaskStateEnum.Completed, (int)TaskStateEnum.Closed, (int)TaskStateEnum.Rejected }, TaskGridShownStyle.DoneTask);//已完成、驳回、关闭
+            //});
+
+            tgp_new.init(new int[] { (int)TaskStateEnum.Passed, (int)TaskStateEnum.Created }, TaskGridShownStyle.NewTask);//已创建、已审批
             tgp_running.init(new int[] { (int)TaskStateEnum.Running }, TaskGridShownStyle.RunningTask);//已开始
-            tgp_done.init(new int[] { (int)TaskStateEnum.Completed,(int)TaskStateEnum.Closed,(int)TaskStateEnum.Rejected }, TaskGridShownStyle.DoneTask);//已完成、驳回、关闭
+            tgp_done.init(new int[] { (int)TaskStateEnum.Completed, (int)TaskStateEnum.Closed, (int)TaskStateEnum.Rejected }, TaskGridShownStyle.DoneTask);//已完成、驳回、关闭
         }
 
         private void expandablePanel_ExpandedChanged(object sender, DevComponents.DotNetBar.ExpandedChangeEventArgs e)

@@ -14,6 +14,9 @@ using AviationSafetyExperiment.Db.Entity;
 using System.IO;
 using AviationSafetyExperiment.Utils;
 using DevComponents.DotNetBar;
+using DevExpress.XtraEditors.Repository;
+using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraGrid.Views.Grid;
 
 namespace AviationSafetyExperiment.UserControls
 {
@@ -51,6 +54,8 @@ namespace AviationSafetyExperiment.UserControls
 
             //attachmentCount.ButtonCustomClick += Attachment_ButtonCustomClick;
             //attachmentCount.ButtonCustom2Click += AttachmentCount_ButtonCustom2Click;
+            //repositoryItemButtonEdit1.Buttons[0].Click += Attachment_ButtonCustomClick;
+            //repositoryItemButtonEdit1.Buttons[1].Click += AttachmentCount_ButtonCustom2Click;
         }
 
         /// <summary>
@@ -453,64 +458,49 @@ namespace AviationSafetyExperiment.UserControls
         //    TextRenderer.DrawText(e.Graphics, (e.RowIndex + 1).ToString(), dgv.RowHeadersDefaultCellStyle.Font,
         //           rectangle, dgv.RowHeadersDefaultCellStyle.ForeColor, TextFormatFlags.VerticalCenter | TextFormatFlags.Right);
         //}
-        /// <summary>
-        /// 上传附件按钮事件
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        //private void Attachment_ButtonCustomClick(object sender, EventArgs e)
-        //{
-        //    DataGridViewMaskedTextBoxAdvCell cell = dgv.CurrentCell as DataGridViewMaskedTextBoxAdvCell;
-        //    if (cell != null)
-        //    {
-        //        var indicatorId = (int)dgv.Rows[cell.RowIndex].Cells["indicatorId"].Value;
-        //        var brandId = (int)dgv.Rows[cell.RowIndex].Cells["brandId"].Value;
-        //        var modelId = (int)dgv.Rows[cell.RowIndex].Cells["modelId"].Value;
-        //        var attachment = dgv.Rows[cell.RowIndex].Cells["attachment"].Value.ToString();
-        //        FtpListForm flf = new AviationSafetyExperiment.FtpListForm(taskId, indicatorId, brandId, modelId, attachment);
-        //        var flfState = flf.ShowDialog(this);
-        //        if (flfState == DialogResult.OK)
-        //        {
-        //            string remoteFiles = flf.remoteFiles;
-        //            DataGridViewMaskedTextBoxAdvEditingControl ec = cell.DataGridView.EditingControl as DataGridViewMaskedTextBoxAdvEditingControl;
-        //            if (ec != null)
-        //            {
-        //                dgv.Rows[cell.RowIndex].Cells["attachment"].Value = remoteFiles;
-        //                if (ec.Text.Contains("补"))
-        //                {
-        //                    ec.Text = (remoteFiles == string.Empty ? "" : remoteFiles.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries).Count() + "个") + "(补)";
-        //                }
-        //                else
-        //                {
-        //                    ec.Text = remoteFiles == string.Empty ? "" : remoteFiles.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries).Count() + "个";
-        //                }
-        //            }
-        //        }
-        //        ////原逻辑，单文件上传
-        //        //if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-        //        //{
-        //        //    string localFilePath = ofd.FileName;
-        //        //    string extension = Path.GetExtension(localFilePath);
-        //        //    string remoteFilePath = RemoteFileNameMaker.makeName(taskId, indicatorId, brandId, modelId, extension);
-        //        //    DataGridViewMaskedTextBoxAdvEditingControl ec = cell.DataGridView.EditingControl as DataGridViewMaskedTextBoxAdvEditingControl;
-        //        //    FtpProcessForm fpf = new FtpProcessForm(localFilePath, remoteFilePath, true);
-        //        //    var uploadState = fpf.ShowDialog();
-        //        //    if (uploadState == DialogResult.OK)
-        //        //    {
-        //        //        MessageBoxEx.Show("上传完成");
-        //        //        if (ec != null)
-        //        //        {
-        //        //            dgv.Rows[cell.RowIndex].Cells[cell.ColumnIndex].Value = remoteFilePath;
-        //        //            ec.Text = remoteFilePath;
-        //        //        }
-        //        //    }
-        //        //    if (uploadState == DialogResult.No)
-        //        //    {
-        //        //        MessageBoxEx.Show("上传失败");
-        //        //    }
-        //        //}
-        //    }
-        //}
+        
+        private void repositoryItemButtonEdit1_ButtonClick(object sender, ButtonPressedEventArgs e)
+        {
+            string buttonText = e.Button.Caption;
+            if (buttonText == "附件管理")
+            {
+                Attachment_ButtonCustomClick(null, null);
+            }
+            else if(buttonText=="补报漏报")
+            {
+                AttachmentCount_ButtonCustom2Click(null, null);
+            }
+        }
+        // <summary>
+        // 上传附件按钮事件
+        // </summary>
+        // <param name = "sender" ></ param >
+        // < param name="e"></param>
+        private void Attachment_ButtonCustomClick(object sender, EventArgs e)
+        {
+            GridView view = ((GridView)(this.dgv.MainView));
+            int rowhandle = view.FocusedRowHandle;
+            var indicatorId = int.Parse(gv.GetRowCellValue(rowhandle, "indicatorId").ToString());
+            var brandId = int.Parse(gv.GetRowCellValue(rowhandle, "brandId").ToString());
+            var modelId = int.Parse(gv.GetRowCellValue(rowhandle, "modelId").ToString());
+            var attachment = gv.GetRowCellValue(rowhandle, "attachment").ToString();
+            FtpListForm flf = new AviationSafetyExperiment.FtpListForm(taskId, indicatorId, brandId, modelId, attachment);
+            var flfState = flf.ShowDialog(this);
+            if (flfState == DialogResult.OK)
+            {
+                string remoteFiles = flf.remoteFiles;
+                gv.SetRowCellValue(rowhandle, "attachment", remoteFiles);
+                string cellValue = gv.GetRowCellValue(rowhandle, "attachmentCount").ToString();
+                if (cellValue.Contains("补"))
+                {
+                    gv.SetRowCellValue(rowhandle, "attachmentCount", (remoteFiles == string.Empty ? "" : remoteFiles.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries).Count() + "个") + "(补)");
+                }
+                else
+                {
+                    gv.SetRowCellValue(rowhandle, "attachmentCount", (remoteFiles == string.Empty ? "" : remoteFiles.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries).Count() + "个"));
+                }
+            }
+        }
         /// <summary>
         /// 点击查看附件事件
         /// </summary>
@@ -560,76 +550,70 @@ namespace AviationSafetyExperiment.UserControls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        //private void AttachmentCount_ButtonCustom2Click(object sender, EventArgs e)
-        //{
-        //    DataGridViewMaskedTextBoxAdvCell cell = dgv.CurrentCell as DataGridViewMaskedTextBoxAdvCell;
-        //    if (cell != null)
-        //    {
-        //        if (dgv.Rows[cell.RowIndex].Cells["supplement"].Value != null)
-        //        {
-        //            string supplementJsonString = dgv.Rows[cell.RowIndex].Cells["supplement"].Value.ToString();
-        //            SupplementForm sf = new SupplementForm(supplementJsonString,taskId);
-        //            if (sf.ShowDialog(this) == DialogResult.OK)
-        //            {
-        //                dgv.Rows[cell.RowIndex].Cells["supplement"].Value = sf.getSupplimentJsonString();
-        //                if (dgv.Rows[cell.RowIndex].Cells[cell.ColumnIndex].Value.ToString().Contains("补") == false)
-        //                {
-        //                    dgv.Rows[cell.RowIndex].Cells[cell.ColumnIndex].Value = dgv.Rows[cell.RowIndex].Cells[cell.ColumnIndex].Value.ToString() + "(补)";
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
-
+        private void AttachmentCount_ButtonCustom2Click(object sender, EventArgs e)
+        {
+            GridView view = ((GridView)(this.dgv.MainView));
+            int rowhandle = view.FocusedRowHandle;
+            var supplement = gv.GetRowCellValue(rowhandle, "supplement");
+            if (supplement != null)
+            {
+                string supplementJsonString = supplement.ToString();
+                SupplementForm sf = new SupplementForm(supplementJsonString, taskId);
+                if (sf.ShowDialog(this) == DialogResult.OK)
+                {
+                    gv.SetRowCellValue(rowhandle, "supplement", sf.getSupplimentJsonString());
+                    var attachmentCount = gv.GetRowCellValue(rowhandle, "attachmentCount");
+                    if (attachmentCount != null)
+                    {
+                        string attachmentCountString = attachmentCount.ToString();
+                        if (attachmentCountString.Contains("补") == false)
+                        {
+                            gv.SetRowCellValue(rowhandle, "attachmentCount", attachmentCountString + "(补)");
+                        }
+                    }
+                }
+            }
+        }
         /// <summary>
-        /// 双击事件：双击附件时打开附件内容；双击指标项时显示指标细节
+        /// 双击事件，打开附件及补报漏报
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        //private void dgv_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
-        //{
-        //    if (e.ColumnIndex >= 0)
-        //    {
-        //        if (dgv.Columns[e.ColumnIndex].Name == "attachmentCount")
-        //        {
-        //            if (dgv.Rows[e.RowIndex].Cells["attachment"].Value != null)
-        //            {
-        //                if (dgv.Rows[e.RowIndex].Cells["attachment"].Value.ToString() != string.Empty|| dgv.Rows[e.RowIndex].Cells["supplement"].Value.ToString() != string.Empty)
-        //                {
-        //                    //附件和补漏报合并显示，所以附件无论单个还是多个，都要打开附件列表
-        //                    string remoteFilePath = dgv.Rows[e.RowIndex].Cells["attachment"].Value.ToString();
-        //                    string supplementJsonString = dgv.Rows[e.RowIndex].Cells["supplement"].Value.ToString();
-        //                    FtpListForm flf = new FtpListForm(remoteFilePath, supplementJsonString);
-        //                    flf.ShowDialog();
-        //                }
-        //            }
-        //        }
-        //        if (dgv.Columns[e.ColumnIndex].Name == "indicatorInstr"|| dgv.Columns[e.ColumnIndex].Name == "indicatorDesc"|| dgv.Columns[e.ColumnIndex].Name == "indicatorName")
-        //        {
-        //            IndicatorEdit ie = new AviationSafetyExperiment.IndicatorEdit(_readOnly: true);
-        //            var indicatorIdValue = dgv.Rows[e.RowIndex].Cells["indicatorId"].Value.ToString();
-        //            int indicatorId;
-        //            if (int.TryParse(indicatorIdValue, out indicatorId))
-        //            {
-        //                ie.indicator = IndicatorCache.getCache().FirstOrDefault(i => i.id == indicatorId);
-        //                ie.Show(this);
-        //            }
-        //        }
-        //    }
-        //}
-
+        private void repositoryItemButtonEdit1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left && e.Clicks >= 2)//点击鼠标左键2次
+            {
+                GridView view = ((GridView)(this.dgv.MainView));
+                int rowhandle = view.FocusedRowHandle;
+                var colhandle = view.FocusedColumn;
+                if (colhandle.FieldName == "attachmentCount")
+                {
+                    var attachment = gv.GetRowCellValue(rowhandle, "attachment");
+                    var supplement = gv.GetRowCellValue(rowhandle, "supplement");
+                    if (attachment != null && supplement != null)
+                    {
+                        string attachmentString = attachment.ToString();
+                        string supplementString = supplement.ToString();
+                        FtpListForm flf = new FtpListForm(attachmentString, supplementString);
+                        flf.ShowDialog();
+                    }
+                }
+            }
+        }
+        
+       /// <summary>
+       /// 双击事件，打开指标详情
+       /// </summary>
+       /// <param name="sender"></param>
+       /// <param name="e"></param>
         private void gv_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
         {
             if (e.Clicks == 2)//双击
             {
-                if (e.Column.FieldName == "attachmentCount")
-                {
-
-                }
                 if (e.Column.FieldName == "indicatorInstr" || e.Column.FieldName == "indicatorDesc" || e.Column.FieldName == "indicatorName")
                 {
                     IndicatorEdit ie = new AviationSafetyExperiment.IndicatorEdit(_readOnly: true);
-                    var indicatorIdValue = gv.GetRowCellValue(e.RowHandle, e.Column).ToString();
+                    var indicatorIdValue = gv.GetRowCellValue(e.RowHandle, "indicatorId").ToString();
                     int indicatorId;
                     if (int.TryParse(indicatorIdValue, out indicatorId))
                     {

@@ -15,6 +15,7 @@ namespace AviationSafetyExperiment.Model
         public string name { get; set; }
         public string departmentId { get; set; }
         public string departmentName { get; set; }
+        public string cookieValue { get; set; }
         /// <summary>
         /// 用户身份
         /// </summary>

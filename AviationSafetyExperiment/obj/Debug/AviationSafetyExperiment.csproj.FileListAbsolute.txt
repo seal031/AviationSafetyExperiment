@@ -209,3 +209,4 @@ E:\GitHubProject\AviationSafetyExperiment\AviationSafetyExperiment\bin\Debug\de\
 E:\GitHubProject\AviationSafetyExperiment\AviationSafetyExperiment\bin\Debug\es\DevExpress.XtraRichEdit.v15.2.resources.dll
 E:\GitHubProject\AviationSafetyExperiment\AviationSafetyExperiment\bin\Debug\ja\DevExpress.XtraRichEdit.v15.2.resources.dll
 E:\GitHubProject\AviationSafetyExperiment\AviationSafetyExperiment\bin\Debug\ru\DevExpress.XtraRichEdit.v15.2.resources.dll
+E:\GitHubProject\AviationSafetyExperiment\AviationSafetyExperiment\obj\Debug\AviationSafetyExperiment.ScreenForm.resources
