@@ -90,7 +90,14 @@ namespace AviationSafetyExperiment.UserControls
             var brandList = CodeCache.getBrand();
             var modelList = CodeCache.getModel();
             var taskModelList = TaskModelMapCache.getCache();
-            taskResultMapList = TaskResultCache.getCache().Where(t => t.taskId == taskId && t.taskRound == taskRound).ToList();
+            taskResultMapList = TaskResultCache.getCache().Where(t => t.taskId == taskId && t.taskRound == round).ToList();
+            var currentStepBeforeList = taskResultMapList.Where(r => r.taskId == taskId && r.taskRound == round && r.taskStep <= step).ToList();
+            var maxStepResultList = (from test in currentStepBeforeList
+                                     where test.taskStep == (
+                                    currentStepBeforeList.Where(l => l.taskId == test.taskId && l.indicatorId == test.indicatorId
+                                    && l.modelId == test.modelId && l.taskRound == test.taskRound).Max(l => l.taskStep)
+                                    )
+                                     select test).ToList();
             if (round == 1)
             {
                 //todo ***************确定后将下列ToList都去掉******************
@@ -117,9 +124,8 @@ namespace AviationSafetyExperiment.UserControls
                                                      bm.modelId,
                                                      bm.modelName
                                                  }).ToList();
-
                 var list_indicator = (from indicator in task_model_indicator_list
-                                      join result in taskResultMapList.Where(r => r.taskStep == step && r.taskRound == round) 
+                                      join result in maxStepResultList
                                       on new { indicator.taskIndicator.indicatorId, indicator.modelId } 
                                       equals new { result.indicatorId, result.modelId } into temp
                                       from tt in temp.DefaultIfEmpty()
@@ -162,16 +168,16 @@ namespace AviationSafetyExperiment.UserControls
                                           brandName = temp.indicator.brandName,
                                           taskResultId = temp.taskResultId,
                                           supplement = temp.supplement,
-                                          isFillFinish = (temp.taskResult == 0 && temp.taskRecord == "") ? 0 : 1,
-                                          isHaveModi = ((temp.taskResult != 0 || temp.taskRecord != "" || temp.taskRemark != "" || temp.attachment != "" || temp.supplement != "") ? 1:0)
+                                          isFillFinish = (temp.taskResult == 0 || temp.taskRecord == "") ? 0 : 1,
+                                          isHaveModi = 0
                                       }).ToList();
             }
             else
             {
-                var initStepList = TaskResultCache.getCache().Where(r => r.taskId == taskId && r.taskRound == taskRound && r.taskResult == 0 && r.taskStep == 1).ToList();
+                var initStepList = TaskResultCache.getCache().Where(r => r.taskId == taskId && r.taskRound == round && r.taskResult == 0 && r.taskStep == 0).ToList();
                 var a = (from initStep in initStepList
                          join result in
-                         TaskResultCache.getCache().Where(r => r.taskId == taskId && r.taskRound == taskRound && r.taskStep == step).ToList()
+                         maxStepResultList
                          on new { initStep.modelId, initStep.indicatorId }
                          equals new { result.modelId, result.indicatorId } into temp
                          from tt in temp.DefaultIfEmpty()
@@ -224,8 +230,8 @@ namespace AviationSafetyExperiment.UserControls
                                           attachmentCount = (resultList.attachment == string.Empty ? "" : resultList.attachment.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries).Count() + "个")
                                           + (resultList.supplement == "" ? "" : "(补)"),
                                           supplement = resultList.supplement,
-                                          isFillFinish = (resultList.taskResult == 0 && resultList.taskRecord == "") ? 0 : 1,
-                                          isHaveModi = ((resultList.taskResult != 0 || resultList.taskRecord != "" || resultList.taskRemark != "" || resultList.attachment != "" || resultList.supplement != "") ? 1 : 0)
+                                          isFillFinish = (resultList.taskResult == 0 || resultList.taskRecord == "") ? 0 : 1,
+                                          isHaveModi = 0
                                       }).ToList();
             }
             
@@ -238,13 +244,20 @@ namespace AviationSafetyExperiment.UserControls
             //dgv.Columns["taskRecord"].ReadOnly = readOnly;
             //dgv.Columns["taskRemark"].ReadOnly = readOnly;
             //dgv.Columns["attachmentCount"].ReadOnly = readOnly;
-            
+            if (readOnly)
+            {
+                gv.OptionsBehavior.Editable = false;
+            }
+            else
+            {
+                gv.OptionsBehavior.Editable = true;
+            }
         }
         public void maxRoundInit(int taskInfoId,bool readOnly = false,int taskRound = 1)
         {
             taskId = taskInfoId;
             this.taskRound = taskRound;
-            taskResultMapList = TaskResultCache.getCache().Where(t => t.taskId == taskId && t.taskRound == taskRound && t.taskStep == 1).ToList();
+            taskResultMapList = TaskResultCache.getCache().Where(t => t.taskId == taskId && t.taskRound == taskRound && t.taskStep == 0).ToList();
             List<Tb_taskResult> allResult =TaskResultCache.getCache().Where(t => t.taskId == taskId && t.taskRound == taskRound).ToList();
             maxResultStep = 0;
             try
@@ -255,8 +268,15 @@ namespace AviationSafetyExperiment.UserControls
             catch (Exception ex)
             {
             }
+            var currentStepBeforeList = allResult.Where(r => r.taskId == taskId && r.taskRound == taskRound && r.taskStep <= maxResultStep).ToList();
+            var maxStepResultList = (from test in currentStepBeforeList
+                                     where test.taskStep == (
+                                    currentStepBeforeList.Where(l => l.taskId == test.taskId && l.indicatorId == test.indicatorId
+                                    && l.modelId == test.modelId && l.taskRound == test.taskRound).Max(l => l.taskStep)
+                                    )
+                                     select test).ToList();
             var result = (from resultList in taskResultMapList
-                          join resultAll in TaskResultCache.getCache().Where(r => r.taskId == taskInfoId && r.taskStep == maxResultStep &&  r.taskRound == taskRound)
+                          join resultAll in maxStepResultList
                           on new { resultList.indicatorId, resultList.modelId }
                           equals new { resultAll.indicatorId, resultAll.modelId } into temp
                           from tt in temp.DefaultIfEmpty()
@@ -308,8 +328,8 @@ namespace AviationSafetyExperiment.UserControls
                                                      attachmentCount = (resultList.attachment == string.Empty ? "" : resultList.attachment.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries).Count() + "个")
                                           + (resultList.supplement == "" ? "" : "(补)"),
                                                      supplement = resultList.supplement,
-                                                     isFillFinish = (resultList.taskResult == 0 && resultList.taskRecord == "") ? 0 : 1,
-                                                     isHaveModi = ((resultList.taskResult != 0 || resultList.taskRecord != "" || resultList.taskRemark != "" || resultList.attachment != "" || resultList.supplement != "") ? 1 : 0)
+                                                     isFillFinish = (resultList.taskResult == 0 || resultList.taskRecord == "") ? 0 : 1,
+                                                     isHaveModi = 0
                                                  }).ToList();
             dgv.DataSource = null;
             pagingPanel.setDetail(allResultModelList.Count);

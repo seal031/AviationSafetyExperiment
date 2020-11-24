@@ -101,8 +101,14 @@ namespace AviationSafetyExperiment
             var modelList = CodeCache.getModel();//全部型号
 
             //获取某任务下某轮次的所有指标测试结果
-            var currentRoundIndicatorList = TaskResultCache.getCache().Where(r => r.taskId == taskInfoId && r.taskRound == currentRound && r.taskStep == maxTaskStep).ToList();
-            
+            var currentRoundIndicatorList = TaskResultCache.getCache().Where(r => r.taskId == taskInfoId && r.taskRound == currentRound).ToList();
+            var currentStepBeforeList = currentRoundIndicatorList.Where(r => r.taskId == taskInfoId && r.taskRound == currentRound && r.taskStep <= maxTaskStep).ToList();
+            var maxStepResultList = (from test in currentStepBeforeList
+                                     where test.taskStep == (
+                                    currentStepBeforeList.Where(l => l.taskId == test.taskId && l.indicatorId == test.indicatorId
+                                    && l.modelId == test.modelId && l.taskRound == test.taskRound).Max(l => l.taskStep)
+                                    )
+                                     select test).ToList();
             progress.Report("获取前序轮次全部指标");
             await Task.Factory.StartNew(() =>
             {
@@ -111,7 +117,7 @@ namespace AviationSafetyExperiment
                 var childOne = Task.Factory.StartNew(() =>
                 {
                     //所有未通过的测试结果
-                    var currentUnIndicatList = currentRoundIndicatorList.Where(r => r.taskResult == 1).ToList();
+                    var currentUnIndicatList = maxStepResultList.Where(r => r.taskResult == 1).ToList();
                     selectedIndicatorModelList = (from unIndicat in currentUnIndicatList
                                from brand in brandList
                                from model in modelList
@@ -148,7 +154,7 @@ namespace AviationSafetyExperiment
                 }, TaskCreationOptions.AttachedToParent);
                 var childTwo = Task.Factory.StartNew(() =>
                 {
-                    var currentUnIndicatList = currentRoundIndicatorList.Where(r => r.taskResult == 2).ToList();
+                    var currentUnIndicatList = maxStepResultList.Where(r => r.taskResult == 2).ToList();
                     unselectedIndicatorModelList = (from unIndicat in currentUnIndicatList
                                                   from brand in brandList
                                                   from model in modelList
@@ -245,8 +251,15 @@ namespace AviationSafetyExperiment
                 bool flag = true;
                 foreach (var item in checkedIndicatorId)//遍历选择的所有指标,判断其中是否存在未通过的指标,该指标无法移到待选指标
                 {
-                    currentIndicatorList = TaskResultCache.getCache().Where(r => r.indicatorId == item[1] && r.taskId == taskInfoId && r.modelId == item[0] && r.taskStep == maxTaskStep && r.taskRound == currentRound).ToList();
-                    if (currentIndicatorList[0].taskResult == 1)
+                    currentIndicatorList = TaskResultCache.getCache().Where(r => r.indicatorId == item[1] && r.taskId == taskInfoId && r.modelId == item[0] && r.taskRound == currentRound).ToList();
+                    var currentStepBeforeList = currentIndicatorList.Where(r => r.taskId == taskInfoId && r.taskRound == currentRound && r.taskStep <= maxTaskStep).ToList();
+                    var maxStepResultList = (from test in currentStepBeforeList
+                                             where test.taskStep == (
+                                            currentStepBeforeList.Where(l => l.taskId == test.taskId && l.indicatorId == test.indicatorId
+                                            && l.modelId == test.modelId && l.taskRound == test.taskRound).Max(l => l.taskStep)
+                                            )
+                                             select test).ToList();
+                    if (maxStepResultList[0].taskResult == 1)
                     {
                         flag = false;
                         break;
@@ -313,7 +326,7 @@ namespace AviationSafetyExperiment
                     //TaskIndicatorMapCache.addCacheOnly(indicatorMap);
                     Tb_taskResult taskResult = new Tb_taskResult();
                     taskResult.taskId = taskInfoId;
-                    taskResult.taskStep = 1;//新增轮次的步骤默认都是从1开始
+                    taskResult.taskStep = 0;//新增轮次的步骤默认都是从0开始
                     taskResult.taskExecutor = User.currentUser.name;
                     taskResult.taskDateTime = DateTime.Now;
                     taskResult.modelId = item.modelId;
@@ -351,8 +364,16 @@ namespace AviationSafetyExperiment
         {
             if (dgv.Name == "dgv_selected")//已选-》待选
             {
-                var currentRoundIndicatorList = TaskResultCache.getCache().Where(r => r.indicatorId == indicatorId && r.modelId == modelId && r.taskId == taskInfoId && r.taskStep == maxTaskStep && r.taskRound == currentRound).ToList();
-                if (currentRoundIndicatorList[0].taskResult == 2) //表示已通过
+                var currentRoundIndicatorList = TaskResultCache.getCache().Where(r => r.indicatorId == indicatorId && r.modelId == modelId && r.taskId == taskInfoId && r.taskRound == currentRound).ToList();
+                var currentStepBeforeList = currentRoundIndicatorList.Where(r => r.taskId == taskInfoId && r.taskRound == currentRound && r.taskStep <= maxTaskStep).ToList();
+                var maxStepResultList = (from test in currentStepBeforeList
+                                         where test.taskStep == (
+                                        currentStepBeforeList.Where(l => l.taskId == test.taskId && l.indicatorId == test.indicatorId
+                                        && l.modelId == test.modelId && l.taskRound == test.taskRound).Max(l => l.taskStep)
+                                        )
+                                         select test).ToList();
+
+                if (maxStepResultList[0].taskResult == 2) //表示已通过
                 {
                     moveIndicator(selectedIndicatorModelList, unselectedIndicatorModelList, indicatorId,modelId);
                 }

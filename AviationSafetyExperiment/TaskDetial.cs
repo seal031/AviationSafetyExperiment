@@ -164,23 +164,58 @@ namespace AviationSafetyExperiment
             {
             }
             currentStep = 1;
-            if (currentStep >= maxStep)
+            Point point = new Point();
+            if (maxStep>0)
             {
+                if (currentStep >= maxStep)
+                {
+                    btn_next.Enabled = false;
+                }
+                else
+                {
+                    btn_next.Enabled = true;
+                }
+                if (currentStep <= 1)
+                {
+                    btn_previous.Enabled = false;
+                }
+                else
+                {
+                    btn_previous.Enabled = true;
+                }
+                lbl_current.Text = 1 + "/" + maxStep;
+
+                if (currentStep >= 10)
+                {
+                    point.X = 335;
+                    point.Y = btn_next.Location.Y;
+                    btn_next.Location = point;
+                    point.X = 378;
+                    point.Y = ben_closeHistory.Location.Y;
+                    ben_closeHistory.Location = point;
+                }
+                else
+                {
+                    point.X = 325;
+                    point.Y = btn_next.Location.Y;
+                    btn_next.Location = point;
+                    point.X = 368;
+                    point.Y = ben_closeHistory.Location.Y;
+                    ben_closeHistory.Location = point;
+                }
+            }
+            else
+            {
+                lbl_current.Text = "尚无步骤";
                 btn_next.Enabled = false;
-            }
-            else
-            {
-                btn_next.Enabled = true;
-            }
-            if (currentStep <= 1)
-            {
                 btn_previous.Enabled = false;
+                point.X = 350;
+                point.Y = btn_next.Location.Y;
+                btn_next.Location = point;
+                point.X = 388;
+                point.Y = ben_closeHistory.Location.Y;
+                ben_closeHistory.Location = point;
             }
-            else
-            {
-                btn_previous.Enabled = true;
-            }
-            lbl_current.Text = 1 + "/" + maxStep;
         }
         private void ben_closeHistory_Click(object sender, EventArgs e)
         {
@@ -300,9 +335,19 @@ namespace AviationSafetyExperiment
                                                  bm.modelId,
                                                  bm.modelName
                                              }).ToList();
+            var taskResultMapList = TaskResultCache.getCache().Where(t => t.taskId == taskInfoId && t.taskRound == round).ToList();
+            var currentStepBeforeList = taskResultMapList.Where(r => r.taskId == taskInfoId && r.taskRound == round && r.taskStep <= step).ToList();
+            var maxStepResultList = (from test in currentStepBeforeList
+                                     where test.taskStep == (
+                                    currentStepBeforeList.Where(l => l.taskId == test.taskId && l.indicatorId == test.indicatorId
+                                    && l.modelId == test.modelId && l.taskRound == test.taskRound).Max(l => l.taskStep)
+                                    )
+                                     select test).ToList();
 
             var list_indicator = (from indicator in task_model_indicator_list
-                                  join result in taskResultMapList.Where(r => r.taskStep == step && r.taskRound == round) on new { indicator.taskIndicator.indicatorId, indicator.modelId } equals new { result.indicatorId, result.modelId } into temp
+                                  join result in maxStepResultList
+                                  on new { indicator.taskIndicator.indicatorId, indicator.modelId } 
+                                  equals new { result.indicatorId, result.modelId } into temp
                                   from tt in temp.DefaultIfEmpty()
                                   select new
                                   {
